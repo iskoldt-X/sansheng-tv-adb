@@ -1,0 +1,68 @@
+name: 投稿一台电视的入口 / Submit a TV entry
+description: 你家电视的开发者模式入口、能用的命令、踩过的坑。有截图和输出最好。
+title: "[机型] 品牌 型号 · 系统名/版本"
+labels: ["tv-entry"]
+body:
+  - type: input
+    id: brand_model
+    attributes:
+      label: 品牌与型号 / Brand & model
+      placeholder: 例：海信 65E3F、Sony XBR-65X900F、Fire TV Stick 4K (2nd gen)
+    validations:
+      required: true
+  - type: input
+    id: system
+    attributes:
+      label: 「设置 → 关于」里显示的系统名与版本 / System name & version shown in About
+      placeholder: 例：VIDAA 4.0 / Android 9 / Fire OS 7.6.9.4 / HarmonyOS 4.0.0
+    validations:
+      required: true
+  - type: dropdown
+    id: remote_digits
+    attributes:
+      label: 遥控器有没有 0–9 数字键 / Remote has number keys?
+      options: ["有 / yes", "没有 / no", "不确定 / not sure"]
+  - type: textarea
+    id: entry_steps
+    attributes:
+      label: 你实际走通的入口步骤 / Steps that actually worked
+      description: 一行一步；工厂菜单类写清改了哪一项、原值是什么。
+      placeholder: |
+        1. 设置 → 声音 → 光标停在「声音平衡」
+        2. 交替按 OK / 菜单 …
+    validations:
+      required: true
+  - type: dropdown
+    id: auth
+    attributes:
+      label: 连接时电视有没有弹「允许 USB 调试」/ Did the TV show an authorization prompt?
+      options: ["有 / yes", "没有 / no", "要配对码 / needed adb pair"]
+  - type: textarea
+    id: pm_caps
+    attributes:
+      label: 哪条停用命令能用 / Which disable command worked
+      description: 贴 `pm disable-user --user 0 <pkg>`、`pm hide <pkg>`、`pm uninstall -k --user 0 <pkg>` 各自的原始输出（一行就够）。
+  - type: textarea
+    id: packages
+    attributes:
+      label: 你停了哪些包、哪些不能停 / Packages you disabled, and ones that must stay
+      description: 包名一行一个，后面写它是什么。停了出问题的也写上。
+  - type: textarea
+    id: numbers
+    attributes:
+      label: 前后数字 / Before & after
+      placeholder: 可用内存 551 MB → 988 MB；开机广告：有 → 无；停用 29 个
+  - type: textarea
+    id: evidence
+    attributes:
+      label: 证据 / Evidence
+      description: 备份目录截图、`getprop ro.build.fingerprint` 输出、报告或结果卡。没有证据的投稿只能标「单源」。
+  - type: checkboxes
+    id: consent
+    attributes:
+      label: 确认 / Confirm
+      options:
+        - label: 我没有 root、没有刷机；上面的内容是我自己在这台机上做的。
+          required: true
+        - label: 截图里的序列号、MAC 地址已打码。
+          required: true

@@ -1,0 +1,403 @@
+{
+  "brand": "创维 / 酷开 / Skyworth / Coocaa",
+  "region": "both",
+  "aliases": ["创维", "酷开", "Skyworth", "SkyWorth", "Coocaa", "coocaa", "酷开科技", "天赐系统", "Coolita", "Coolita AIOS"],
+  "status": "适用",
+  "summary": "能做：绝大多数国内创维/酷开机型走「本机信息 → 上上下下左右左右 → 工厂菜单 → 打开 ADB」，是国产电视里入口最稳定、教程最多的一家；但工厂菜单是厂商自制界面，只能动 ADB 那一项。值不值得：2019 年前的 1–2GB 机型收益最大；2024 年后的 AIOS 机型社区还没有实测教程，先别指望。",
+  "identify_hints": {
+    "remote_has_digits": "2016 年后的创维/酷开遥控器多数没有数字键；主流入口用方向键输入，不依赖数字键，这点比康佳/长虹友好",
+    "system_name_shown_at": "设置 → 关于本机（部分老机型叫「版本信息」）→ 本机信息；这一页同时显示本机型号、机芯号和系统版本号，也是「上上下下左右左右」必须站在的那一页",
+    "about_page_fields": ["本机型号（如 55G7200）", "机芯号 / 芯片方案号（如 8H87、7S711、K5C）", "系统版本号 / 软件版本（酷开系统 x.x 或内部版本号如 180524）", "MAC 地址", "序列号"],
+    "model_naming_rule": "创维整机按定位分 W > S > Q > G > A 五档（ZNDS 2021 解析：W「尖端机型」、S「旗舰机型」、Q「高品质机型」、G「国民机型」，A 是 2020 年新增、主打年轻人的系列）；型号前面的数字是尺寸，如 65A5D = 65 英寸 A 系列。子品牌酷开（coocaa）另用 K / U / P / S / C 等字母+数字，如 42K1、40U1、P50 Pro、K3 Pro。注意创维官网「G 系列（游戏电竞）」指的是显示器不是电视，别混。",
+    "sticker_location": "机身背面右下角的铭牌贴纸印有完整型号与序列号；机芯号一般只在「关于本机」里看得到，贴纸上没有",
+    "year_ranges": "酷开系统 5.x ≈ 2016–2019，6.x ≈ 2017–2018，7.x ≈ 2018–2019，8.x ≈ 2019–2023，AIOS ≈ 2024 起"
+  },
+  "series": [
+    {
+      "name": "酷开系统 5.x（5.0 / 5.5 / 5.8）",
+      "years": "2016 年发布 5.0，小版本延续到约 2019",
+      "base_os": "android",
+      "android_version_range": "Android 5.x 附近（同代机型实测见 Android 5.0 / API 21）",
+      "models_examples": ["酷开 K1 系列（42K1 / 42K1T / 42K1Y / 42K1TY / 55K1 / 55K1T）", "酷开 U1 系列（40U1 / 58U1）", "创维 G7200（8H87 机芯）", "创维 E660E"],
+      "identify_hints": "「设置 → 关于本机 → 版本号」里写「酷开系统 5.0 / 5.5 / 5.8」或「Coocaa 5.x」；桌面是横向大色块的瀑布流首页，顶部一排「精选 / 影视 / 应用 / 我的」。这一代遥控器多数还带数字键盘。",
+      "worth_it_hint": "值得做：这代机型普遍 1–2GB 运存，开机广告与预装最多，机龄已 7–10 年，卡顿明显，清理后提升最直观；同时这代 ADB 限制最松，很多机型连接后不弹授权框。",
+      "entries": [
+        {
+          "applies_to": "酷开系统 5.x 通用主路径",
+          "steps": [
+            "遥控器按「设置」，进入「关于本机」（部分机型这一级叫「版本信息」）",
+            "进入「本机信息」子页面，停在这一页不要退出",
+            "用方向键缓慢依次按：上、上、下、下、左、右、左、右（是「左右左右」，不是「左左右右」）",
+            "屏幕进入「工厂菜单 / 工程模式」",
+            "选择「通用设置」或「常用开关」，找到「ADB」，设为「开」",
+            "连按返回键退出工厂菜单，部分机型需断电重启才生效"
+          ],
+          "has_auth_prompt": false,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://www.znds.com/tv-646545-1-1.html", "title": "创维智能电视打开工厂模式，开启ADB方法", "date": "2017-02-22"},
+            {"url": "https://n.znds.com/article/19153.html", "title": "2017创维酷开最全面攻略：安装软件看直播教程集合！", "date": "2017-02-07"},
+            {"url": "https://www.znds.com/tv-949448-1-1.html", "title": "酷开电视进入工程模式，打开ADB调试方法【图文】", "date": "2017-07-03"},
+            {"url": "https://quicktvui.com/zh-CN/guide/device/skyworth.html", "title": "Skyworth | QuickTVUI 官方设备接入文档（通用方法一）"}
+          ],
+          "risk_notes": "只改「ADB」这一项。工厂菜单里还有屏参、色差、老化模式、STR 待机等硬件参数，ZNDS 原帖明确写「仅适用于有技术功底的玩家」，误改可能花屏或需要刷机恢复。改完立刻连按返回退出，不要在里面翻。"
+        },
+        {
+          "applies_to": "创维 E660E 等个别机型（工厂菜单里 ADB 开关在「常用开关」而不是「通用设置」）",
+          "steps": [
+            "同上进入工厂菜单",
+            "选择「常用开关」",
+            "把「ADB」设置为「开」"
+          ],
+          "has_auth_prompt": false,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "单源",
+          "sources": [
+            {"url": "https://www.znds.com/tv-646545-1-1.html", "title": "创维智能电视打开工厂模式，开启ADB方法（创维E660E 段落）", "date": "2017-02-22"}
+          ],
+          "risk_notes": "只改「ADB」这一项。"
+        },
+        {
+          "applies_to": "酷开 K1 系列（42K1 / 42K1T / 42K1Y / 42K1TY / 55K1 / 55K1T）——工厂菜单要密码",
+          "steps": [
+            "同上进入工厂菜单",
+            "选择「高级设置」",
+            "输入密码「123456」",
+            "在里面找到 ADB 开关并打开"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://www.znds.com/tv-646545-1-1.html", "title": "创维智能电视打开工厂模式，开启ADB方法（42K1/55K1 系列段落）", "date": "2017-02-22"},
+            {"url": "https://www.cnblogs.com/05-hust/p/17089031.html", "title": "创维电视如何开启adb调试功能以安装APP", "date": "2023-02-03"},
+            {"url": "https://jingyan.baidu.com/article/5225f26b693131e6fa09083f.html", "title": "创维电视如何打开ADB（百度经验）"}
+          ],
+          "risk_notes": "只改「ADB」这一项。「高级设置」里是整机出厂参数，进去后除 ADB 外不要动任何条目。"
+        },
+        {
+          "applies_to": "酷开 40K1Y / 49K1Y / 49K1C——没有 ADB 开关，改的是参数项",
+          "steps": [
+            "同上进入工厂菜单",
+            "选择「其它设置」",
+            "找到「Adbd Enable」这一项",
+            "把它后面的参数值从 0 改成 1"
+          ],
+          "has_auth_prompt": false,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://www.znds.com/tv-646545-1-1.html", "title": "创维智能电视打开工厂模式，开启ADB方法（40K1Y/49K1Y/49K1C 段落）", "date": "2017-02-22"},
+            {"url": "https://zhuanlan.zhihu.com/p/20849467", "title": "【欢视商店】创维、TCL、长虹及海信电视进入工厂模式方法", "date": "2016-05-05"}
+          ],
+          "risk_notes": "只改「Adbd Enable」这一项，同页其它参数不要改。"
+        },
+        {
+          "applies_to": "酷开 40U1 / 58U1——工厂菜单里根本没有 ADB 相关项",
+          "steps": [
+            "进入工厂菜单后确认「高级设置」「其它设置」里都没有 ADB / Adbd Enable",
+            "确认没有就到此为止，不要在工厂菜单里乱试其它开关",
+            "原帖说法是升级到较新固件后 ADB 会自动打开，但这一条原帖自己也写的是「据说」，没有实测证据"
+          ],
+          "has_auth_prompt": null,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "单源",
+          "sources": [
+            {"url": "https://www.znds.com/tv-646545-1-1.html", "title": "创维智能电视打开工厂模式，开启ADB方法（40U1/58U1 段落）", "date": "2017-02-22"}
+          ],
+          "risk_notes": "只看不改。这一型属于「查到了但没有可用入口」，不要为了找开关去动工厂菜单里的其它参数。"
+        },
+        {
+          "applies_to": "酷开系统 5.x 老机型的 PC 端连接（开关打开之后）",
+          "steps": [
+            "确认电脑与电视连同一个局域网（路由器）",
+            "在电视「网络设置」或「关于本机」里看电视的 IPv4 地址",
+            "电脑执行 adb connect <电视IP>（默认端口 5555）",
+            "看到 connected to <IP>:5555 即成功；这一代多数机型不弹授权框"
+          ],
+          "has_auth_prompt": false,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://www.znds.com/tv-482323-1-1.html", "title": "酷开5.0系统无线ADB调试模式开启教程"},
+            {"url": "https://www.cnblogs.com/05-hust/p/17089031.html", "title": "创维电视如何开启adb调试功能以安装APP（连接与异常处理）", "date": "2023-02-03"}
+          ],
+          "risk_notes": "工厂菜单里那个 ADB 开关本身就是授权，打开后局域网内任何人都能连上这台电视，做完清理建议回工厂菜单把它关掉。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "unknown",
+        "hide": "unknown",
+        "uninstall_user0": "unknown",
+        "notes": "这一代没有找到落到具体机型/版本的 pm 命令实测记录，不照搬 6.x/8.x 的结论。",
+        "evidence_level": "单源"
+      }
+    },
+    {
+      "name": "酷开系统 6.x（6.0 / 6.2）",
+      "years": "2017–2018（百度百科标 6.0 为 2017 年「千人千面」）",
+      "base_os": "android",
+      "android_version_range": "Android 6.0 附近（论坛拆机帖里的 5S58_K5C 实测为 Android 6.0，2018 年上市）",
+      "models_examples": ["酷开 5S58_K5C", "酷开 U3B（防蓝光教育电视）"],
+      "identify_hints": "「关于本机 → 版本号」写「酷开系统 6.0 / 6.2」。这一代的桌面开始出现「千人千面」的个性化推荐首页；U 盘装第三方应用在这一代基本还不拦（多篇 2018–2020 年教程称 6.0 版「没有任何限制」，可以直接从应用圈装当贝市场）。",
+      "worth_it_hint": "值得做：2GB 运存为主，机龄 7–8 年，广告服务 com.tianci.ad 在同代机型上实测 CPU 占用可达 26%，清掉体感提升明显。",
+      "entries": [
+        {
+          "applies_to": "酷开系统 6.x 通用（与 5.x 同一条路径）",
+          "steps": [
+            "设置 → 关于本机 / 版本信息 → 本机信息",
+            "方向键缓慢按：上、上、下、下、左、右、左、右",
+            "进入工厂菜单，选「通用设置」，把「ADB」打开",
+            "连按返回退出"
+          ],
+          "has_auth_prompt": false,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://www.fdeer.com/2403.html", "title": "创维酷开电视各版本软件安装方法汇总", "date": "2020-11-29"},
+            {"url": "https://www.cnblogs.com/05-hust/p/17089031.html", "title": "创维电视如何开启adb调试功能以安装APP", "date": "2023-02-03"}
+          ],
+          "risk_notes": "只改「ADB」这一项。同一菜单里的「STR 待机」在部分机型（5S58_K5C）实测改了也不生效，别反复折腾它。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "no",
+        "hide": "yes",
+        "uninstall_user0": "yes",
+        "notes": "证据落在 5S58_K5C（酷开系统 6.x 代、Android 6.0、2018 年上市）这台机器上：非 root 的 adb shell（uid=2000）对系统签名应用（uid=1000）执行 pm disable-user 直接报 SecurityException: Permission Denial: attempt to change component state；改用 pm uninstall -k --user 0 对 com.coocaa.screensaver、com.tianci.ad 等预装应用返回 Success（属于对 user 0 卸载，不删底层分区，OTA 或恢复出厂后可能复原）；pm hide 能隐藏，但对 com.tianci.ad 重启后会被系统自动恢复，原帖作者最终是 root 后在 install-recovery.sh 里加 sleep 10 + pm hide 才稳定——本项目不采用 root 路线，所以对这台机器的结论是：广告服务只能「卸到 user 0」，不能指望 hide 持久。",
+        "evidence_level": "单源",
+        "sources": [
+          {"url": "https://www.znds.com/tv-1253996-1-1.html", "title": "串口大法就是好-酷开电视没得跑（三）系统分析", "date": "2024-10-18"},
+          {"url": "https://www.znds.com/tv-1250483-1-1.html", "title": "创维电视的广告如何删除？创维电视删除广告app列表", "date": "2024-07-08"}
+        ]
+      },
+      "must_keep": [
+        {"pkg": "com.tianci.setting", "what": "系统设置", "why": "删掉之后再也进不去「关于本机」，等于自断「上上下下左右左右」这条后路", "evidence_level": "单源", "sources": [{"url": "https://www.znds.com/tv-1253996-1-1.html", "title": "串口大法就是好（三）不可删除清单", "date": "2024-10-18"}]},
+        {"pkg": "com.skyworth.tv", "what": "coocaaTV 信号源（电视 / HDMI / 视频输入）", "why": "删掉之后切不了 HDMI，机顶盒、游戏机全部接不上", "evidence_level": "单源", "sources": [{"url": "https://www.znds.com/tv-1253996-1-1.html", "title": "同上", "date": "2024-10-18"}]},
+        {"pkg": "com.skyworth.tv.provider", "what": "TV Provider 数据提供服务", "why": "系统底层数据依赖，原帖列为不可删除", "evidence_level": "单源", "sources": [{"url": "https://www.znds.com/tv-1253996-1-1.html", "title": "同上", "date": "2024-10-18"}]},
+        {"pkg": "com.tianci.ipc", "what": "系统进程通讯框架（IPC）", "why": "删掉之后无法正常开关机。注意原帖把包名误打成 tom.tianci.ipc，实际前缀是 com.", "evidence_level": "单源", "sources": [{"url": "https://www.znds.com/tv-1253996-1-1.html", "title": "同上", "date": "2024-10-18"}]},
+        {"pkg": "com.tianci.system", "what": "系统服务，管遥控器按键（关机、静音、音量、菜单）", "why": "删掉之后遥控器大部分按键失效，连机身背面的实体键也不好使", "evidence_level": "单源", "sources": [{"url": "https://www.znds.com/tv-1253996-1-1.html", "title": "同上", "date": "2024-10-18"}]},
+        {"pkg": "com.skyworth.tianciime", "what": "系统输入法 SkyIME", "why": "全系统唯一输入法，删掉之后连 Wi-Fi 密码都打不了", "evidence_level": "单源", "sources": [{"url": "https://www.znds.com/tv-1253996-1-1.html", "title": "同上", "date": "2024-10-18"}]},
+        {"pkg": "com.android.packageinstaller", "what": "应用包安装器", "why": "装任何 APK（包括你要换的第三方桌面和市场）都靠它", "evidence_level": "单源", "sources": [{"url": "https://www.znds.com/tv-1253996-1-1.html", "title": "同上", "date": "2024-10-18"}]},
+        {"pkg": "com.android.defcontainer", "what": "软件包权限帮助程序", "why": "与安装器配套，删了会装不上应用", "evidence_level": "单源", "sources": [{"url": "https://www.znds.com/tv-1253996-1-1.html", "title": "同上", "date": "2024-10-18"}]},
+        {"pkg": "com.coocaa.factory", "what": "工厂菜单本体", "why": "误删就失去了调试和恢复入口，出事没法回头", "evidence_level": "单源", "sources": [{"url": "https://www.znds.com/tv-1253996-1-1.html", "title": "同上", "date": "2024-10-18"}]},
+        {"pkg": "com.android.providers.tv", "what": "电视频道数据提供者", "why": "涉及有线/DTMB 频道搜索与信号源数据", "evidence_level": "单源", "sources": [{"url": "https://www.znds.com/tv-1253996-1-1.html", "title": "同上", "date": "2024-10-18"}]},
+        {"pkg": "com.skyworthdigital.stb.dataprovider", "what": "机顶盒/频道数据提供者", "why": "原帖标注不可删除", "evidence_level": "单源", "sources": [{"url": "https://www.znds.com/tv-1253996-1-1.html", "title": "同上", "date": "2024-10-18"}]}
+      ],
+      "junk": [
+        {"pkg": "com.tianci.ad", "what": "广告 / 智屏服务（SkyADService）", "why": "同代机型实测 CPU 占用可达 26%；但非 root 下 hide 会被重启恢复，只能 uninstall --user 0", "evidence_level": "多源", "sources": [{"url": "https://www.znds.com/tv-1253996-1-1.html", "title": "串口大法就是好（三）", "date": "2024-10-18"}, {"url": "https://www.znds.com/tv-1250483-1-1.html", "title": "创维电视的广告如何删除？", "date": "2024-07-08"}]},
+        {"pkg": "com.coocaa.screensaver", "what": "电视画报 / 屏保，会播广告内容", "evidence_level": "单源", "sources": [{"url": "https://www.znds.com/tv-1250483-1-1.html", "title": "创维电视的广告如何删除？", "date": "2024-07-08"}]},
+        {"pkg": "com.tianci.autoinstaller", "what": "自动安装器，预装应用静默安装通道", "why": "留着它，你删掉的东西可能自己回来", "evidence_level": "单源", "sources": [{"url": "https://www.znds.com/tv-1250483-1-1.html", "title": "同上", "date": "2024-07-08"}]},
+        {"pkg": "com.tianci.push", "what": "系统推送服务（弹窗/推荐下发通道）", "evidence_level": "单源", "sources": [{"url": "https://www.znds.com/tv-1250483-1-1.html", "title": "同上", "date": "2024-07-08"}]},
+        {"pkg": "com.skyworth.skymarket", "what": "商场演示模式应用", "why": "只为卖场循环演示用，家里用不上", "evidence_level": "单源", "sources": [{"url": "https://www.znds.com/tv-1250483-1-1.html", "title": "同上", "date": "2024-07-08"}]},
+        {"pkg": "com.coocaa.app_browser", "what": "奖品中心（营销页壳）", "evidence_level": "单源", "sources": [{"url": "https://www.znds.com/tv-1250483-1-1.html", "title": "同上", "date": "2024-07-08"}]},
+        {"pkg": "com.coocaa.teampresent", "what": "帮助与反馈（同时是营销触达渠道）", "evidence_level": "单源", "sources": [{"url": "https://www.znds.com/tv-1250483-1-1.html", "title": "同上", "date": "2024-07-08"}]},
+        {"pkg": "com.bajintech.karaok", "what": "全民K歌助手（第三方预装推广）", "evidence_level": "单源", "sources": [{"url": "https://www.znds.com/tv-1250483-1-1.html", "title": "同上", "date": "2024-07-08"}]}
+      ],
+      "ask_user": [
+        {"pkg": "com.tianci.movieplatform", "what": "酷开默认桌面（开机广告与推荐内容的承载页）", "why": "删掉才能彻底换第三方桌面，但删之前必须先装好并设好新桌面；原帖记录换掉它之后系统设置界面变丑、「定时关机」功能失效", "evidence_level": "单源", "sources": [{"url": "https://www.znds.com/tv-1253996-1-1.html", "title": "串口大法就是好（三）", "date": "2024-10-18"}]},
+        {"pkg": "com.tianci.user", "what": "账户中心", "why": "删了就登不了酷开账号，买过会员的人会受影响", "evidence_level": "单源", "sources": [{"url": "https://www.znds.com/tv-1250483-1-1.html", "title": "创维电视的广告如何删除？", "date": "2024-07-08"}]},
+        {"pkg": "com.coocaa.sky.ccapi", "what": "支付中心", "why": "删了不能在电视上下单，但也就买不了会员了——看用户自己怎么想", "evidence_level": "单源", "sources": [{"url": "https://www.znds.com/tv-1250483-1-1.html", "title": "同上", "date": "2024-07-08"}]},
+        {"pkg": "com.coocaa.os.customerservice", "what": "远程协助", "why": "家里有老人、需要子女远程帮忙看电视的，这个留着有用", "evidence_level": "单源", "sources": [{"url": "https://www.znds.com/tv-1250483-1-1.html", "title": "同上", "date": "2024-07-08"}]},
+        {"pkg": "com.coocaa.emergencywarning", "what": "应急广播", "why": "部分地区的灾害预警靠它推送，删不删由用户决定", "evidence_level": "单源", "sources": [{"url": "https://www.znds.com/tv-1250483-1-1.html", "title": "同上", "date": "2024-07-08"}]}
+      ],
+      "pitfalls": [
+        {"what": "换掉默认桌面 com.tianci.movieplatform 之后，系统设置、coocaaTV 等界面 UI 会变丑，「定时关机」功能失效；需要用高版本固件里对应的应用替换或反编译修改才能修回来。", "sources": [{"url": "https://www.znds.com/tv-1253996-1-1.html", "title": "串口大法就是好（三）系统分析", "date": "2024-10-18"}]},
+        {"what": "彻底删掉广告服务 com.tianci.ad 之后，恢复出厂设置时出现「无操作 100 秒自动黑屏（无背光），LED 灯还是绿的，安卓仍在运行」；根因是换桌面后丢了原厂 Receiver 的唤醒逻辑。原帖作者最后的选择是保留广告服务、只 hide 不删。", "sources": [{"url": "https://www.znds.com/tv-1253996-1-1.html", "title": "同上", "date": "2024-10-18"}]},
+        {"what": "部分酷开机型 /sdcard 被阉割（没有可写的内置存储用户目录），依赖 /sdcard 的第三方应用（如 TVBox 读本地接口文件）会不正常；恢复它要动 boot 分区，风险高，本项目不做。", "sources": [{"url": "https://www.znds.com/tv-1253996-1-1.html", "title": "同上", "date": "2024-10-18"}]},
+        {"what": "工厂菜单里的「STR 待机」在 5S58_K5C 上实测无效，连反编译强行加回选项也不生效——说明是硬件不支持，改配置越不过硬件能力边界，别在这上面耗。", "sources": [{"url": "https://www.znds.com/tv-1253996-1-1.html", "title": "同上", "date": "2024-10-18"}]}
+      ]
+    },
+    {
+      "name": "酷开系统 7.x（7.0 / 7.5）",
+      "years": "2018–2019（7.0 定位「全视频交互电视系统」；7.5 见于酷开 P70，内置百度 AI 语音）",
+      "base_os": "android",
+      "android_version_range": "未查到明确版本号，推测 Android 7–8 区间，无实证",
+      "models_examples": ["酷开 P70（搭载酷开 7.5 系统）"],
+      "identify_hints": "「关于本机 → 版本号」写「酷开系统 7.0 / 7.5」。7.5 这一代开始主推远场语音（可以不用遥控器直接喊），遥控器上通常多一个麦克风键。",
+      "worth_it_hint": "值得做：机龄 6–7 年、2GB 运存居多，广告已经比较密；但这一代没有独立实测教程，进工厂菜单后菜单项名称可能与 6.x/8.x 不完全一致，要现场对着找。",
+      "entries": [
+        {
+          "applies_to": "酷开系统 7.x（按同代通用路径试，未见该版本的独立实测帖）",
+          "steps": [
+            "设置 → 关于本机 / 版本信息 → 本机信息",
+            "方向键缓慢按：上、上、下、下、左、右、左、右",
+            "进入工厂菜单后，在「通用设置」「常用开关」「高级设置」「其它设置」里逐个找 ADB 或 Adbd Enable",
+            "找到就打开，找不到就退出，不要试其它开关"
+          ],
+          "has_auth_prompt": null,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "单源",
+          "sources": [
+            {"url": "https://www.fdeer.com/2403.html", "title": "创维酷开电视各版本软件安装方法汇总", "date": "2020-11-29"},
+            {"url": "https://baike.baidu.com/item/%E9%85%B7%E5%BC%80%E7%94%B5%E8%A7%86/4379482", "title": "酷开电视（百度百科，7.5 系统与 P70 机型）"}
+          ],
+          "risk_notes": "只改 ADB 那一项。这一代缺实测帖，路径属于按同代通用规律外推，界面对不上就停手，别在工厂菜单里挨个点。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "unknown",
+        "hide": "unknown",
+        "uninstall_user0": "unknown",
+        "notes": "未找到落到 7.x 具体机型的 pm 命令实测记录。",
+        "evidence_level": "单源"
+      }
+    },
+    {
+      "name": "酷开系统 8.x",
+      "years": "约 2019–2023（这一代跨度最长，创维与酷开双品牌主力机型都在这里）",
+      "base_os": "android",
+      "android_version_range": "以 Android 9 为主，部分较新机型见 Android 11",
+      "models_examples": ["创维 A / E 系列（如 65E5）", "酷开 P50 Pro（7S711 机芯）", "酷开 P50"],
+      "identify_hints": "「关于本机 → 版本号」写「酷开系统 8」或一串纯数字内部版本号（如 180524、191223）——看到纯数字版本号基本就是这一代。桌面首页顶部是「精选 / 剧集 / 电影 / 应用 / 我的」横向 Tab，开机有 15–30 秒可跳过或不可跳过的开机广告。",
+      "worth_it_hint": "值得做：2–4GB 运存，机龄 2–6 年，开机广告和「猜你喜欢」推荐最密集，是清理收益/风险比最好的一代。注意这一代起 U 盘直装第三方 APK 的限制变严，ADB 侧装基本是唯一路子。",
+      "entries": [
+        {
+          "applies_to": "酷开系统 8.x 通用主路径（2023–2024 年的教程仍在用这一条）",
+          "steps": [
+            "设置 → 关于本机 → 本机信息",
+            "方向键缓慢按：上、上、下、下、左、右、左、右",
+            "进入工厂菜单，选「高级设置」或「通用设置」",
+            "部分机型此处要输密码，常见「123456」",
+            "找到「ADB」开关打开，连按返回退出，必要时断电重启"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://www.cnblogs.com/05-hust/p/17089031.html", "title": "创维电视如何开启adb调试功能以安装APP", "date": "2023-02-03"},
+            {"url": "https://www.4k123.com/archiver/tid-62507.html", "title": "创维酷开电视进入工厂模式，打开ADB调试教程"},
+            {"url": "https://zhuanlan.zhihu.com/p/1901349166480880333", "title": "汇总13款安卓电视机开启Adb（创维段落）"}
+          ],
+          "risk_notes": "只改「ADB」这一项。这一代的工厂菜单里多了屏参与背光校正项，改错要返厂，进去之后直奔 ADB，不要顺手看别的。"
+        },
+        {
+          "applies_to": "部分酷开机型的另一条路：快速演示模式 + 应用调试（密码 69573028）",
+          "steps": [
+            "设置 → 本机信息",
+            "方向键按：上、上、下、下、左、左、右、右（注意这一篇记录的是「左左右右」，与主路径不同）",
+            "打开「快速演示模式」",
+            "回到「应用」里搜索「应用调试」",
+            "输入密码「69573028」",
+            "之后即可安装 U 盘里的 APK"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": null,
+          "evidence_level": "单源",
+          "sources": [
+            {"url": "https://blog.csdn.net/m0_46268055/article/details/135572963", "title": "酷开TV安装第三方APP方式，打开abd调试", "date": "2024-01-13"}
+          ],
+          "risk_notes": "这条走的是「装第三方应用」而不是「开 ADB 网络调试」，两者不等价。只开「快速演示模式」和「应用调试」，工厂菜单里其它项不要动。方向键顺序与主路径不同（左左右右），主路径按不出来时才试这条。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "no",
+        "hide": "unknown",
+        "uninstall_user0": "yes",
+        "notes": "证据来自 2024-07 的创维去广告帖：非 root 的 adb shell（uid=2000）对系统签名应用执行 pm disable-user 报 SecurityException: Permission Denial: attempt to change component state from pid=xxx, uid=2000, package uid=1000；同帖里 pm uninstall -k --user 0 对同一批预装应用返回 Success。⚠️ 这篇帖子没有写明机型与酷开系统版本号，只能按发帖时间（2024-07）推定属于 8.x 代，所以标 单源、不能当作全代际定论。",
+        "evidence_level": "单源",
+        "sources": [
+          {"url": "https://www.znds.com/tv-1250483-1-1.html", "title": "创维电视的广告如何删除？创维电视删除广告app列表", "date": "2024-07-08"}
+        ]
+      },
+      "junk": [
+        {"pkg": "com.tianci.ad", "what": "广告 / 智屏服务", "evidence_level": "多源", "sources": [{"url": "https://www.znds.com/tv-1250483-1-1.html", "title": "创维电视的广告如何删除？", "date": "2024-07-08"}, {"url": "https://www.znds.com/tv-1253996-1-1.html", "title": "串口大法就是好（三）", "date": "2024-10-18"}]},
+        {"pkg": "com.coocaa.screensaver", "what": "电视画报 / 屏保广告", "evidence_level": "单源", "sources": [{"url": "https://www.znds.com/tv-1250483-1-1.html", "title": "同上", "date": "2024-07-08"}]},
+        {"pkg": "com.tianci.autoinstaller", "what": "自动安装器（静默装应用通道）", "evidence_level": "单源", "sources": [{"url": "https://www.znds.com/tv-1250483-1-1.html", "title": "同上", "date": "2024-07-08"}]},
+        {"pkg": "com.tianci.push", "what": "系统推送服务", "evidence_level": "单源", "sources": [{"url": "https://www.znds.com/tv-1250483-1-1.html", "title": "同上", "date": "2024-07-08"}]},
+        {"pkg": "com.skyworth.skymarket", "what": "商场演示模式", "evidence_level": "单源", "sources": [{"url": "https://www.znds.com/tv-1250483-1-1.html", "title": "同上", "date": "2024-07-08"}]}
+      ],
+      "must_keep": [
+        {"pkg": "com.tianci.setting", "what": "系统设置", "why": "删了就再也进不了「关于本机」，等于关掉自己唯一的入口", "evidence_level": "单源", "sources": [{"url": "https://www.znds.com/tv-1253996-1-1.html", "title": "串口大法就是好（三）不可删除清单", "date": "2024-10-18"}]},
+        {"pkg": "com.skyworth.tianciime", "what": "系统输入法", "why": "全系统唯一输入法，删了连 Wi-Fi 密码都输不了", "evidence_level": "单源", "sources": [{"url": "https://www.znds.com/tv-1253996-1-1.html", "title": "同上", "date": "2024-10-18"}]},
+        {"pkg": "com.coocaa.factory", "what": "工厂菜单本体", "why": "误删就没法再回去关 ADB 或改回设置", "evidence_level": "单源", "sources": [{"url": "https://www.znds.com/tv-1253996-1-1.html", "title": "同上", "date": "2024-10-18"}]}
+      ],
+      "pitfalls": [
+        {"what": "adb connect 之后设备状态显示 offline，或提示 already connected 装不上东西：先 adb disconnect → adb kill-server → adb start-server 重连，还不行就回电视端把 ADB 开关关掉再打开。", "sources": [{"url": "https://www.cnblogs.com/05-hust/p/17089031.html", "title": "创维电视如何开启adb调试功能以安装APP", "date": "2023-02-03"}]},
+        {"what": "「上上下下左右左右」最常见的失败原因是节奏太快或记成了「上上下下左左右右」，多篇教程专门强调要缓慢、且是「左右左右」。", "sources": [{"url": "https://ask.zol.com.cn/x/16641174.html", "title": "酷开电视怎么进去adb调试方式-ZOL问答"}]}
+      ]
+    },
+    {
+      "name": "酷开 AIOS / Coolita AIOS",
+      "years": "2024 年 4 月发布系统，2024 年 9 月首款搭载机型酷开 K3 Pro；2024 年 10 月以「Coolita AIOS」名义在广交会作为出海系统亮相",
+      "base_os": "android",
+      "android_version_range": "官方未公开底层 AOSP 版本",
+      "models_examples": ["酷开 K3 Pro（2024/2025 款）"],
+      "identify_hints": "开机后桌面是「AI 智控桌面」，首页以对话式/智能体入口为主（影音、娱乐、生活、健康、教育、通用六个智能体），而不是老版的横向 Tab 瀑布流；遥控器有独立 AI/语音键，喊话可以直接跳到影视片段。海外机型上这套系统叫 Coolita。",
+      "worth_it_hint": "先别做：这一代是 2024 年后的新机，运存和流畅度本来就不差，广告收益有限；而且社区目前没有任何 ADB 开启实测记录，贸然在工厂菜单里翻找风险大于收益。",
+      "entries": [],
+      "pm_caps": {
+        "disable_user": "unknown",
+        "hide": "unknown",
+        "uninstall_user0": "unknown",
+        "notes": "无任何实测记录。",
+        "evidence_level": "单源"
+      },
+      "pitfalls": [
+        {"what": "酷开科技官网关于 AIOS 的页面是面向电视厂商的 B2B 能力介绍（六大智能体、出海方案），完全没有开发者选项/ADB 的说明，别把官网当教程找。", "sources": [{"url": "https://www.coocaa.net/page/1899000616525496320", "title": "AIOS系统-酷开科技"}, {"url": "https://www.coocaa.com/news", "title": "新闻中心-酷开科技（2024-10 Coolita AIOS 亮相广交会）", "date": "2024-10-21"}]}
+      ]
+    },
+    {
+      "name": "创维 / Skyworth 海外 Android TV · Google TV 认证机型",
+      "years": "年份与覆盖型号未查实",
+      "base_os": "android",
+      "android_version_range": "标准 Android TV / Google TV 认证版本",
+      "models_examples": [],
+      "identify_hints": "认这三条：① 开机动画或设置页出现 Google TV / Android TV 字样与 Google 账号登录；② 遥控器上有 Google 助理（麦克风）键和 YouTube / Netflix 硬按键；③ 设置里是「设置 → 关于 → Android TV OS 版本 / 软件版本号」这种原生结构，而不是创维自家的「关于本机 → 本机信息」。满足这些就走原生开发者选项，不要去按「上上下下左右左右」。",
+      "worth_it_hint": "看情况：原生 Android TV / Google TV 的预装广告远少于国内酷开系统，多数人调一调推荐设置就够了；真要清理的话入口是标准的，风险也最低。",
+      "entries": [
+        {
+          "applies_to": "创维官方开发者文档给出的通用方法二（原生开发者选项）",
+          "steps": [
+            "进入「设置」→「关于电视」/「关于」",
+            "找到「软件版本号」（Google TV 机型上叫 Android TV OS build），连续点击 7 次",
+            "看到「您现在是开发者」提示",
+            "返回上一级，进入新出现的「开发者选项」",
+            "打开「USB 调试」",
+            "部分设备需要断电重启才生效"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": null,
+          "port": 5555,
+          "evidence_level": "官方",
+          "sources": [
+            {"url": "https://quicktvui.com/zh-CN/guide/device/skyworth.html", "title": "Skyworth | QuickTVUI 官方设备接入文档（通用方法二）"}
+          ],
+          "risk_notes": "这是标准安卓路径，不进厂商工厂菜单，风险最低。首次 adb connect 时电视上会弹「允许 USB 调试吗」，必须用遥控器确认。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "unknown",
+        "hide": "unknown",
+        "uninstall_user0": "unknown",
+        "notes": "未查到创维海外机型上的 pm 命令实测记录。",
+        "evidence_level": "单源"
+      },
+      "pitfalls": [
+        {"what": "QuickTVUI 官方文档把「上上下下左右左右」和「连点软件版本号 7 次」并列为创维电视的「通用方法一 / 通用方法二」，并没有说方法二专属于 Google 认证机型。所以不能反推出「哪些型号是原生路径」——实际做的时候是两条都试，哪条界面对得上用哪条。", "sources": [{"url": "https://quicktvui.com/zh-CN/guide/device/skyworth.html", "title": "Skyworth | QuickTVUI 官方设备接入文档"}]}
+      ]
+    }
+  ],
+  "open_questions": [
+    "酷开 AIOS / Coolita AIOS（2024 年起，首搭 K3 Pro）没有任何社区实测的 ADB 或开发者模式记录，官方也未公开；不确定它是延续「上上下下左右左右」工厂菜单，还是切到了标准 Android TV 开发者选项，甚至是否已经封死。这是本品牌最大的空白。",
+    "创维/Skyworth 的 Android TV / Google TV 认证机型具体覆盖哪些型号和年份未查实。QuickTVUI 官方文档只把原生路径列为「通用方法二」，没有给型号范围，所以无法给用户一句「你这台是哪条路」的判据，只能让用户按设置页长相自己分辨。",
+    "工厂菜单密码没有建立起完整的「型号 → 密码」映射：目前只确认 K1 系列（42K1/55K1 等）用 123456、另有一篇 2024 年 CSDN 记录的「应用调试」密码 69573028；坊间还流传 9999 等其它密码但没找到可靠出处，本文件不收录未证实的密码。",
+    "未找到创维/酷开机型采用 Android 11+「无线调试 + 配对码」机制的确凿证据，现有资料全部是传统 adb connect <IP>:5555；较新机型是否强制走配对码流程待验证。",
+    "酷开系统 7.0 / 7.5 这一代缺少独立的 ADB 开启实测帖，本文件里 7.x 的路径是按 6.x/8.x 的通用规律外推的，工厂菜单各级子菜单名称是否一致未核实。",
+    "早期非智能/半智能创维机型流传「按住机身或遥控器菜单键不放，再依次按 9、7、8」进工厂模式的说法（2016 年搜狐汇总帖），与本文件收录的智能电视路径是两套东西，未验证，也不适用于本项目要处理的安卓机型。",
+    "com.coocaa.remotectrlservice、com.mstar.android.providers.tv 等包在原始拆机帖里被作者标注为「不确定能不能删」，没有第二个独立来源，本文件没有收进任何一组名单。",
+    "社区里存在针对酷开系统的 root 讨论（例如用 root 让 pm hide 持久生效），本项目不采用。"
+  ],
+  "last_reviewed": "2026-09-15"
+}

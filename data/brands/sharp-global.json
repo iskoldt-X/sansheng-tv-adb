@@ -1,0 +1,289 @@
+{
+  "brand": "夏普 AQUOS（海外：日本 / 亚太 / 欧洲 / 北美）",
+  "region": "global",
+  "aliases": ["Sharp", "SHARP", "AQUOS", "夏普", "シャープ", "アクオス"],
+  "status": "部分适用",
+  "summary": "2016 年鸿海入主之后，夏普海外机型主力是标准 Android TV（MStar / MediaTek 平台），开发者选项就是原生的「连点 Build number 七次」，能做 ADB；但同一个 AQUOS 品牌在北美还有 Roku TV 版、在 2015 年前后有自研 SmartCentral / AQUOS NET+ 版，这两类不能做。2016–2019 那批 Android 7/8 老机是本项目收益最高的一档。",
+  "identify_hints": {
+    "remote_has_digits": "日版 / 亚太 Android TV 遥控通常保留 0–9 数字键（要选地面波频道），同时有 Google 助理麦克风键和 Netflix / YouTube / Prime Video 快捷键；北美 Roku 版遥控是紫色圆形方向盘、没有数字键；2015 年前后的 SmartCentral 机型遥控有一个写着 SmartCentral 的专用键。",
+    "system_name_shown_at": "Android 机型：设置 → 设备偏好设置 / 系统 → 关于（About）；部分固件这一页叫「本机信息」。北美 Roku 版：Settings → System → About。",
+    "about_page_fields": [
+      "Android TV OS Build / 版本号（Build number）",
+      "Android 版本与安全补丁级别",
+      "型号（4T-C… / 8T-C… / LC-…）",
+      "Roku OS 版本 + Roku TV support（只有北美 Roku 版有）"
+    ],
+    "model_naming_rule": "日版 / 亚太现行型号形如 4T-C65DN1：开头 4T = 4K 电视、8T = 8K 电视；C = 彩色电视；中间两位是尺寸（65 英寸）；后面是系列代号，其中首字母按世代递进（B→C→D→E→F…，B 约 2019、C 约 2020、D 约 2021，依次后推），第二个字母是档位（N / L / J / P / S / Q / W / X 等，X、W 为 8K 旗舰）；亚太出口型号在系列代号后多一个 X（如 4T-C70DL1X、4TC70AL1X）。欧洲型号形如 65FN2EA / 43FH2EA / 65FP2EA：两位尺寸 + 两位系列 + 区域后缀 EA / EW。北美 2015 年前后的老机型是 LC- 打头（LC-70UH30U、LC-43UB30U），北美 Roku 版是 LC-…LBU591C 一类。",
+    "sticker_location": "机身背面 / 侧面接口区附近的铭牌贴纸上印 Model 与 S/N；壁挂后看不到时用关于页。",
+    "year_ranges": "自研 SmartCentral / AQUOS NET+：约 2013–2016；Android TV：2015 年北美 UE / UH 系列首发，2016 年鸿海入主后成为海外主力，延续至今；北美 Roku TV 版：约 2016 年起（部分由海信代工）。"
+  },
+  "series": [
+    {
+      "name": "AQUOS Android TV 老款（约 2016–2019，Android 7 / 8，MStar 平台）",
+      "years": "2016–2019",
+      "base_os": "android",
+      "android_version_range": "7.0–8.0（部分 2019 款可升到 9）",
+      "models_examples": ["4T-C70BN1", "4T-C60BN1", "4T-C55BL1", "4T-C40BJ1", "8T-C70BW1", "4TC70AL1X", "4TC60AL1X", "4TC50AL1X"],
+      "identify_hints": "关于页 Android 版本显示 7.x 或 8.x；主屏是 Android TV 原生启动器（横向应用卡片行，左上角 Google 助理搜索图标），不是 Google TV 的海报流。日版系列代号首字母是 A / B，亚太出口型号带 X 后缀（AL1X）。应用列表里会出现 com.mediatek.wwtv.tvcenter 这类 MediaTek / MStar 平台自带的电视中心应用。",
+      "worth_it_hint": "🔴 本品牌收益最高的一档，优先做。理由三条都占：机龄 7–10 年；这批普遍只有 1.5–2GB 内存；出厂预装里塞了卖场演示（epopdemo、fusion demo）、电子说明书、地区性预装（中东机型的祷告提醒 azan）等一堆几乎没人用的应用，禁掉后开机和切台明显变快。",
+      "entries": [
+        {
+          "applies_to": "Android 7 / 8 的夏普 AQUOS 海外机型",
+          "steps": [
+            "设置 → 设备偏好设置 / 系统 → 关于（About）；部分固件这一页叫「本机信息」",
+            "光标移到「Build number」/「版本号」/「型号」那一行，连按 OK 键 7 次，提示「您现在已是开发者」",
+            "返回 → 开发者选项（Developer options）",
+            "打开「USB 调试」/「ADB 调试」",
+            "设置 → 网络 → 查看电视的 192.168.x.x 地址",
+            "电脑执行 adb connect <电视IP>:5555，电视端弹授权框选「允许」",
+            "（顺手）开发者选项 → 窗口动画 / 过渡动画 / Animator 时长缩放，三项都调到 0 或 0.5x"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://blog.mdminhazulhaque.io/optimize-your-sharp-smart-tv-disable-built-in-apps-for-faster-performance", "title": "Optimize Your Sharp Smart TV: Disable Built-in Apps for Faster Performance（夏普实机：Settings > About 连点 Build number 七次 → adb connect 192.168.254.101 → 逐条 pm uninstall）", "date": "2024-06-24"},
+            {"url": "https://www.znds.com/tv-1028264-1-1.html", "title": "夏普电视如何进入开发者模式？"},
+            {"url": "https://www.znds.com/tv-1270973-1-1.html", "title": "电视adb调试怎么打开？2026各品牌电视打开ADB调式的方法汇总", "date": "2026-06-01"}
+          ],
+          "risk_notes": "znds tv-1028264 明确提到「夏普电视部分型号的连点版本号入口被固件屏蔽」，但没给被屏蔽的型号清单。连点七次没反应时先换一行试（Build number / 版本号 / 型号三行在不同固件上位置不一样），仍无效则这台机器走不通，不要去找工厂菜单硬闯。"
+        },
+        {
+          "applies_to": "夏普机型的另一种菜单叫法（隐藏入口，单一来源）",
+          "steps": [
+            "设置 → 网络 → 本机信息",
+            "连点「型号」那一行",
+            "进入开发者选项 → 开启调试"
+          ],
+          "has_auth_prompt": false,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "单源",
+          "sources": [
+            {"url": "https://post.smzdm.com/p/a4qlqmzl", "title": "智能电视隐藏设置：ADB开关这样开，告别卡顿与广告", "date": "2026-03-12"}
+          ],
+          "risk_notes": "这条与上面的通用法本质是同一套（连点型号 = 连点版本号），不是独立的第二条路径。收录它只是为了记下「关于页在夏普部分固件上叫『本机信息』、且挂在网络菜单下面」这个叫法差异，免得按标准教程找不到入口就放弃。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "unknown",
+        "hide": "no",
+        "uninstall_user0": "yes",
+        "notes": "uninstall_user0 记 yes 的依据：有一份夏普实机记录逐条执行 pm uninstall --user 0 清掉了十个预装包并给出完整包名。disable_user 在夏普机上没有实测记录，记 unknown——但按破坏性排序 disable-user < uninstall --user 0，既然更重的那一档能跑通，更轻的一档跑不通的可能性很小，建议优先试 disable-user。pm hide 自 Android 7.0 起已被系统锁定，与品牌无关（见第一轮 general.json）。",
+        "evidence_level": "单源",
+        "sources": [
+          {"url": "https://blog.mdminhazulhaque.io/optimize-your-sharp-smart-tv-disable-built-in-apps-for-faster-performance", "title": "Optimize Your Sharp Smart TV: Disable Built-in Apps for Faster Performance", "date": "2024-06-24"},
+          {"url": "https://developer.android.com/tools/adb", "title": "Android Debug Bridge (adb) — Table 2 Available package manager commands"}
+        ]
+      },
+      "must_keep": [
+        {
+          "pkg": "com.mediatek.wwtv.tvcenter",
+          "what": "MediaTek 平台的「电视中心」——地面波 / 有线 / 卫星信号源、频道表、搜台、EPG 都在这里",
+          "why": "🔴 这个包在那份夏普实机记录里被一起卸掉了，但那位作者显然只用流媒体、不看广播电视。只要还插着天线、有线或机顶盒走 TV 信号源，卸掉它等于没了电视功能。只有确认「这台机器只当显示器用、只走 HDMI 和流媒体 App」时才考虑动它。",
+          "evidence_level": "单源",
+          "sources": [
+            {"url": "https://blog.mdminhazulhaque.io/optimize-your-sharp-smart-tv-disable-built-in-apps-for-faster-performance", "title": "Optimize Your Sharp Smart TV: Disable Built-in Apps for Faster Performance（原文把它列进了卸载清单，本项目按「必须留」重新归类）", "date": "2024-06-24"}
+          ]
+        },
+        {
+          "pkg": "rcota.android.av.sharp.co.jp.rcota",
+          "what": "夏普的 OTA 固件升级组件（RC-OTA）",
+          "why": "🔴 同样在那份记录的卸载清单里，但卸掉之后电视就收不到夏普推送的固件更新了，安全补丁和 App 兼容性修复全断。这是典型的「卸了当场没事、半年后才出问题」，本项目按必须留处理。",
+          "evidence_level": "单源",
+          "sources": [
+            {"url": "https://blog.mdminhazulhaque.io/optimize-your-sharp-smart-tv-disable-built-in-apps-for-faster-performance", "title": "Optimize Your Sharp Smart TV: Disable Built-in Apps for Faster Performance（原文列入卸载清单，本项目按「必须留」重新归类）", "date": "2024-06-24"}
+          ]
+        }
+      ],
+      "junk": [
+        {
+          "pkg": "fusion.android.tv.demo",
+          "what": "卖场演示模式（Demo）",
+          "why": "样机在商场循环播放宣传片用的，家用场景零价值，还会在待机 / 长时间无操作时自己跳出来。",
+          "evidence_level": "单源",
+          "sources": [{"url": "https://blog.mdminhazulhaque.io/optimize-your-sharp-smart-tv-disable-built-in-apps-for-faster-performance", "title": "Optimize Your Sharp Smart TV: Disable Built-in Apps for Faster Performance", "date": "2024-06-24"}]
+        },
+        {
+          "pkg": "jp.co.sharp.av.android.epopdemo",
+          "what": "夏普卖场弹窗演示（e-POP demo）",
+          "why": "同上，卖场用的功能介绍弹窗，家用无价值。",
+          "evidence_level": "单源",
+          "sources": [{"url": "https://blog.mdminhazulhaque.io/optimize-your-sharp-smart-tv-disable-built-in-apps-for-faster-performance", "title": "Optimize Your Sharp Smart TV: Disable Built-in Apps for Faster Performance", "date": "2024-06-24"}]
+        },
+        {
+          "pkg": "com.mstar.android.tv.disclaimercustomization",
+          "what": "MStar 平台的免责声明 / 首次使用弹窗定制组件",
+          "why": "只在开机或首次进某个功能时弹一次法律声明，关掉之后不影响任何功能。",
+          "evidence_level": "单源",
+          "sources": [{"url": "https://blog.mdminhazulhaque.io/optimize-your-sharp-smart-tv-disable-built-in-apps-for-faster-performance", "title": "Optimize Your Sharp Smart TV: Disable Built-in Apps for Faster Performance", "date": "2024-06-24"}]
+        },
+        {
+          "pkg": "jp.co.sharp.av.android.emanual",
+          "what": "夏普内置电子说明书",
+          "why": "整本 PDF 说明书塞在电视里，网上都能查到同一份；占存储、进首页应用列表碍事。",
+          "evidence_level": "单源",
+          "sources": [{"url": "https://blog.mdminhazulhaque.io/optimize-your-sharp-smart-tv-disable-built-in-apps-for-faster-performance", "title": "Optimize Your Sharp Smart TV: Disable Built-in Apps for Faster Performance", "date": "2024-06-24"}]
+        }
+      ],
+      "ask_user": [
+        {
+          "pkg": "azan.android.av.sharp.co.jp",
+          "what": "礼拜时间提醒（Azan，中东 / 东南亚市场机型预装）",
+          "why": "对目标用户是刚需还是纯占位，完全取决于人；只在确认用不到时才动。这个包也是判断机器出自哪个市场版本的好线索。",
+          "evidence_level": "单源",
+          "sources": [{"url": "https://blog.mdminhazulhaque.io/optimize-your-sharp-smart-tv-disable-built-in-apps-for-faster-performance", "title": "Optimize Your Sharp Smart TV: Disable Built-in Apps for Faster Performance", "date": "2024-06-24"}]
+        },
+        {
+          "pkg": "com.amazon.amazonvideo.livingroom",
+          "what": "Prime Video",
+          "why": "预装流媒体，订了就是刚需、没订就是常驻后台。问清楚再动。",
+          "evidence_level": "单源",
+          "sources": [{"url": "https://blog.mdminhazulhaque.io/optimize-your-sharp-smart-tv-disable-built-in-apps-for-faster-performance", "title": "Optimize Your Sharp Smart TV: Disable Built-in Apps for Faster Performance", "date": "2024-06-24"}]
+        },
+        {
+          "pkg": "com.google.android.play.games",
+          "what": "Google Play 游戏",
+          "why": "不打游戏就是纯后台占用；但禁掉后依赖 Play 游戏服务登录的少数应用会报错。",
+          "evidence_level": "单源",
+          "sources": [{"url": "https://blog.mdminhazulhaque.io/optimize-your-sharp-smart-tv-disable-built-in-apps-for-faster-performance", "title": "Optimize Your Sharp Smart TV: Disable Built-in Apps for Faster Performance", "date": "2024-06-24"}]
+        },
+        {
+          "pkg": "com.mediatek.wwtv.mediaplayer",
+          "what": "MediaTek 平台自带的本地媒体播放器（U 盘 / 局域网里的视频、音乐、照片）",
+          "why": "常插 U 盘看片的人会用到；只走流媒体的人用不上。与上面必须留的 com.mediatek.wwtv.tvcenter 只差一个词，别看错。",
+          "evidence_level": "单源",
+          "sources": [{"url": "https://blog.mdminhazulhaque.io/optimize-your-sharp-smart-tv-disable-built-in-apps-for-faster-performance", "title": "Optimize Your Sharp Smart TV: Disable Built-in Apps for Faster Performance", "date": "2024-06-24"}]
+        }
+      ],
+      "pitfalls": [
+        {
+          "what": "🔴 那份夏普实机记录用的是 pm uninstall --user 0（把包从当前用户卸掉），本项目默认应该先用更轻的 pm disable-user --user 0。两者都可逆：前者用 pm install-existing <包名> 还原，后者用 pm enable <包名> 还原；但 uninstall --user 0 在恢复出厂或大版本升级时行为更难预料。除非 disable-user 被固件拒绝，否则不要一上来就 uninstall。",
+          "sources": [
+            {"url": "https://developer.android.com/tools/adb", "title": "Android Debug Bridge (adb) — uninstall / disable-user / enable 官方说明"},
+            {"url": "https://blog.mdminhazulhaque.io/optimize-your-sharp-smart-tv-disable-built-in-apps-for-faster-performance", "title": "Optimize Your Sharp Smart TV: Disable Built-in Apps for Faster Performance", "date": "2024-06-24"}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "AQUOS Android TV / Google TV 新款（约 2020 至今，Android 9–14）",
+      "years": "2020至今",
+      "base_os": "android",
+      "android_version_range": "9–14",
+      "models_examples": ["4T-C70CN1", "4T-C65CQ1", "4T-C70DN1", "4T-C50DN2", "4T-C65DL1", "8T-C70DW1", "8T-C75DX1", "4T-C70DL1X", "4T-C70DK1X", "65FN2EA", "65FP2EA", "43FH2EA", "40FG2EA"],
+      "identify_hints": "关于页 Android 版本 ≥ 9；日版系列代号首字母到了 C / D 及以后（4T-C70CN1、4T-C70DN1），亚太出口型号带 X 后缀（4T-C70DL1X、4T-C70DK1X、8T-C70DW1X），欧洲型号是 FH / FG / FI / FK / FN / FP 两位系列 + EA / EW 后缀。Android 11 及以上的开发者选项里会多一个「无线调试」开关。台版 AQUOS 在 2020-03-30 开放升级到 Android 10 是这一代的时间锚点。",
+      "worth_it_hint": "中等。机龄 3–6 年、内存多为 2–3GB，卡顿没有老机那么严重；收益主要在关掉演示类应用与预装流媒体的后台唤醒。Android 14 的机器还在保修期内，建议只做 disable-user。",
+      "entries": [
+        {
+          "applies_to": "Android 9 / 10 的夏普 AQUOS（无线调试开关尚未普及）",
+          "steps": [
+            "设置 → 设备偏好设置 → 关于",
+            "连按「Build number」7 次",
+            "返回 → 开发者选项 → 打开 USB 调试 / ADB 调试",
+            "adb connect <电视IP>:5555，电视端弹框选「允许」"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://www.znds.com/tv-1028264-1-1.html", "title": "夏普电视如何进入开发者模式？"},
+            {"url": "https://blog.mdminhazulhaque.io/optimize-your-sharp-smart-tv-disable-built-in-apps-for-faster-performance", "title": "Optimize Your Sharp Smart TV: Disable Built-in Apps for Faster Performance", "date": "2024-06-24"}
+          ],
+          "risk_notes": "夏普官方 Android 11 / Android 14 版操作手册里没有「开发者选项」这一章（官方手册只讲到账号与安全、Google 助理开关这一层），所以这条路径的证据来自社区实机而非官方文档。"
+        },
+        {
+          "applies_to": "Android 11 及以上的夏普 AQUOS（Google TV / Android TV 11+）",
+          "steps": [
+            "设置 → 系统 → 关于 → 连按 Build number 7 次",
+            "系统 → 开发者选项 → 打开「无线调试」",
+            "无线调试 → 使用配对码配对设备，电视显示 IP、配对端口、6 位配对码",
+            "电脑执行 adb pair <电视IP>:<配对端口>，输入配对码",
+            "配对成功后 adb connect <电视IP>:<无线调试页面显示的调试端口>"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": true,
+          "port": null,
+          "evidence_level": "官方",
+          "sources": [
+            {"url": "https://developer.android.com/tools/adb", "title": "Android Debug Bridge (adb) — Wireless debugging / adb pair（Android 11 起的官方配对流程）"},
+            {"url": "https://global.sharp/restricted/support/aquos/emanual/asia/pdf/hl/android14/eng/hl_eng.pdf", "title": "SHARP AQUOS Android 14 Operation Manual（确认新款 AQUOS 已到 Android 14；其「账号与安全」章可按账号单独关 Google 助理）"}
+          ],
+          "risk_notes": "证据等级标「官方」指的是 adb pair 这套流程本身出自 Android 官方文档；夏普机型上具体开关的位置与命名没有夏普官方文档印证。配对端口每次打开弹窗都会变，不要写死。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "unknown",
+        "hide": "no",
+        "uninstall_user0": "unknown",
+        "notes": "新款没有夏普专属的 pm 实测记录。老款那份记录用的是 Android 7/8 时代的机器，不能直接外推到 Android 12–14（这几代对系统应用的保护更严）。先拿一个确认没用的包试一次再批量做。",
+        "evidence_level": "单源",
+        "sources": [
+          {"url": "https://developer.android.com/tools/adb", "title": "Android Debug Bridge (adb) — Table 2 Available package manager commands"}
+        ]
+      },
+      "must_keep": [],
+      "junk": [],
+      "ask_user": [],
+      "pitfalls": [
+        {
+          "what": "夏普官方 Android 14 手册里有一个不用 ADB 就能做的事：在「账号与安全」下按账号单独开关 Google 助理。嫌首页推荐和语音唤醒烦的话，先试这一步，不一定要动 ADB。",
+          "sources": [
+            {"url": "https://global.sharp/restricted/support/aquos/emanual/asia/pdf/hl/android14/eng/hl_eng.pdf", "title": "SHARP AQUOS Android 14 Operation Manual"},
+            {"url": "https://global.sharp/restricted/support/aquos/emanual/asia/pdf/gu/android11/zhs/gu_zhs.pdf", "title": "夏普 LED 背光电视/显示器操作手册（简体中文，Android 11）"}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "北美 AQUOS Roku TV 版",
+      "years": "约2016至今（北美 / 部分欧洲市场；部分机型由海信代工）",
+      "base_os": "roku",
+      "android_version_range": "不适用（Roku OS 非 Android，无 ADB）",
+      "models_examples": ["LC-43LBU591C", "LC-65LBU591C"],
+      "identify_hints": "机身正面有 SHARP 字样加右下角 Roku TV 标；遥控是紫色圆形方向盘、没有数字键；主屏是 Roku 九宫格图标网格；设置 → System → About 显示 Roku OS 版本和「Roku TV support」里的实际制造商。维基百科的智能电视平台对照表把 Sharp 同时列在 Android TV、Roku OS、AQUOS NET+、SmartCentral 四栏下，就是这件事。",
+      "worth_it_hint": "不适用。Roku OS 不是安卓，没有 pm。这类机器本身不太卡，困扰主要是首页广告位和 ACR 跟踪，走设置关即可。",
+      "entries": [],
+      "pitfalls": [
+        {
+          "what": "🔴 北美夏普有 Roku 版，不能套用日版 / 亚太的 Android 教程。替代动作：Settings → Privacy → Smart TV Experience → 取消勾选「Use Info from TV Inputs」（Roku 的 ACR）；Settings → Privacy → Advertising → 勾上「Limit Ad Tracking」。详见本项目 roku.json。",
+          "sources": [
+            {"url": "https://en.wikipedia.org/wiki/List_of_smart_TV_platforms", "title": "List of smart TV platforms（Sharp 名下同时列出 Android TV / AQUOS NET+ / Roku OS / SmartCentral 四套平台）"},
+            {"url": "https://www.c4forums.com/forums/topic/28891-sharp-roku-tvs-made-by-hisense-or-other-roku-tvs", "title": "Sharp Roku TVs (made by Hisense) or other Roku TVs（给出 LC-43LBU591C / LC-65LBU591C 型号与代工背景）"},
+            {"url": "https://support.roku.com/article/how-to-know-if-you-have-a-roku-tv", "title": "How to know if you have a Roku TV or a Roku branded TV（Roku 官方识别方法）", "date": "2026-06-18"}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "SmartCentral / AQUOS NET+（2015 年前后的夏普自研系统，已停产）",
+      "years": "约2013–2016",
+      "base_os": "other",
+      "android_version_range": "不适用（夏普自研，非 Android，无 ADB）",
+      "models_examples": ["LC-43UB30U", "LC-50UB30U", "LC-55UB30U", "LC-65UB30U"],
+      "identify_hints": "遥控上有一个写着「SmartCentral」的专用键；主屏是一条横向缩略图带、不是 Android TV 卡片行；装不了 Google Play。2015 年北美那批 AQUOS UHD 里，UE / UH 系列是 Android TV + 精简版 SmartCentral 双系统，最入门的 UB 系列（LC-43UB30U 到 LC-65UB30U）用的是完整版 SmartCentral，也就是纯自研、没有 Android。",
+      "worth_it_hint": "不适用，且机器已经十年上下，多数已到寿命末期。要救只能外接安卓电视盒子，把电视当显示器用。",
+      "entries": [],
+      "pitfalls": [
+        {
+          "what": "同一年同一批「夏普 AQUOS 4K」里，好 / 更好 / 最好三档用的是两套系统：UB（入门）是自研 SmartCentral，UE / UH（中高端）才是 Android TV。看到「2015 年夏普 AQUOS」不能默认它是安卓，要按具体型号查。",
+          "sources": [
+            {"url": "https://www.techlicious.com/blog/sharp-aquos-uhd-tvs-get-android-tv", "title": "Sharp Aquos UHD TVs Get Android TV（逐档列出 UB / UE / UH 九个型号与各自的系统）"},
+            {"url": "https://en.wikipedia.org/wiki/List_of_smart_TV_platforms", "title": "List of smart TV platforms（AQUOS NET+ 与 SmartCentral 被标注为 Former solution）"}
+          ]
+        }
+      ]
+    }
+  ],
+  "open_questions": [
+    "「部分夏普型号的连点版本号入口被固件屏蔽」只有中文论坛的一句话，没有被屏蔽的型号清单，也没有替代入口。这是本文件最需要实机补的一条。",
+    "包名清单全部来自一份 2024 年的个人博客（一台 MediaTek/MStar 平台的夏普机），没有第二来源交叉印证；其中 com.mediatek.wwtv.tvcenter 与 rcota.android.av.sharp.co.jp.rcota 两个包被本项目从原文的「卸载清单」改判为 must_keep，这个改判是基于功能推断（电视信号源、OTA 升级），没有实机验证过卸掉之后到底会坏成什么样。",
+    "新款（Android 11–14）夏普机型的预装包名一个都没有；老款那批包名能不能对得上新款未知。",
+    "欧洲市场的夏普（FH / FG / FI / FK / FN / FP 系列）在 2015–2017 年曾由斯洛伐克 UMC 代工，之后被夏普买回。那段 UMC 时期的欧版机器用的是哪套系统，未核实。",
+    "日版系列代号首字母与年份的对应关系（B≈2019、C≈2020、D≈2021）是从官方内容下载器页面的机型清单加各年新品发布时间推出来的，夏普没有公开发布过这张对照表，按推断对待。",
+    "社区有 root / 刷机的讨论，本项目不采用。"
+  ],
+  "last_reviewed": "2026-09-15"
+}

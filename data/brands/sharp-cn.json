@@ -1,0 +1,253 @@
+{
+  "brand": "夏普（国行）",
+  "region": "cn",
+  "aliases": [
+    "Sharp",
+    "SHARP",
+    "AQUOS",
+    "夏普电视",
+    "夏普国行"
+  ],
+  "status": "部分适用",
+  "summary": "夏普这个牌子下面其实是三种完全不同的机器，先分清是哪一种再动手：① 2012-2014 年的大屏贴牌机，壳子印夏普、系统是联想 ideatv，adb 出厂就开着但什么都改不了；② 2015-2021 年的国行安卓机（型号 LCD-xxSU/SF/MY/TX...A），标准的连点版本号法有一部分机型被固件屏蔽，得靠装第三方桌面或工具 App 绕出原生设置；③ 2016 年鸿海（富士康）入主后的 Android TV / Google TV 机型（型号 4T-C / 2T-C 开头），走 Android TV 标准路径最省事。国行夏普是「买了两年后被强推开机广告」的典型，清理需求真实存在。",
+  "identify_hints": {
+    "remote_has_digits": "未核实：国行夏普不同代遥控器差异大，未找到官方汇总",
+    "system_name_shown_at": "Android TV / Google TV 机型：设置 → 系统 → 关于 → 软件版本（夏普官方手册路径，按信息主页键进设定）。国行老安卓机：设置 → 本机信息（有的固件把「关于」叫「本机信息」）",
+    "about_page_fields": [
+      "Android TV OS Build / 软件版本",
+      "型号",
+      "Android 版本（Android TV 机型才有）"
+    ],
+    "model_naming_rule": "🔴 型号前缀就能分代：`LCD-` 开头 + 结尾带 A 的是国行，如 LCD-70SU575A、LCD-60SU678A、LCD-60SU470A、LCD-40SF466A、LCD-45SF470A、LCD-50MY6100A、LCD-80X818A、LCD-80LX850A；中间两位字母是产品线代号（SU / SF / MY / TX / LX），不是年份，夏普未公开对应关系。`4T-C` / `2T-C` 开头（如 4T-C65FV1X、2T-C42BG1X）是鸿海体系的 Android TV / Google TV 命名，4T=4K、2T=Full HD，主要见于港台与海外市场，国行是否同款未核实",
+    "sticker_location": "机身背面铭牌与包装箱（未找到夏普官方对国行机型的统一说明）",
+    "year_ranges": "2012-2014 联想 ideatv 贴牌大屏 → 2015-2021 国行 LCD-xxxxA 安卓机（开机广告争议集中在这一段）→ 2016-04 鸿海收购夏普 66% 股权后逐步转向 Android TV / Google TV 平台"
+  },
+  "series": [
+    {
+      "name": "夏普×联想 ideatv 贴牌大屏（Android 4.0.4）",
+      "years": "约 2012-2014",
+      "base_os": "android",
+      "android_version_range": "4.0.4（ICS）",
+      "models_examples": [
+        "夏普 LCD-80LX850A（本机实测）"
+      ],
+      "identify_hints": "80 寸级别的老大屏；系统设置里只有电视功能项，没有安卓设置；adb 连上后 getprop ro.build.fingerprint 显示 lenovo/ideatv/ideatv_K82:4.0.4/P0031.42/0083 —— 外壳是夏普，系统主体是联想 ideatv。详细条目见 lenovo.json",
+      "worth_it_hint": "🔴 连得上改不了：adb 能进，但系统包一个都停不掉（pm disable 报 SecurityException、无 pm hide、pm uninstall 无 --user），清理不产生任何内存变化。卡顿是 1GB 内存 + Android 4.0.4 的硬件天花板，只能外接盒子",
+      "entries": [
+        {
+          "applies_to": "夏普 LCD-80LX850A（本机实测）",
+          "steps": [
+            "电视上无需任何操作：固件里没有 com.android.settings，不存在开发者选项",
+            "电视与电脑同一局域网，记下电视 IP",
+            "电脑执行 adb connect <电视IP>:5555，直接连上，电视上不弹授权框"
+          ],
+          "has_auth_prompt": false,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "本机实测",
+          "sources": [],
+          "verified_by": "叁笙 2026-09-14 LCD-80LX850A 实测（adb fingerprint lenovo/ideatv/ideatv_K82:4.0.4）",
+          "risk_notes": "5555 端口出厂监听且无授权确认，同网段任何设备都能直连，属于该固件的既有状态"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "no",
+        "hide": "no",
+        "uninstall_user0": "no",
+        "notes": "本机实测：pm disable 对系统包 SecurityException；无 pm hide；pm uninstall 不支持 --user；无 su；66 个系统包全部不可动，仅 /data/app 下第三方包可卸",
+        "evidence_level": "本机实测",
+        "sources": []
+      }
+    },
+    {
+      "name": "国行安卓智能电视（LCD-xxSU/SF/MY/TX...A 系列）",
+      "years": "约 2015-2021",
+      "base_os": "android",
+      "android_version_range": "未核实：未找到夏普国行逐机型的 Android 版本说明；社区固件帖显示该段机型跑的是带夏普自家 UI 的安卓系统，不是原生 Android TV",
+      "models_examples": [
+        "LCD-70SU575A",
+        "LCD-60SU678A",
+        "LCD-60SU470A",
+        "LCD-60SU465A",
+        "LCD-40SF466A",
+        "LCD-45SF470A",
+        "LCD-50MY6100A",
+        "LCD-80X818A"
+      ],
+      "identify_hints": "型号是 LCD- 开头、结尾字母 A；桌面是夏普自家的横向卡片 UI，不是 Android TV 那种横排「频道」首页；设置里通常把「关于」叫【本机信息】",
+      "worth_it_hint": "值得做：这批机器是国行夏普开机广告投诉最集中的一段（有用户反馈买了两年后开始强推开机广告且无法取消），机龄 5-10 年、内存小，清广告与推荐类预装收益明显",
+      "entries": [
+        {
+          "applies_to": "未被固件屏蔽的机型（标准安卓路径）",
+          "steps": [
+            "设置 → 系统 → 关于（部分固件叫【本机信息】）",
+            "找到【版本号】或【型号】，连续点击 7 次左右，提示进入开发者模式",
+            "返回设置 → 开发者选项 → 打开【ADB 调试】/【USB 调试】",
+            "adb connect <电视IP>:5555，在电视上确认授权弹窗"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1028264-1-1.html",
+              "title": "夏普电视如何进入开发者模式？（提到部分型号被屏蔽）"
+            },
+            {
+              "url": "https://www.znds.com/tv-1270973-1-1.html",
+              "title": "电视 adb 调试怎么打开？2026 各品牌电视打开 ADB 调试的方法汇总",
+              "date": "2026-06-01"
+            },
+            {
+              "url": "https://post.smzdm.com/p/a4qlqmzl",
+              "title": "智能电视隐藏设置：ADB 开关这样开（夏普条目写的入口名是「本机信息 → 连点型号」）",
+              "date": "2026-03-12"
+            }
+          ],
+          "risk_notes": "znds 原帖原话是「如果没屏蔽，进入设置后连续点击版本号即可打开开发者模式；夏普电视部分型号又被屏蔽」——没有给出被屏蔽的型号清单，所以这条路走不通属于已知情况，换下面那条"
+        },
+        {
+          "applies_to": "标准路径被屏蔽的机型（借第三方 App 唤出原生设置，实测机型 LCD-70SU575A）",
+          "steps": [
+            "电脑上下载一个通用 ADB 工具 App（原帖用的是 LM Ultimate），拷进 U 盘",
+            "U 盘插进夏普电视，弹出安装提示后装上并打开",
+            "在这个 App 里选择「ENABLE STOCK LAUNCHER」（唤出系统原生桌面/设置）",
+            "如果这台机器支持，电视上会弹出【允许 USB 调试吗？】，选允许",
+            "随后弹出的界面里进【开发者选项】→【调试】，即可开启 ADB 调试"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1245728-1-1.html",
+              "title": "夏普 LCD-70SU575A 怎么开启 adb？2024 夏普电视开 ADB 教程",
+              "date": "2024-02-23"
+            }
+          ],
+          "risk_notes": "🔴 这条路要先在电视上装一个来路不明的第三方 apk（原帖给的是网盘链接），属于引入外部软件，普通家庭用户请谨慎；同一帖回复里也有人说「装个开发者选项 App + 甲壳虫 ADB 就行」，思路一样都是靠第三方应用绕过被屏蔽的入口。原帖只在 LCD-70SU575A 上验证过，不保证其他型号一样"
+        },
+        {
+          "applies_to": "工厂菜单（借第三方桌面把工厂菜单 Activity 加到快捷入口）",
+          "steps": [
+            "在电视上安装一个可自定义快捷方式的第三方桌面（原帖用的是「水滴轻桌面 TV 版」）",
+            "进入该桌面主题后，在顶部图标（如「电视信源」）上按右键 → 自定义增加程序",
+            "在程序列表里选择名字里带「工厂菜单」字样的那一项",
+            "返回顶部图标，按确定键即可打开工厂菜单"
+          ],
+          "has_auth_prompt": false,
+          "wireless_pairing": false,
+          "port": null,
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1245728-1-1.html",
+              "title": "夏普 LCD-70SU575A 怎么开启 adb？2024 夏普电视开 ADB 教程",
+              "date": "2024-02-23"
+            },
+            {
+              "url": "https://www.znds.com/tv-1216533-1-1.html",
+              "title": "夏普安卓电视进入工厂菜单方法(ADB)"
+            }
+          ],
+          "risk_notes": "🔴 工厂菜单里只改你要改的那一项，改完立刻退出。这个菜单里有屏参、背光、图像校正等参数，改错会让画面异常且没有「恢复默认」按钮，不要逐项试；也不要在里面执行任何清除/写入类操作"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "unknown",
+        "hide": "unknown",
+        "uninstall_user0": "unknown",
+        "notes": "未找到国行夏普机型上 pm 命令的实测记录。海外/日版社区给的做法是走系统里的应用列表逐个「停用」，不走命令行（见 sources），国行 UI 是否有同样的停用按钮未核实",
+        "evidence_level": "单源",
+        "sources": [
+          {
+            "url": "https://blog.mdminhazulhaque.io/optimize-your-sharp-smart-tv-disable-built-in-apps-for-faster-performance",
+            "title": "Disable Sharp TV Apps for Faster Performance（海外机型，设置里逐个停用）",
+            "date": "2024-06-24"
+          }
+        ]
+      },
+      "pitfalls": [
+        {
+          "what": "国行夏普的开机广告是被投诉最多的一项：有用户反映买的时候没有广告，用了约两年后系统更新推来了无法跳过的开机广告。也就是说「我这台以前没广告」不代表以后不会有，这是随固件更新加上去的",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-949211-1-1.html",
+              "title": "夏普电视解决卡顿内存不足五大最有效方法攻略（含开机广告处理）"
+            },
+            {
+              "url": "https://www.bilibili.com/video/BV1HF411a7nC/",
+              "title": "【去广告！】别让夏普电视知道了（夏普电视去广告与工厂菜单实操视频）"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Android TV / Google TV 机型（4T-C / 2T-C 系列，鸿海入主后）",
+      "years": "2016-04 鸿海收购夏普 66% 股权后至今",
+      "base_os": "android",
+      "android_version_range": "按年代 Android 8 ~ 14（夏普官方发布过 Android 11 与 Android 14 版操作手册；台版 AQUOS R3 于 2020-03-30 开放升级至 Android 10）",
+      "models_examples": [
+        "4T-C65FV1X",
+        "4T-C75FV1X",
+        "4T-C50BK1X",
+        "2T-C42BG1X",
+        "4T-C60DL1X"
+      ],
+      "identify_hints": "首页是 Android TV / Google TV 那种横排内容频道，遥控器上通常有 Google 助理键和 Netflix/YouTube 快捷键；设置里能看到「Android TV OS Build」字样；型号 4T-C / 2T-C 开头。🔴 这套命名主要出现在港台与海外市场，国行是否有同款未核实",
+      "worth_it_hint": "机龄较新、内存相对宽裕，广告主要来自内容推荐行而非系统弹窗；比起 adb 清理，先在「设置 → 账号与安全」里按账号关掉助理/推荐更省事",
+      "entries": [
+        {
+          "applies_to": "Android TV / Google TV 夏普机型（标准路径）",
+          "steps": [
+            "设置 → 系统 → 关于 → 找到【Android TV OS Build】或【软件版本】",
+            "连续点击 7 次，提示已成为开发者",
+            "设置 → 系统 → 开发者选项 → 打开【ADB 调试】/【USB 调试】",
+            "adb connect <电视IP>:5555，在电视上确认授权弹窗"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1270973-1-1.html",
+              "title": "电视 adb 调试怎么打开？2026 各品牌电视打开 ADB 调试的方法汇总",
+              "date": "2026-06-01"
+            },
+            {
+              "url": "https://global.sharp/restricted/support/aquos/emanual/asia/pdf/gu/android11/zhs/gu_zhs.pdf",
+              "title": "夏普 LED 背光电视/显示器操作手册（简体中文，Android 11 版，含「设定 → 系统 → 关于 → 软件版本」路径）"
+            }
+          ],
+          "risk_notes": "夏普官方手册只写到查看软件版本，没有写开发者选项；连点解锁属于 Android TV 通用行为而非夏普官方说明"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "unknown",
+        "hide": "unknown",
+        "uninstall_user0": "unknown",
+        "notes": "未找到该平台上的 pm 实测；夏普 Android 14 官方手册确认可在「账号与安全」下按账号单独开关 Google 助理，这类需求不必动 adb",
+        "evidence_level": "官方",
+        "sources": [
+          {
+            "url": "https://global.sharp/restricted/support/aquos/emanual/asia/pdf/hl/android14/eng/hl_eng.pdf",
+            "title": "SHARP AQUOS Android 14 Operation Manual"
+          }
+        ]
+      }
+    }
+  ],
+  "open_questions": [
+    "国行夏普 2016 年鸿海入主后到底用的是哪套系统：是标准 Android TV（带 GMS），还是保留夏普自家 UI 的定制安卓？只找到港台/日本/东南亚市场的手册与机型页，没有国行专属资料",
+    "国行是否存在 4T-C / 2T-C 命名的机型，还是国行一直沿用 LCD-xxxxA 命名，未核实",
+    "LCD- 型号中间那两位字母（SU / SF / MY / TX / LX）对应的产品线定位与年份，夏普未公开",
+    "「部分型号连点版本号被屏蔽」具体是哪些型号，以及是不是某个固件版本之后统一屏蔽的，没有清单",
+    "国行夏普各代的预装包名（广告、推荐、上报）一个都没有可引用来源，must_keep / junk 暂时空着",
+    "国行夏普开机广告是否有官方的关闭入口或客服口径，未找到官方说明"
+  ],
+  "last_reviewed": "2026-09-15"
+}

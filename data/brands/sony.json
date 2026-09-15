@@ -1,0 +1,1305 @@
+{
+  "brand": "索尼 Sony BRAVIA",
+  "region": "both",
+  "aliases": ["Sony", "SONY", "BRAVIA", "索尼", "索尼电视", "大法"],
+  "status": "适用",
+  "summary": "2015 年起索尼电视全线用 Android TV / Google TV，开发者选项和 ADB 都在，国行与海外路径一致；2015–2018 的老机型只有 2GB 内存、系统已停更，是本项目收益最大的一批；2021 年后的 Google TV 机型如果被推到 Android 11+ 的「无线调试」，就得用配对码而不是 5555 直连。",
+  "identify_hints": {
+    "remote_has_digits": "多数国行机型遥控器有 0–9 数字键；海外机型常省略。判断是不是 Android/Google TV 看遥控器有没有麦克风键（官方判据），不看数字键。",
+    "system_name_shown_at": "按遥控器 HOME 看首页：左上或右上出现「Google TV」字样 + 圆形 Google 账号头像 = Google TV（2021 年起）；首页长相类似但右上角没有账号头像 = Android TV（2015–2020）；两者都没有、是一屏方块图标的老界面 = 非安卓机型（2014 年及更早），本项目不适用。另外「设置 → 系统 → 关于 / 关于本机」页里能看到系统版本。",
+    "about_page_fields": [
+      "Android TV OS 版本 / 安卓TV操作系统（国行译名）",
+      "Android 安全补丁级别",
+      "内部版本号 / Build",
+      "型号 KD-xxxxx / XR-xxxxx / K-xxxxx",
+      "BRAVIA 处理器名（X1 / X1 Extreme / XR 认知芯片）"
+    ],
+    "model_naming_rule": "海外 KD/XR + 尺寸 + 系列字母 + 年份字母：X=LCD、A=OLED、Z=旗舰巨屏；结尾字母就是年份代号 C=2015、D=2016、E=2017、F=2018、G=2019、H=2020、J=2021、K=2022、L=2023。例：KD-55X9000E 是 2017 年的 X90 系列，XR-65A80J 是 2021 年的 A80 OLED。2024 年起改名为 BRAVIA 3 / 7 / 8 / 9（型号前缀 K-）。国行型号多为 KD-55X9000E 这种同构写法，但并非每个海外型号都有国行对应款。",
+    "sticker_location": "机身背面贴纸，或侧面接口附近的标签；壁挂时用小镜子照背面贴纸再用手机拍照（索尼官方建议）。型号和序列号是两个不同的号。",
+    "year_ranges": "2015–2020 = Android TV（Android 5.0 → 10）；2021 至今 = Google TV（Android 10 → 14）。2014 年及更早的 BRAVIA 不是安卓系统。"
+  },
+  "series": [
+    {
+      "name": "第一代 Android TV（2015–2016）",
+      "years": "2015–2016",
+      "base_os": "android",
+      "android_version_range": "出厂 Android 5.0/5.1（Lollipop），OTA 升到 6.0（Marshmallow），2018 年索尼又给 2015/2016 机型推了 Android 8.0 Oreo，之后停更",
+      "models_examples": [
+        "KD-55X8000C / X8500C / X9300C / X9400C（2015）",
+        "KD-55X8000D / X8500D / X9300D（2016）",
+        "KD-65Z9D / Z9D 系列（2016 旗舰）",
+        "国行 KD-55X8000C、KD-65X9300D 等同名型号"
+      ],
+      "identify_hints": "首页是老式 Android TV 横排「推荐 / 应用 / 游戏 / 设置」行，没有 Google 账号头像；设置里能看到「Discovery 菜单」这种索尼自有项（索尼官方后来专门发过 2015–2016 机型 Discovery 菜单变更公告）。型号结尾字母是 C 或 D。",
+      "worth_it_hint": "收益最高的一批。索尼社区从 2015 年起就有一条几百页的「2015 Bravia Android TV Issues」长帖，集中在开机慢、遥控延迟、待机后卡顿；官方社区另有用户确认这代用 MediaTek SoC、只有 2GB 内存且焊死在主板上。系统已停更，Sony Select / 促销 / 日志上报这些常驻服务白占内存。做完 debloat 能明显改善，但硬件上限在那，别期望变成新电视。",
+      "entries": [
+        {
+          "applies_to": "2015–2016 全系（Android 5/6/8）",
+          "steps": [
+            "遥控器按 HOME → 进「设置」",
+            "找到「关于」（Android 8 上路径是「设置 → 设备偏好设置 → 关于」）",
+            "高亮「内部版本号 / Build」，用遥控器确认键连按 7 次，屏幕提示「您现在是开发者」",
+            "返回上一级，菜单里出现「开发者选项」",
+            "进「开发者选项」，打开「ADB 调试」（老系统上就叫这个名字，没有「网络调试」项）",
+            "另外要装第三方 APK 的话：「设置 → 安全和限制 → 未知来源」打开",
+            "电脑上 adb connect 电视IP:5555，电视上会弹授权框，勾「一律允许来自这台计算机」再确定"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1251785-1-1.html",
+              "title": "【超全】2024各品牌电视打开ADB调试方法汇总",
+              "date": "2024-08-15"
+            },
+            {
+              "url": "https://community.sony.co.uk/t5/android-tv/developer-functions/td-p/2143518",
+              "title": "Developer Functions（Sony 官方社区：Settings > About > Build 连按 7 次）"
+            },
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia：Sony Bravia TV Debloating & Performance Optimization（明确写了老机型是「ADB debugging」、新机型是「Network Debugging」）"
+            },
+            {
+              "url": "https://www.sony.com/zh-cn/electronics/support/articles/00146629",
+              "title": "索尼中国官方：安装应用程序时提示「禁止安装」？（安全和限制 → 未知来源；安卓 9 需先进设备偏好设置）",
+              "date": "2025-03-11"
+            }
+          ],
+          "risk_notes": "这代系统内部存储本来就小，安装第三方 APK 前先在「设置 → 存储」看剩余空间，低于 15% 会更卡。",
+          "verified_by": ""
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "yes",
+        "hide": "unknown",
+        "uninstall_user0": "yes",
+        "notes": "社区 debloat 教程在索尼上同时用过 pm disable-user --user 0 和 pm uninstall --user 0 两种，都成功。本项目一律只用 disable-user：出问题能用 pm enable 直接恢复，不用恢复出厂。索尼官方设置界面本身也有图形化的「应用 → 选中应用 → 停用」，很多包不用上 ADB 就能关。pm hide 有人在索尼社区问过但没有成功回帖，算未知。",
+        "evidence_level": "多源",
+        "sources": [
+          {
+            "url": "https://www.reddit.com/r/bravia/comments/czuo7q/guide_android_tv_debloat_and_customization/",
+            "title": "[Guide] Android TV De-bloat and Customization（r/bravia）"
+          },
+          {
+            "url": "https://www.sony.com.sg/electronics/support/articles/00199103",
+            "title": "How do I close or disable apps on my Android TV / Google TV?（索尼官方：设置里就能停用应用）",
+            "date": "2024-01-15"
+          },
+          {
+            "url": "https://community.sony.co.uk/t5/android-tv/disabling-system-apps-via-adb/td-p/2403349",
+            "title": "Disabling system apps via adb（Sony 官方社区，有人尝试 pm hide 但无确认结果）"
+          }
+        ]
+      },
+      "must_keep": [
+        {
+          "pkg": "com.sony.dtv.tvx",
+          "what": "索尼电视核心服务（TV 信号源 / 直播电视栈）",
+          "why": "🔴 这是全网 debloat 清单里最危险的一条。skinny-bravia 那份广为流传的脚本把 com.sony.dtv.tvx 连同 tvxlauncher.programguide、tvxlauncher.titlelist 一起 uninstall 掉了——只看流媒体的人可能没感觉，但只要你用有线 / 天线 / 机顶盒经 HDMI 进来看电视，关掉之后「电视」信号源和节目单就没了。默认必留。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（该清单把 com.sony.dtv.tvx 标为 TV core service 并列入卸载脚本）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.sony.dtv.braviasyncservice",
+          "what": "BRAVIA Sync（索尼版 HDMI-CEC）服务",
+          "why": "用一个遥控器控制机顶盒 / 蓝光机 / PS5、开机自动切信号源都靠它。同名的 com.sony.dtv.braviasyncsetting 是它的设置页。skinny-bravia 把这两个列进了卸载脚本，普通家庭用户不要跟。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Sony System Services 表：BraviaSync Setting / BraviaSync Service）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.android.location.fused",
+          "what": "Android 融合定位服务",
+          "why": "通用 Android TV debloat 指南明确列为不能关：关掉之后电视会进开机循环。索尼机型同属 Android TV，默认按必留处理。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://tv.cobanov.dev",
+              "title": "Clean up your Android TV（必留清单：com.android.location.fused 关掉会进开机循环）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.sony.dtv.seconddispsetting",
+          "what": "画中画（PiP）服务",
+          "why": "用画中画的人必留；不用可以移到 ask_user。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Sony System Services 表：PiP service）"
+            }
+          ]
+        }
+      ],
+      "junk": [
+        {
+          "pkg": "tv.samba.ssm",
+          "what": "Samba TV 观看行为采集（ACR，自动内容识别）",
+          "why": "第三方公司的观看数据采集服务，和看电视本身无关。隐私优先的话这条排第一。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Sony Bloatware 表：Samba TV — TV content recommendation service）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.sony.dtv.sonyselect",
+          "what": "Sony Select —— 索尼自己的内容 / 应用推荐位",
+          "why": "首页那条索尼推荐行的来源。同时有 com.sony.dtv.sonyselect.overlay 做叠加显示，一起关。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Sony Bloatware 表：Sony Select / Sony Select Overlay）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.sony.dtv.promos",
+          "what": "Sony bonus offer / 促销推送",
+          "why": "纯广告位。AVSForum 的索尼 Google TV 清单和 skinny-bravia 都把它列为可关。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.avsforum.com/threads/sony-a80-90j-google-tv-10-process-debloat-list.3221239/",
+              "title": "Sony a80/90j Google TV 10 Process Debloat List（#Sony bonus offer）",
+              "date": "2021-10-30"
+            },
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Sony Applications 表：Sony Promos）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.sony.dtv.discovery",
+          "what": "索尼内容推荐（Discovery 菜单）",
+          "why": "首页推荐内容来源之一。索尼官方在 2015–2016 机型上也发过 Discovery 菜单功能变更公告，说明它只是个内容入口，不是系统必需。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Sony Bloatware 表：Sony Discovery — Content recommendation）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.sony.dtv.demomode",
+          "what": "卖场演示模式",
+          "why": "给零售店展机用的，家里一辈子用不到。同类还有 com.sony.dtv.demosupport、com.sony.dtv.multiscreendemo。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Sony Bloatware 表：Demo Mode / Demo Support / Multi-Screen Demo）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.sony.dtv.sonybugreportsys",
+          "what": "索尼错误报告上报",
+          "why": "同组还有 com.sony.dtv.system.crashlog（崩溃日志）、com.sony.dtv.sonyloglevelsettingvnd / .sonyloglevelsettingsys（日志级别）、com.sony.dtv.da.service（远程支持）。都是常驻上报，不影响看电视。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Sony Diagnostics Services 表）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.google.android.tv.bugreportsender",
+          "what": "Google TV 错误报告上报",
+          "why": "把 TV 的 bug report 发给 Google，同组 com.google.android.feedback。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Android Diagnostic Services 表）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.google.android.tvrecommendations",
+          "what": "Google TV 内容推荐服务",
+          "why": "首页 Google 推荐行的后端。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Android System Services 表：Google TV Recommendations）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.sony.dtv.imanual",
+          "what": "机内电子说明书",
+          "why": "同组 com.sony.dtv.smarthelp（智能帮助）。说明书官网都有 PDF，占内存不划算。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Sony Bloatware 表：iManual / Smart Help）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.sony.dtv.b2b.hotelmode",
+          "what": "酒店模式 / 商用功能",
+          "why": "同组 com.sony.dtv.b2b.prosettings、com.sony.dtv.b2b.rs232csupport、com.sony.dtv.b2b.vendorprotocol。家用整机都用不到。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Sony Enhanced Services / Sony System Services 表）"
+            }
+          ]
+        }
+      ],
+      "ask_user": [
+        {
+          "pkg": "com.google.android.katniss",
+          "what": "Google 语音搜索 / 语音助手",
+          "why": "关掉后遥控器上的麦克风键、语音找片就没了。不用语音的人关掉能省一块常驻内存。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Android System Services 表：Google Search (Katniss)）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.google.android.apps.mediashell",
+          "what": "Chromecast 投屏接收端",
+          "why": "手机投屏到电视靠它。skinny-bravia 把它放在「只 disable 不卸载」那一组，就是因为常有人要用。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Disable apps 一节）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.android.vending",
+          "what": "Google Play 商店",
+          "why": "关掉之后装不了新应用、已装应用也不自动更新。海外机型上关它风险大；国行本来就没有 GMS 的话另说。同组 com.google.android.gms（Play 服务），关了 YouTube / Netflix 可能登录不上。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Disable apps：com.android.vending / com.google.android.gms）"
+            },
+            {
+              "url": "https://www.avsforum.com/threads/sony-a80-90j-google-tv-10-process-debloat-list.3221239/",
+              "title": "Sony a80/90j Google TV 10 Process Debloat List（4. Google play services）",
+              "date": "2021-10-30"
+            }
+          ]
+        },
+        {
+          "pkg": "com.sony.dtv.smartmediaapp",
+          "what": "索尼自带媒体播放器",
+          "why": "插 U 盘放照片 / 视频靠它。同组 com.sony.dtv.osat.music（音乐播放器）。用 Kodi / VLC 的人可以关。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.avsforum.com/threads/sony-a80-90j-google-tv-10-process-debloat-list.3221239/",
+              "title": "Sony a80/90j Google TV 10 Process Debloat List（#media player / #music player）",
+              "date": "2021-10-30"
+            },
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Sony Applications 表）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.vewd.core.integration.dia",
+          "what": "Vewd 内置浏览器",
+          "why": "电视上开网页用的。绝大多数人不用，但关掉后某些 HbbTV / 互动服务会失效。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Sony Applications 表：Vewd Browser）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.sony.dtv.hbbtvlauncher",
+          "what": "HbbTV 互动电视（欧洲标准）",
+          "why": "欧洲 / 部分亚太地区看免费地面波台的互动服务靠它，同组 com.sony.dtv.youview + com.youview.tv.servicehost 是英国 YouView。英国、德国用户别关；国行机型没有这套。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Sony Bloatware 表：HbbTV Launcher / YouView / YouView Service Host）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.google.android.marvin.talkback",
+          "what": "TalkBack 屏幕朗读（无障碍）",
+          "why": "🔴 同组 com.google.android.tts（语音合成）、com.sony.dtv.common.base.AccessibilityText、com.sony.dtv.voice.guide（索尼语音导览）。家里有视障成员就是刚需，绝对不能默认关掉。skinny-bravia 把这几个都列进了卸载脚本，照抄会直接剥夺无障碍能力。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Accessability Services 表）"
+            },
+            {
+              "url": "https://www.avsforum.com/threads/sony-a80-90j-google-tv-10-process-debloat-list.3221239/",
+              "title": "Sony a80/90j Google TV 10 Process Debloat List（#Voice Guide reads the screen menus out loud）",
+              "date": "2021-10-30"
+            }
+          ]
+        }
+      ],
+      "pitfalls": [
+        {
+          "what": "网上流传最广的那份 skinny-bravia 脚本用的是 pm uninstall --user 0（卸载），不是 disable，而且清单里混进了电视核心 com.sony.dtv.tvx、无障碍 TTS / TalkBack、BRAVIA Sync（HDMI-CEC）和联系人 / 日历 Provider。整段复制粘贴会同时废掉「电视」信号源、一个遥控器控全屋和读屏功能。只能当包名字典用，不能当执行清单用。",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia：Detailed instructions how to debloat your Sony Bravia TV"
+            }
+          ]
+        },
+        {
+          "what": "Android TV 机型（2015–2020）首页那些推荐内容，索尼官方明确说「无法移除」；只有 2021 年起的 Google TV 机型能靠「仅应用模式」（设置 → 帐号与登录 → 选中帐号 → 仅应用模式 → 开启）把推荐行藏起来。所以老索尼想干净只能走 ADB 关包或换第三方桌面。",
+          "sources": [
+            {
+              "url": "https://www.sony.com/electronics/support/articles/00225587",
+              "title": "Manage or hide ads and personalized content recommendations on the Home menu of your TV（Sony 官方）"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "第二代 Android TV（2017–2018）",
+      "years": "2017–2018",
+      "base_os": "android",
+      "android_version_range": "2017 机型出厂 Android 6.0，2018 机型出厂 7.0；后续升 8.0 Oreo，大部分止步于 Android 9",
+      "models_examples": [
+        "KD-55A1E（首款 4K OLED）、X900E、X930E、X800E（2017）",
+        "KD-55A8F、A9F、X900F、Z9F、X800F、X850F（2018）",
+        "国行 KD-55X9000E、KD-65A1 等"
+      ],
+      "identify_hints": "型号结尾字母 E（2017）或 F（2018）。首页仍是 Android TV 横排推荐行，右上角没有 Google 账号头像。关于页 Android 版本停在 8.0 或 9。",
+      "worth_it_hint": "同样值得做。索尼官方社区有明确的停更公告：2017、2018 年的大部分机型（X900E、X900F 这些热门款在内）和 2019 年的部分机型（AG8 OLED）已经到了 Android TV 生命终点，不再拿新系统版本。停更 = 后台服务永远不会被官方优化掉，关掉就是净收益。",
+      "entries": [
+        {
+          "applies_to": "2017–2018 全系",
+          "steps": [
+            "遥控器按 HOME → 「设置」",
+            "「设备偏好设置 → 关于」（老版本菜单里直接是「关于」）",
+            "高亮「内部版本号 / Build / Android TV OS Build」，确认键连按 7 次，提示「您现在是开发者」",
+            "返回 → 「开发者选项」",
+            "打开「ADB 调试」；系统较新的机型这一项叫「网络调试 / Network Debugging」",
+            "装第三方 APK 另需：「设置 → 安全和限制 → 未知来源」打开（Android 9 机型路径是「设置 → 设备偏好设置 → 安全和限制」）",
+            "adb connect 电视IP:5555，电视上确认授权弹窗"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1270973-1-1.html",
+              "title": "电视adb调试怎么打开？2026各品牌电视打开ADB调式的方法汇总",
+              "date": "2026-06-01"
+            },
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Preparation 一节：About → Build 连点 7 次，Developer Options → Network Debugging 或 ADB debugging；作者在 Android 9 Pie 上实测）"
+            },
+            {
+              "url": "https://www.sony.com/zh-cn/electronics/support/articles/00146629",
+              "title": "索尼中国官方：安装应用程序时提示「禁止安装」？",
+              "date": "2025-03-11"
+            }
+          ],
+          "risk_notes": "",
+          "verified_by": ""
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "yes",
+        "hide": "unknown",
+        "uninstall_user0": "yes",
+        "notes": "与第一代相同。skinny-bravia 作者在 Android 9 Pie 的索尼机型上实测过整套命令。",
+        "evidence_level": "多源",
+        "sources": [
+          {
+            "url": "https://github.com/therealhoodboy/skinny-bravia",
+            "title": "skinny-bravia（Requirements: tested on Android 9 Pie）"
+          },
+          {
+            "url": "https://www.reddit.com/r/bravia/comments/czuo7q/guide_android_tv_debloat_and_customization/",
+            "title": "[Guide] Android TV De-bloat and Customization（r/bravia）"
+          }
+        ]
+      },
+      "must_keep": [
+        {
+          "pkg": "com.sony.dtv.tvx",
+          "what": "索尼电视核心服务（信号源 / 直播电视栈）",
+          "why": "同第一代。用有线 / 天线 / 机顶盒的人必留。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Sony Television Services 表）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.sony.dtv.braviasyncservice",
+          "what": "BRAVIA Sync（HDMI-CEC）",
+          "why": "一个遥控器控机顶盒 / 蓝光机 / 游戏机靠它。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Sony System Services 表）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.android.location.fused",
+          "what": "Android 融合定位服务",
+          "why": "通用 Android TV 必留清单：关掉会进开机循环。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://tv.cobanov.dev",
+              "title": "Clean up your Android TV（必留清单）"
+            }
+          ]
+        }
+      ],
+      "junk": [
+        {
+          "pkg": "tv.samba.ssm",
+          "what": "Samba TV 观看行为采集（ACR）",
+          "why": "第三方数据采集，隐私优先第一个关。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Sony Bloatware 表）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.sony.dtv.sonyselect",
+          "what": "Sony Select 推荐位（含 .overlay）",
+          "why": "首页索尼推荐行。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Sony Bloatware 表）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.sony.dtv.promos",
+          "what": "索尼促销推送",
+          "why": "纯广告位。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.avsforum.com/threads/sony-a80-90j-google-tv-10-process-debloat-list.3221239/",
+              "title": "Sony a80/90j Google TV 10 Process Debloat List",
+              "date": "2021-10-30"
+            },
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Sony Applications 表）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.sony.dtv.demomode",
+          "what": "卖场演示模式（含 demosupport / multiscreendemo）",
+          "why": "零售展机功能。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Sony Bloatware 表）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.sony.dtv.sonybugreportsys",
+          "what": "索尼日志 / 崩溃上报组（含 system.crashlog、sonyloglevelsetting*、da.service）",
+          "why": "常驻上报，对看电视零影响。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Sony Diagnostics Services 表）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.google.android.tvrecommendations",
+          "what": "Google TV 内容推荐服务",
+          "why": "首页 Google 推荐行后端。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Android System Services 表）"
+            }
+          ]
+        }
+      ],
+      "ask_user": [
+        {
+          "pkg": "com.google.android.katniss",
+          "what": "Google 语音搜索",
+          "why": "关了遥控器麦克风键失效。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Android System Services 表）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.google.android.apps.mediashell",
+          "what": "Chromecast 投屏接收端",
+          "why": "手机投屏要用。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Disable apps 一节）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.sony.dtv.hbbtvlauncher",
+          "what": "HbbTV 互动电视（欧洲）/ YouView（英国）",
+          "why": "欧洲看地面波互动服务的用户必留；国行没有。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Sony Bloatware 表）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.google.android.marvin.talkback",
+          "what": "TalkBack 读屏（含 tts / AccessibilityText / voice.guide）",
+          "why": "🔴 视障成员刚需，默认不动。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Accessability Services 表）"
+            },
+            {
+              "url": "https://www.avsforum.com/threads/sony-a80-90j-google-tv-10-process-debloat-list.3221239/",
+              "title": "Sony a80/90j Google TV 10 Process Debloat List（#Voice Guide）",
+              "date": "2021-10-30"
+            }
+          ]
+        }
+      ],
+      "pitfalls": [
+        {
+          "what": "这一代已经收到索尼的 Android TV 停更通知（2017、2018 年大部分机型 + 2019 部分机型）。停更意味着以后不会再有新系统版本，但索尼仍可能推应用层更新，被禁用的系统包不会被自动重新启用——不过做过一次恢复出厂就全回来了，得重跑。",
+          "sources": [
+            {
+              "url": "https://community.sony.com.mk/t5/android-tv/android-tv-on-most-2018-2019-bravias-end-of-live/m-p/2691327/highlight/true",
+              "title": "Android TV on most 2018/2019 BRAVIAs END OF LIFE（Sony 官方社区）"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "第三代 Android TV（2019–2020）",
+      "years": "2019–2020",
+      "base_os": "android",
+      "android_version_range": "出厂 Android 8.0 / 9，2023 年索尼推固件 v6.6053 把 2018–2020 机型升到 Android 10",
+      "models_examples": [
+        "KD-55A8G、A9G、X950G、X800G、Z9G（2019）",
+        "KD-55A8H、X900H、X800H、X950H、Z8H（2020）",
+        "国行 KD-65X9500G、KD-55A8H 等"
+      ],
+      "identify_hints": "型号结尾字母 G（2019）或 H（2020）。首页还是 Android TV 样式（无 Google 账号头像），但关于页 Android 版本可能已经是 10。设置菜单里有「设备偏好设置」这一层。",
+      "worth_it_hint": "中等偏上。内存比 2015 代大，日常没那么卡，但推荐行和上报服务一样多；Android 10 之后首页广告位反而更明显。想要干净首页值得做。",
+      "entries": [
+        {
+          "applies_to": "2019–2020 全系（Android 9 / 10）",
+          "steps": [
+            "HOME → 「设置」→「设备偏好设置」→「关于」",
+            "高亮「内部版本号 / Android TV OS Build」，确认键连按 7 次",
+            "返回 →「设备偏好设置」或「系统」里出现「开发者选项」",
+            "打开「网络调试 / Network Debugging」（这一代大多显示这个名字），没有的话打开「ADB 调试」",
+            "装 APK 另需：「设置 →（设备偏好设置 →）安全和限制 → 未知来源」，给你用的文件管理器 / 安装器单独授权",
+            "adb connect 电视IP:5555，电视上确认授权"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Preparation：Device Preferences → About → Build 7 次；Developer Options → Network Debugging）"
+            },
+            {
+              "url": "https://www.znds.com/tv-1270973-1-1.html",
+              "title": "电视adb调试怎么打开？2026各品牌电视打开ADB调式的方法汇总",
+              "date": "2026-06-01"
+            },
+            {
+              "url": "https://www.sony.com/zh-cn/electronics/support/articles/00146629",
+              "title": "索尼中国官方：安装应用程序时提示「禁止安装」？（Android 9 需先选「设备偏好设置」再选「安全和限制」）",
+              "date": "2025-03-11"
+            }
+          ],
+          "risk_notes": "Android 9 起「未知来源」从一个全局开关变成按应用授权，只开全局没用，必须给具体那个安装器打勾。",
+          "verified_by": ""
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "yes",
+        "hide": "unknown",
+        "uninstall_user0": "yes",
+        "notes": "同上两代。",
+        "evidence_level": "多源",
+        "sources": [
+          {
+            "url": "https://github.com/therealhoodboy/skinny-bravia",
+            "title": "skinny-bravia（tested on Android 9 Pie）"
+          },
+          {
+            "url": "https://www.sony.com.sg/electronics/support/articles/00199103",
+            "title": "How do I close or disable apps on my Android TV / Google TV?（索尼官方）",
+            "date": "2024-01-15"
+          }
+        ]
+      },
+      "must_keep": [
+        {
+          "pkg": "com.sony.dtv.tvx",
+          "what": "索尼电视核心服务（信号源 / 直播电视栈）",
+          "why": "同上。用天线 / 有线 / 机顶盒必留。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Sony Television Services 表）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.sony.dtv.braviasyncservice",
+          "what": "BRAVIA Sync（HDMI-CEC）",
+          "why": "一个遥控器控全屋靠它。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Sony System Services 表）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.android.location.fused",
+          "what": "Android 融合定位服务",
+          "why": "关掉会进开机循环。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://tv.cobanov.dev",
+              "title": "Clean up your Android TV（必留清单）"
+            }
+          ]
+        }
+      ],
+      "junk": [
+        {
+          "pkg": "tv.samba.ssm",
+          "what": "Samba TV 观看行为采集（ACR）",
+          "why": "第三方数据采集。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Sony Bloatware 表）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.sony.dtv.sonyselect",
+          "what": "Sony Select 推荐位（含 .overlay）",
+          "why": "首页索尼推荐行。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Sony Bloatware 表）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.sony.dtv.promos",
+          "what": "索尼促销推送",
+          "why": "纯广告位。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.avsforum.com/threads/sony-a80-90j-google-tv-10-process-debloat-list.3221239/",
+              "title": "Sony a80/90j Google TV 10 Process Debloat List",
+              "date": "2021-10-30"
+            },
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Sony Applications 表）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.sony.dtv.discovery",
+          "what": "索尼内容推荐（Discovery）",
+          "why": "首页推荐来源之一。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Sony Bloatware 表）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.google.android.tvrecommendations",
+          "what": "Google TV 内容推荐服务",
+          "why": "首页 Google 推荐行后端。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Android System Services 表）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.sony.dtv.demomode",
+          "what": "卖场演示模式（含 demosupport / multiscreendemo）",
+          "why": "零售展机功能。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Sony Bloatware 表）"
+            }
+          ]
+        }
+      ],
+      "ask_user": [
+        {
+          "pkg": "com.google.android.katniss",
+          "what": "Google 语音搜索",
+          "why": "关了语音找片和麦克风键失效。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Android System Services 表）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.google.android.apps.mediashell",
+          "what": "Chromecast 投屏接收端",
+          "why": "手机投屏要用。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Disable apps 一节）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.google.android.marvin.talkback",
+          "what": "TalkBack 读屏（含 tts / voice.guide）",
+          "why": "🔴 视障成员刚需。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Accessability Services 表）"
+            },
+            {
+              "url": "https://www.avsforum.com/threads/sony-a80-90j-google-tv-10-process-debloat-list.3221239/",
+              "title": "Sony a80/90j Google TV 10 Process Debloat List（#Voice Guide）",
+              "date": "2021-10-30"
+            }
+          ]
+        }
+      ],
+      "pitfalls": [
+        {
+          "what": "这一代在 2023 年被索尼从 Android 9 推到 Android 10（固件 v6.6053）。跨大版本升级会重置一部分系统应用状态，做过 debloat 的机器升级后要复查哪些包被重新启用了。",
+          "sources": [
+            {
+              "url": "https://www.reddit.com/r/AndroidTV/comments/17le3yr/20182020_sony_bravia_tvs_getting_androidtv_9_to/",
+              "title": "2018-2020 Sony Bravia TVs getting AndroidTV 9 to AndroidTV 10 update（r/AndroidTV）"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Google TV 世代（2021 至今）",
+      "years": "2021 至今",
+      "base_os": "android",
+      "android_version_range": "出厂 Android 10 / 11（Google TV 界面），2025 年索尼给 2023 机型推 Android 12，部分 2024/2025 机型已到 Android 14",
+      "models_examples": [
+        "XR-55A80J、A90J、X90J、X95J、X85J（2021）",
+        "XR-55A80K、A95K、X95K、X85K（2022）",
+        "XR-65A80L、A95L、X90L（2023）",
+        "K-55XR80 / BRAVIA 3、7、8、9（2024–2025）",
+        "国行 XR-65A80J、XR-65A95L 等"
+      ],
+      "identify_hints": "按 HOME，首页左上或右上有「Google TV」字样，右上角有圆形 Google 账号头像（未登录时屏幕底部也有 Google TV 说明）——这是索尼官方给的判据。遥控器带麦克风键，还有 Netflix / YouTube / Prime Video 等一排彩色快捷键。型号前缀 XR-（2021–2023 带认知芯片）或 K-（2024 起 BRAVIA 3/7/8/9）。",
+      "worth_it_hint": "看诉求。硬件不缺内存，做 debloat 主要图的是首页干净和少上报，不是提速。这一代有官方的「仅应用模式」可以先试——不用 ADB 就能藏掉推荐行；试完不满意再上 ADB。",
+      "entries": [
+        {
+          "applies_to": "Google TV 机型，系统在 Android 10 / 11 且开发者选项里能看到「网络调试 / ADB 调试」",
+          "steps": [
+            "HOME → 右上角齿轮进「设置」→「系统」→「关于」（国行叫「关于本机」）",
+            "高亮「Android TV OS 版本 / 安卓TV操作系统」，遥控器确认键连快点 7 次，屏幕提示「您已处于开发者模式」",
+            "返回上一级，「系统」里出现「开发者选项」",
+            "进去打开「USB 调试」以及「网络调试 / ADB 调试」",
+            "装第三方 APK 另需：「设置 → 隐私设置 → 安全限制 → 未知来源」，给安装器（国行是「应用助手」）单独打开权限",
+            "adb connect 电视IP:5555，电视上勾「一律允许来自这台计算机」再确定"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://post.smzdm.com/p/aognq4on",
+              "title": "索尼电视如何开启开发者选项？（什么值得买，国行界面逐字：设置 → 系统 → 关于本机 → 安卓TV操作系统 连点 7 次；开发者选项 → USB 调试；隐私设置 → 安全限制 → 应用助手）",
+              "date": "2026-02-18"
+            },
+            {
+              "url": "https://zhuanlan.zhihu.com/p/1901349166480880333",
+              "title": "汇总13款安卓电视机开启Adb，全是干货！"
+            },
+            {
+              "url": "https://www.znds.com/tv-1270973-1-1.html",
+              "title": "电视adb调试怎么打开？2026各品牌电视打开ADB调式的方法汇总",
+              "date": "2026-06-01"
+            },
+            {
+              "url": "https://service.sony.com.cn/Enjoyment/A95L/02.html",
+              "title": "索尼中国官方（A95L 使用指南）：U 盘装 APK 走【主菜单】→【更多应用】→【应用助手】"
+            }
+          ],
+          "risk_notes": "",
+          "verified_by": ""
+        },
+        {
+          "applies_to": "开发者选项里只有「无线调试 / Wireless debugging」没有 5555 直连的机型（Android 11 起的新系统，索尼把部分 2023 机型推到 Android 12→14 之后也变成这样）",
+          "steps": [
+            "先按上一条把开发者选项打开",
+            "「开发者选项 → 无线调试 / Wireless debugging」打开",
+            "选「使用配对码配对设备」，电视上显示一个六位配对码和一个 IP:配对端口（端口是随机的，关掉弹窗就换）",
+            "电脑上 adb pair 电视IP:配对端口，按提示输入配对码",
+            "配对成功后回到「无线调试」主页面，记下页面上「IP 地址和端口」那一行（这个调试端口和配对端口不是同一个，重启电视会变）",
+            "adb connect 电视IP:调试端口"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": true,
+          "port": null,
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://gadgetguideonline.com/android/android-adb-wireless-debugging",
+              "title": "A Complete Guide to Android ADB Wireless Debugging（配对端口与调试端口是两个不同端口，调试端口重启才变）"
+            },
+            {
+              "url": "https://xdaforums.com/t/psa-using-the-new-android-12-tile-for-developer-options-wireless-debugging-to-establish-adb-connection-over-wi-fi-without-usb.4469339/",
+              "title": "PSA: Using the new Android 12 tile for Wireless debugging to establish adb over Wi-Fi（XDA：Android 11 起端口随机分配）"
+            },
+            {
+              "url": "https://github.com/home-assistant/core/issues/148359",
+              "title": "Android Debug Bridge broken with Android 14 Security Features（Home Assistant issue #148359：Android 14 拿掉了 5555，改成配对码 + 动态端口）",
+              "date": "2025-07-07"
+            }
+          ],
+          "risk_notes": "调试端口每次重启电视都会变，做成开机自动连接的脚本会失效；每次重启后要回电视上重新看端口。",
+          "verified_by": ""
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "yes",
+        "hide": "unknown",
+        "uninstall_user0": "yes",
+        "notes": "Google TV 机型上 AVSForum 的 A80J/A90J 清单大量使用 pm disable -k --user 0，成功。本项目仍统一用 disable-user。",
+        "evidence_level": "多源",
+        "sources": [
+          {
+            "url": "https://www.avsforum.com/threads/sony-a80-90j-google-tv-10-process-debloat-list.3221239/",
+            "title": "Sony a80/90j Google TV 10 Process Debloat List",
+            "date": "2021-10-30"
+          },
+          {
+            "url": "https://www.sony.com.sg/electronics/support/articles/00199103",
+            "title": "How do I close or disable apps on my Android TV / Google TV?（索尼官方）",
+            "date": "2024-01-15"
+          }
+        ]
+      },
+      "must_keep": [
+        {
+          "pkg": "com.google.android.apps.tv.launcherx",
+          "what": "Google TV 桌面（首页本身）",
+          "why": "🔴 关掉它之前必须先装好替代桌面（FLauncher / Projectivy 这类）并确认能打开，否则开机就是黑屏 / 无处可去。而且 Google 的账号体系挂在桌面这条链上：有博客实测禁用 launcherx 之后 YouTube 一旦需要重新登录就会 ActivityNotFoundException 直接挂掉。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://enemyhideout.com/2025/09/hacking-your-android-tv/",
+              "title": "Hacking your Android TV（作者用的就是索尼 Bravia；Caveat 一节写了禁用默认桌面会破坏 YouTube 登录）",
+              "date": "2025-09"
+            },
+            {
+              "url": "https://github.com/seun-novodev/android-tv-debloat-toolkit",
+              "title": "android-tv-debloat-toolkit（工具明确要求先装备用桌面再禁用 Google TV Launcher）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.google.android.tungsten.setupwraith",
+          "what": "Google TV 设置向导 / 桌面回退",
+          "why": "它是桌面挂掉时的兜底。想彻底换桌面的教程会连它一起关，但那意味着失去最后一层保险；不换桌面的人绝不要动。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://enemyhideout.com/2025/09/hacking-your-android-tv/",
+              "title": "Hacking your Android TV（setupwraith 会自动把默认桌面重新启用）",
+              "date": "2025-09"
+            },
+            {
+              "url": "https://www.avsforum.com/threads/sony-a80-90j-google-tv-10-process-debloat-list.3221239/",
+              "title": "Sony a80/90j Google TV 10 Process Debloat List（5. Default launcher 一节）",
+              "date": "2021-10-30"
+            }
+          ]
+        },
+        {
+          "pkg": "com.sony.dtv.tvx",
+          "what": "索尼电视核心服务（信号源 / 直播电视栈）",
+          "why": "用天线 / 有线 / 机顶盒必留。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Sony Television Services 表）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.sony.dtv.braviasyncservice",
+          "what": "BRAVIA Sync（HDMI-CEC）",
+          "why": "一个遥控器控 PS5 / 机顶盒 / 回音壁靠它。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Sony System Services 表）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.android.location.fused",
+          "what": "Android 融合定位服务",
+          "why": "关掉会进开机循环。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://tv.cobanov.dev",
+              "title": "Clean up your Android TV（必留清单）"
+            }
+          ]
+        }
+      ],
+      "junk": [
+        {
+          "pkg": "com.sony.dtv.promos",
+          "what": "Sony bonus offer（索尼促销）",
+          "why": "AVSForum 的 A80J/A90J 清单直接标注 #Sony bonus offer，纯广告。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.avsforum.com/threads/sony-a80-90j-google-tv-10-process-debloat-list.3221239/",
+              "title": "Sony a80/90j Google TV 10 Process Debloat List",
+              "date": "2021-10-30"
+            },
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Sony Applications 表）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.sony.dtv.sonyselect",
+          "what": "Sony Select 推荐位（含 .overlay）",
+          "why": "首页那条索尼自己的推荐行。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Sony Bloatware 表）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.google.android.tvrecommendations",
+          "what": "Google TV 内容推荐服务",
+          "why": "首页 Google 推荐行 / 「为你推荐」的后端。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Android System Services 表）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.google.android.apps.tv.dreamx",
+          "what": "Ambient mode 环境屏保",
+          "why": "AVSForum 的清单注明它要登录 Google 账号才能工作，不登录的人留着纯占内存。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.avsforum.com/threads/sony-a80-90j-google-tv-10-process-debloat-list.3221239/",
+              "title": "Sony a80/90j Google TV 10 Process Debloat List（#Ambient mode screensaver）",
+              "date": "2021-10-30"
+            }
+          ]
+        },
+        {
+          "pkg": "tv.samba.ssm",
+          "what": "Samba TV 观看行为采集（ACR）",
+          "why": "第三方数据采集服务。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Sony Bloatware 表）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.sony.dtv.sonybugreportsys",
+          "what": "索尼日志 / 崩溃上报组",
+          "why": "含 com.sony.dtv.system.crashlog、sonyloglevelsetting*、da.service、customersupport。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Sony Diagnostics Services 表）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.sony.dtv.demomode",
+          "what": "卖场演示模式（含 demosupport / multiscreendemo）",
+          "why": "零售展机功能。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Sony Bloatware 表）"
+            }
+          ]
+        }
+      ],
+      "ask_user": [
+        {
+          "pkg": "com.google.android.play.games",
+          "what": "Google Play 游戏",
+          "why": "电视上基本没人用，但确实是 Google 服务的一部分。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.avsforum.com/threads/sony-a80-90j-google-tv-10-process-debloat-list.3221239/",
+              "title": "Sony a80/90j Google TV 10 Process Debloat List（#Google play games）",
+              "date": "2021-10-30"
+            },
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Google Applications 表）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.sony.dtv.smartmediaapp",
+          "what": "索尼自带媒体播放器（含 com.sony.dtv.osat.music 音乐）",
+          "why": "插 U 盘看照片 / 视频用它。装了 Kodi / VLC 的人可以关。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.avsforum.com/threads/sony-a80-90j-google-tv-10-process-debloat-list.3221239/",
+              "title": "Sony a80/90j Google TV 10 Process Debloat List（#media player / #music player）",
+              "date": "2021-10-30"
+            },
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Sony Applications 表）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.android.vending",
+          "what": "Google Play 商店（关联 com.google.android.gms）",
+          "why": "关了装不了新应用、不自动更新，Netflix / YouTube 登录也可能出问题。海外机型风险高。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.avsforum.com/threads/sony-a80-90j-google-tv-10-process-debloat-list.3221239/",
+              "title": "Sony a80/90j Google TV 10 Process Debloat List（4. Google play services）",
+              "date": "2021-10-30"
+            },
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Disable apps 一节）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.google.android.apps.mediashell",
+          "what": "Chromecast 投屏接收端",
+          "why": "手机 / 电脑投屏到电视要用。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Disable apps 一节）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.sony.dtv.voice.guide",
+          "what": "索尼语音导览（朗读菜单）",
+          "why": "🔴 无障碍功能，视障用户刚需。同组 com.google.android.marvin.talkback、com.google.android.tts。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.avsforum.com/threads/sony-a80-90j-google-tv-10-process-debloat-list.3221239/",
+              "title": "Sony a80/90j Google TV 10 Process Debloat List（#Voice Guide reads the screen menus out loud）",
+              "date": "2021-10-30"
+            },
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Accessability Services 表）"
+            }
+          ]
+        }
+      ],
+      "pitfalls": [
+        {
+          "what": "🔴 先试不用 ADB 的官方办法：Google TV 机型有「仅应用模式」（设置 → 帐号与登录 → 选中你的帐号 → 往下翻到「仅应用模式 / Apps only mode」→ 开启），首页会变成只有应用图标，推荐行全部消失。代价是用不了个性化结果和语音助手。索尼官方文章明确说这是 Google TV 独有、Android TV 机型没有的能力。",
+          "sources": [
+            {
+              "url": "https://www.sony.com/electronics/support/articles/00225587",
+              "title": "Manage or hide ads and personalized content recommendations on the Home menu of your TV（Sony 官方）"
+            }
+          ]
+        },
+        {
+          "what": "「仅应用模式」不是永久解药：有媒体报道开了之后过一段时间「个性化推荐」会重新出现，现在只能算减少广告而不是彻底关掉。想要确定性还是得关包或换桌面。",
+          "sources": [
+            {
+              "url": "https://www.galaxus.at/en/page/a-tv-home-screen-without-ads-projectivy-launcher-spices-up-android-and-google-tv-38294",
+              "title": "Android and Google TV home screens with no ads（Galaxus）"
+            }
+          ]
+        },
+        {
+          "what": "索尼在 2025 年给部分机型推了 Android 12 → 14 的系统更新，更新后老的 adb connect ip:5555 直连失效，只剩配对码流程。升级前做好的自动化脚本会静默失败。这条在 r/AndroidTV 有讨论、在 Home Assistant 的 issue 里有同类症状记录（Android 14 拿掉 5555 改动态端口），但没有索尼官方公告。",
+          "sources": [
+            {
+              "url": "https://www.reddit.com/r/AndroidTV/comments/1u5duam/latest_update_kills_adb/",
+              "title": "Latest update kills ADB（r/AndroidTV，帖中称索尼把 Android 12 → 14 更新塞了进来并复制了 ADB 问题）"
+            },
+            {
+              "url": "https://github.com/home-assistant/core/issues/148359",
+              "title": "Android Debug Bridge broken with Android 14 Security Features（home-assistant/core #148359）",
+              "date": "2025-07-07"
+            }
+          ]
+        },
+        {
+          "what": "AVSForum 的那份 A80J/A90J 清单是 2021 年、海外 Google TV 10 系统整理的，它的「未登录 Google 账号」前提对国行机型不成立；国行是否预装同一批遥测服务、包名是否一致没有核实过，别整份照抄。",
+          "sources": [
+            {
+              "url": "https://www.avsforum.com/threads/sony-a80-90j-google-tv-10-process-debloat-list.3221239/",
+              "title": "Sony a80/90j Google TV 10 Process Debloat List",
+              "date": "2021-10-30"
+            }
+          ]
+        },
+        {
+          "what": "国行特有：装第三方 APK 不是靠系统自带文件管理器，而是索尼国行预置的「应用助手」。索尼中国官网 A95L 使用指南给的路径是【主菜单】→【更多应用】→【应用助手】，APK 要放 U 盘根目录；还要先在「隐私设置 → 安全限制」里给应用助手开权限，否则装上了也打不开。海外机型没有这个应用。",
+          "sources": [
+            {
+              "url": "https://service.sony.com.cn/Enjoyment/A95L/02.html",
+              "title": "索尼中国官方 A95L 使用指南：U 盘安装 APK 走应用助手"
+            },
+            {
+              "url": "https://post.smzdm.com/p/aognq4on",
+              "title": "索尼电视如何开启开发者选项？（隐私设置 → 安全限制 → 应用助手 权限）",
+              "date": "2026-02-18"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "open_questions": [
+    "国行索尼开 ADB / 网络调试之前，是否必须先登录 Google 账号完成开机向导？海外资料没提这个依赖，国行说明也没写。国行机型 GMS 状态本身就和海外不同，需要实测一台国行机才能定。",
+    "国行「应用助手」的包名是什么？它属于 must_keep（是国行唯一的 APK 安装入口）还是可以关，没找到有来源的包名。",
+    "索尼遥控器 / 蓝牙遥控相关的包名（类似 com.google.android.tv.remote.service 或索尼自有的 bluetoothrcu 服务）在 BRAVIA 上叫什么，没找到可靠清单。这是 must_keep 里目前唯一空着的关键类别——关错了遥控器直接失灵。",
+    "索尼输入法 / 屏幕键盘的包名未核实（关错了 Wi-Fi 密码都输不进去）。",
+    "com.sony.dtv.servicemode（Sony Service Mode，工厂 / 维修模式）在 skinny-bravia 里被列为可卸载，但没有任何资料说明它被关掉后会不会影响售后维修或固件恢复。本项目按「不碰」处理，不写进任何一组。",
+    "各代具体机型的内存大小没有官方规格可查（索尼规格页不列 RAM）。2GB 这个数字来自索尼官方社区用户讨论，不是官方数据，只能当参考。",
+    "国行是否存在阉割 GMS 的特供固件版本、若存在其 ADB 行为是否与国际版一致，仍未找到资料（第一轮就留着的问题，本轮没有进展）。",
+    "2024 年起改名的 BRAVIA 3 / 7 / 8 / 9（K- 前缀）上开发者选项路径是否有变化、是否默认就是无线调试配对码模式，没有针对这些新型号的教程或实测。",
+    "社区有 root / 解锁 bootloader 的讨论，本项目不采用，也未检索其内容。"
+  ],
+  "last_reviewed": "2026-09-15"
+}

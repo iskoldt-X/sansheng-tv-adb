@@ -1,0 +1,226 @@
+{
+  "brand": "长虹",
+  "region": "cn",
+  "aliases": ["CHANGHONG", "CHiQ", "启客", "长虹CHiQ电视", "四川长虹"],
+  "status": "部分适用",
+  "summary": "能做，但要先看遥控器：有实体数字键的老机走「0816 工厂菜单」，取消数字键的中期机型走「情景模式→上右右→软键盘 0816」，2020 年后的 Android 9 机型走「连点版本号 7 次」。长虹官方那两篇 ADB 教程正文被社区设成「回复可见」，抓不到，所以工厂菜单里 ADB 开关究竟在第几项至今无可引用来源。",
+  "identify_hints": {
+    "remote_has_digits": "这是长虹最重要的分岔口：2016 年前后的遥控器有一排实体数字键 0-9，走数字键法；CHiQ2/CHiQ3 之后的遥控器取消了实体数字键、改成带语音键的极简遥控，必须走软键盘法或连点法",
+    "system_name_shown_at": "设置 → 关于本机 / 关于电视 / 系统信息",
+    "about_page_fields": ["Android 版本", "软件版本号", "机型", "SN 号"],
+    "model_naming_rule": "现行型号形如「尺寸数字 + 系列字母 + 数字 + 代号字母」，开头两位数字是英寸（65D8K = 65 英寸）。Q 系（Q1N/Q2E/Q2F/Q3T/Q5K/Q6K/Q8K/Q9K/Q10Air）是 CHiQ 启客高端线，D 系（D2P/D3P/D4PS/D5S/D6H/D7F/D8K/D55H/D55S）是走量线，另有 U/A/F/T 系。再往前的 A2000/B3000/C5000 这种「单字母 + 四位数字」是 2014-2016 的第一代智能机型。长虹官方未公布完整命名对照表，字母的确切含义不要硬套。",
+    "sticker_location": "机身背面铭牌；包装纸箱外侧的白色条码贴也印型号与 SN。长虹官方给了三条查型号路径：外包装条码、系统信息页、工厂模式里的索引项",
+    "year_ranges": "2014-2016 第一代智能（50Q1N 为 Android 4.2）；2016-2019 CHiQ2/CHiQ3 及 Q2/Q3 系，遥控器取消数字键；2020 年前后进入 Android 9（长虹官网 65D8K 规格页写明 Android 9.0/64 位电视系统）；2022 年后 D55S 等走 2GB+64GB"
+  },
+  "series": [
+    {
+      "name": "第一代智能电视 / 实体数字键遥控机型（A/B/C 系与早期 Q 系）",
+      "years": "约 2014-2016",
+      "base_os": "android",
+      "android_version_range": "Android 4.2 起（百度百科 50Q1N 条目记为 Android 4.2）；后续机型到 Android 5/6 一代",
+      "models_examples": ["50Q1N", "32D2060G", "50Q3T", "60Q3T", "A2000", "A5000", "B3000", "B5000", "C5000"],
+      "identify_hints": "遥控器上有一排实体数字键 0-9；关于页的 Android 版本是 4.x-6.x；桌面是长虹早期的方块磁贴 UI，不是后来的横向卡片流",
+      "worth_it_hint": "机龄 9 年以上，这批机器普遍 1GB 内存 / 8GB 存储，卡是硬件层面的卡，ADB 精简能回一点但幅度有限；广告主要是开机 15 秒贴片。综合判断：想看直播装软件的话，外接一个盒子比折腾系统划算得多。",
+      "entries": [
+        {
+          "applies_to": "遥控器带实体数字键（或有虚拟数字键盘）的机型",
+          "steps": [
+            "按遥控器「节目源」键，切到任意一个信源（如 HDMI1）",
+            "按「菜单」键，左侧弹出菜单栏后不要再按方向键",
+            "依次按数字键 0、8、1、6，进入工厂/工程菜单",
+            "部分机型的写法是：按「节目源」弹出输入选择菜单后，趁菜单还没消失，依次按 0、8、1、6",
+            "在工厂菜单里找到 ADB / USB 调试开关并置为「开」"
+          ],
+          "has_auth_prompt": null,
+          "wireless_pairing": null,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://www.changhong.com/fw/cjwt/czzd/ds_1024/201607/t20160731_55650.html", "title": "长虹Q3系列工程模式详解（长虹官网）", "date": "2016-09-22"},
+            {"url": "https://blog.csdn.net/u013463707/article/details/109057526", "title": "长虹智能电视进工厂模式方法汇总（遥控器有无数字按键均可）", "date": "2020-10-13"},
+            {"url": "https://www.4k123.com/archiver/tid-7130.html", "title": "长虹智能电视进入工厂模式方法（大全）"},
+            {"url": "https://www.znds.com/tv-515774-1-1.html", "title": "[教程] 长虹电视进入工程菜单教程（ZNDS）"},
+            {"url": "https://blog.csdn.net/qq_18625655/article/details/135381153", "title": "长虹液晶 ZLM50H-iS 机芯升级方法，附工厂模式进入方式", "date": "2024-01-04"}
+          ],
+          "risk_notes": "只改 ADB / USB 调试这一项。工厂菜单里同屏还有屏参数、老化模式、SSC 电磁兼容测试、总线设置等，长虹官方原文的警告是「一不小心造成硬件不可恢复损毁」——除 ADB 外一项都不要动，也不要为了看参数随手按确认键。进去之后建议先拍张照记下原值。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "unknown",
+        "hide": "unknown",
+        "uninstall_user0": "unknown",
+        "notes": "没有任何长虹专属的 pm 命令成功或失败记录。第一轮找到的唯一一条网友说法是「长虹内置应用要 root 才能删」，与其他品牌普遍「免 root 可 disable-user」的经验冲突，且只有单帖，本轮不采信、一律记 unknown。"
+      },
+      "must_keep": [],
+      "junk": [],
+      "ask_user": [],
+      "pitfalls": [
+        {
+          "what": "长虹官方那篇专门讲 ADB 的《玩机必看！小C教你开启adb的秘籍！》，正文整段是社区「游客需回复才可见」的隐藏内容——本轮再次抓取确认，页面上只剩前言和落款，具体步骤一个字都没有。所以工厂菜单里 ADB 开关在第几个索引项，目前没有可引用的权威来源。",
+          "sources": [
+            {"url": "https://www.changhong.com/fw/cjwt/czzd/ds_1024/201607/t20160731_55575.html", "title": "玩机必看！小C教你开启adb的秘籍！（长虹官网，正文回复可见）", "date": "2016-09-22"}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "CHiQ2 / CHiQ3 及之后取消实体数字键的机型（Q 系、D 系语音遥控）",
+      "years": "约 2016-2019",
+      "base_os": "android",
+      "android_version_range": "未确认（长虹未公开逐机型的 Android 版本，官网规格页要逐款查）",
+      "models_examples": ["50Q2F", "48Q2E", "55Q2E", "55Q2F", "58Q2F", "43Q2F", "49Q2F", "32Q2F", "CHiQ Q5K", "CHiQ Q6K", "CHiQ Q8K"],
+      "identify_hints": "遥控器没有数字键，只有方向圈、语音键和几个功能键；按【菜单】能看到「情景模式」这一栏，里面有「标准模式/柔和模式」等选项——能看到「情景模式」就是走这一路；机芯号形如 ZLS59GiQ2、ZLM60HiS、ZLM61Hi，在工厂菜单里能看到",
+      "worth_it_hint": "机龄 6-9 年，多为 1-2GB 内存；开机广告和推荐位已经明显变多，精简收益比上一代高。先看关于页的可用内存：低于 2GB 的机器做完精简体感提升最明显。",
+      "entries": [
+        {
+          "applies_to": "取消实体数字键、菜单里有「情景模式」的机型",
+          "steps": [
+            "按遥控器「菜单」键",
+            "把焦点移到「情景模式」下的「标准模式」这一项上（停在上面，不要按确定）",
+            "依次按【上】【右】【右】，屏幕弹出数字软键盘",
+            "输入 0816，进入工厂菜单",
+            "在工厂菜单里找到 ADB / USB 调试开关并置为「开」"
+          ],
+          "has_auth_prompt": null,
+          "wireless_pairing": null,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://blog.csdn.net/u013463707/article/details/109057526", "title": "长虹智能电视进工厂模式方法汇总（遥控器有无数字按键均可）", "date": "2020-10-13"},
+            {"url": "https://www.ifix.icu/post/chang-hong-ye-jing-dian-shi-ji-ru-he-jin-ru-gong-chang-mo-shi%EF%BC%88gong-cheng-mo-shi%EF%BC%89.html", "title": "长虹液晶电视机如何进入工厂模式（工程模式）", "date": "2023-04-04"},
+            {"url": "https://blog.csdn.net/qq_18625655/article/details/135398546", "title": "长虹智能电视 ZLM61Hi 机芯，附进维修模式方法", "date": "2024-01-04"},
+            {"url": "https://blog.csdn.net/qq_18625655/article/details/135397597", "title": "长虹智能电视 ZLM60HiS 机芯，附进维修模式方法", "date": "2024-01-04"}
+          ],
+          "risk_notes": "只改 ADB / USB 调试这一项，其余参数不动（同上一代的工厂菜单警告）。焦点必须停在「标准模式」上再按方向键，按错顺序不会有任何提示，退出菜单重来即可，不要连按。"
+        },
+        {
+          "applies_to": "无数字键遥控、且上面的软键盘法进不去的机型（信源法，待核实）",
+          "steps": [
+            "按遥控器「信源」键，进入任意一个信源",
+            "按视频教程演示的组合键序列进入隐藏/工程菜单",
+            "在其中开启 ADB"
+          ],
+          "has_auth_prompt": null,
+          "wireless_pairing": null,
+          "port": 5555,
+          "evidence_level": "单源",
+          "sources": [
+            {"url": "https://www.douyin.com/shipin/7297561401277827123", "title": "长虹电视开启adb教程（抖音，演示无数字键遥控的开法）"}
+          ],
+          "risk_notes": "来源是短视频，本轮没有拿到逐键的文字序列，只确认了「从信源界面起手」这个前提。当软键盘法失败时作为第二选择尝试，不要作为首选步骤照抄。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "unknown",
+        "hide": "unknown",
+        "uninstall_user0": "unknown",
+        "notes": "同上，无长虹专属证据。"
+      },
+      "must_keep": [],
+      "junk": [],
+      "ask_user": [],
+      "pitfalls": [
+        {
+          "what": "工厂菜单密码不是全系 0816。长虹 ZLS59GiD 机芯的官方升级说明里，同一套「设置键→情景模式→标准模式→上、右、右→小键盘」的操作，输入的是 0818。所以 0816 输进去没反应时，先试 0818，不要判定为「这台机器不支持」。哪些机芯用哪个码没有完整对照表。",
+          "sources": [
+            {"url": "https://blog.csdn.net/qq_18625655/article/details/135395773", "title": "长虹智能电视 ZLS59GiD 机芯刷机方法，附进维修模式方法（密码 0818）", "date": "2024-01-04"}
+          ]
+        },
+        {
+          "what": "长虹官方明确说过：取消实体数字键之后，旧的「菜单 + 0816」按法在新机型上做不出来，不要买万能遥控器绕路之前先确认自己是不是该走软键盘法。",
+          "sources": [
+            {"url": "https://www.changhong.com/fw/cjwt/czzd/ds_1024/201607/t20160731_55650.html", "title": "长虹Q3系列工程模式详解（长虹官网）", "date": "2016-09-22"}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Android 9 及以后机型（2020 起的 D 系 / Q 系新款）",
+      "years": "2020 至今",
+      "base_os": "android",
+      "android_version_range": "Android 9 起（长虹官网 65D8K 规格页写明「Android 9.0 / 64 位电视系统」）",
+      "models_examples": ["65D8K", "75D8K", "85D55S", "75D3P", "Q10Air", "D55H", "D6H Mini", "D7F"],
+      "identify_hints": "设置 → 关于本机 里能直接看到 Android 版本为 9 或更高；桌面是横向大卡片流 + 内容推荐位；自带应用商店叫「欢视商店」（长虹与 TCL 共用欢网科技这套商店），系统里通常还能搜到「欢视助手」",
+      "worth_it_hint": "机龄 1-6 年，2GB+64GB 起步（85D55S 为 2+64GB）。这代的广告和推荐位最密，也是精简收益最高的一代；但也是长虹收紧最狠的一代，能不能开出开发者选项因机型而异，先花两分钟试连点法，不成就走下面的当贝桌面旁路，别硬啃。",
+      "entries": [
+        {
+          "applies_to": "Android 9+ 且开发者选项未被屏蔽的机型",
+          "steps": [
+            "按遥控器「菜单」键 → 选择「设置」",
+            "进入「关于本机」或「关于电视」",
+            "连续点击「版本号」7 次，出现「您已成为开发者」类提示",
+            "返回设置，进入「开发者选项」",
+            "打开「USB 调试」（部分机型叫「ADB 调试」）"
+          ],
+          "has_auth_prompt": null,
+          "wireless_pairing": null,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://dnew.cc/index.php/archives/209.html", "title": "品牌电视ADB开启方法（异新网）", "date": "2025-12-17"},
+            {"url": "https://post.smzdm.com/p/a4qlqmzl", "title": "智能电视隐藏设置：ADB开关这样开，告别卡顿与广告", "date": "2026-03-12"},
+            {"url": "https://ask.csdn.net/questions/8064592", "title": "长虹液晶 60q3t 如何能进入 adb 模式？", "date": "2024-02-20"}
+          ],
+          "risk_notes": "这条是零风险路径（走的是安卓标准开发者选项，不进工厂菜单），先试它。点满 7 次没有任何提示，说明这台机器的开发者选项被屏蔽了，换下一条，不要反复点。"
+        },
+        {
+          "applies_to": "系统里找不到开发者选项、但还能装第三方桌面的机型",
+          "steps": [
+            "在电视上安装当贝桌面（第三方 TV 桌面）",
+            "从当贝桌面进入它自带的「系统设置」",
+            "在其中打开开发者模式 / USB 调试"
+          ],
+          "has_auth_prompt": null,
+          "wireless_pairing": null,
+          "port": 5555,
+          "evidence_level": "单源",
+          "sources": [
+            {"url": "https://www.znds.com/tv-1205266-1-1.html", "title": "长虹电视ADB怎么打开？（ZNDS 长虹版）"}
+          ],
+          "risk_notes": "前提是能先装上第三方 App；同一帖的跟帖里有人反映「调试开了、TV 助手能连上，但读不到系统软件列表」——能连上不等于能操作系统应用，先验证 adb shell pm list packages 有输出再往下做。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "unknown",
+        "hide": "unknown",
+        "uninstall_user0": "unknown",
+        "notes": "无长虹专属证据。ZNDS 的长虹去广告教程用的是 adb uninstall（不带 --user 0），没有验证过 pm disable-user 在长虹上的行为。"
+      },
+      "must_keep": [],
+      "junk": [],
+      "ask_user": [],
+      "pitfalls": [
+        {
+          "what": "长虹 Android 9 之后的部分机型，系统直接禁止 U 盘安装第三方软件，同时也找不到开发者模式入口。求助帖里有人绕开的办法是从自带应用商店装「欢视助手」，用它的「应用安装助手」+ 手机微信扫码来装软件——这是绕开 ADB 的旁路，不是开 ADB。",
+          "sources": [
+            {"url": "https://zhuanlan.zhihu.com/p/660076364", "title": "长虹电视怎样安装第三方软件？（知乎）", "date": "2023-10-08"},
+            {"url": "https://n.znds.com/article/44893.html", "title": "长虹电视怎么安装第三方应用（ZNDS 资讯）"}
+          ]
+        },
+        {
+          "what": "不要照抄任何教程里的示例包名。ZNDS 那篇长虹去广告教程举的例子是 com.tianci.ad，但它自己也写明「不同型号电视的广告模块名称可能不同」——必须在本机装一个「包名查看」类 App 实际列一遍，记下名字里带「广告」、包名里带 ad 的那些再动手。",
+          "sources": [
+            {"url": "https://www.znds.com/tv-1215284-1-1.html", "title": "长虹电视机广告怎么关闭 2022长虹电视开机广告屏蔽教程", "date": "2022-04-12"}
+          ]
+        },
+        {
+          "what": "零风险替代动作：长虹的开机 15 秒广告可以直接联系官方去掉——打售后电话或电商平台人工客服，要求永久取消开机广告。代价是取消后开机会先黑屏 15 秒再出画面。完全不想碰 ADB 的人先用这条。",
+          "sources": [
+            {"url": "https://www.znds.com/tv-1215284-1-1.html", "title": "长虹电视机广告怎么关闭 2022长虹电视开机广告屏蔽教程", "date": "2022-04-12"}
+          ]
+        }
+      ]
+    }
+  ],
+  "open_questions": [
+    "工厂菜单里 ADB 开关具体在第几个索引项、叫什么名字——长虹官网两篇相关帖（《小C教你开启adb的秘籍》《长虹Q3系列工程模式详解》）的关键正文都是社区「回复可见」的隐藏内容，本轮换 B 站、抖音、CSDN、ZNDS、值得买、异新网多路来源，都只查到「进工厂菜单」这一步，没有一条写出 ADB 开关的确切位置。需要人工登录 bbs.changhong.com 回帖后查看，或找到该帖的镜像转载。",
+    "工厂菜单密码在各机芯上不统一（ZLS59GiD 用 0818，其余多数用 0816），没有机芯→密码的完整对照表。",
+    "长虹开启 ADB 后是否弹授权确认框、是否支持 Android 11 式的无线调试配对码、端口是否为默认 5555——三项全部零证据，表里的 5555 是安卓默认值而非长虹专属证据。",
+    "pm disable-user / pm hide / pm uninstall --user 0 在长虹上是否可用，各系列均无证据。第一轮唯一一条「需 root 才能删」的网友说法与其他品牌经验冲突且是孤证，本轮未采信。",
+    "长虹预装应用的包名一条都没有可引用来源：桌面、信号源、遥控、输入法、设置、工厂应用（must_keep）与广告/推荐/上报（junk）全部空白，欢视商店/欢视助手的包名同样未查到。需要一台实机跑 pm list packages 才能补。",
+    "「无数字键遥控 + 从信源界面起手」那条入口只有一个短视频来源，逐键序列未拿到文字版。",
+    "2020 年后的机型是否有 Google TV 认证版本（海外用 CHiQ 品牌）在国内销售、其入口是否走标准安卓路径，未确认。",
+    "社区有 root / 刷机讨论（长虹官方自己也发过刷机包帖），本项目不采用。"
+  ],
+  "last_reviewed": "2026-09-15"
+}

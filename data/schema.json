@@ -1,0 +1,340 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "sansheng-tv-adb brand entry",
+  "type": "object",
+  "required": [
+    "brand",
+    "region",
+    "status",
+    "identify_hints",
+    "series",
+    "open_questions",
+    "last_reviewed"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "brand": {
+      "type": "string"
+    },
+    "region": {
+      "enum": [
+        "cn",
+        "global",
+        "both"
+      ]
+    },
+    "aliases": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "status": {
+      "enum": [
+        "适用",
+        "部分适用",
+        "不适用"
+      ]
+    },
+    "summary": {
+      "type": "string",
+      "description": "一句话：这个品牌能不能做、值不值得"
+    },
+    "identify_hints": {
+      "type": "object",
+      "properties": {
+        "remote_has_digits": {
+          "type": [
+            "boolean",
+            "string"
+          ]
+        },
+        "system_name_shown_at": {
+          "type": "string",
+          "description": "在电视的哪个页面能看到系统名/版本"
+        },
+        "about_page_fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "model_naming_rule": {
+          "type": "string",
+          "description": "型号命名规律，如海信 65E3F 中字母含义"
+        },
+        "sticker_location": {
+          "type": "string"
+        },
+        "year_ranges": {
+          "type": "string"
+        }
+      }
+    },
+    "not_applicable": {
+      "type": "object",
+      "description": "status=不适用 时必填：为什么 + 替代动作",
+      "properties": {
+        "reason": {
+          "type": "string"
+        },
+        "alternative": {
+          "type": "string",
+          "description": "关广告/关推荐的设置项位置"
+        },
+        "sources": {
+          "$ref": "#/definitions/sources"
+        }
+      }
+    },
+    "series": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/series"
+      }
+    },
+    "open_questions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "last_reviewed": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    }
+  },
+  "definitions": {
+    "evidence": {
+      "enum": [
+        "本机实测",
+        "官方",
+        "多源",
+        "单源"
+      ]
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "url",
+          "title"
+        ],
+        "properties": {
+          "url": {
+            "type": "string",
+            "pattern": "^https?://"
+          },
+          "title": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "pkg": {
+      "type": "object",
+      "required": [
+        "pkg",
+        "what"
+      ],
+      "properties": {
+        "pkg": {
+          "type": "string"
+        },
+        "what": {
+          "type": "string"
+        },
+        "why": {
+          "type": "string"
+        },
+        "evidence_level": {
+          "$ref": "#/definitions/evidence"
+        },
+        "sources": {
+          "$ref": "#/definitions/sources"
+        }
+      }
+    },
+    "series": {
+      "type": "object",
+      "required": [
+        "name",
+        "years",
+        "base_os",
+        "entries"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "years": {
+          "type": "string"
+        },
+        "base_os": {
+          "enum": [
+            "android",
+            "fireos",
+            "tizen",
+            "webos",
+            "vidaa-linux",
+            "yunos",
+            "harmony",
+            "roku",
+            "saphi",
+            "other"
+          ]
+        },
+        "android_version_range": {
+          "type": "string"
+        },
+        "models_examples": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "identify_hints": {
+          "type": "string",
+          "description": "怎么认出自己是这个系列（关于页字样/遥控器/桌面样子）"
+        },
+        "worth_it_hint": {
+          "type": "string",
+          "description": "值不值得做：内存/广告/机龄"
+        },
+        "entries": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "steps",
+              "evidence_level",
+              "sources"
+            ],
+            "properties": {
+              "applies_to": {
+                "type": "string"
+              },
+              "steps": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "has_auth_prompt": {
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              },
+              "wireless_pairing": {
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              },
+              "port": {
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "evidence_level": {
+                "$ref": "#/definitions/evidence"
+              },
+              "sources": {
+                "$ref": "#/definitions/sources"
+              },
+              "risk_notes": {
+                "type": "string"
+              },
+              "verified_by": {
+                "type": "string"
+              },
+              "prerequisites": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "前置条件：如先开商场模式、需蓝牙键盘输数字、需登录账号"
+              }
+            }
+          }
+        },
+        "pm_caps": {
+          "type": "object",
+          "properties": {
+            "disable_user": {
+              "enum": [
+                "yes",
+                "no",
+                "unknown"
+              ]
+            },
+            "hide": {
+              "enum": [
+                "yes",
+                "no",
+                "unknown"
+              ]
+            },
+            "uninstall_user0": {
+              "enum": [
+                "yes",
+                "no",
+                "unknown"
+              ]
+            },
+            "notes": {
+              "type": "string"
+            },
+            "evidence_level": {
+              "$ref": "#/definitions/evidence"
+            },
+            "sources": {
+              "$ref": "#/definitions/sources"
+            }
+          }
+        },
+        "must_keep": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/pkg"
+          }
+        },
+        "junk": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/pkg"
+          }
+        },
+        "ask_user": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/pkg"
+          }
+        },
+        "pitfalls": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "what"
+            ],
+            "properties": {
+              "what": {
+                "type": "string"
+              },
+              "sources": {
+                "$ref": "#/definitions/sources"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

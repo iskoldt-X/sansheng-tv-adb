@@ -1,0 +1,1878 @@
+{
+  "brand": "海信 / Vidda / Hisense",
+  "region": "both",
+  "aliases": [
+    "Hisense",
+    "VIDAA",
+    "VIDDA",
+    "聚好看",
+    "Juhaokan",
+    "海信视像",
+    "Vidaa TV",
+    "Toshiba VIDAA（同平台）"
+  ],
+  "status": "部分适用",
+  "summary": "分三种情况：国行安卓系（海信 / Vidda）要先进工厂菜单把 To Fac 由 U 改成 M 才会露出安卓原生设置，然后才能开 USB 调试，越老越值得做；海外北美的 Android TV / Google TV / Fire TV 机型走标准连点 7 次，最省事；海外欧洲及其他地区的 VIDAA（Linux）机型根本不是安卓，没有 ADB 也没有 pm 命令，只能在设置里关个性化广告。",
+  "identify_hints": {
+    "remote_has_digits": "国行约 2018 年前的老机遥控器普遍带 0-9 数字键（可直接在声音平衡处输 1969 进工厂菜单）；2019 年后国行与 Vidda 遥控器大多取消数字键，只剩方向键 / OK / 菜单 / 返回，部分带红绿黄蓝彩色键；海外遥控器一般无数字键，取而代之是 Netflix / Prime Video / VIDAA 等流媒体直达键",
+    "system_name_shown_at": "国行：设置 → 关于 / 本机信息（这里只会看到海信自己的软件版本，看不到安卓版本；要连按几次菜单键才会跳出隐藏的安卓原生设置）。海外：Settings → System → About / Support（VIDAA 机型这里显示 VIDAA 版本号；Google TV 机型这里显示 Android TV OS Build）",
+    "about_page_fields": [
+      "型号（如 65E7G-PRO / 55U8N / HZ60U7A）",
+      "软件版本 / Build Number（海外 VIDAA 固件号形如 L0901，用于判断是不是 2021 年后的机器）",
+      "VIDAA 版本（海外显示 VIDAA U2.5 / U3 / U4 / U5 / U6 / U7，2024 年后改叫 VIDAA OS 8.x / 9）",
+      "安卓版本（只有安卓系机型有；国行要进隐藏的安卓原生设置才看得到）",
+      "芯片 / SoC（海外在 DevKit → System Info 里能看到 MT5658 / MSD6886 / MT9602 / MT9900 等）",
+      "MAC 地址"
+    ],
+    "model_naming_rule": "国行形如「65E7G-PRO」：65 = 尺寸；紧跟的字母 = 系列（E 线上电商款、U 线下 ULED 高端款、A 线下渠道款、S 社交电视）；数字 = 档次（3 系入门、5 系中端、7 / 8 系高端）；最后一个字母 = 年代号，按字母表逐年往后走，已确认 E=2019、F=2020、G=2021、H=2022；2023 年起常见 K、2024 年 N、2025 年 Q（这三个是按各年上市机型倒推的，海信官方没公布过对照表，容易混的 I / J / L / M 被跳过）。Vidda 子品牌型号形如「Vidda X65 Pro」「55V1F-S」，不完全遵守主品牌规律。海外同代机型会在尾部再加平台字母区分，例如 2025 款美版 U8QG 跑 Google TV、欧版 U8Q 跑 VIDAA。",
+    "sticker_location": "机身背面右下角或左下角的铭牌贴纸，印完整型号和序列号；部分挂架机型贴在底座支架背面。国行老机型号常带括号后缀（如 HZ60U7A(0000)），括号内是固件批次，找教程时可以忽略。",
+    "year_ranges": "国行安卓系覆盖约 2014-至今；海外 VIDAA（Linux）自 2014 年起在欧洲等非美非中市场为主力；北美 2018-2021 以 Android TV 为主，2022 年起整线换 Google TV，同时另有 Roku TV / Fire TV / Xumo TV 版本并行在售"
+  },
+  "series": [
+    {
+      "name": "国行 老款 VIDAA（安卓 5.1 / 6.0 时代，数字键遥控器）",
+      "years": "约 2015-2018",
+      "base_os": "android",
+      "android_version_range": "Android 5.1 / 5.1.1 / 6.0",
+      "models_examples": [
+        "LED55N3000U（MSD6A828，2017 款）",
+        "LED55EC750US",
+        "海信 VIDAA3 各型号"
+      ],
+      "identify_hints": "遥控器带完整 0-9 数字键；桌面是海信自家的「聚好看 / 聚好用 / 聚好玩」三格布局；设置 → 关于里只写海信软件版本，看不到「安卓版本」字样；整机内存 1.5-2 GB。",
+      "worth_it_hint": "值得做，但收益上限也就到这儿：本机实测 2017 款 2 GB 机型清掉 29 个包后空闲内存从 551 MB 涨到 988 MB、开机广告消失，操作明显跟手。但机器自带存储只有 2 GB 级别，扣掉系统后剩约 200 MB，现代第三方 App 常常装不上，别指望靠它救回一台能跑新应用的电视。",
+      "entries": [
+        {
+          "applies_to": "遥控器带数字键的老机（最省事的一条）",
+          "steps": [
+            "设置 → 声音（若有「杜比全景声 / 杜比音效」先关掉，否则「声音平衡」是灰的点不动）",
+            "光标停在「声音平衡」上",
+            "直接用数字键输入 1969，进入工厂菜单（部分地区 / 机型流传 0532、0538 两个码，说法不统一）",
+            "切到「选项」标签页，把第一项「To Fac」由默认「U」改成「M」",
+            "按电源键关机，等电视完全重启",
+            "重启后进设置 → 关于 → 本机信息，连按遥控器「菜单」键 3-5 次，跳出隐藏的安卓原生设置",
+            "进「关于手机 / 关于电视」，光标移到最下方的版本号，连按 OK 键 7 次，提示「您已进入开发者模式」",
+            "返回一级，进「开发者选项」，打开「USB 调试」",
+            "电脑上 adb connect 电视IP:5555，电视会弹授权框，勾「一律允许」"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1270973-1-1.html",
+              "title": "电视adb调试怎么打开？2026各品牌电视打开ADB调式的方法汇总",
+              "date": "2026-06-01"
+            },
+            {
+              "url": "https://www.sohu.com/a/79836150_366131",
+              "title": "教你海信智能电视如何打开工厂模式",
+              "date": "2016-06-03"
+            },
+            {
+              "url": "https://www.quicktvui.com/zh-CN/guide/device/hisense.html",
+              "title": "Hisense - 海信电视（QuickTVUI 设备接入指南）"
+            }
+          ],
+          "risk_notes": "工厂菜单里只改「To Fac」这一项，改完立刻关机，别动同页面其他任何参数（背光、白平衡、屏参一改就可能花屏或亮度异常，且没有一键还原）。「母块清空」是重置类操作，只有在同时想清广告缓存、且接受电视恢复出厂时才碰。"
+        },
+        {
+          "applies_to": "本机实测：Vidda 50 寸 / VIDAA_TV / MSD6A828 / 固件 LVY48C 01.02.40.01（2017-05-22 构建）/ Android 5.1.1 / 2 GB RAM",
+          "steps": [
+            "设置 → 声音设置 → 光标停在「声音平衡」",
+            "交替按遥控器 OK 键与菜单键，屏幕右侧出现雪花即进入工厂菜单",
+            "「选项」页把 To Fac 由 U 改为 M，重启",
+            "重启后桌面出现安卓原生「设置」应用：关于 → 连按版本号 → 开发者选项 → 调试 → USB 调试",
+            "这台机器没有「无线调试」项；adb connect 电视IP:5555 后电视弹授权框，勾「一律允许」"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "本机实测",
+          "sources": [
+            {
+              "url": "https://krau.top/posts/garbage-hisense-tv",
+              "title": "海信VIDDA 旧电视 LED55N3000U 折腾记录（同代机型的第三方印证）",
+              "date": "2025-08-05"
+            }
+          ],
+          "risk_notes": "只改「To Fac」一项。另外遥控器按关机 = 待机而不是真重启，验证效果必须用 adb reboot（约 80 秒后回连），否则会误判成「改了没用」。",
+          "verified_by": "叁笙本机实测 2026-09-14"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "no",
+        "hide": "yes",
+        "uninstall_user0": "unknown",
+        "notes": "本机实测 2017 款 MSD6A828：pm disable-user / pm disable / pm trim-caches 全部抛 SecurityException（shell uid 2000 无权限）；pm hide / pm unhide 可用，效果与 disable 等价，pm unhide 可完整还原。settings put global 可用（动画缩放 1.0 → 0.5 有效）。这台机器没有 logcat 二进制。未测 pm uninstall --user 0。",
+        "evidence_level": "本机实测",
+        "sources": []
+      },
+      "must_keep": [
+        {
+          "pkg": "com.jamdeo.tv.vod",
+          "what": "聚好看，桌面与内容聚合层",
+          "why": "是系统引导必需组件，停用 / 卸载会开机卡 Logo 或出现「手机正在启动」循环，只能恢复出厂救回",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.kaixindianshi.com/thread-3936-1-1.html",
+              "title": "海信Vidda电视深度优化指南：1.5G运存起死回生（免Root）",
+              "date": "2025-12-16"
+            },
+            {
+              "url": "https://www.bilibili.com/video/BV1diYDziErk/",
+              "title": "把海信电视聚好看停用后手机正在启动"
+            }
+          ]
+        },
+        {
+          "pkg": "com.jamdeo.*",
+          "what": "Hisense TV OS 核心包族（桌面、直播、服务、传感）",
+          "why": "被社区普遍视为系统核心，整体不可动；个别广告 / 头像子包除外",
+          "evidence_level": "本机实测",
+          "sources": [
+            {
+              "url": "https://krau.top/posts/garbage-hisense-tv",
+              "title": "海信VIDDA旧电视折腾记录",
+              "date": "2025-08-05"
+            }
+          ]
+        },
+        {
+          "pkg": "com.android.settings",
+          "what": "安卓原生设置",
+          "why": "实测视频显示卸载并停用后电视直接变砖，只能长按电源触发恢复出厂救回；这也是改完 To Fac 后唯一能进开发者选项的入口",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.bilibili.com/video/BV1ybeMzNEuC/",
+              "title": "把海信电视Android系统应用卸载并停用会怎样",
+              "date": "2025-08-20"
+            }
+          ]
+        },
+        {
+          "pkg": "com.hisense.uifac",
+          "what": "工厂模式 / 工厂菜单",
+          "why": "停用它以后回不去工厂菜单，等于把自己开的门锁死；另有实测显示停用后会自动退回桌面且遥控器信号源键、设置键失效",
+          "evidence_level": "本机实测",
+          "sources": [
+            {
+              "url": "https://www.bilibili.com/video/BV1JbxEziE9C/",
+              "title": "海信电视工厂模式被ADB停用后的后果"
+            }
+          ]
+        },
+        {
+          "pkg": "com.hisense.systeminfo",
+          "what": "系统信息",
+          "why": "本机实测归入必留：与工厂 / 本机信息页面相关",
+          "evidence_level": "本机实测",
+          "sources": []
+        },
+        {
+          "pkg": "com.mstar.android.tv.app",
+          "what": "晨星芯片 TV 主应用（信号源 / 电视制式）",
+          "why": "本机实测归入必留：动它信号源体系会出问题",
+          "evidence_level": "本机实测",
+          "sources": []
+        },
+        {
+          "pkg": "com.sohu.inputmethod.sogouoem",
+          "what": "搜狗 OEM 输入法（这台机器上唯一的输入法）",
+          "why": "停掉之后任何需要打字的地方（Wi-Fi 密码、搜索）都没有键盘，而这台机器装不上现代第三方输入法",
+          "evidence_level": "本机实测",
+          "sources": []
+        },
+        {
+          "pkg": "com.hisense.tv.tiletransition",
+          "what": "转场动画模块",
+          "why": "停用后第三方桌面跳转与遥控器按键映射会失效",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.kaixindianshi.com/thread-3936-1-1.html",
+              "title": "海信Vidda电视深度优化指南",
+              "date": "2025-12-16"
+            }
+          ]
+        },
+        {
+          "pkg": "com.google.android.webview",
+          "what": "系统 WebView",
+          "why": "安卓系统核心组件，社区一致建议不要动",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://krau.top/posts/garbage-hisense-tv",
+              "title": "海信VIDDA旧电视折腾记录",
+              "date": "2025-08-05"
+            }
+          ]
+        }
+      ],
+      "junk": [
+        {
+          "pkg": "com.hisense.service.ad",
+          "what": "海信广告服务",
+          "why": "开机广告主要来源之一，本机实测隐藏后开机广告消失",
+          "evidence_level": "本机实测",
+          "sources": [
+            {
+              "url": "https://blog.csdn.net/xyaocc/article/details/136986798",
+              "title": "海信电视去广告 精简系统",
+              "date": "2024-03-24"
+            }
+          ]
+        },
+        {
+          "pkg": "com.hisense.business.ad",
+          "what": "海信广告业务",
+          "why": "同上",
+          "evidence_level": "本机实测",
+          "sources": [
+            {
+              "url": "https://www.kaixindianshi.com/thread-3936-1-1.html",
+              "title": "海信Vidda电视深度优化指南",
+              "date": "2025-12-16"
+            }
+          ]
+        },
+        {
+          "pkg": "com.hisense.tv.advertisementproxy",
+          "what": "广告代理（CSDN 教程里写作 com.hisense.tv.advertisementpr，是截断）",
+          "why": "广告投放代理",
+          "evidence_level": "本机实测",
+          "sources": [
+            {
+              "url": "https://blog.csdn.net/xyaocc/article/details/136986798",
+              "title": "海信电视去广告 精简系统",
+              "date": "2024-03-24"
+            }
+          ]
+        },
+        {
+          "pkg": "com.hisense.hitv.shopping",
+          "what": "电视购物",
+          "why": "纯商业入口，与看电视无关",
+          "evidence_level": "本机实测",
+          "sources": []
+        },
+        {
+          "pkg": "com.hisense.hitv.payment",
+          "what": "支付组件",
+          "why": "配合购物 / 会员，不用就是常驻",
+          "evidence_level": "本机实测",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1251066-1-1.html",
+              "title": "2024海信电视去广告精简系统教程",
+              "date": "2024-07-25"
+            }
+          ]
+        },
+        {
+          "pkg": "com.hisense.demonstrate",
+          "what": "卖场演示模式",
+          "why": "给门店循环播放宣传片用的，家用零价值",
+          "evidence_level": "本机实测",
+          "sources": []
+        },
+        {
+          "pkg": "com.hisense.electronictutorial",
+          "what": "电子说明书",
+          "why": "一次性内容，常驻没必要",
+          "evidence_level": "本机实测",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1251066-1-1.html",
+              "title": "2024海信电视去广告精简系统教程",
+              "date": "2024-07-25"
+            }
+          ]
+        },
+        {
+          "pkg": "com.hisense.hireport",
+          "what": "上报服务",
+          "why": "使用数据回传",
+          "evidence_level": "本机实测",
+          "sources": []
+        },
+        {
+          "pkg": "com.hisense.hitv.das",
+          "what": "统计 / 遥测服务",
+          "why": "使用数据采集",
+          "evidence_level": "本机实测",
+          "sources": [
+            {
+              "url": "https://krau.top/posts/garbage-hisense-tv",
+              "title": "海信VIDDA旧电视折腾记录",
+              "date": "2025-08-05"
+            }
+          ]
+        },
+        {
+          "pkg": "com.hisense.cloudfalcon",
+          "what": "云推送",
+          "why": "后台常驻拉取推送 / 广告素材",
+          "evidence_level": "本机实测",
+          "sources": []
+        },
+        {
+          "pkg": "com.jamdeo.tv.silentpackageinstaller",
+          "what": "静默安装器",
+          "why": "电视自己偷偷装 App 的通道",
+          "evidence_level": "本机实测",
+          "sources": []
+        },
+        {
+          "pkg": "com.hisense.service.message",
+          "what": "系统消息推送",
+          "why": "弹窗营销消息来源",
+          "evidence_level": "本机实测",
+          "sources": []
+        },
+        {
+          "pkg": "com.hisense.startupimage",
+          "what": "开机图 / 开机广告",
+          "why": "开机那一屏",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://blog.csdn.net/xyaocc/article/details/136986798",
+              "title": "海信电视去广告 精简系统",
+              "date": "2024-03-24"
+            }
+          ]
+        },
+        {
+          "pkg": "com.hisense.magic.ad",
+          "what": "广告相关",
+          "why": "广告链路组件",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://blog.csdn.net/xyaocc/article/details/136986798",
+              "title": "海信电视去广告 精简系统",
+              "date": "2024-03-24"
+            }
+          ]
+        }
+      ],
+      "ask_user": [
+        {
+          "pkg": "com.keylab.speech.core.vidaa",
+          "what": "语音助手全家桶",
+          "why": "本机实测隐藏后省内存最明显，代价是遥控器语音键不再有反应；家里有人靠语音搜节目就留",
+          "evidence_level": "本机实测",
+          "sources": [
+            {
+              "url": "https://www.kaixindianshi.com/thread-3936-1-1.html",
+              "title": "海信Vidda电视深度优化指南",
+              "date": "2025-12-16"
+            }
+          ]
+        },
+        {
+          "pkg": "com.keylab.speech.view.vidaa",
+          "what": "语音助手全家桶",
+          "why": "本机实测隐藏后省内存最明显，代价是遥控器语音键不再有反应；家里有人靠语音搜节目就留",
+          "evidence_level": "本机实测",
+          "sources": [
+            {
+              "url": "https://www.kaixindianshi.com/thread-3936-1-1.html",
+              "title": "海信Vidda电视深度优化指南",
+              "date": "2025-12-16"
+            }
+          ]
+        },
+        {
+          "pkg": "com.hisense.voicecontrol",
+          "what": "语音助手全家桶",
+          "why": "本机实测隐藏后省内存最明显，代价是遥控器语音键不再有反应；家里有人靠语音搜节目就留",
+          "evidence_level": "本机实测",
+          "sources": [
+            {
+              "url": "https://www.kaixindianshi.com/thread-3936-1-1.html",
+              "title": "海信Vidda电视深度优化指南",
+              "date": "2025-12-16"
+            }
+          ]
+        },
+        {
+          "pkg": "com.hisense.vidaaassistant",
+          "what": "语音助手全家桶",
+          "why": "本机实测隐藏后省内存最明显，代价是遥控器语音键不再有反应；家里有人靠语音搜节目就留",
+          "evidence_level": "本机实测",
+          "sources": [
+            {
+              "url": "https://www.kaixindianshi.com/thread-3936-1-1.html",
+              "title": "海信Vidda电视深度优化指南",
+              "date": "2025-12-16"
+            }
+          ]
+        },
+        {
+          "pkg": "com.intelligent.speech",
+          "what": "语音助手全家桶",
+          "why": "本机实测隐藏后省内存最明显，代价是遥控器语音键不再有反应；家里有人靠语音搜节目就留",
+          "evidence_level": "本机实测",
+          "sources": [
+            {
+              "url": "https://www.kaixindianshi.com/thread-3936-1-1.html",
+              "title": "海信Vidda电视深度优化指南",
+              "date": "2025-12-16"
+            }
+          ]
+        },
+        {
+          "pkg": "com.hispeech.ai.area",
+          "what": "语音助手全家桶",
+          "why": "本机实测隐藏后省内存最明显，代价是遥控器语音键不再有反应；家里有人靠语音搜节目就留",
+          "evidence_level": "本机实测",
+          "sources": [
+            {
+              "url": "https://www.kaixindianshi.com/thread-3936-1-1.html",
+              "title": "海信Vidda电视深度优化指南",
+              "date": "2025-12-16"
+            }
+          ]
+        },
+        {
+          "pkg": "com.hisense.speech.aiupgrade",
+          "what": "语音助手全家桶",
+          "why": "本机实测隐藏后省内存最明显，代价是遥控器语音键不再有反应；家里有人靠语音搜节目就留",
+          "evidence_level": "本机实测",
+          "sources": [
+            {
+              "url": "https://www.kaixindianshi.com/thread-3936-1-1.html",
+              "title": "海信Vidda电视深度优化指南",
+              "date": "2025-12-16"
+            }
+          ]
+        },
+        {
+          "pkg": "cn.airjoy.android.service",
+          "what": "投屏四件套（AirPlay / 无线显示 / 多屏互动）",
+          "why": "手机投屏是很多家庭的主要用法，停了就投不了；完全不投屏的话这四个常驻可以省下来",
+          "evidence_level": "本机实测",
+          "sources": []
+        },
+        {
+          "pkg": "com.hisense.multiscreen.screenhelper",
+          "what": "投屏四件套（AirPlay / 无线显示 / 多屏互动）",
+          "why": "手机投屏是很多家庭的主要用法，停了就投不了；完全不投屏的话这四个常驻可以省下来",
+          "evidence_level": "本机实测",
+          "sources": []
+        },
+        {
+          "pkg": "com.multiscreen.airplay",
+          "what": "投屏四件套（AirPlay / 无线显示 / 多屏互动）",
+          "why": "手机投屏是很多家庭的主要用法，停了就投不了；完全不投屏的话这四个常驻可以省下来",
+          "evidence_level": "本机实测",
+          "sources": []
+        },
+        {
+          "pkg": "com.hisense.wifidisplay",
+          "what": "投屏四件套（AirPlay / 无线显示 / 多屏互动）",
+          "why": "手机投屏是很多家庭的主要用法，停了就投不了；完全不投屏的话这四个常驻可以省下来",
+          "evidence_level": "本机实测",
+          "sources": []
+        },
+        {
+          "pkg": "com.ju.miguvideoTV.cmcc",
+          "what": "咪咕视频 / QQ 音乐 / K 歌麦克风 / 聊天室",
+          "why": "第三方影音与娱乐，看家里实际用不用",
+          "evidence_level": "本机实测",
+          "sources": []
+        },
+        {
+          "pkg": "com.tencent.qqmusictv",
+          "what": "咪咕视频 / QQ 音乐 / K 歌麦克风 / 聊天室",
+          "why": "第三方影音与娱乐，看家里实际用不用",
+          "evidence_level": "本机实测",
+          "sources": []
+        },
+        {
+          "pkg": "com.audiocn.karaoke.micmanager",
+          "what": "咪咕视频 / QQ 音乐 / K 歌麦克风 / 聊天室",
+          "why": "第三方影音与娱乐，看家里实际用不用",
+          "evidence_level": "本机实测",
+          "sources": []
+        },
+        {
+          "pkg": "com.speech.chatroom",
+          "what": "咪咕视频 / QQ 音乐 / K 歌麦克风 / 聊天室",
+          "why": "第三方影音与娱乐，看家里实际用不用",
+          "evidence_level": "本机实测",
+          "sources": []
+        },
+        {
+          "pkg": "com.hisense.store.tv",
+          "what": "海信应用商店",
+          "why": "停了以后装应用只能靠 U 盘或 adb install",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://krau.top/posts/garbage-hisense-tv",
+              "title": "海信VIDDA旧电视折腾记录",
+              "date": "2025-08-05"
+            }
+          ]
+        },
+        {
+          "pkg": "com.hisense.hitv.hicloud.account",
+          "what": "HiCloud 账号服务（CSDN 列表写作 ...hicloud.accou，是截断）",
+          "why": "停了以后海信账号 / 会员 / 手机 App 绑定会受影响",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://blog.csdn.net/xyaocc/article/details/136986798",
+              "title": "海信电视去广告 精简系统",
+              "date": "2024-03-24"
+            }
+          ]
+        },
+        {
+          "pkg": "com.hisense.tv.ota",
+          "what": "在线升级 / 远程升级 / U 盘升级",
+          "why": "停掉就不会被推新固件（也就不会被一次更新把工厂入口堵上），代价是以后也收不到修 bug 的更新",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1251066-1-1.html",
+              "title": "2024海信电视去广告精简系统教程",
+              "date": "2024-07-25"
+            }
+          ]
+        },
+        {
+          "pkg": "com.hisense.remoteupgrade",
+          "what": "在线升级 / 远程升级 / U 盘升级",
+          "why": "停掉就不会被推新固件（也就不会被一次更新把工厂入口堵上），代价是以后也收不到修 bug 的更新",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1251066-1-1.html",
+              "title": "2024海信电视去广告精简系统教程",
+              "date": "2024-07-25"
+            }
+          ]
+        },
+        {
+          "pkg": "com.hisense.usbupgrade",
+          "what": "在线升级 / 远程升级 / U 盘升级",
+          "why": "停掉就不会被推新固件（也就不会被一次更新把工厂入口堵上），代价是以后也收不到修 bug 的更新",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1251066-1-1.html",
+              "title": "2024海信电视去广告精简系统教程",
+              "date": "2024-07-25"
+            }
+          ]
+        }
+      ],
+      "pitfalls": [
+        {
+          "what": "遥控器按关机只是待机，不是真重启。本机实测：不用 adb reboot 真重启，测出来的空闲内存和广告状态都是旧的，很容易误判成「白干了」",
+          "sources": []
+        },
+        {
+          "what": "本机实测：第一批一次性藏太多包之后 system_server 看门狗重启了一次，桌面黑屏（内容区空白但音量条还能弹）。全部 pm unhide 再 reboot 即可恢复，之后改成逐组藏包 + 每组真重启，全程正常——所以这不是某个包必须常驻，而是一次动太多的问题",
+          "sources": []
+        },
+        {
+          "what": "别想着换第三方桌面。这代机器装不上现代 launcher，而海信自家桌面绑着信号源切换和设置入口，桌面一没，遥控器上的信号源键和设置键就没地方去",
+          "sources": []
+        },
+        {
+          "what": "清广告缓存 / 精简前先在路由器上把电视断网，否则系统会自动重新下载广告素材；全程保持断网直到确认无广告再联网",
+          "sources": [
+            {
+              "url": "https://blog.csdn.net/xyaocc/article/details/136986798",
+              "title": "海信电视去广告 精简系统",
+              "date": "2024-03-24"
+            }
+          ]
+        },
+        {
+          "what": "To Fac 由 U 改成 M 之后有副作用：某些固件下「海信聚好看」手机 App 会搜不到这台电视，微信电视 / QQ 视频通话 / 慧享家等预装 App 从桌面消失，「Hi 投屏」提示被禁用（实测投屏其实还能用）",
+          "sources": [
+            {
+              "url": "https://www.gaohaipeng.com/3877.html",
+              "title": "海信电视工厂模式中To Fac设置U、M参数不完全对比",
+              "date": "2020-04-25"
+            }
+          ]
+        },
+        {
+          "what": "这代机器出厂存储只有 2 GB 级别，扣掉系统和预装后用户可用约 200 MB，很多现代第三方 App 因为架构过旧或空间不足根本装不上——ADB 打通了也不等于能装新应用",
+          "sources": [
+            {
+              "url": "https://krau.top/posts/garbage-hisense-tv",
+              "title": "海信VIDDA旧电视折腾记录",
+              "date": "2025-08-05"
+            }
+          ]
+        },
+        {
+          "what": "社区有 root 讨论，本项目不采用",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "name": "国行 VIDDA3 / VIDDA4（无数字键遥控器，交替按键版）",
+      "years": "约 2019-2022",
+      "base_os": "android",
+      "android_version_range": "Android 7-9 一带（社区描述不完全统一，多数帖子对应安卓 9）",
+      "models_examples": [
+        "HZ60U7A(0000)",
+        "55E3F / 65E3F 一类 F 代机型",
+        "Vidda 早期机型"
+      ],
+      "identify_hints": "遥控器已经没有 0-9 数字键，只有方向键 / OK / 菜单 / 返回，部分带红绿黄蓝彩色键；桌面仍是聚好看那套横向内容流；设置里有「杜比全景声」开关（进声音平衡前必须先关，否则声音平衡是灰的）。",
+      "worth_it_hint": "最值得做的一代：运存通常 1.5-2 GB，广告已经比老机更密，而工厂菜单入口还在、pm uninstall --user 0 也还能用，清一轮下来体感提升明显。",
+      "entries": [
+        {
+          "applies_to": "无数字键遥控器（这一代的主流路径）",
+          "steps": [
+            "设置 → 声音 → 先关掉「杜比全景声 / 杜比音效」（不关的话「声音平衡」是灰的）",
+            "进「高级设置」，光标选中「声音平衡」",
+            "交替按遥控器「确认(OK)」键和「菜单」键，重复 2-3 轮，进入雪花屏",
+            "再按 1-2 次菜单键，调出工厂菜单",
+            "「选项」标签页第一项「To Fac」由 U 改成 M",
+            "按电源键关机，等电视重启",
+            "重启后：设置 → 关于 → 本机信息，连按「菜单」键 3-5 次，进入隐藏的安卓系统设置",
+            "找到「关于手机」→ 光标移到最下方的版本号 → 连按确认键 7 次，提示已开启开发者模式",
+            "返回一级 → 开发者选项 → 打开 USB 调试",
+            "电脑 adb connect 电视IP:5555，电视弹授权框选「允许 / 始终允许」"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1251066-1-1.html",
+              "title": "海信电视如何去广告？2024海信电视去广告精简系统教程（作者机型 HZ60U7A(0000)）",
+              "date": "2024-07-25"
+            },
+            {
+              "url": "https://blog.csdn.net/ScottePerk/article/details/123598981",
+              "title": "海信电视进入工厂模式，方便adb",
+              "date": "2022-03-19"
+            },
+            {
+              "url": "https://blog.csdn.net/qq_39636272/article/details/130476557",
+              "title": "海信vidda电视进入工厂模式，开启adb调试，安装app（实测可行）",
+              "date": "2023-05-03"
+            },
+            {
+              "url": "https://www.znds.com/tv-1170751-1-1.html",
+              "title": "海信电视打开ADB进入开发者模式方法"
+            }
+          ],
+          "risk_notes": "工厂菜单里只改「To Fac」这一项。「母块清空」在同页面，按方向右键就会执行并重置电视，手滑代价很大，不清广告缓存就别碰它。"
+        },
+        {
+          "applies_to": "带红绿黄蓝彩色键的遥控器",
+          "steps": [
+            "设置 → 声音 → 声音平衡",
+            "在声音平衡页面按遥控器下方的红、绿、黄、蓝彩色键进入工厂模式（出现雪花屏 / 大写 M）",
+            "后续与主流程相同：To Fac 改 M → 重启 → 关于 → 本机信息连按菜单键 → 版本号连点 → 开发者选项 → USB 调试"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1270973-1-1.html",
+              "title": "2026各品牌电视打开ADB调式的方法汇总",
+              "date": "2026-06-01"
+            },
+            {
+              "url": "https://www.znds.com/tv-1256285-1-1.html",
+              "title": "海信E7K电视如何进入工厂模式"
+            }
+          ],
+          "risk_notes": "只改 To Fac 一项。"
+        },
+        {
+          "applies_to": "桌面上有「VIDAA 助手」的机型（绕过工厂菜单的官方向入口）",
+          "steps": [
+            "我的应用 / 全部应用 → 打开「VIDAA 助手」",
+            "进「设置」→ 找到「电视调试授权」并打开",
+            "同时到开发者选项里把「ADB 调试」打开"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1251785-1-1.html",
+              "title": "【超全】2024各品牌电视打开ADB调试方法汇总（海信方法1）",
+              "date": "2024-08-15"
+            },
+            {
+              "url": "https://www.znds.com/tv-1270973-1-1.html",
+              "title": "2026各品牌电视打开ADB调式的方法汇总",
+              "date": "2026-06-01"
+            }
+          ],
+          "risk_notes": "这条最安全（完全不进工厂菜单），但只有部分机型的 VIDAA 助手里有「电视调试授权」这一项，没有就只能回到工厂菜单那条路。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "yes",
+        "hide": "unknown",
+        "uninstall_user0": "yes",
+        "notes": "HZ60U7A 的完整精简教程通篇用 pm uninstall -k --user 0 且逐条列了包名，说明这代 shell 有卸载权限；另有优化指南用 pm disable-user --user 0 处理广告 / 语音类包并称安全。注意这与本机实测的 2017 款 MSD6A828 不同——那代 disable-user 被 SecurityException 挡死，只能用 pm hide。也就是说 pm 权限是按代放开 / 收紧的，别拿一代的结论套另一代。",
+        "evidence_level": "多源",
+        "sources": [
+          {
+            "url": "https://www.znds.com/tv-1251066-1-1.html",
+            "title": "2024海信电视去广告精简系统教程（HZ60U7A）",
+            "date": "2024-07-25"
+          },
+          {
+            "url": "https://www.kaixindianshi.com/thread-3936-1-1.html",
+            "title": "海信Vidda电视深度优化指南：1.5G运存起死回生（免Root）",
+            "date": "2025-12-16"
+          }
+        ]
+      },
+      "must_keep": [
+        {
+          "pkg": "com.jamdeo.tv.vod",
+          "what": "聚好看（桌面 / 内容层）",
+          "why": "系统引导必需，停用会卡开机",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.kaixindianshi.com/thread-3936-1-1.html",
+              "title": "海信Vidda电视深度优化指南",
+              "date": "2025-12-16"
+            },
+            {
+              "url": "https://www.bilibili.com/video/BV1diYDziErk/",
+              "title": "把海信电视聚好看停用后手机正在启动"
+            }
+          ]
+        },
+        {
+          "pkg": "*GlobalUI*",
+          "what": "GlobalUI（进程/服务名，非包名）· 全局 UI / 信号源切换",
+          "why": "停用后信号源切不了",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.kaixindianshi.com/thread-3936-1-1.html",
+              "title": "海信Vidda电视深度优化指南",
+              "date": "2025-12-16"
+            }
+          ]
+        },
+        {
+          "pkg": "*TvBaseService*",
+          "what": "TvBaseService（进程/服务名，非包名）· 系统底层服务",
+          "why": "系统运行基础依赖",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.kaixindianshi.com/thread-3936-1-1.html",
+              "title": "海信Vidda电视深度优化指南",
+              "date": "2025-12-16"
+            }
+          ]
+        },
+        {
+          "pkg": "com.jamdeo.tv.livetv",
+          "what": "直播 / 信号源组件",
+          "why": "优化指南把它列为「务必保持开启，否则按键失效」",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.kaixindianshi.com/thread-3936-1-1.html",
+              "title": "海信Vidda电视深度优化指南",
+              "date": "2025-12-16"
+            }
+          ]
+        },
+        {
+          "pkg": "com.hisense.prism",
+          "what": "系统组件",
+          "why": "同上，列为防按键失效的关键组件",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.kaixindianshi.com/thread-3936-1-1.html",
+              "title": "海信Vidda电视深度优化指南",
+              "date": "2025-12-16"
+            }
+          ]
+        },
+        {
+          "pkg": "com.hisense.tv.tiletransition",
+          "what": "转场动画模块",
+          "why": "停用后第三方桌面跳转与遥控器按键映射失效",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.kaixindianshi.com/thread-3936-1-1.html",
+              "title": "海信Vidda电视深度优化指南",
+              "date": "2025-12-16"
+            }
+          ]
+        },
+        {
+          "pkg": "com.android.settings",
+          "what": "安卓设置",
+          "why": "实测卸载并停用后变砖，只能长按电源恢复出厂",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.bilibili.com/video/BV1ybeMzNEuC/",
+              "title": "把海信电视Android系统应用卸载并停用会怎样",
+              "date": "2025-08-20"
+            }
+          ]
+        },
+        {
+          "pkg": "com.android.tv.settings",
+          "what": "安卓设置",
+          "why": "实测卸载并停用后变砖，只能长按电源恢复出厂",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.bilibili.com/video/BV1ybeMzNEuC/",
+              "title": "把海信电视Android系统应用卸载并停用会怎样",
+              "date": "2025-08-20"
+            }
+          ]
+        }
+      ],
+      "junk": [
+        {
+          "pkg": "com.hisense.service.ad",
+          "what": "广告服务",
+          "why": "开机与桌面广告主来源",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1251066-1-1.html",
+              "title": "2024海信电视去广告精简系统教程",
+              "date": "2024-07-25"
+            },
+            {
+              "url": "https://www.kaixindianshi.com/thread-3936-1-1.html",
+              "title": "海信Vidda电视深度优化指南",
+              "date": "2025-12-16"
+            }
+          ]
+        },
+        {
+          "pkg": "com.hisense.magic.ad",
+          "what": "广告相关",
+          "why": "广告链路",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1251066-1-1.html",
+              "title": "2024海信电视去广告精简系统教程",
+              "date": "2024-07-25"
+            },
+            {
+              "url": "https://blog.csdn.net/xyaocc/article/details/136986798",
+              "title": "海信电视去广告 精简系统",
+              "date": "2024-03-24"
+            }
+          ]
+        },
+        {
+          "pkg": "com.hisense.tv.advertisementproxy",
+          "what": "广告代理",
+          "why": "广告投放代理",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1251066-1-1.html",
+              "title": "2024海信电视去广告精简系统教程",
+              "date": "2024-07-25"
+            },
+            {
+              "url": "https://blog.csdn.net/xyaocc/article/details/136986798",
+              "title": "海信电视去广告 精简系统",
+              "date": "2024-03-24"
+            }
+          ]
+        },
+        {
+          "pkg": "com.hisense.hitv.das",
+          "what": "统计 / 遥测",
+          "why": "使用数据上报",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1251066-1-1.html",
+              "title": "2024海信电视去广告精简系统教程",
+              "date": "2024-07-25"
+            },
+            {
+              "url": "https://krau.top/posts/garbage-hisense-tv",
+              "title": "海信VIDDA旧电视折腾记录",
+              "date": "2025-08-05"
+            }
+          ]
+        },
+        {
+          "pkg": "com.hisense.tv.catlog",
+          "what": "日志采集",
+          "why": "调试日志上报，家用无价值",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1251066-1-1.html",
+              "title": "2024海信电视去广告精简系统教程",
+              "date": "2024-07-25"
+            }
+          ]
+        },
+        {
+          "pkg": "com.hisense.ctsapp",
+          "what": "CTS 测试应用",
+          "why": "出厂测试残留",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1251066-1-1.html",
+              "title": "2024海信电视去广告精简系统教程",
+              "date": "2024-07-25"
+            }
+          ]
+        },
+        {
+          "pkg": "com.hisense.demonstrate",
+          "what": "卖场演示",
+          "why": "门店循环片，家用零价值",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1251066-1-1.html",
+              "title": "2024海信电视去广告精简系统教程",
+              "date": "2024-07-25"
+            }
+          ]
+        },
+        {
+          "pkg": "com.hisense.electronictutorial",
+          "what": "电子说明书",
+          "why": "一次性内容",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1251066-1-1.html",
+              "title": "2024海信电视去广告精简系统教程",
+              "date": "2024-07-25"
+            }
+          ]
+        },
+        {
+          "pkg": "com.baidu.map.location",
+          "what": "百度定位 SDK",
+          "why": "电视不需要定位；配合广告做地域投放",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1251066-1-1.html",
+              "title": "2024海信电视去广告精简系统教程",
+              "date": "2024-07-25"
+            }
+          ]
+        },
+        {
+          "pkg": "com.android.location.fused",
+          "what": "融合定位服务",
+          "why": "同上",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.kaixindianshi.com/thread-3936-1-1.html",
+              "title": "海信Vidda电视深度优化指南",
+              "date": "2025-12-16"
+            }
+          ]
+        },
+        {
+          "pkg": "com.hisense.ai.service",
+          "what": "AI 服务与 AI 画质推理",
+          "why": "优化指南点名为低配机型卡顿主因之一",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.kaixindianshi.com/thread-3936-1-1.html",
+              "title": "海信Vidda电视深度优化指南",
+              "date": "2025-12-16"
+            }
+          ]
+        },
+        {
+          "pkg": "com.hisense.ai.area",
+          "what": "AI 服务与 AI 画质推理",
+          "why": "优化指南点名为低配机型卡顿主因之一",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.kaixindianshi.com/thread-3936-1-1.html",
+              "title": "海信Vidda电视深度优化指南",
+              "date": "2025-12-16"
+            }
+          ]
+        },
+        {
+          "pkg": "com.hisense.tv.infer",
+          "what": "AI 服务与 AI 画质推理",
+          "why": "优化指南点名为低配机型卡顿主因之一",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.kaixindianshi.com/thread-3936-1-1.html",
+              "title": "海信Vidda电视深度优化指南",
+              "date": "2025-12-16"
+            }
+          ]
+        },
+        {
+          "pkg": "com.aispeech.dui.dds.tvassistant",
+          "what": "思必驰语音助手",
+          "why": "常驻占内存",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.kaixindianshi.com/thread-3936-1-1.html",
+              "title": "海信Vidda电视深度优化指南",
+              "date": "2025-12-16"
+            }
+          ]
+        },
+        {
+          "pkg": "com.jamdeo.android.avatarresources",
+          "what": "头像资源与流量控制（jamdeo 族里可以动的两个）",
+          "why": "纯装饰性资源包",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.kaixindianshi.com/thread-3936-1-1.html",
+              "title": "海信Vidda电视深度优化指南",
+              "date": "2025-12-16"
+            },
+            {
+              "url": "https://www.znds.com/tv-1251066-1-1.html",
+              "title": "2024海信电视去广告精简系统教程",
+              "date": "2024-07-25"
+            }
+          ]
+        },
+        {
+          "pkg": "com.jamdeo.android.jamdeoavatartrafficcontrol",
+          "what": "头像资源与流量控制（jamdeo 族里可以动的两个）",
+          "why": "纯装饰性资源包",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.kaixindianshi.com/thread-3936-1-1.html",
+              "title": "海信Vidda电视深度优化指南",
+              "date": "2025-12-16"
+            },
+            {
+              "url": "https://www.znds.com/tv-1251066-1-1.html",
+              "title": "2024海信电视去广告精简系统教程",
+              "date": "2024-07-25"
+            }
+          ]
+        },
+        {
+          "pkg": "com.android.settings.intelligence",
+          "what": "设置智能建议",
+          "why": "推荐服务",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.kaixindianshi.com/thread-3936-1-1.html",
+              "title": "海信Vidda电视深度优化指南",
+              "date": "2025-12-16"
+            }
+          ]
+        },
+        {
+          "pkg": "com.gitvdemo.video",
+          "what": "预装视频 / demo 应用",
+          "why": "演示与推广内容",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.kaixindianshi.com/thread-3936-1-1.html",
+              "title": "海信Vidda电视深度优化指南",
+              "date": "2025-12-16"
+            }
+          ]
+        }
+      ],
+      "ask_user": [
+        {
+          "pkg": "com.iflytek.xiri",
+          "what": "讯飞语音（叮咚 / 语音遥控后端）",
+          "why": "停掉语音遥控就不响应了",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1251066-1-1.html",
+              "title": "2024海信电视去广告精简系统教程",
+              "date": "2024-07-25"
+            }
+          ]
+        },
+        {
+          "pkg": "com.hisense.voicecontrol",
+          "what": "VIDAA 语音助手全家桶",
+          "why": "省内存最明显，代价是语音键失效",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1251066-1-1.html",
+              "title": "2024海信电视去广告精简系统教程",
+              "date": "2024-07-25"
+            },
+            {
+              "url": "https://www.kaixindianshi.com/thread-3936-1-1.html",
+              "title": "海信Vidda电视深度优化指南",
+              "date": "2025-12-16"
+            }
+          ]
+        },
+        {
+          "pkg": "com.hisense.vidaaassistant",
+          "what": "VIDAA 语音助手全家桶",
+          "why": "省内存最明显，代价是语音键失效",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1251066-1-1.html",
+              "title": "2024海信电视去广告精简系统教程",
+              "date": "2024-07-25"
+            },
+            {
+              "url": "https://www.kaixindianshi.com/thread-3936-1-1.html",
+              "title": "海信Vidda电视深度优化指南",
+              "date": "2025-12-16"
+            }
+          ]
+        },
+        {
+          "pkg": "com.keylab.speech.core.vidaa",
+          "what": "VIDAA 语音助手全家桶",
+          "why": "省内存最明显，代价是语音键失效",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1251066-1-1.html",
+              "title": "2024海信电视去广告精简系统教程",
+              "date": "2024-07-25"
+            },
+            {
+              "url": "https://www.kaixindianshi.com/thread-3936-1-1.html",
+              "title": "海信Vidda电视深度优化指南",
+              "date": "2025-12-16"
+            }
+          ]
+        },
+        {
+          "pkg": "com.keylab.speech.view.vidaa",
+          "what": "VIDAA 语音助手全家桶",
+          "why": "省内存最明显，代价是语音键失效",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1251066-1-1.html",
+              "title": "2024海信电视去广告精简系统教程",
+              "date": "2024-07-25"
+            },
+            {
+              "url": "https://www.kaixindianshi.com/thread-3936-1-1.html",
+              "title": "海信Vidda电视深度优化指南",
+              "date": "2025-12-16"
+            }
+          ]
+        },
+        {
+          "pkg": "com.hisense.speech.aiupgrade",
+          "what": "VIDAA 语音助手全家桶",
+          "why": "省内存最明显，代价是语音键失效",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1251066-1-1.html",
+              "title": "2024海信电视去广告精简系统教程",
+              "date": "2024-07-25"
+            },
+            {
+              "url": "https://www.kaixindianshi.com/thread-3936-1-1.html",
+              "title": "海信Vidda电视深度优化指南",
+              "date": "2025-12-16"
+            }
+          ]
+        },
+        {
+          "pkg": "com.multiscreen.airplay",
+          "what": "投屏组件",
+          "why": "手机投屏常用就留",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1251066-1-1.html",
+              "title": "2024海信电视去广告精简系统教程",
+              "date": "2024-07-25"
+            }
+          ]
+        },
+        {
+          "pkg": "com.hisense.multiscreen.screenhelper",
+          "what": "投屏组件",
+          "why": "手机投屏常用就留",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1251066-1-1.html",
+              "title": "2024海信电视去广告精简系统教程",
+              "date": "2024-07-25"
+            }
+          ]
+        },
+        {
+          "pkg": "com.hisense.wifidisplay",
+          "what": "投屏组件",
+          "why": "手机投屏常用就留",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1251066-1-1.html",
+              "title": "2024海信电视去广告精简系统教程",
+              "date": "2024-07-25"
+            }
+          ]
+        },
+        {
+          "pkg": "com.ms.weshare",
+          "what": "投屏组件",
+          "why": "手机投屏常用就留",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1251066-1-1.html",
+              "title": "2024海信电视去广告精简系统教程",
+              "date": "2024-07-25"
+            }
+          ]
+        },
+        {
+          "pkg": "com.hisense.hitv.hicloud.account",
+          "what": "HiCloud 账号",
+          "why": "停了会员 / 手机 App 绑定会受影响",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1251066-1-1.html",
+              "title": "2024海信电视去广告精简系统教程",
+              "date": "2024-07-25"
+            }
+          ]
+        },
+        {
+          "pkg": "com.hisense.tv.ota",
+          "what": "升级通道",
+          "why": "停掉不会被推新固件（工厂入口不会被更新堵死），代价是收不到修 bug 的更新",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1251066-1-1.html",
+              "title": "2024海信电视去广告精简系统教程",
+              "date": "2024-07-25"
+            }
+          ]
+        },
+        {
+          "pkg": "com.hisense.remoteupgrade",
+          "what": "升级通道",
+          "why": "停掉不会被推新固件（工厂入口不会被更新堵死），代价是收不到修 bug 的更新",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1251066-1-1.html",
+              "title": "2024海信电视去广告精简系统教程",
+              "date": "2024-07-25"
+            }
+          ]
+        },
+        {
+          "pkg": "com.hisense.usbupgrade",
+          "what": "升级通道",
+          "why": "停掉不会被推新固件（工厂入口不会被更新堵死），代价是收不到修 bug 的更新",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1251066-1-1.html",
+              "title": "2024海信电视去广告精简系统教程",
+              "date": "2024-07-25"
+            }
+          ]
+        },
+        {
+          "pkg": "com.jamdeo.updateservice",
+          "what": "升级通道",
+          "why": "停掉不会被推新固件（工厂入口不会被更新堵死），代价是收不到修 bug 的更新",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1251066-1-1.html",
+              "title": "2024海信电视去广告精简系统教程",
+              "date": "2024-07-25"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tencent.qqmusictv",
+          "what": "QQ 音乐 / K 歌 / 视频通话 / 微信电视",
+          "why": "第三方影音娱乐，看家里用不用",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1251066-1-1.html",
+              "title": "2024海信电视去广告精简系统教程",
+              "date": "2024-07-25"
+            }
+          ]
+        },
+        {
+          "pkg": "com.bajintech.karaok",
+          "what": "QQ 音乐 / K 歌 / 视频通话 / 微信电视",
+          "why": "第三方影音娱乐，看家里用不用",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1251066-1-1.html",
+              "title": "2024海信电视去广告精简系统教程",
+              "date": "2024-07-25"
+            }
+          ]
+        },
+        {
+          "pkg": "com.hisense.tv.videochat",
+          "what": "QQ 音乐 / K 歌 / 视频通话 / 微信电视",
+          "why": "第三方影音娱乐，看家里用不用",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1251066-1-1.html",
+              "title": "2024海信电视去广告精简系统教程",
+              "date": "2024-07-25"
+            }
+          ]
+        },
+        {
+          "pkg": "com.android.wechathci",
+          "what": "QQ 音乐 / K 歌 / 视频通话 / 微信电视",
+          "why": "第三方影音娱乐，看家里用不用",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1251066-1-1.html",
+              "title": "2024海信电视去广告精简系统教程",
+              "date": "2024-07-25"
+            }
+          ]
+        },
+        {
+          "pkg": "com.sohu.inputmethod.sogouoem",
+          "what": "搜狗 OEM 输入法",
+          "why": "这一代仍可能是唯一输入法，停掉之后 Wi-Fi 密码都打不了；确认装得上第三方输入法再动",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1251066-1-1.html",
+              "title": "2024海信电视去广告精简系统教程",
+              "date": "2024-07-25"
+            }
+          ]
+        }
+      ],
+      "pitfalls": [
+        {
+          "what": "有一篇流传很广的 HZ60U7A 精简清单把 com.android.tv.settings、com.android.settings、com.jamdeo.tv.vod、com.sohu.inputmethod.sogouoem 也列在了包列表里（作者本人只是罗列、没有全删）。照抄整张清单会把设置、桌面和输入法一起干掉，直接变砖——只执行带 pm uninstall 前缀的那几条，且逐条看懂再敲",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1251066-1-1.html",
+              "title": "2024海信电视去广告精简系统教程",
+              "date": "2024-07-25"
+            }
+          ]
+        },
+        {
+          "what": "进声音平衡前必须先关杜比全景声，否则「声音平衡」是灰的点不动，很容易误判成「这台机器的工厂入口被砍了」",
+          "sources": [
+            {
+              "url": "https://post.smzdm.com/p/aogzlnxn",
+              "title": "全网最详细的海信Vidda电视打开adb教学",
+              "date": "2026-01-16"
+            }
+          ]
+        },
+        {
+          "what": "「母块清空」与 To Fac 在工厂菜单同一页，按方向右键立即执行并重置电视；不清广告缓存就别碰",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1251066-1-1.html",
+              "title": "2024海信电视去广告精简系统教程",
+              "date": "2024-07-25"
+            }
+          ]
+        },
+        {
+          "what": "精简前先在路由器上断掉电视的网，不然广告素材会自动重新下载回来",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1251066-1-1.html",
+              "title": "2024海信电视去广告精简系统教程",
+              "date": "2024-07-25"
+            }
+          ]
+        },
+        {
+          "what": "社区有 root 讨论，本项目不采用",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "name": "国行 新款 海信 / Vidda（VIDAA AI 聚好看新版）",
+      "years": "约 2023 至今（K / N / Q 代）",
+      "base_os": "android",
+      "android_version_range": "未公开标注；国行不走标准 Android TV 分支，关于页不直接显示安卓版本，要进隐藏的安卓原生设置才看得到",
+      "models_examples": [
+        "E5K / E7K / E5N Pro / E7N / E8N / E8Q / U7N 一类",
+        "Vidda 近年在售机型"
+      ],
+      "identify_hints": "遥控器无数字键，有的是带光标的「指向性遥控器」；桌面是全屏卡片流，顶部有横向推荐位与开机广告；设置里能看到「开机管理 → 开机广告」这类新增开关（老机型没有）；型号最后一个字母是 K / N / Q。",
+      "worth_it_hint": "看情况。这一代运存普遍 2-4 GB，卡顿没老机那么严重，主要痛点是广告；而且工厂模式入口是不是还在，各机型固件差别很大，社区 2025-2026 年的教程仍称 Vidda 可用，但 ZNDS 2026 汇总帖同时明确说「很多 VIDAA 机型即使有开发者模式提示，也未必真开放 ADB」。先按下面步骤试一遍，试不通就退回到设置里关开机广告。",
+      "entries": [
+        {
+          "applies_to": "2023 年后国行海信 / Vidda（社区 2025-2026 年仍在用的路径）",
+          "steps": [
+            "全部设置 → 声音设置 → 先关掉杜比音效（没有就跳过）",
+            "找到「声音平衡」，进入后 OK 键和设置 / 菜单键交替按，直到出现雪花屏和一个大写 M 的界面",
+            "按遥控器菜单键调出工厂菜单，在「选项」一栏把 toFac 的 U 改成 M，然后重启电视",
+            "重启后：设置 → 关于电视 → 本机信息处连续按菜单键，进入安卓设置后台",
+            "在「手机状态 / 关于手机」里找到版本信息，连续点击 7 次打开开发者选项",
+            "开发者选项 → 打开 USB 调试（若同时出现「无线调试」也一并打开）",
+            "电脑或手机 ADB 工具刷新设备列表，连接后在电视弹出的「允许 USB 调试」对话框选「始终允许」"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.sohu.com/a/904074012_213569",
+              "title": "海信电视怎么打开ADB？声音平衡点不了？vidda也能用（当贝市场）",
+              "date": "2025-06-13"
+            },
+            {
+              "url": "https://post.smzdm.com/p/aogzlnxn",
+              "title": "全网最详细的海信Vidda电视打开adb教学",
+              "date": "2026-01-16"
+            },
+            {
+              "url": "https://zhuanlan.zhihu.com/p/1890085242871715197",
+              "title": "海信电视怎么开启ADB？四步解锁开发者权限",
+              "date": "2025-03-31"
+            }
+          ],
+          "risk_notes": "工厂菜单里只改「toFac」这一项，其余参数（背光、白平衡、屏参、母块清空）一律不动。这一代固件更新更勤，入口被后续 OTA 堵掉的可能性比老机高。"
+        },
+        {
+          "applies_to": "备选：连点版本号无效时，用 Activity Manager 类工具直接拉起隐藏的 TV 设置",
+          "steps": [
+            "先用 U 盘或海信爱家 / 当贝市场装一个 Activity Manager 类应用",
+            "用它直接拉起 com.android.tv.settings 的组件，进入隐藏的开发者选项页",
+            "在该页面打开 ADB 调试"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.bilibili.com/video/BV1fse3zeETg/",
+              "title": "教你通过 Activity Manager 应用来打开海信电视的 TV 设置（com.android.tv.settings）的开发者选项"
+            }
+          ],
+          "risk_notes": "只有单一来源，没找到第二方交叉验证，只作为工厂菜单路径失效后的备选。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "unknown",
+        "hide": "unknown",
+        "uninstall_user0": "unknown",
+        "notes": "没有找到任何 2023 年后国行机型的 pm 权限实测记录。已知的两个数据点方向相反（2017 款 disable-user 被封、2020 款 uninstall --user 0 可用），不能外推到这一代，请以实机 pm list packages 后逐条试为准。",
+        "evidence_level": "单源",
+        "sources": []
+      },
+      "pitfalls": [
+        {
+          "what": "开机广告在这一代有了官方开关（设置 → 系统设置 → 开机管理 → 开机广告），但实测反馈是关掉后仍有约 5 秒的「隐形」等待——所谓可关闭更接近文字游戏",
+          "sources": [
+            {
+              "url": "https://post.smzdm.com/p/axk9leq4",
+              "title": "Vidda电视广告真能关？实测三步操作后仍有5秒「隐形」等待"
+            }
+          ]
+        },
+        {
+          "what": "打开 ADB 无线调试后，有用户反馈带光标的「指向性遥控器」光标消失，影响正常操作",
+          "sources": [
+            {
+              "url": "https://post.smzdm.com/p/aogzlnxn",
+              "title": "全网最详细的海信Vidda电视打开adb教学",
+              "date": "2026-01-16"
+            }
+          ]
+        },
+        {
+          "what": "ZNDS 2026 年汇总帖明确提醒：VIDAA 不是标准 Android TV，很多机型即使能点出「开发者模式」提示，也不一定真的开放 ADB 和普通 APK 安装——能不能用要看具体型号和固件",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1270973-1-1.html",
+              "title": "2026各品牌电视打开ADB调式的方法汇总",
+              "date": "2026-06-01"
+            }
+          ]
+        },
+        {
+          "what": "社区有 root 讨论，本项目不采用",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "name": "国行 标准 Android TV / Google TV 分支（若确属）",
+      "years": "年份与机型清单未核实",
+      "base_os": "android",
+      "android_version_range": "随所属 Android TV / Google TV 版本",
+      "models_examples": [],
+      "identify_hints": "判据不是型号而是界面：开机后是 Android TV / Google TV 的原生横向卡片首页（左上角 Google TV 字样）、能进 Google Play 商店、设置里直接有「系统 → 关于 → Android TV OS Build」这一行。国行海信 / Vidda 绝大多数不是这种，如果你看到的是聚好看那套界面，就走上面几条。",
+      "worth_it_hint": "如果确认是这一类，是所有海信机型里最省事的：不用进工厂菜单。",
+      "entries": [
+        {
+          "applies_to": "确认跑标准 Android TV / Google TV 的机型",
+          "steps": [
+            "设置 → 系统 → 关于 → 「Android TV OS Build」/ 版本号",
+            "连按 OK 键 7 次，提示「您已成为开发者」",
+            "返回：设置 → 系统 → 开发者选项 → 打开「USB 调试 / ADB 调试 / 网络调试」",
+            "adb connect 电视IP:5555，电视弹授权框选允许"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": null,
+          "port": 5555,
+          "evidence_level": "官方",
+          "sources": [
+            {
+              "url": "https://developer.android.com/training/tv/get-started/create?hl=zh-cn",
+              "title": "创建和运行电视应用 | Android TV（Google 官方）"
+            },
+            {
+              "url": "https://www.znds.com/tv-1270973-1-1.html",
+              "title": "2026各品牌电视打开ADB调式的方法汇总",
+              "date": "2026-06-01"
+            }
+          ],
+          "risk_notes": "方法本身是 Google 官方通用路径，风险在前提：先确认这台机器真的是标准 Android TV / Google TV，而不是套了原生壳的 VIDAA。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "unknown",
+        "hide": "unknown",
+        "uninstall_user0": "unknown",
+        "notes": "未查到国行此类机型的实测记录。",
+        "evidence_level": "单源",
+        "sources": []
+      }
+    },
+    {
+      "name": "海外 Hisense Android TV（北美 / 部分地区，G 代及以前）",
+      "years": "约 2018-2021",
+      "base_os": "android",
+      "android_version_range": "Android 8 / 9 / 11（Android TV 分支）",
+      "models_examples": [
+        "H8F / H9F（2019）",
+        "H8G / H9G（2020）",
+        "U6G / U7G / U8G / U9G（2021）"
+      ],
+      "identify_hints": "开机是 Android TV 原生首页（顶部一行「Apps」「Play Next」推荐条，不是 Google TV 那种整屏影视海报流）；遥控器带 Google Assistant 麦克风键和 Netflix / Prime Video 直达键；设置 → Device Preferences → About 里有「Build」这一行。",
+      "worth_it_hint": "值得做且最省事——入口是标准的，不用碰工厂菜单。这批机器现在 5-7 年机龄，Android 8/9 上的推荐与预装确实吃内存，清一轮有感。",
+      "entries": [
+        {
+          "applies_to": "所有 Hisense Android TV 机型",
+          "steps": [
+            "首页右上角齿轮进 Settings",
+            "Device Preferences → About",
+            "往下找到「Build」，选中后连按 OK 键 7 次，提示「You are now a developer」",
+            "返回 Device Preferences，出现新的「Developer options」",
+            "进去打开「USB debugging」",
+            "电脑 adb connect 电视IP:5555，电视弹授权框选 Always allow"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.youtube.com/watch?v=R30AIhbONCA",
+              "title": "Hisense Android TV USB Debugging Mode [Developer Options]（逐步演示）"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=_gQ854SzHoQ",
+              "title": "HISENSE Android TV: How to Enable Developer Options",
+              "date": "2023-11-04"
+            },
+            {
+              "url": "https://developer.android.com/training/tv/get-started/create?hl=zh-cn",
+              "title": "创建和运行电视应用 | Android TV（Google 官方）"
+            }
+          ],
+          "risk_notes": "用完建议把 USB debugging 关掉，别让 5555 端口长期裸露在网络上。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "unknown",
+        "hide": "unknown",
+        "uninstall_user0": "unknown",
+        "notes": "没有找到针对海外 Hisense Android TV 的 pm 权限实测记录。这批机器是 AOSP Android TV 分支，理论上 pm uninstall --user 0 / pm disable-user 都应可用，但厂商固件常单独收权限，请以实机试为准。社区有 bootloader 解锁 / root 讨论，本项目不采用。",
+        "evidence_level": "单源",
+        "sources": []
+      }
+    },
+    {
+      "name": "海外 Hisense Google TV（北美 2022 起）",
+      "years": "2022 至今",
+      "base_os": "android",
+      "android_version_range": "Android 11-14（Google TV）",
+      "models_examples": [
+        "U6H / U7H / U8H（2022）",
+        "U6K / U7K / U8K（2023）",
+        "U6N / U7N / U8N / U9N（2024）",
+        "U8QG（2025 美版；同代欧版 U8Q 跑 VIDAA）"
+      ],
+      "identify_hints": "开机是 Google TV 整屏影视海报流、左上角有你的 Google 头像；设置 → System → About 里那一行叫「Android TV OS build」。北美 2024 年起同一代机型美版是 Google TV、欧版是 VIDAA，型号只差尾字母，别拿美版教程套欧版机器。",
+      "worth_it_hint": "机器还新（3 年内）、运存 3-4 GB，卡顿不明显，主要动机是关推荐与广告。做的收益不如老机型大，但入口最容易。",
+      "entries": [
+        {
+          "applies_to": "所有 Hisense Google TV 机型",
+          "steps": [
+            "All Settings → System → About",
+            "选中「Android TV OS build」，连按 OK 键 7 次，提示「You are now a developer」",
+            "返回并往下找到新出现的「Developer options」",
+            "打开「USB debugging」，弹窗按 OK 确认",
+            "adb connect 电视IP:5555；Android 13 及以上的部分机型只提供「Wireless debugging」，那种要先用配对码（Pair device with pairing code）配对，不能直接连 5555"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": true,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.youtube.com/watch?v=Tyb_JZEpk-E",
+              "title": "HiSense Google TV: How to Enable or Disable USB Debugging Mode"
+            },
+            {
+              "url": "https://www.znds.com/tv-1270973-1-1.html",
+              "title": "2026各品牌电视打开ADB调式的方法汇总（Android TV 13+ 需配对码）",
+              "date": "2026-06-01"
+            },
+            {
+              "url": "https://www.flatpanelshd.com/news.php?subaction=showfull&id=1705920595",
+              "title": "Hisense unveils 2024 U8N, U7N, U6N miniLCD TVs（美版 Google TV / 欧版 VIDAA 分区的官方口径）",
+              "date": "2024-01"
+            }
+          ],
+          "risk_notes": "别把「无线调试」和老式 adb connect ip:5555 搞混：Android 11 引入的无线调试要配对码，端口是随机的，配对成功后才能 connect。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "unknown",
+        "hide": "unknown",
+        "uninstall_user0": "unknown",
+        "notes": "未查到海外 Hisense Google TV 机型的 pm 权限实测记录。",
+        "evidence_level": "单源",
+        "sources": []
+      }
+    },
+    {
+      "name": "海外 Hisense / Toshiba VIDAA（Linux）—— 不适用",
+      "years": "2014 至今（欧洲、澳新及美中以外大多数市场的主力）",
+      "base_os": "vidaa-linux",
+      "android_version_range": "不适用，不是 Android",
+      "models_examples": [
+        "VIDAA U2.5（MT5658 / MT5659 / MSD6586，2017 前后）",
+        "VIDAA U3 / U4（MSD6886 / MT9602，2019-2020，如 U7QF）",
+        "VIDAA U5（MT9602 / NT72671D，2021-2022）",
+        "VIDAA U6（MT9900，2022，如 A6 系）",
+        "VIDAA U7（2023-2024，如 E7KQ Pro / E7NQ）",
+        "VIDAA OS 8.5（MT9653）/ VIDAA OS 9（MT9655 / P800，2025，如欧版 U8Q）"
+      ],
+      "identify_hints": "最快的判据：没有 Google Play 商店、装不了任何 APK，应用商店里全是 VIDAA 自己那套；设置 → System → About / Support 里显示的是「VIDAA U5」「VIDAA OS 9」这类版本号而不是 Android 版本；遥控器上有 VIDAA 键。型号尾部通常带 Q / QF / KQ / NQ（欧规）而不是美规的 G 尾。",
+      "worth_it_hint": "【不适用】这类电视根本不是 Android：没有 adb、没有 pm 命令、不能装 APK，没有任何「清理预装包」的空间。能做的只有两件事：① 设置 → System → Advanced Settings → Personalised Ads（个性化广告）关掉，并执行一次 Reset Ads ID；② 确认电视处于 Home 模式而不是卖场的 Store 模式（Store 模式会一直播广告片）。还想更进一步只能在路由器 / DNS 层面（NextDNS、ControlD 一类）屏蔽广告域名。注意：官方的 VIDAA DevKit（应用商店搜索框上按 2775379 装出来）只能装 HTML5 网页应用且需要向 VIDAA 申请 secure code，不是 ADB，也清不掉预装。",
+      "entries": [],
+      "pm_caps": {
+        "disable_user": "no",
+        "hide": "no",
+        "uninstall_user0": "no",
+        "notes": "系统是 Linux + HTML5 应用框架，压根没有 Android 的 pm 命令，三项都无从谈起。",
+        "evidence_level": "多源",
+        "sources": [
+          {
+            "url": "https://spyro-soft.com/blog/media-and-entertainment/what-is-vidaa-os-a-comprehensive-guide-to-your-smart-tv-experience",
+            "title": "What is VIDAA OS? A Smart TV platform overview（Linux 内核、HTML5 应用模型）"
+          },
+          {
+            "url": "https://help.smartlabs.tv/docs/demo/apps/hisense",
+            "title": "Installing SmartTUBE app on Hisense TV manually（VIDAA DevKit 与 SoC / OS 版本对照表）"
+          }
+        ]
+      },
+      "pitfalls": [
+        {
+          "what": "关广告的位置：Settings → System → Advanced Settings → Personalised Ads → 关闭并 Reset Ads ID；另外把电视从 Store 模式切回 Home 模式",
+          "sources": [
+            {
+              "url": "https://www.reddit.com/r/Hisense/comments/1hbp9hr/is_there_a_way_to_disable_this_annoying_ad_on_the",
+              "title": "r/Hisense: Is there a way to disable this annoying ad"
+            },
+            {
+              "url": "https://allabouthisense.com/remove-ad-banner-on-hisense-tv",
+              "title": "How to Remove AD Banner on Hisense TV"
+            },
+            {
+              "url": "https://www.bgr.com/2146847/settings-to-change-on-hisense-tv",
+              "title": "4 Settings You Should Change On Your Hisense TV ASAP"
+            }
+          ]
+        },
+        {
+          "what": "关了个性化广告也未必干净：2025-2026 年有多地用户报告开机后、切换 HDMI 输入时甚至换台时出现不可跳过的广告，且在已关闭全部广告选项的机器上照样出现。海信对西班牙市场的说法是「平台侧广告形式测试」。这一类是服务端下发的，本地设置挡不住，只能在 DNS 层拦",
+          "sources": [
+            {
+              "url": "https://www.tomshardware.com/tech-industry/big-tech/hisense-tvs-force-owners-to-watch-intrusive-ads-when-switching-inputs-visiting-the-home-screen-or-even-changing-channels-practice-infuriates-consumers-brand-denies-wrongdoing",
+              "title": "Hisense TVs force owners to watch intrusive ads when switching inputs（Tom's Hardware）"
+            },
+            {
+              "url": "https://www.guru3d.com/story/hisense-vidaa-tvs-reportedly-add-unskippable-startup-ads-before-live-tv",
+              "title": "Hisense VIDAA TVs reportedly add unskippable startup ads before live TV"
+            }
+          ]
+        },
+        {
+          "what": "同一平台还用在 Toshiba、JVC 等品牌电视上，这些机器的结论与 Hisense VIDAA 完全一致",
+          "sources": [
+            {
+              "url": "https://www.guru3d.com/story/hisense-vidaa-tvs-reportedly-add-unskippable-startup-ads-before-live-tv",
+              "title": "Hisense VIDAA TVs reportedly add unskippable startup ads before live TV"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "海外 Hisense Fire TV 版（北美）",
+      "years": "约 2021 至今",
+      "base_os": "fireos",
+      "android_version_range": "Fire OS（基于 Android 的亚马逊分支，版本不对外标注）",
+      "models_examples": [
+        "Hisense Fire TV 系列（如 U6HF 一类带 F 尾的美版机型）"
+      ],
+      "identify_hints": "开机是 Fire TV 界面、遥控器上有 Alexa 语音键和亚马逊 logo；设置菜单叫「My Fire TV」而不是「System」。",
+      "worth_it_hint": "入口简单，但 Fire OS 的预装广告主要来自亚马逊自家推荐，能动的余地比国行安卓机小。",
+      "entries": [
+        {
+          "applies_to": "Hisense Fire TV 版机型",
+          "steps": [
+            "Settings → My Fire TV → About",
+            "选中设备名称，连按 OK 键 7 次解锁 Developer options",
+            "返回 My Fire TV → Developer options → 打开「ADB debugging」（同页面还有「Apps from Unknown Sources」）",
+            "adb connect 电视IP:5555"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.justanswer.com/tv-repair/pm43l-hisense-tv-firetv-settings-not-showing-developer-options.html",
+              "title": "Hisense TV Fire TV settings not showing developer options"
+            }
+          ],
+          "risk_notes": "只找到一条来源，且 Fire OS 版本间菜单层级有变动（有的机型 Developer options 直接在 My Fire TV 下，有的在 About 里）。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "unknown",
+        "hide": "unknown",
+        "uninstall_user0": "unknown",
+        "notes": "未查到 Hisense Fire TV 机型的 pm 权限实测。",
+        "evidence_level": "单源",
+        "sources": []
+      }
+    },
+    {
+      "name": "海外 Hisense Roku TV / Xumo TV（北美）—— 不适用",
+      "years": "约 2019 至今",
+      "base_os": "roku",
+      "android_version_range": "不适用，不是 Android",
+      "models_examples": [
+        "Hisense Roku TV（R 系列）",
+        "Hisense XClass / Xumo TV"
+      ],
+      "identify_hints": "遥控器上有紫色 Roku logo 或 Xumo 字样；首页是 Roku 的九宫格频道网格 / Xumo 的频道条，没有任何 Android 或 Google 元素。",
+      "worth_it_hint": "【不适用】Roku OS 与 Xumo（Comcast 平台）都不是 Android，没有 adb 也没有 pm，装不了第三方应用。Roku 上的替代动作：Settings → Privacy → Advertising → 打开「Limit ad tracking」，并在 Settings → Privacy → Smart TV experience 里关掉「Use info from TV inputs」（ACR 内容识别）。Xumo 侧只有各 App 内的自动播放开关可调。",
+      "entries": [],
+      "pm_caps": {
+        "disable_user": "no",
+        "hide": "no",
+        "uninstall_user0": "no",
+        "notes": "非 Android 系统，无 pm 命令。",
+        "evidence_level": "单源",
+        "sources": [
+          {
+            "url": "https://allabouthisense.com/remove-ad-banner-on-hisense-tv",
+            "title": "How to Remove AD Banner on Hisense TV（分平台列出 Roku / Xumo 的广告设置位置）"
+          }
+        ]
+      }
+    }
+  ],
+  "open_questions": [
+    "2023 年后国行海信 / Vidda（K / N / Q 代）具体哪些型号还留着工厂菜单入口、哪些已被固件砍掉——社区 2025-2026 年的教程仍称「vidda 也能用」，但没有任何一篇点名具体型号加固件号；ZNDS 2026 汇总帖同时提醒很多 VIDAA 机型有开发者模式提示却不真开放 ADB。这是本轮最大的空白。",
+    "2023 年后国行机型的 pm 权限（disable-user / hide / uninstall --user 0 各自能不能用）完全没有实测记录。已知两个数据点方向相反：2017 款 MSD6A828 的 disable-user 被 SecurityException 封死只能用 hide（本机实测），2020 款 HZ60U7A 的 uninstall -k --user 0 可用（教程逐条列命令）。说明海信是按代调整 shell 权限的，不能外推。",
+    "国行海信 / Vidda 到底有没有搭载标准 Android TV / Google TV 的型号——本轮未找到任何官方或第三方给出的国行机型清单，只能让用户按界面自行判断（有没有 Google Play、首页是不是 Google TV 样式）。",
+    "海信型号年代字母 K=2023 / N=2024 / Q=2025 是按各年上市机型倒推的，海信官方从未公布过对照表；E=2019 / F=2020 / G=2021 / H=2022 有第三方文章明说。若后续拿到官方口径应更正。",
+    "VIDDA3 与 VIDDA4 之间、以及国内「VIDAA 3 / 4 / 5 / 6」这套版本号到底怎么对应年份和安卓版本——中文资料里只有 ZNDS 板块名出现过「VIDAA3」，找不到一份把国内 VIDAA 版本号与年份、安卓版本对齐的权威材料。海外那条线反而清楚（U2.5 → U3 → U4 → U5 → U6 → U7 → OS 8.5 → OS 9，可用 SoC 反查），国内的版本号与海外并非同一套。",
+    "部分教程把工厂菜单里的参数写作「QFAZ」而不是「To Fac」，本轮仍未确认这是不同固件批次的命名差异还是转述错误。",
+    "国行工厂菜单的数字码在不同来源里出现 1969 / 0532 / 0538 三种说法，未能逐一对应到具体型号或年份；QuickTVUI 的设备接入文档里甚至「输入 0538」和「按数字 7 或确认键 7 次」两种表述并存。",
+    "海外 Hisense Android TV / Google TV / Fire TV 机型的 pm 权限均无实测记录，也没有可靠的 Hisense 专属垃圾包名清单（现有清单全部来自国行机型，包名前缀 com.jamdeo.* / com.hisense.* 在海外固件上不一定存在）。",
+    "官方渠道（VIDAA 官网 support、海信官网 support、海信开放平台 dev.hismarttv.com）均查不到任何关于开发者模式 / ADB 的官方文档——这条链路在消费级产品上属于非官方支持的工程遗留入口，随时可能被固件更新关掉，因此国行这几条入口永远拿不到「官方」级别的来源。"
+  ],
+  "last_reviewed": "2026-09-15"
+}

@@ -1,0 +1,65 @@
+{
+  "brand": "三星",
+  "region": "both",
+  "aliases": ["Samsung", "三星电子", "SAMSUNG", "Tizen"],
+  "status": "不适用",
+  "summary": "三星电视全线用自家的 Tizen 系统，不是 Android，没有 adb、没有 pm 命令，本项目的清理流程一条也用不上。三星确实有「开发者模式」，但那是给 Tizen 应用开发者装自己写的 .wgt 应用用的，动不了系统预装。能做的只有关 ACR 跟踪和个性化广告。",
+  "identify_hints": {
+    "remote_has_digits": "近年三星标配的是短款「One Remote」智能遥控：没有 0–9 数字键，只有一圈方向盘、麦克风键和 Netflix / Prime Video / Disney+ 等彩色快捷键；中低端和早期机型另配带数字键的长遥控。遥控背面通常是太阳能充电板（2021 年起的 SolarCell Remote）。",
+    "system_name_shown_at": "设置 → 支持 → 关于本机 / Terms & Privacy；主屏左下角的 Smart Hub 横条本身就是 Tizen 的标志性界面。",
+    "about_page_fields": [
+      "型号代码（Model Code）",
+      "软件版本 / Software Version（形如 T-xxxxxxx，不是 Android 版本号）",
+      "Smart Hub 条款与隐私政策入口"
+    ],
+    "model_naming_rule": "型号形如 QN65QN90DAFXZA 或 UA65CU8000JXXZ：第 3–4 位是尺寸，紧接着是产品线代号（QN=Neo QLED、Q=QLED、CU/AU/TU=UHD LCD、S9x=OLED），再后面一位字母是年份代际（…U=2025、D=2024、C=2023、B=2022、A=2021、T=2020），最后是市场后缀（FXZA 北美、JXXZ 国行、XXU 英国等）。想快速判年份就看产品线代号后面那个字母。",
+    "sticker_location": "机身背面右下角或接口区旁的铭牌贴纸印 Model Code 与 Serial；壁挂后看不到就走设置 → 支持 → 关于本机。",
+    "year_ranges": "Tizen 自 2015 年起用于全部三星智能电视，至今未变；2015 年之前是三星自家的 Orsay / Smart Hub（同样不是 Android）。"
+  },
+  "not_applicable": {
+    "reason": "三星电视用 Tizen（三星自研、基于 Linux 的系统），不是 Android，因此不存在 adb、开发者选项里的 USB 调试、pm disable-user 这一整套东西。🔴 需要特别说明的一点：Tizen 电视确实有「开发者模式」，进法是 Apps → App Settings（或主屏按 Apps 后用遥控数字键输入 12345）→ 打开 Developer mode → 填入电脑的 IP → 长按电源键 2 秒重启。但这个模式的用途是让开发者把自己打包的 .wgt 网页应用通过 Tizen Studio / sdb 推到电视上调试（Tizen Studio 里的 Device Manager、Web Inspector 这一套），它既不是 adb，也不提供任何操作系统预装应用的能力——三星官方开发者文档里关于卸载的部分只讲「通过 Tizen Studio 卸载你自己装的那个应用」，失败时让你去电视的 Apps 面板里手动删，压根没有触及系统应用的接口。所以不要因为看到「三星也有开发者模式」就以为能照本项目的流程做。",
+    "alternative": "能做的是关掉 ACR 跟踪和个性化广告，三条开关，按机型年份分：\n\n【2022 年及以后的机型】主屏 → 光标移到左侧边栏 → 「隐私选择（Privacy Choices）」→ 「条款和条件、隐私政策（Terms & Conditions, Privacy Policy）」→ 取消勾选「查看信息服务（Viewing Information Services）」，这一项就是三星的 ACR，关掉之后电视不再对 HDMI、有线盒子、游戏机、天线等所有信号源做画面指纹识别 → 同页再取消勾选「基于兴趣的广告（Interest-Based Advertisements）」→ 拉到页面底部按「确定」保存。另一条等价入口：设置 → 常规与隐私 → 条款和隐私。\n\n【2025 年机型】隐私选择下会多出「隐私中心」「安全中心」两项，前两个勾选框位置不变；页面底部另有「不出售或共享我的个人信息（Do Not Sell or Share My Personal Information）」。\n\n【2021 年及更早的机型】设置 → 支持 → 条款和政策（Terms & Policy）→ 关掉「查看信息服务」「基于兴趣的广告」「语音识别服务」；更老的 Smart Hub 机型这一页叫「SyncPlus 和营销」。\n\n【语音】设置里的「语音识别服务」关掉后就彻底没有语音功能了——三星不提供「要语音但不上传」的选项，这一条要问过人再动。\n\n注意边界：关掉这些只是停止「个性化」和画面指纹采集，Smart Hub 首页仍然会出现三星自家应用和产品的横幅推广位，那部分在系统里没有开关。",
+    "sources": [
+      {"url": "https://www.consumerreports.org/electronics/privacy/how-to-turn-off-smart-tv-snooping-features-a4840102036", "title": "How to Turn Off Smart TV Snooping Features（Consumer Reports 逐年实测：2025 款隐私选择页里的四个入口与底部的 Do Not Sell 按钮）"},
+      {"url": "https://www.zdnet.com/home-and-office/home-entertainment/how-to-disable-acr-tv", "title": "How to disable ACR on your TV (and why it makes such a big difference)（ZDNET 给出 2022 年后机型从主屏左侧边栏进 Privacy Choices 的完整步骤）"},
+      {"url": "https://www.flatpanelshd.com/focus.php?subaction=showfull&id=1518081245", "title": "Guide: How to turn off Smart TV tracking (ACR)（FlatpanelsHD 按 Tizen / 旧版 Smart Hub 分别给路径）"},
+      {"url": "https://www.kraftkennedy.com/why-you-should-turn-off-acr-on-smart-tvs-and-business-displays", "title": "Why You Should Turn Off ACR on Smart TVs and Business Displays（Settings > Terms & Privacy > Privacy Choices 这条路径）"},
+      {"url": "https://developer.samsung.com/smarttv/develop/getting-started/using-sdk/tv-device.html", "title": "TV Device | Samsung Developer（三星官方：Tizen 电视开发者模式的用途是 Tizen Studio 调试自己的应用；卸载失败时的处置是「在电视的 Apps 面板里手动删」，没有任何操作系统预装应用的接口）"},
+      {"url": "https://community.appspace.com/devices-198/enabling-tizen-devtools-debug-options-1415", "title": "Enabling Tizen DevTools & Debug Options（Apps → App Settings → 遥控输入 12345 → Developer mode → 填 Client IP 的具体步骤）"},
+      {"url": "https://playsignage.com/blog/how-we-build-the-tizen-app-for-samsung", "title": "How we build the Tizen app for Samsung（Tizen 7.0+ / Tizen 4+ 两种进开发者模式的按键差异，以及打包 .wgt、tizen install 的实际用法）"}
+    ]
+  },
+  "series": [
+    {
+      "name": "Tizen（2015 至今，全线）",
+      "years": "2015至今",
+      "base_os": "tizen",
+      "android_version_range": "不适用",
+      "models_examples": ["QN90D 系列", "S95C 系列", "CU8000 系列", "AU7700 系列"],
+      "identify_hints": "开机后主屏底部是一条横向的 Smart Hub 带（左侧一列图标：搜索、Ambient、游戏、媒体、菜单），不是 Android TV 的卡片行、也不是 Roku 的九宫格。设置页里找不到任何「Android 版本」「Build number」字样，软件版本形如 T-KTMAKUC-1520.3。遥控是短款 One Remote。",
+      "worth_it_hint": "不适用：不是安卓，本项目流程用不上。真想换掉体验只能外接一个安卓电视盒子，把三星当显示器用。",
+      "entries": [],
+      "pitfalls": [
+        {
+          "what": "🔴 Tizen 的「开发者模式」不等于 ADB。网上有大量「三星电视开发者模式怎么开」的教程（Apps → App Settings → 输入 12345 → 打开 Developer mode → 填电脑 IP → 长按电源键重启），照着做能开，但开完之后你能用的是 Tizen Studio 和 sdb，用途是往电视里推自己打包的 .wgt 网页应用，动不了系统预装的一个包。别在这上面花时间。",
+          "sources": [
+            {"url": "https://developer.samsung.com/smarttv/develop/getting-started/using-sdk/tv-device.html", "title": "TV Device | Samsung Developer"},
+            {"url": "https://community.appspace.com/devices-198/enabling-tizen-devtools-debug-options-1415", "title": "Enabling Tizen DevTools & Debug Options"}
+          ]
+        },
+        {
+          "what": "有用户在路由器 / DNS 层面屏蔽 samsungads.com、ads.samsung.com 来拦截广告请求。这属于网络层手段，不是电视系统里的开关，也不在本项目范围内；会不会影响 Smart Hub 的正常功能（比如应用商店列表加载）没有可靠结论，本项目不推荐。",
+          "sources": [
+            {"url": "https://www.reddit.com/r/LifeProTips/comments/1ly9dzq/lpt_if_you_own_a_samsung_smart_tv_that_has_ads/", "title": "LPT: If you own a Samsung smart TV that has ads（社区做法，非官方）"}
+          ]
+        }
+      ]
+    }
+  ],
+  "open_questions": [
+    "国行三星电视的隐私菜单命名与路径是否与北美 / 欧版完全一致，未找到国行机型的实拍确认；现有来源全部来自北美与欧洲市场。",
+    "关掉「查看信息服务」和「基于兴趣的广告」之后，Smart Hub 首页那些三星自家产品的横幅推广位到底还剩多少，没有前后对比的实测记录。",
+    "2015 年以前的 Orsay / 旧版 Smart Hub 机型（非 Tizen）的隐私开关位置，只查到 FlatpanelsHD 一句「设置 → 支持 → 条款和政策 → 关掉 SyncPlus 和营销」，未逐版本核实。"
+  ],
+  "last_reviewed": "2026-09-15"
+}

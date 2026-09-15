@@ -1,0 +1,66 @@
+{
+  "brand": "LG",
+  "region": "both",
+  "aliases": ["LG电子", "LG Electronics", "webOS", "乐金"],
+  "status": "不适用",
+  "summary": "LG 电视全线用自家的 webOS，不是 Android，没有 adb、没有 pm 命令，本项目的清理流程一条也用不上。但 LG 的广告与跟踪开关是所有品牌里最齐的：首页推广位、屏保广告、ACR（Live Plus）、广告 ID 四组都能在设置里关掉，值得逐条做一遍。",
+  "identify_hints": {
+    "remote_has_digits": "标志性的是「Magic Remote」魔法遥控：手柄细长、中间一个可滚动的滚轮，挥动遥控屏幕上会出现一个圆形光标（像用鼠标一样点电视）。有数字键的版本和没有的版本都存在，光标才是 LG 的硬特征。",
+    "system_name_shown_at": "设置 → 全部设置 → 常规 → 关于本机（About This TV）；这一页显示 webOS 版本，不会出现任何 Android 字样。",
+    "about_page_fields": [
+      "型号 / Model",
+      "软件版本（webOS 版本，形如 webOS 23 / 24 / 25）",
+      "用户协议（User Agreements）入口",
+      "序列号"
+    ],
+    "model_naming_rule": "型号形如 OLED65C4PUA 或 65QNED85TUA：OLED / QNED / NANO / UT / UQ 是产品线；数字段里的两位是尺寸；紧跟产品线档位后的那个字母是年份代际（…=2020 N、2021 P、2022 Q、2023 R、2024 S/T、2025 U 一类，LG 每年换一个字母且不完全规则），最后两三位是市场后缀（PUA 北美、PCA 国行、ALA 欧洲等）。想快速判年份最稳的办法不是猜字母，是开机看关于页里的 webOS 版本。",
+    "sticker_location": "机身背面铭牌贴纸印 Model 与 Serial；壁挂后看不到就走设置 → 全部设置 → 常规 → 关于本机。",
+    "year_ranges": "webOS 自 2014 年起用于全部 LG 智能电视，至今未变；2014 年之前是 LG 自研的 NetCast（同样不是 Android，那一代的 ACR 开关叫 LivePlus，在 设置 → 选项 里）。"
+  },
+  "not_applicable": {
+    "reason": "LG 电视用 webOS（LG 自研，基于 Linux 的系统），不是 Android，因此不存在 adb、开发者选项里的 USB 调试、pm disable-user 这一整套东西。LG 官方有一个面向应用开发者的 Developer Mode 应用（配合 webOS TV SDK 推自己写的应用上电视），性质与三星 Tizen 的开发者模式相同——它是给开发者调试自己的应用用的，不提供操作系统预装应用的能力，本项目不使用、也不建议普通用户开。",
+    "alternative": "LG 的可关项是各品牌里最多的，建议四组全做一遍（菜单措辞随 webOS 大版本略有出入，按语义找）：\n\n【1. ACR 跟踪：Live Plus】设置（遥控齿轮键）→ 全部设置 → 常规 → 系统 → 附加设置（Additional Settings）→ 把「Live Plus」关掉。这就是 LG 的自动内容识别，开着时电视会持续识别屏幕上正在播什么（包括 HDMI 接的机顶盒、游戏机）并据此推荐和投广告。LG 自己在设置里的说明写得很直白：「开启 Live Plus 即表示您理解电视上显示的内容可被识别，观看信息可用于提供内容推荐和广告」。\n\n【2. 首页推广位与推荐】同一层：常规 → 系统 → 附加设置 → 主屏设置（Home Settings）→ 关掉「主页推广（Home Promotion）」和「内容推荐（Content Recommendation）」。关掉后首页顶部那条大横幅广告会变成一个普通的「转到应用」按钮。同一页的「开机画面（Power On Screen）」可以从「主页」改成「最近的输入源」，这样开机直接进上次用的 HDMI 口，不再弹首页。\n\n【3. 广告 ID】附加设置 → 广告（Advertisement）→ 打开「限制广告跟踪（Limit Ad Tracking）」→ 再点「重置广告 ID」清掉已积累的画像。\n\n【4. 屏保广告】附加设置 / 主屏设置同层里找「屏幕保护程序促销（Screensaver Promotions）」关掉，去掉待机屏保上的广告。\n\n【5. 用户协议里的勾选项】设置 → 支持 → 隐私与条款（Privacy & Terms）→ 用户协议（User Agreements）→ 取消「观看信息协议 / Viewing Information」「个性化广告 / Personalized Advertising」「语音信息 / Voice Information」「营销通讯」四项（使用条款和隐私政策是必选的，取消不了，别在那两条上较劲）。同一层的「删除我的观看信息 / Delete My Viewing Information」可以清掉电视已经存下的历史。部分地区还有「不出售我的个人信息」开关。\n\n【旧机型】webOS 之前的 NetCast 机型：设置 → 选项 → 关掉 LivePlus。\n\n代价要讲清楚：关掉 Live Plus 之后首页那一排「猜你在看」的推荐会整个消失；即使全关，LG 仍会在首页放通用（非个性化）的推广位，那部分没有开关。",
+    "sources": [
+      {"url": "https://www.zdnet.com/home-and-office/home-entertainment/how-to-disable-acr-tv", "title": "How to disable ACR on your TV（ZDNET：Live Plus、Limit Ad Tracking、Home Promotion / Content Recommendation 三组路径逐条给全）"},
+      {"url": "https://www.pocket-lint.com/how-to-turn-off-acr-on-an-lg-tv", "title": "How to turn off ACR on an LG TV（Pocket-lint：另给 支持 → 隐私与条款 → 用户协议 / 删除我的观看信息 这一条）"},
+      {"url": "https://www.pocket-lint.com/lg-tv-turn-off-live-plus", "title": "I didn't realize my LG TV was spying on me until I turned off this setting（引用了 LG 设置页里 Live Plus 的原文说明）"},
+      {"url": "https://www.flatpanelshd.com/focus.php?subaction=showfull&id=1518081245", "title": "Guide: How to turn off Smart TV tracking (ACR)（FlatpanelsHD：webOS 与旧版 NetCast 分别给路径）"},
+      {"url": "https://forums.appleinsider.com/discussion/240903/how-to-stop-your-lg-or-samsung-smart-tv-from-tracking-you", "title": "How to stop your LG or Samsung smart TV from tracking you（十一步完整清单，含 Do Not Sell My Personal Information；同时说明关掉后 Live Plus 推荐行会消失这个代价）"},
+      {"url": "https://adguard.com/zh_cn/blog/lg-smart-tv-ads-screensaver.html", "title": "从经济型到豪华型：高端智能电视也出现了广告的身影（屏幕保护程序促销开关）", "date": "2024-10-17"},
+      {"url": "https://www.kraftkennedy.com/why-you-should-turn-off-acr-on-smart-tvs-and-business-displays", "title": "Why You Should Turn Off ACR on Smart TVs and Business Displays（General > System > Additional Settings > Live Plus 这条路径）"}
+    ]
+  },
+  "series": [
+    {
+      "name": "webOS（2014 至今，全线）",
+      "years": "2014至今",
+      "base_os": "webos",
+      "android_version_range": "不适用",
+      "models_examples": ["OLED C 系列", "OLED G 系列", "QNED 系列", "NANO 系列", "UT / UQ 系列"],
+      "identify_hints": "开机后主屏底部弹出一条横向的应用磁贴带（Launcher Bar），挥动 Magic Remote 屏幕上出现圆形光标。设置页里找不到任何「Android 版本」「Build number」字样，关于本机显示的是 webOS 版本号。",
+      "worth_it_hint": "不适用：不是安卓，本项目流程用不上。不过上面那五组设置开关关完，首页和屏保的观感变化比很多安卓机做 ADB 清理还明显，LG 用户建议优先做这个。",
+      "entries": [],
+      "pitfalls": [
+        {
+          "what": "菜单层级在 webOS 22 / 23 / 24 / 25 之间会挪位置：同一个 Live Plus 开关，不同资料分别写成「常规 → 系统 → 附加设置」和「常规 → 高级设置」。按语义找（先进「常规」，再找带「系统」或「附加/高级」字样的那一层），不要因为路径对不上就以为自己的机器没这个开关。",
+          "sources": [
+            {"url": "https://nypost.com/2026/09/09/tech/how-to-disable-lg-tvs-acr-system-to-stop-data-harvesting-and-recording", "title": "How to Disable LG TV's 'ACR' System（这篇写的是 Settings > General > System > Advanced Settings > Live Plus）", "date": "2026-09-09"},
+            {"url": "https://www.zdnet.com/home-and-office/home-entertainment/how-to-disable-acr-tv", "title": "How to disable ACR on your TV（这篇写的是 General > System > Additional Settings > Live Plus）"}
+          ]
+        },
+        {
+          "what": "社区有教程说改电视的地理位置区域、或在初始设置里退掉非必选条款可以减少个性化推荐。这类做法可能触发电视重启、并且效果与直接关 Live Plus 不等价，本项目不推荐，优先走上面的正规开关。",
+          "sources": [
+            {"url": "https://www.reddit.com/r/LGOLED/comments/1571djx/guide_how_to_turn_off_lg_tv_ads/", "title": "【指南】如何关闭LG电视广告（社区做法）"}
+          ]
+        }
+      ]
+    }
+  ],
+  "open_questions": [
+    "国行 LG 电视的广告形态与菜单路径是否与欧美一致，未找到国行机型的实拍确认；现有来源全部来自北美与欧洲市场。",
+    "webOS 22 / 23 / 24 / 25 各版本之间「附加设置 / 高级设置」这一层的确切命名，未逐版本核实，本文件按语义描述处理。",
+    "LG 在 2026 年通过 webOS 更新向全部机型自动安装 Copilot 的做法（有报道提及）之后，这个应用能不能在设置里禁用或卸载，未核实。"
+  ],
+  "last_reviewed": "2026-09-15"
+}

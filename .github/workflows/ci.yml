@@ -1,0 +1,20 @@
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install jsonschema
+      - name: 数据校验（schema / 来源 / 包名 / 禁停与垃圾不重叠）
+        run: python3 scripts/validate_data.py
+      - name: 派生物与数据一致（entry-by-brand.md / dist/）
+        run: python3 scripts/build_public.py --check
+      - name: 阶段机回放测试（假 adb 四种机型）
+        run: python3 tests/test_flow.py

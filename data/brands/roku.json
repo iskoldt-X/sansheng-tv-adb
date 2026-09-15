@@ -1,0 +1,67 @@
+{
+  "brand": "Roku TV（含 TCL / 海信 / 夏普 / 飞利浦 / RCA 等贴牌机型）",
+  "region": "global",
+  "aliases": ["Roku", "Roku OS", "Roku TV", "TCL Roku TV", "Hisense Roku TV", "Sharp Roku TV", "Philips Roku TV", "RCA Roku TV"],
+  "status": "不适用",
+  "summary": "Roku TV 用的是 Roku OS，不是 Android，没有 adb、没有 pm 命令，本项目的清理流程一条也用不上。🔴 最需要提醒的一点：TCL、海信、夏普、飞利浦这几个牌子同时卖 Android/Google TV 版和 Roku 版，中国大陆基本见不到 Roku 版、北美非常常见——所以品牌对得上不代表系统对得上，必须先看主屏和遥控。",
+  "identify_hints": {
+    "remote_has_digits": "Roku 遥控是本项目里最好认的：没有 0–9 数字键，正中间一个紫色的圆形方向盘（Roku 的商标性紫色 d-pad），下方一排四个彩色的流媒体快捷键（Netflix、Disney+ 等，具体几个随年份变）。看到紫色圆盘基本可以直接定性。",
+    "system_name_shown_at": "设置（Settings）→ 系统（System）→ 关于（About）——这是 Roku 官方给的查法。",
+    "about_page_fields": [
+      "Model —— 显示 Roku 的机型号",
+      "Roku OS 版本",
+      "Roku TV support —— 这一行写的是实际制造商（TCL / 海信 / 夏普 / 飞利浦…）的售后联系方式，是判断「谁造的这台机器」最直接的证据",
+      "序列号"
+    ],
+    "model_naming_rule": "Roku 自有品牌的电视和贴牌机型型号规则不统一，各家按自己的体系走（夏普的 LC-43LBU591C、飞利浦的 55PUL7875/F7 等）。判定是不是 Roku TV 不靠型号，靠主屏和遥控。",
+    "sticker_location": "各家贴牌机型的铭牌位置不同（背面、侧面接口区、底边），但 Roku 官方给的可靠办法是走 设置 → 系统 → 关于。",
+    "year_ranges": "Roku TV 自 2014 年起由多家厂商贴牌生产至今；Roku 自有品牌电视自 2023 年起加入。中国大陆市场没有 Roku TV 正式渠道。"
+  },
+  "not_applicable": {
+    "reason": "Roku OS 是 Roku 自研的封闭系统（基于 Linux，非 Android），没有开发者选项里的 USB 调试、没有 adb、没有 pm。Roku 确实有面向开发者的 Developer Settings（主屏连按 首页×3、上×2、右、左、右、左、右 进入，用于把自己写的频道侧载到电视上调试），但那是 Roku 自己的 BrightScript 频道开发通道，不提供任何操作系统预装应用的能力，与本项目要做的事没有关系。",
+    "alternative": "Roku 的可关项集中在 设置 → 隐私 一棵树下，做三件事：\n\n【1. ACR：关掉「Use Info from TV Inputs」】按遥控 Home 键 → 设置（Settings）→ 隐私（Privacy）→ 智能电视体验（Smart TV Experience）→ 取消勾选「使用来自电视输入源的信息（Use Info from TV Inputs）」。这是 Roku 的自动内容识别，开着时会对 HDMI、天线、USB 等所有信号源做音频指纹和画面识别。较新的 Roku OS 上这一项直接标成「Automatic Content Recognition (ACR)」，同页还有一个「Content Viewing Disclosure」也一并取消。\n\n【2. 广告 ID】设置 → 隐私 → 广告（Advertising）→ 勾上「限制广告跟踪（Limit Ad Tracking）」；较新版本这一项叫「个性化广告（Personalized ads）」，取消勾选即可。\n\n【3. 麦克风】设置 → 隐私 → 语音（Voice）→ 频道麦克风访问（Channel Microphone Access）→ 选「从不允许（Never Allow）」，阻止所有频道调用遥控或手机 App 上的麦克风。\n\n还有一个 隐私选择（Privacy Choices）页，可以选择不出售 / 不共享个人数据、限制敏感信息使用。\n\n三条边界必须讲清楚：\n① 关掉 ACR 会连带关掉「Enable Auto Notifications」，也就是 Roku 的「More Ways to Watch」（正在播的节目提示你从头看、或告诉你还有哪几集）会一起失效；\n② 关掉 ACR 只挡住「电视输入源」这一路，Roku 仍然会收集你在 Roku 上用了哪些频道 / 流媒体应用的数据；\n③ 已经采集走的历史数据删不掉。",
+    "sources": [
+      {"url": "https://support.roku.com/article/how-to-know-if-you-have-a-roku-tv", "title": "How to know if you have a Roku TV or a Roku branded TV（Roku 官方：设置 → 系统 → 关于，看 Model 与 Roku TV support）", "date": "2026-06-18"},
+      {"url": "https://www.consumerreports.org/electronics/privacy/how-to-turn-off-smart-tv-snooping-features-a4840102036", "title": "How to Turn Off Smart TV Snooping Features（Consumer Reports 在一台飞利浦 2025 款 Roku TV 上实测隐私页的五个入口；并指出关 ACR 会连带关掉 Enable Auto Notifications）"},
+      {"url": "https://www.zdnet.com/home-and-office/home-entertainment/how-to-stop-roku-fire-chromecast-tv-from-tracking-you", "title": "Is your Roku TV tracking you? Short answer: Yes, but there's a way to stop it（ZDNET：Limit Ad Tracking、麦克风 Never Allow、Smart TV Experience 三步）"},
+      {"url": "https://www.xda-developers.com/i-turned-off-this-hidden-roku-tv-setting-and-reclaimed-my-privacy", "title": "I turned off this hidden Roku TV setting and reclaimed my privacy（新版 Roku OS 上这两项叫 Automatic Content Recognition (ACR) 与 Content Viewing Disclosure；并说明已采集的历史删不掉）"},
+      {"url": "https://www.flatpanelshd.com/focus.php?subaction=showfull&id=1518081245", "title": "Guide: How to turn off Smart TV tracking (ACR)（FlatpanelsHD：同一套路径也适用于 Roku 流媒体棒，但棒子上无法完全关闭数据采集）"},
+      {"url": "https://www.kraftkennedy.com/why-you-should-turn-off-acr-on-smart-tvs-and-business-displays", "title": "Why You Should Turn Off ACR on Smart TVs and Business Displays（Settings > Privacy > Smart TV Experience / Advertising）"}
+    ]
+  },
+  "series": [
+    {
+      "name": "Roku OS（全部 Roku TV 贴牌机型与 Roku 自有品牌电视）",
+      "years": "2014至今",
+      "base_os": "roku",
+      "android_version_range": "不适用",
+      "models_examples": ["TCL Roku TV 各系列", "Hisense Roku TV 各系列", "Sharp LC-43LBU591C", "Sharp LC-65LBU591C", "Philips 55PUL7875/F7", "Philips 65PUL7985/F7"],
+      "identify_hints": "主屏是九宫格式的应用图标网格（每个频道一个方块磁贴），左侧一列是 Home / 设置等菜单；不是 Android TV 的横向卡片行，也不是 Google TV 的海报流。遥控紫色圆盘。机身正面通常是制造商的牌子（TCL / Hisense / SHARP / PHILIPS），右下角另有一个 Roku TV 小标；Roku 自有品牌的机器则是正面正中下方一个 Roku 标。",
+      "worth_it_hint": "不适用：不是安卓，本项目流程用不上。Roku OS 本身轻量、在低配硬件上也不太卡，主要困扰是首页广告位和 ACR，走上面的设置开关处理。",
+      "entries": [],
+      "pitfalls": [
+        {
+          "what": "🔴 同一个电视品牌下 Roku 版和 Android/Google TV 版并存，这是本项目最容易出错的地方：TCL 在北美同时卖 TCL Roku TV、TCL Google TV、TCL Fire TV 三种；海信、夏普、飞利浦也都有 Roku 版。所以「我家是 TCL / 海信」这句话不足以定系统。先按遥控（有没有紫色圆盘）和主屏（九宫格 vs 卡片行）判一次，再去 设置 → 系统 → 关于 核实。TCL 官方支持页就是按 Roku TV / Google TV / Fire TV 三套分别给查型号步骤的。",
+          "sources": [
+            {"url": "https://support.tcl.com/en_US/common-questions-TVs/model-number-on-your-tcl-tv", "title": "TCL — How to Find the Model Number on Your TCL TV（同一页按 Google TV / Fire TV / Roku TV 三套系统分别给路径）"},
+            {"url": "https://www.roku.com/products/finder/roku-tv/tcl", "title": "TCL Roku TV models – Roku 官方机型目录"},
+            {"url": "https://www.roku.com/products/finder/roku-tv/hisense", "title": "Hisense Roku TV models – Roku 官方机型目录"},
+            {"url": "https://www.roku.com/en-ca/products/finder/roku-tv/philips", "title": "Philips Roku TV models – Roku 官方机型目录"}
+          ]
+        },
+        {
+          "what": "Roku 有一个「secret menu」/ 服务菜单（遥控按键序列进入），网上有不少视频教怎么开。那是面板与出厂参数菜单，不提供任何清理预装应用的能力，反而有改花屏的风险。本项目不使用。",
+          "sources": [
+            {"url": "https://www.youtube.com/watch?v=LiWoeXQ6zmQ", "title": "How to Access The Secret Menu Of Your TCL Roku TV（收录仅为说明它存在且与本项目无关）"}
+          ]
+        }
+      ]
+    }
+  ],
+  "open_questions": [
+    "Roku OS 新旧版本里这两项的命名不一致（老版「Use Info from TV Inputs」/ 新版「Automatic Content Recognition (ACR)」+「Content Viewing Disclosure」；老版「Limit Ad Tracking」/ 新版「Personalized ads」），具体从哪个 Roku OS 大版本开始改名，未核实。",
+    "Roku 开发者模式（Developer Settings）的按键序列本文件按公开资料记述，未实机验证；它与本项目无关，不建议用户去开。",
+    "中国大陆没有 Roku TV 正式销售渠道，本文件对国行用户的意义主要是「排除」——确认自己不是这一类。海淘 / 水货 Roku TV 在国内的可用性未核实。"
+  ],
+  "last_reviewed": "2026-09-15"
+}

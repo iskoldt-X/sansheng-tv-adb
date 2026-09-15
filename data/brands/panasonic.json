@@ -1,0 +1,576 @@
+{
+  "brand": "松下 Panasonic",
+  "region": "global",
+  "aliases": ["Panasonic", "PANASONIC", "松下", "Viera", "VIERA"],
+  "status": "部分适用",
+  "summary": "松下同一年份的电视可能跑四套完全不同的系统，能不能做 ADB 全看你这台是哪一套：Android TV / Google TV 机型可以（欧洲从 2020 年 HX700 开始、亚太与印度更早更全），My Home Screen（Firefox OS 后代）机型完全不行，2023 年起的 Fire TV 机型要走亚马逊自己那套入口。中国大陆从未正式销售松下 Android 电视，所以本条只覆盖海外机型。",
+  "identify_hints": {
+    "remote_has_digits": "多数欧洲 / 亚太机型遥控器有 0–9 数字键（要看地面波频道）。Android TV 版遥控器是蓝牙的，带麦克风键；Fire TV 版遥控器上印 Alexa 麦克风键和一排 Prime Video / Netflix 快捷键。",
+    "system_name_shown_at": "松下官方给的判据是看首页 / 应用页长相，不是看设置：① 按遥控器 [Apps] 键，看到 [Apps Market] 图标 = My Home Screen（不适用）；② 首页左上或右上有「Google TV」logo = Google TV；③ 首页长得像 Google TV 但应用图标样式不同、带 Google 助理四色圆点图标 = Android TV；④ 首页正中央一条大横幅 banner（2023 年起）= Fire TV；⑤ 长得像 My Home Screen 但图标叫「App Store」= Essential Smart OS（低端入门机，不适用）。",
+    "about_page_fields": [
+      "Android TV OS 版本 / TV OS Build（Android TV / Google TV 机型）",
+      "型号 TX-xxXXXnnn（欧洲）/ THxxXXXnnn（亚太）",
+      "软件版本 / Software version",
+      "Fire OS 版本（Fire TV 机型）"
+    ],
+    "model_naming_rule": "欧洲型号 TX- + 尺寸(英寸) + 系列字母 + 数字 + 销售地字母，例 TX-55MZ800B = 55 英寸、MZ 系列、英国版。系列首字母就是年份：G=2019、H=2020、J=2021、L=2022、M=2023、无字母的 Z95A/W95A=2024、Z95B/W95B=2025。第二个字母是面板类型：Z=OLED、X/S=LCD。数字越大越高端（700 入门、800 中端、940/2000 旗舰）。🔴 同一个型号名在不同地区可能是不同系统：MX800 在欧洲是 Fire TV，在印度是 Google TV。",
+    "sticker_location": "机身背面或侧面接口附近的铭牌贴纸；型号和序列号是两个不同的号。",
+    "year_ranges": "2019 及更早（欧洲）= My Home Screen，本项目不适用；2020 起欧洲入门 LCD 开始出现 Android TV（HX700/HX710）；2023 年欧洲首次出现 Fire TV（MX800）；2024 年起欧洲主力线全面转 Fire TV，只剩个别型号（如沿用的 MZ800、Z80A 之外的少数）还是 Android TV；亚太 / 印度 2023 年起转 Google TV。"
+  },
+  "series": [
+    {
+      "name": "Android TV 机型（欧洲 2020–2023 的部分型号）",
+      "years": "2020–2023（欧洲），亚太 / 印度更早",
+      "base_os": "android",
+      "android_version_range": "Android TV 9 / 10 / 11（各机型出厂版本未逐一核实）",
+      "models_examples": [
+        "TX-43HX700 / HX710（2020，松下在欧洲的第一批 Android TV）",
+        "JX700 等 2021 年 LCD 线（同年 JX800 以上仍是 My Home Screen）",
+        "TX-50LX800（2022，唯一在英国上市的 Android TV LCD）",
+        "TX-55MZ800 / MZ700（2023 OLED，2024 年继续在售）"
+      ],
+      "identify_hints": "首页是 Android TV 样式：一行行应用 + 推荐内容，没有 Google TV 字样也没有右上角圆形账号头像，但能看到 Google 助理那个四色圆点图标（松下官方判据）。型号里第一个字母 H/J/L/M 对应 2020/2021/2022/2023。按 [Apps] 键如果出来的是「Apps Market」，那就不是这一类，是 My Home Screen。",
+      "worth_it_hint": "值得做，但收益中等。这批基本都是松下的入门到中端 LCD 和入门 OLED，硬件规格不高（HX700 在 r/AndroidTV 有用户吐槽卡到不行），Android TV 的首页推荐行和 Google 上报服务照样有。松下自己预装的东西比国产品牌少得多，清理出来的空间也相应少。",
+      "entries": [
+        {
+          "applies_to": "松下 Android TV / Google TV 机型通用",
+          "steps": [
+            "遥控器按 HOME → 进「设置」（齿轮图标）",
+            "「系统 → 关于」（部分机型是「设备偏好设置 → 关于」）",
+            "找到「TV OS Build」或「Android TV OS 版本 / 内部版本号」，确认键连按 7 次，提示「您现在是开发者」",
+            "返回 → 「系统」或「设备偏好设置」里出现「开发者选项」",
+            "进去打开「USB 调试」；有「网络调试 / ADB 调试」的话一起打开",
+            "装第三方 APK 另需：「设置 → 设备偏好设置 → 安全和限制 → 未知来源」，给你用的安装器（如 Downloader、文件管理器）单独打开",
+            "adb connect 电视IP:5555，电视上确认授权弹窗"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.youtube.com/watch?v=WozFDRQjxdc",
+              "title": "How to Enable Developer Options on Panasonic TV（首页 → Settings → System → About → 「TV OS Build」按 OK 七次）"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=zt2nvyhhQvI",
+              "title": "PANASONIC Android TV : How to Enable Developer Options"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=XGE9wr7y3cM",
+              "title": "PANASONIC Android TV : Install Apps From Unknown Sources"
+            },
+            {
+              "url": "https://www.xda-developers.com/how-to-sideload-apps-android-tv/",
+              "title": "How to sideload apps on Android TV: APK Install and ADB（Android TV 通用路径：Settings > Device Preferences > Security & Restrictions > Unknown sources；adb connect ip:5555）"
+            }
+          ],
+          "risk_notes": "松下没有公开的 ADB 官方文档，上面的入口只有第三方教程视频作为直接证据，其余是 Android TV 通用流程的推定。第一次连之前先确认电视上真的弹了授权框——没弹就说明这台不是 Android TV 系。",
+          "verified_by": ""
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "unknown",
+        "hide": "unknown",
+        "uninstall_user0": "unknown",
+        "notes": "没有找到任何一份针对松下机型的 pm disable-user / uninstall --user 0 实测记录。松下机型是标准 Android TV，理论上和其他 Android TV 一致，但本项目不在没有证据的情况下标 yes。先在目标机上拿一个明确无害的包（如 com.google.android.play.games）试 disable-user 并确认能 enable 回来，再做后面的。",
+        "evidence_level": "单源",
+        "sources": [
+          {
+            "url": "https://www.xda-developers.com/disable-system-app-bloatware-android/",
+            "title": "How to disable any pre-installed system app bloatware on Android without root（pm disable-user --user 0 的通用行为与可逆性）"
+          }
+        ]
+      },
+      "must_keep": [
+        {
+          "pkg": "com.google.android.apps.tv.launcherx",
+          "what": "Android TV / Google TV 桌面",
+          "why": "🔴 没装替代桌面就关掉 = 开机黑屏。要换桌面必须先把 FLauncher 之类装好并确认能打开。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://github.com/seun-novodev/android-tv-debloat-toolkit",
+              "title": "android-tv-debloat-toolkit（工具强制要求先装备用桌面再禁用默认桌面）"
+            },
+            {
+              "url": "https://tv.cobanov.dev",
+              "title": "Clean up your Android TV（必留清单：桌面包没装替代品就关 = 黑屏）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.google.android.tungsten.setupwraith",
+          "what": "Google TV 设置向导 / 桌面回退",
+          "why": "桌面出事时的兜底层。不换桌面就别动。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://enemyhideout.com/2025/09/hacking-your-android-tv/",
+              "title": "Hacking your Android TV（setupwraith 会自动把默认桌面重新启用）",
+              "date": "2025-09"
+            }
+          ]
+        },
+        {
+          "pkg": "com.android.location.fused",
+          "what": "Android 融合定位服务",
+          "why": "通用 Android TV 必留清单：关掉会进开机循环。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://tv.cobanov.dev",
+              "title": "Clean up your Android TV（必留清单）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.google.android.tv.remote.service",
+          "what": "Android TV 遥控服务（蓝牙遥控 / 手机遥控 App）",
+          "why": "松下 Android TV 的遥控器是蓝牙的。关掉遥控相关服务会直接失去遥控能力，而且失去之后没法再用遥控器把它开回来。通用清单把遥控类包整组列为必留。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://tv.cobanov.dev",
+              "title": "Clean up your Android TV（必留清单：遥控类服务整组）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.google.android.inputmethod.latin",
+          "what": "系统输入法（屏幕键盘）",
+          "why": "没有输入法就输不了 Wi-Fi 密码、搜不了片，恢复起来很麻烦。通用清单把包名里带 .inputmethod. 的整组列为必留。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://tv.cobanov.dev",
+              "title": "Clean up your Android TV（必留清单：.inputmethod. 整组）"
+            }
+          ]
+        }
+      ],
+      "junk": [
+        {
+          "pkg": "com.google.android.tvrecommendations",
+          "what": "Google TV 内容推荐服务",
+          "why": "首页推荐行的后端。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Android System Services 表：Google TV Recommendations；该包是 Android TV 通用包，不是索尼专属）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.google.android.tv.bugreportsender",
+          "what": "Google TV 错误报告上报",
+          "why": "把 bug report 发给 Google，同组 com.google.android.feedback。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Android Diagnostic Services 表）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.google.android.backdrop",
+          "what": "Google 相框 / 屏保服务",
+          "why": "不用屏保的话纯占后台。同组 com.android.dreams.basic。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Android System Services 表）"
+            }
+          ]
+        }
+      ],
+      "ask_user": [
+        {
+          "pkg": "com.google.android.katniss",
+          "what": "Google 语音搜索 / 助理",
+          "why": "关了遥控器麦克风键失效。注意松下已经在 2025 年通知欧洲和东南亚机型终止内置 Google 助理服务，这个包可能本来就已经半废。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Android System Services 表：Google Search (Katniss)）"
+            },
+            {
+              "url": "https://av.jpn.support.panasonic.com/support/global/cs/tv/",
+              "title": "Panasonic Global TV Support（2025-01-21「Notice of termination of Google Assistant built-in on TV (Europe)」、2025-01-15 东南亚同类公告）",
+              "date": "2025-01-21"
+            }
+          ]
+        },
+        {
+          "pkg": "com.google.android.apps.mediashell",
+          "what": "Chromecast 投屏接收端",
+          "why": "松下 Android TV 的一大卖点就是内置 Chromecast，手机投屏靠它。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.flatpanelshd.com/news.php?subaction=showfull&id=1599734838",
+              "title": "Panasonic unveils its first Android TVs for Europe（HX700/HX710 内置 Chromecast、Google 助理）",
+              "date": "2020-09-10"
+            },
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Disable apps 一节）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.android.vending",
+          "what": "Google Play 商店（关联 com.google.android.gms）",
+          "why": "关了装不了新应用、不自动更新，流媒体应用登录也可能出问题。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Disable apps 一节）"
+            }
+          ]
+        }
+      ],
+      "pitfalls": [
+        {
+          "what": "🔴 松下同年份的机型系统不统一，别按年份推断。2021 年 JX700 是 Android TV 而同年 JX800 以上是 My Home Screen；2022 年英国只有 LX800 一款是 Android TV；2023 年 MZ800/MZ700 是 Android TV 而同年 MX800 在欧洲已经是 Fire TV；2024 年 Z80A 是 Fire TV 而沿售的 MZ800 还是 Android TV。动手前必须按松下官方那套「看首页长相」的办法确认，不要按买的年份猜。",
+          "sources": [
+            {
+              "url": "https://support-uk.panasonic.eu/app/answers/detail/a_id/8966/",
+              "title": "How to identify the Operating System of a Panasonic TV（i.e. MyHomeScreen, AndroidTV, GoogleTV, FireOS）（松下英国官方）"
+            },
+            {
+              "url": "https://www.expertreviews.co.uk/tvs-entertainment/tvs/1404705/panasonic-tv-model-numbers",
+              "title": "Panasonic TV model numbers 2022（LX800 是唯一换成 Android TV 的英国 LCD）",
+              "date": "2022-11-30"
+            },
+            {
+              "url": "https://www.smarthomesounds.co.uk/blog/faqs/panasonic-2024-tv-lineup-everything-you-need-to-know",
+              "title": "Panasonic 2024 TV Lineup（MZ800 是 Android TV，Z80A 换成了 Fire TV）"
+            }
+          ]
+        },
+        {
+          "what": "🔴 同名型号跨区不同系统：MX800 在欧洲是松下第一款 Fire TV，在印度是 Google TV。查教程时一定要确认作者那台的销售地区，不然入口和包名全对不上。",
+          "sources": [
+            {
+              "url": "https://developer.amazon.com/docs/fire-tv/fire-os-overview.html",
+              "title": "Fire OS Overview（Panasonic 4K MX800 series with Fire TV (2023)，Fire OS 7 / Android 9）"
+            },
+            {
+              "url": "https://flatpanelshd.com/news.php?id=1683712159&subaction=showfull",
+              "title": "Panasonic starts transitioning from Android TV to Google TV this year（印度线 MX850/MX800/MX750/MX700 是 Google TV）",
+              "date": "2023-05"
+            }
+          ]
+        },
+        {
+          "what": "松下自有包名（com.panasonic.* 之类）没有任何公开的 debloat 清单，本条目里的 junk / must_keep 全部是 Android TV / Google 通用包。真要做的话，第一步是在自己那台上跑 adb shell pm list packages | grep -i panasonic 把实际包名列出来，逐个确认再动，不要照抄别的品牌的清单。",
+          "sources": [
+            {
+              "url": "https://tv.cobanov.dev",
+              "title": "Clean up your Android TV（原则：品牌不同时要先找出这张清单在你那台上的对应包，拿不准就别关）"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Google TV 机型（印度 / 亚太，2023 起）",
+      "years": "2023 至今",
+      "base_os": "android",
+      "android_version_range": "Google TV，Android 11 及以后（具体版本未核实）",
+      "models_examples": ["MX850、MX800、MX750、MX700（印度线，2023）"],
+      "identify_hints": "首页左上或右上有「Google TV」logo，右上角是圆形 Google 账号头像（松下官方判据）。型号是 TH- 前缀的亚太 / 印度型号。⚠️ 同名的 MX800 在欧洲是 Fire TV，看首页才算数。",
+      "worth_it_hint": "和上一条 Android TV 机型同一个量级。Google TV 界面的推荐行和广告位比老 Android TV 更重，做完首页会干净不少；但这批机器年份新、内存不紧张，提速收益有限。",
+      "entries": [
+        {
+          "applies_to": "松下 Google TV 机型",
+          "steps": [
+            "HOME → 右上角齿轮进「设置」→「系统」→「关于」",
+            "找到「Android TV OS 版本 / TV OS Build」，确认键连按 7 次",
+            "返回 →「系统」里出现「开发者选项」",
+            "打开「USB 调试」，以及「网络调试」（若系统只有「无线调试 / Wireless debugging」，走配对码流程：adb pair 电视IP:配对端口 + 六位配对码，再 adb connect 电视IP:调试端口）",
+            "装 APK 另需「设置 → 应用 → 安全和限制 / 特殊应用权限 → 安装未知应用」给安装器授权",
+            "adb connect 电视IP:5555（或上一步拿到的调试端口）"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": null,
+          "port": 5555,
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.youtube.com/watch?v=WozFDRQjxdc",
+              "title": "How to Enable Developer Options on Panasonic TV（Settings → System → About → TV OS Build 按 OK 七次）"
+            },
+            {
+              "url": "https://www.androidpolice.com/how-to-sideload-any-application-on-android-tv/",
+              "title": "How to sideload any application on Android TV（Google TV 的未知来源在 Apps → Security & Restrictions 下）"
+            },
+            {
+              "url": "https://gadgetguideonline.com/android/android-adb-wireless-debugging",
+              "title": "A Complete Guide to Android ADB Wireless Debugging（Android 11+ 的配对端口 / 调试端口区别）"
+            }
+          ],
+          "risk_notes": "这批机型是不是已经变成「只有无线调试、没有 5555」，没有针对松下的实测记录。先试 5555，连不上再去开发者选项里找无线调试。",
+          "verified_by": ""
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "unknown",
+        "hide": "unknown",
+        "uninstall_user0": "unknown",
+        "notes": "同上：没有松下机型的实测记录，不猜。",
+        "evidence_level": "单源",
+        "sources": [
+          {
+            "url": "https://www.xda-developers.com/disable-system-app-bloatware-android/",
+            "title": "How to disable any pre-installed system app bloatware on Android without root"
+          }
+        ]
+      },
+      "must_keep": [
+        {
+          "pkg": "com.google.android.apps.tv.launcherx",
+          "what": "Google TV 桌面",
+          "why": "🔴 没装替代桌面就关 = 黑屏。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://github.com/seun-novodev/android-tv-debloat-toolkit",
+              "title": "android-tv-debloat-toolkit（先装备用桌面）"
+            },
+            {
+              "url": "https://enemyhideout.com/2025/09/hacking-your-android-tv/",
+              "title": "Hacking your Android TV（禁用默认桌面还会破坏 YouTube 登录）",
+              "date": "2025-09"
+            }
+          ]
+        },
+        {
+          "pkg": "com.android.location.fused",
+          "what": "Android 融合定位服务",
+          "why": "关掉会进开机循环。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://tv.cobanov.dev",
+              "title": "Clean up your Android TV（必留清单）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.google.android.tv.remote.service",
+          "what": "遥控服务",
+          "why": "关了遥控器失灵，且失灵后无法用遥控器恢复。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://tv.cobanov.dev",
+              "title": "Clean up your Android TV（必留清单：遥控类整组）"
+            }
+          ]
+        }
+      ],
+      "junk": [
+        {
+          "pkg": "com.google.android.tvrecommendations",
+          "what": "Google TV 内容推荐服务",
+          "why": "首页推荐行后端。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Android System Services 表；该包为 Android TV 通用包）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.google.android.tv.bugreportsender",
+          "what": "Google TV 错误报告上报（含 com.google.android.feedback）",
+          "why": "常驻上报。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Android Diagnostic Services 表）"
+            }
+          ]
+        }
+      ],
+      "ask_user": [
+        {
+          "pkg": "com.google.android.katniss",
+          "what": "Google 语音搜索 / 助理",
+          "why": "关了遥控器麦克风键失效。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Android System Services 表）"
+            }
+          ]
+        },
+        {
+          "pkg": "com.google.android.apps.mediashell",
+          "what": "Chromecast 投屏接收端",
+          "why": "手机投屏要用。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/therealhoodboy/skinny-bravia",
+              "title": "skinny-bravia（Disable apps 一节）"
+            }
+          ]
+        }
+      ],
+      "pitfalls": [
+        {
+          "what": "Google TV 机型先试不用 ADB 的官方办法：「设置 → 帐号与登录 → 选中帐号 → 仅应用模式（Apps only mode）」开启后首页只剩应用图标，推荐行消失。代价是没有个性化结果和语音助手。这是 Google TV 独有的，Android TV 机型没有这个开关。",
+          "sources": [
+            {
+              "url": "https://www.sony.com/electronics/support/articles/00225587",
+              "title": "Manage or hide ads and personalized content recommendations on the Home menu of your TV（索尼官方文档，但说明的是 Google TV 平台行为，对同平台的松下 Google TV 机型同样适用）"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "My Home Screen 机型（Firefox OS 后代，欧洲主力线 2015–2023）",
+      "years": "2015–2023（欧洲 / 日本主力线），部分入门机更晚",
+      "base_os": "other",
+      "android_version_range": "不适用，不是 Android 系统",
+      "models_examples": [
+        "GZ950 / GZ960 / GX800 / GX940（2019）",
+        "HZ980 / HZ1500 / HZ2000 / HX800 / HX900（2020）",
+        "JZ980 / JZ1000 / JZ2000 / JX800 / JX940（2021）",
+        "LZ980 / LZ1500 / LZ2000 / LZW2004 / LX940（2022）",
+        "MZ1500 / MZ2000 / MX940（2023）"
+      ],
+      "identify_hints": "按遥控器上的 [Apps] 键，应用页里有一个「Apps Market」图标——松下官方说这是 My Home Screen 各版本一直没变的识别标志。首页是一排大圆圈或大方块磁贴（分别代表直播电视、应用、设备输入、书签），底部可能标着 My Home Screen 3.0 / 5.0 / 7.0 之类的版本号。遥控器上没有 Google 助理键。",
+      "worth_it_hint": "不适用，也不太需要。My Home Screen 是 Firefox OS 的分支，没有 Android 层，没有开发者选项，没有 ADB，装不了第三方应用。反过来说它也没有 Android TV / Google TV 那种整页推荐行和首页广告，本来就比较干净——这套系统在评测里长期被认为是「难得不烦人」的电视系统。真要清爽点，直接在首页菜单里把用不到的磁贴 / 应用删掉重排就行，那是 My Home Screen 设计上就允许的。",
+      "entries": [],
+      "pitfalls": [
+        {
+          "what": "不适用原因：My Home Screen 不是 Android 系统，没有 Android 调试桥这一层，所以既没有开发者选项也没有 ADB 端口，本项目的任何清理动作都做不了。替代做法：① 首页按遥控器菜单键可以自由增删、重排磁贴和应用，把不看的直接拿掉；② 「主菜单 → 设置」里可以关掉各种横幅提示（如 Dolby 通知、频道信息 banner 的显示时长）；③ 日志 / 使用数据采集相关的选项在「设置 → 隐私 / 使用条款」一节，逐条看一遍关掉。没有找到松下针对 My Home Screen 的官方「关闭推荐」说明文档，因为这套系统本来就没有算法推荐位。",
+          "sources": [
+            {
+              "url": "https://support-uk.panasonic.eu/app/answers/detail/a_id/8966/",
+              "title": "How to identify the Operating System of a Panasonic TV（松下英国官方：MyHomeScreen 用 [Apps] 页里的 Apps Market 图标识别）"
+            },
+            {
+              "url": "https://en.wikipedia.org/wiki/List_of_smart_TV_platforms",
+              "title": "List of smart TV platforms（Panasonic：Firefox OS for TV / My Home Screen 是 Mozilla Firefox OS 的松下分支）"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=wu0JlOU4qTI",
+              "title": "Panasonic My Home Screen 5.0 hands-on（演示首页磁贴自定义、输入源改名、banner 显示时长与 Dolby 通知开关的位置）"
+            }
+          ]
+        },
+        {
+          "what": "2024 年起松下把 My Home Screen 整个弃用，欧洲主力线换成 Amazon Fire TV。所以「我的松下是 My Home Screen」这个结论只对 2023 年及更早买的机器成立，不能拿去套新机。",
+          "sources": [
+            {
+              "url": "https://www.flatpanelshd.com/news.php?subaction=showfull&id=1704739501",
+              "title": "Panasonic abandons its own OS in favor of Fire TV in OLED（FlatpanelsHD）",
+              "date": "2024-01-08"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Fire TV 机型（2023 起欧洲，2024 起北美 / 全球主力线）",
+      "years": "2023 至今",
+      "base_os": "fireos",
+      "android_version_range": "Fire OS 7（Android 9 内核）/ Fire OS 8（Android 11 内核）",
+      "models_examples": [
+        "MX800 系列（2023，松下第一款 Fire TV，Fire OS 7 / Android 9，设备代号 AFTBOXE1）",
+        "Z95A / Z93A / Z90A（2024 OLED，Fire OS 8 / Android 11，代号 AFTTOR001）",
+        "Z85A、W95A / W90A / W80A（2024，代号 AFTWYM01）",
+        "Z95B / Z90B、W95B / W90B / W80B（2025）"
+      ],
+      "identify_hints": "首页正中央一条大横幅 banner、顶部是 Fire TV 的标签栏（松下官方判据），遥控器上印 Alexa 麦克风键和 Prime Video 快捷键。2024 年起这是松下的主力系统，也是松下时隔十年重返美国市场用的系统。",
+      "worth_it_hint": "值得做，而且理由很直接：Fire TV 的首页横幅就是广告位，亚马逊把广告当成常态收入。Fire OS 底层是 Android，ADB 走亚马逊自己那套入口，官方文档公开。硬件是 2024/2025 的新机，提速收益不大，主要图去广告和少上报。",
+      "entries": [
+        {
+          "applies_to": "Fire OS 7 / 8 机型（亚马逊官方通用流程，松下机型未见专门实测）",
+          "steps": [
+            "「设置 → My Fire TV（我的电视）→ 关于」，高亮设备名称，确认键连按 7 次，提示已进入开发者模式",
+            "返回「My Fire TV → 开发者选项」，打开「ADB 调试」和「来自未知来源的应用」",
+            "在「设置 → My Fire TV → 关于 → 网络」里看电视 IP（注意不是「设置 → 网络」那一页，亚马逊官方专门提醒过这两页不一样）",
+            "电脑上 adb connect 电视IP:5555（端口可在 5555–5585 范围内）",
+            "第一次连接电视上会弹「是否允许 USB 调试？」，勾「一律允许来自这台计算机」再确定"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "官方",
+          "sources": [
+            {
+              "url": "https://developer.amazon.com/docs/fire-tv/connecting-adb-to-device.html",
+              "title": "Connect to Fire TV Through ADB（Amazon 官方开发者文档）"
+            },
+            {
+              "url": "https://developer.amazon.com/docs/fire-tv/fire-os-overview.html",
+              "title": "Fire OS Overview（Amazon 官方：松下各 Fire TV 机型的设备代号与 Fire OS / Android 版本对照表）"
+            }
+          ],
+          "risk_notes": "亚马逊官方流程，但松下品牌的 Fire TV 机型上没有找到实测确认。Fire OS 的包名体系（com.amazon.*）和 Android TV 完全不同，本条目里其它系列的包名清单一条都不能套用。",
+          "verified_by": ""
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "unknown",
+        "hide": "unknown",
+        "uninstall_user0": "unknown",
+        "notes": "没有找到松下 Fire TV 机型的 pm 实测。Fire OS 上亚马逊的核心服务包与 Android TV 差异很大，需要单独调研一轮 Fire OS 的 debloat 清单，本轮不覆盖。",
+        "evidence_level": "单源",
+        "sources": [
+          {
+            "url": "https://developer.amazon.com/docs/fire-tv/fire-os-overview.html",
+            "title": "Fire OS Overview（Fire OS 7 = Android 9、Fire OS 8 = Android 11）"
+          }
+        ]
+      },
+      "pitfalls": [
+        {
+          "what": "🔴 Fire OS 的包名和 Android TV 完全是两套。本文件其它系列列的 com.google.android.* / com.sony.dtv.* 一条都不能拿到 Fire TV 机型上用。松下 Fire TV 的 must_keep / junk 清单本轮没做，需要另立一条 Fire TV 平台级调研（覆盖亚马逊、松下、JVC、Toshiba 等所有 Fire TV 电视）。",
+          "sources": [
+            {
+              "url": "https://developer.amazon.com/docs/device-specs/identify-fire-tv-devices.html",
+              "title": "Identify Fire TV Devices（Amazon 官方设备清单）"
+            }
+          ]
+        },
+        {
+          "what": "亚马逊 2025 年起在部分新设备上换用了自研的 Vega OS（不是 Android 派生，如 Fire TV Stick 4K Select）。目前松下机型全部还在 Fire OS 8 上，但如果以后出现 Vega OS 的松下机型，ADB 这条路会直接断掉。",
+          "sources": [
+            {
+              "url": "https://developer.amazon.com/docs/device-specs/identify-fire-tv-devices.html",
+              "title": "Identify Fire TV Devices（Fire TV Stick 4K Select (2025) 标注 Vega OS version: OS 1.1）"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "open_questions": [
+    "松下自有预装包名（com.panasonic.* 之类）一条都没找到有来源的清单。哪个包是信号源 / 调谐器、哪个是遥控、哪个是松下自己的推荐位，全部空白——这是本条目最大的缺口，必须在真机上 pm list packages 才能补。",
+    "松下 Android TV 机型的 ADB 入口只有第三方 YouTube 教程作为直接证据，松下官方从未发过开发者选项 / ADB 的支持文档。「TV OS Build」这个字段名是否在所有机型上一致，未核实。",
+    "松下 Android TV 各机型出厂 Android 版本和后续升级到哪个版本，没有逐一核实。松下全球支持页按「年份 + 地区」发布固件下载信息，要逐个型号页去翻才能确认。",
+    "松下 Android TV 机型上 pm disable-user 是否可用、有没有被厂商限制，零实测记录。",
+    "2021 年 JX 系列里到底哪些型号是 Android TV、哪些是 My Home Screen，只查到「JX700 是 Android、JX800 及以上是 My Home Screen」这个方向性结论，没有逐型号清单。",
+    "松下在中国大陆销售的电视用的是什么系统（是否有国行 Android 机型），本轮未查。本条目按 region=global 处理。",
+    "松下 Fire TV 机型（2024 起的主力线）的 must_keep / junk 包名清单完全空白，需要一条独立的 Fire OS 平台级调研。",
+    "松下 2025 年终止了欧洲和东南亚机型的内置 Google 助理服务，这对已上市 Android TV 机型的 com.google.android.katniss 等包造成了什么实际影响（是被 OTA 移除还是留着变成死包），未核实。",
+    "社区有 root / 解锁相关讨论，本项目不采用，也未检索其内容。"
+  ],
+  "last_reviewed": "2026-09-15"
+}

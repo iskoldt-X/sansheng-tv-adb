@@ -1,0 +1,1978 @@
+{
+  "brand": "TCL / 雷鸟 / FFALCON",
+  "region": "both",
+  "aliases": [
+    "TCL",
+    "雷鸟",
+    "雷鸟科技",
+    "FFALCON",
+    "falcon（海外部分资料写作小写）",
+    "TCL 智屏",
+    "灵控桌面",
+    "灵控系统"
+  ],
+  "status": "部分适用",
+  "summary": "国行 TCL / 雷鸟（Android 内核，瀑布式桌面或灵控系统）都能开 ADB，入口是品牌专属的「关于本机 → 本机信息 → 上下左右」，冻结/卸载预装都已被国行用户实测跑通；海外 Android TV / Google TV 机型走标准「连点 Build 七次」；但海外的 TCL Roku TV 是 Roku OS、不是安卓，没有 ADB 也没有 pm，只能在设置里限制广告跟踪。",
+  "identify_hints": {
+    "remote_has_digits": "分型号：国行雷鸟与 TCL 现售机型的遥控器多为无数字键的简约款（只有方向键/OK/返回/主页/信源）；老款 TCL 与部分海外机型带完整 0-9 数字键——只有带数字键的机型才能走「对比度 → 1950」工厂菜单路径",
+    "system_name_shown_at": "国行：设置 → 系统 → 关于本机 → 本机信息；海外 Android TV / Google TV：Settings → System → About（看 Android TV OS build）；Roku TV：设置 → 系统 → 关于（显示 Roku OS 版本，没有 Android 字样）",
+    "about_page_fields": [
+      "型号（国行如 65R675C、55S515D、85Q10K；海外如 65R646、55P635）",
+      "机芯号 / 固件版本（国行形如 V8-A963T01-LF1V167、V8-T652T03，机芯号能直接定位平台）",
+      "系统版本 / 灵控桌面版本（国行灵控机型）",
+      "Android TV OS build（海外 Android TV / Google TV）",
+      "Roku OS 版本（Roku TV，且整页没有任何 Android 字样）"
+    ],
+    "model_naming_rule": "TCL 国行 = 尺寸 + 系列前缀（X / C / Q / T / V，由高到低大致 X > Q > C > T > V）+ 数字 + 代际后缀字母，例 85Q10K = 85 英寸、Q 系列、K 代（2024）。雷鸟国行按鸟名分档，由高到低 凤 > 鹤 > 鹏 > 雀（另有青鸟入门线）：凤/鹤走 R 字头（R645C、R675C 鹤7 Pro、R685C 鹤7 24 款），鹏/雀走 S 字头（S575C 鹏7 Pro、S315C、S515D），末位字母 C/D 表代际。海外北美按 3/4/5/6-Series 命名，Roku 机型型号常见 R615 / S425 / S435，Google TV 机型常见 R646 / S546；欧洲用 P / C / X 系（P635、P725、C645、C725、C825、X925、C935）。",
+    "sticker_location": "机身背面铭牌或包装箱标签上的「型号 / MODEL」栏；国行也可直接在 设置 → 关于本机 页读到型号与机芯号",
+    "year_ranges": "国行：瀑布式桌面约 2019–2023 为主力，灵控桌面 2022 年推出、2023 年大面积推送，灵控系统 3.0 于 2024-12 随伏羲 AI 大模型发布，灵控桌面 3.5 传为 2026 Q1（存疑）。海外：Roku TV 2014 年起持续在售至今，Android TV 约 2019–2021 款，Google TV 自 2021 款 5/6-Series 起。"
+  },
+  "series": [
+    {
+      "name": "国行 · 瀑布式桌面（TCL 智屏 UI / 雷鸟旧系统）",
+      "years": "约 2019–2023 为出厂主力，老机型至今仍在用",
+      "base_os": "android",
+      "android_version_range": "未逐型确认；社区教程涉及的机型多为 Android 7 / 9 一代",
+      "models_examples": [
+        "雷鸟 65S315C",
+        "雷鸟 S515C / S515C Pro",
+        "雷鸟 S535C / S535D",
+        "雷鸟 R645C（凤 2022 款）",
+        "TCL P / V / T 系同期国行机型"
+      ],
+      "identify_hints": "开机有几秒广告倒计时（可跳过或不可跳过）；首页是上下滚动的「瀑布式」信息流大图推荐，没有可自由拖动的卡片；设置里能找到「关于本机 → 本机信息」，页面上有机型、机芯号、MAC；系统里没有「灵控桌面」这个词。",
+      "worth_it_hint": "最值得做的一档：这代机型内存普遍 2GB/3GB，开机广告 + 首页信息流 + 预装教育/新闻/购物一起吃内存，机龄多在 3 年以上，冻结完提速最明显。",
+      "entries": [
+        {
+          "applies_to": "国行 TCL / 雷鸟通用（这一代所有机型，遥控器不需要数字键）",
+          "steps": [
+            "设置 → 系统 → 关于本机 → 本机信息（部分固件写作「设置 → 关于 → 本机信息」）",
+            "停在这个信息页上，用遥控器依次按 上、下、左、右 各一次（是按顺序点四个方向键，不是连点某一个键）",
+            "页面下方会多出隐藏项；部分固件需要先把「商场模式」打开，ADB 开关才会出现在它下面",
+            "把「ADB」开关置为开启",
+            "电脑与电视连同一局域网，执行 adb connect <电视IP>:5555，电视上会弹授权框，选「允许/一律允许当前电脑调试」"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1188736-1-1.html",
+              "title": "雷鸟电视删除系统自带软件、去开机广告、禁止自动更新（ZNDS）",
+              "date": "2021-01-19"
+            },
+            {
+              "url": "https://zhuanlan.zhihu.com/p/535301521",
+              "title": "TCL/雷鸟电视删除系统内置广告及应用方法，无需 root",
+              "date": "2022-07-14"
+            },
+            {
+              "url": "https://www.ggdoc.cn/archives/473",
+              "title": "卸载电视预装 APP（以雷鸟电视为例）",
+              "date": "2023-03-15"
+            },
+            {
+              "url": "https://www.znds.com/tv-1248438-1-1.html",
+              "title": "雷鸟电视如何打开 adb？雷鸟电视开 adb 解除三方软件安装限制",
+              "date": "unknown"
+            },
+            {
+              "url": "https://youthlin.com/20261889.html",
+              "title": "TCL/雷鸟电视安装当贝桌面等第三方软件（含「先开商场模式再开 ADB」）",
+              "date": "2026-02-08"
+            }
+          ],
+          "risk_notes": "这是 TCL / 雷鸟 专属路径，和其他品牌「连点版本号 7 次」不是一回事，别互相套用。若页面上同时出现「商场模式」，只把它打开用来露出 ADB 开关，装完建议关回去——商场模式会改变待机、亮度与演示行为。"
+        },
+        {
+          "applies_to": "老款 TCL / 部分海外同源机型，遥控器带 0-9 数字键（工厂菜单路径，仅在上面那条走不通时才用）",
+          "steps": [
+            "按遥控器【信源】键，在弹窗里选择【模拟接收】，按 OK",
+            "菜单键 → 设置 → OK",
+            "显示 → 焦点右移到「专业设定」→ OK",
+            "光标移到「对比度」这一项",
+            "光标停在对比度上时，立刻依次按数字键 1、9、5、0，弹出隐藏的工厂菜单（Factory menu）",
+            "焦点移到「Other」一栏 → OK",
+            "找到「ADB」，按左右方向键切换为开启，然后原路退出"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://blog.csdn.net/weixin_42036647/article/details/105942579",
+              "title": "TCL 电视禁止第三方安装软件？如何远程给安卓智能电视装应用",
+              "date": "2020-05-06"
+            },
+            {
+              "url": "https://www.znds.com/tv-1251785-1-1.html",
+              "title": "【超全】2024 各品牌电视打开 ADB 调试方法汇总（TCL 章节 1.2）",
+              "date": "2024-08-15"
+            },
+            {
+              "url": "https://post.smzdm.com/p/a4qlqmzl",
+              "title": "智能电视隐藏设置：ADB 开关这样开，告别卡顿与广告（并列列出 TCL 三条路径）",
+              "date": "2026-03-12"
+            }
+          ],
+          "risk_notes": "只改「Other」里的 ADB 这一项，改完原路退出，别动同页的画质、白平衡、屏参、面板类型等参数——这是面板服务菜单，改错会让画面偏色甚至花屏，且恢复出厂不一定能改回来。同系列密码（1950 / 9735 / 6428 / 9705 / 6405 / 6425）不是 ADB 专用，不要挨个试。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "yes",
+        "hide": "yes",
+        "uninstall_user0": "yes",
+        "notes": "三条都有国行实测：`pm uninstall --user 0 <包名>` 对雷鸟教育/开机广告/头条新闻返回 Success；`pm hide <包名>` / `pm unhide <包名>` 被同一篇用于冻结更新组件；`pm disable-user <包名>` 被 2026 年的国行教程用于临时禁用安装器。社区共识仍是「能冻结就别删除」——uninstall --user 0 不可逆，只能靠 `pm install-existing <包名>` 碰运气找回，部分固件升级后该命令失效。",
+        "evidence_level": "多源",
+        "sources": [
+          {
+            "url": "https://www.znds.com/tv-1188736-1-1.html",
+            "title": "雷鸟电视删除系统自带软件、去开机广告、禁止自动更新（附 Success 回显与 pm hide/unhide）",
+            "date": "2021-01-19"
+          },
+          {
+            "url": "https://www.znds.com/tv-1195366-1-1.html",
+            "title": "雷鸟 65S315C 怎么删除预装软件（网友实测 uninstall --user 0 与 pm hide）",
+            "date": "2021-04-27"
+          },
+          {
+            "url": "https://youthlin.com/20261889.html",
+            "title": "TCL/雷鸟电视安装当贝桌面等第三方软件（pm disable-user 实操）",
+            "date": "2026-02-08"
+          },
+          {
+            "url": "https://post.smzdm.com/p/anvqdmn7",
+            "title": "TCL 电视到手先去广告装 App？三条路线加一个雷区讲清楚",
+            "date": "2026-08-08"
+          }
+        ]
+      },
+      "must_keep": [
+        {
+          "pkg": "com.android.packageinstaller",
+          "what": "系统安装器",
+          "why": "有教程为了绕过 INSTALL_FAILED_VERIFICATION_FAILURE，先 `pm disable-user com.android.packageinstaller` 再 adb install；作者原文强调「最后一定要记得 enable 回来，不然电视重启时就开不了机了」。这是国行机型上的第一号自伤点。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://youthlin.com/20261889.html",
+              "title": "TCL/雷鸟电视安装当贝桌面等第三方软件",
+              "date": "2026-02-08"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.suspension",
+          "what": "信号源 / 输入（Inputs）菜单服务",
+          "why": "名字像垃圾组件，实为遥控器「信号源/输入」键背后的服务，禁用后切不了 HDMI。🔴 这条的证据全部来自海外 Android TV 机型（Mert Cobanov 案例），国行灵控/瀑布式系统上是否存在同名包、行为是否一致，未见任何国行实测记录——列在这里是「先别碰」，不是「已确认国行同样致命」。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://tv.cobanov.dev",
+              "title": "Android TV'ni temizle（TCL debloat 指南，土耳其语原文）",
+              "date": "2026-09"
+            },
+            {
+              "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/developer-uses-claude-code-to-debloat-android-smart-tv-for-unbelievable-performance-upgrade-tv-now-smoother-than-it-was-new-as-autonomous-agent-deactivates-apps-shortens-animations-all-without-root-access",
+              "title": "Developer uses Claude Code to debloat Android smart TV",
+              "date": "2026-09-02"
+            }
+          ]
+        }
+      ],
+      "junk": [
+        {
+          "pkg": "com.tcl.bootadservice",
+          "what": "开机广告服务",
+          "why": "国行雷鸟实测 `pm uninstall --user 0 com.tcl.bootadservice` 回显 Success，开机广告消失；海外 debloat 脚本对同一包名的注释也是「Ads within TCL apps」。国内外双向印证的唯一一条广告包。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1188736-1-1.html",
+              "title": "雷鸟电视删除系统自带软件、去开机广告、禁止自动更新",
+              "date": "2021-01-19"
+            },
+            {
+              "url": "https://gist.github.com/0x4f53/27bee9a0069f7bd6a2aa9eb60bb10d1e",
+              "title": "TCL TV debloater.sh",
+              "date": "2024-07-21"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.article.news",
+          "what": "头条新闻（首页资讯推荐位）",
+          "why": "国行雷鸟实测卸载 Success，不影响其他功能。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1188736-1-1.html",
+              "title": "雷鸟电视删除系统自带软件、去开机广告、禁止自动更新",
+              "date": "2021-01-19"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.ffeducation",
+          "what": "雷鸟教育（预装教育应用）",
+          "why": "国行雷鸟实测卸载 Success。家里真在用网课的先问人再动。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1188736-1-1.html",
+              "title": "雷鸟电视删除系统自带软件、去开机广告、禁止自动更新",
+              "date": "2021-01-19"
+            }
+          ]
+        }
+      ],
+      "ask_user": [
+        {
+          "pkg": "com.tcl.versionUpdateApp",
+          "what": "系统大版本更新",
+          "why": "国行实测可 `pm hide` 冻结、`pm unhide` 解冻。冻结能挡住「更新后广告又回来了」，代价是不再收安全与功能更新，属于要用户拍板的取舍。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1188736-1-1.html",
+              "title": "雷鸟电视删除系统自带软件、去开机广告、禁止自动更新",
+              "date": "2021-01-19"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.update",
+          "what": "应用自动更新",
+          "why": "同上，国行实测 pm hide / unhide 可逆。冻结后预装应用不再自动升级。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1188736-1-1.html",
+              "title": "雷鸟电视删除系统自带软件、去开机广告、禁止自动更新",
+              "date": "2021-01-19"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.MultiScreenInteraction_TV",
+          "what": "多屏互动 / 手机投屏",
+          "why": "国行雷鸟实测可 `pm uninstall --user 0` 卸掉。但家里常用手机投屏的话，卸了就投不了——必须先问用户。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1195366-1-1.html",
+              "title": "雷鸟 65S315C 怎么删除预装软件",
+              "date": "2021-04-27"
+            }
+          ]
+        }
+      ],
+      "pitfalls": [
+        {
+          "what": "国行 adb install 第三方 apk 报 Failure [INSTALL_FAILED_VERIFICATION_FAILURE]：多为系统安装校验拦截。两条路——① `adb shell settings put global verifier_verify_adb_installs 0` 与 `adb shell settings put global package_verifier_enable 0`；② 临时 `pm disable-user com.android.packageinstaller`，装完立刻 `pm enable` 回来。第二条不 enable 回去，重启就开不了机。",
+          "sources": [
+            {
+              "url": "https://blog.5625.cn/index.php/archives/46/",
+              "title": "TCL 雷鸟电视安装当贝桌面 & 卸载自带软件",
+              "date": "2025-01-25"
+            },
+            {
+              "url": "https://youthlin.com/20261889.html",
+              "title": "TCL/雷鸟电视安装当贝桌面等第三方软件",
+              "date": "2026-02-08"
+            }
+          ]
+        },
+        {
+          "what": "国行 TCL / 雷鸟系统层面会点名封杀某些 apk：当贝市场能装，当贝桌面装不上——apk 已经推到电视上也照样提示无法安装。这不是 U 盘或 apk 损坏，而是系统黑名单，只能靠上面那条临时禁用安装器绕过。",
+          "sources": [
+            {
+              "url": "https://youthlin.com/20261889.html",
+              "title": "TCL/雷鸟电视安装当贝桌面等第三方软件",
+              "date": "2026-02-08"
+            }
+          ]
+        },
+        {
+          "what": "U 盘装机入口在很多 TCL / 雷鸟机型的常规「应用管理 / 我的应用」里是空的，要进「应用卸载」入口才看得到 U 盘里的 apk；识别不到时可把后缀从 .apk 改成 .apk1 再改回来。另有一条不走 ADB 的官方旁路：应用商店 →「应用管家」页（页面上有 U盘安装/清理加速/网络测速/应用置顶）→ 按上下左右 → 出二维码 → 扫码进「超级大屏」小程序 → 从微信推 apk 到电视。",
+          "sources": [
+            {
+              "url": "https://post.smzdm.com/p/anvqdmn7",
+              "title": "TCL 电视到手先去广告装 App？三条路线加一个雷区讲清楚",
+              "date": "2026-08-08"
+            },
+            {
+              "url": "https://youthlin.com/20261889.html",
+              "title": "TCL/雷鸟电视安装当贝桌面等第三方软件",
+              "date": "2026-02-08"
+            }
+          ]
+        },
+        {
+          "what": "adb devices 显示 unauthorized：要在电视端弹窗点「允许」。部分 TCL 机型首次连接的确认弹窗措辞是「模拟接受」这类非标准 Android 说法，容易被当成「没有授权提示」而漏点。",
+          "sources": [
+            {
+              "url": "https://blog.csdn.net/weixin_42036647/article/details/105942579",
+              "title": "TCL 电视禁止第三方安装软件？如何远程给安卓智能电视装应用",
+              "date": "2020-05-06"
+            }
+          ]
+        },
+        {
+          "what": "网上流传的 TCL / 雷鸟「解除安装限制」命令有时效性：2022 年 7 月后就有人反馈原教程命令失效，2026 年仍有人照抄旧帖报错。照抄前先看发帖日期与机芯号是否对得上自己这台。",
+          "sources": [
+            {
+              "url": "https://post.smzdm.com/p/anvqdmn7",
+              "title": "TCL 电视到手先去广告装 App？三条路线加一个雷区讲清楚",
+              "date": "2026-08-08"
+            }
+          ]
+        },
+        {
+          "what": "禁停（包名未查到）：恢复出厂 -- 系统重置与工厂模式入口 有用户把「重置系统的那个 app」一并卸掉后，既不能恢复出厂、也进不了 recovery，连工厂菜单输四位数字都直接跳回主界面，最后只能靠 U 盘强刷救回来。凡是名字里带 factory / reset / recovery / update 的系统包，先放着别动。",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1263894-1-1.html",
+              "title": "雷鸟电视雀无法弹出 adb 允许调试对话框了（楼主自述卸载工厂组件后的后果）",
+              "date": "2025-09-22"
+            }
+          ]
+        },
+        {
+          "what": "禁停（包名未查到）：工厂组件（国行，具体包名未查到） -- 系统重置与工厂模式入口 有用户把「重置系统的那个 app」一并卸掉后，既不能恢复出厂、也进不了 recovery，连工厂菜单输四位数字都直接跳回主界面，最后只能靠 U 盘强刷救回来。凡是名字里带 factory / reset / recovery / update 的系统包，先放着别动。",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1263894-1-1.html",
+              "title": "雷鸟电视雀无法弹出 adb 允许调试对话框了（楼主自述卸载工厂组件后的后果）",
+              "date": "2025-09-22"
+            }
+          ]
+        },
+        {
+          "what": "禁停（包名未查到）：「天气」系统应用（国行，具体包名未查到） -- 系统内置天气组件 知乎社区反馈：删掉天气应用后设置界面直接打不开，只能恢复出厂或想办法找回包名重装。这是国行独立案例，不是海外清单里的条目。",
+          "sources": [
+            {
+              "url": "https://post.smzdm.com/p/anvqdmn7",
+              "title": "TCL 电视到手先去广告装 App？三条路线加一个雷区讲清楚（引用知乎讨论）",
+              "date": "2026-08-08"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "国行 · 灵控桌面 1.0 / 2.0",
+      "years": "2022 年推出 1.0，2023 年 8 月前后大面积推送并出现「灵控桌面·追光版」，2024 年被 3.0 取代",
+      "base_os": "android",
+      "android_version_range": "未确认（官方与媒体稿均未标注底层 Android 版本）",
+      "models_examples": [
+        "TCL Q10G",
+        "雷鸟 R645C",
+        "雷鸟 鹤6 / 鹤6 Pro",
+        "雷鸟 鹏6 / 鹏6 Pro",
+        "灵控桌面安装教程限 MT9652 / MT9653 / MT9655 芯片机型"
+      ],
+      "identify_hints": "开机直接进桌面、没有开机广告；首页是一格格可自定义、可拖动的大卡片（不是上下滚动的信息流）；系统设置里能找到「灵控桌面」这个名字，且能在「标准桌面 / 灵控桌面」之间来回切换。早期是作为一个可安装/可升级的桌面推送给老机型的，不少机型是后装上去的。",
+      "worth_it_hint": "中等：这一代已经没有开机广告，提速空间主要来自预装应用和首页推荐，收益不如瀑布式那一代明显；但机龄已到 2–4 年、内存 2GB/3GB 的机型仍值得冻一轮。",
+      "entries": [
+        {
+          "applies_to": "国行 TCL / 雷鸟灵控 1.0 / 2.0 机型",
+          "steps": [
+            "设置 → 系统 → 关于本机 → 本机信息",
+            "在该页依次按遥控器 上、下、左、右 各一次",
+            "出现隐藏项后把「ADB」开关打开（部分固件要先打开上面的「商场模式」，ADB 开关才在它下面露出来）",
+            "adb connect <电视IP>:5555，电视端弹窗选「允许 / 一律允许当前电脑调试」"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://zhuanlan.zhihu.com/p/655763952",
+              "title": "雷鸟常用设置及软件（1.1 打开 adb：设置→关于本机→本机信息→上下左右）",
+              "date": "2023-09"
+            },
+            {
+              "url": "https://post.smzdm.com/p/apmmqv52",
+              "title": "简洁！雷鸟电视如何轻松安装灵控桌面？（按上下左右在本机信息下调出 adb 菜单）",
+              "date": "2024-11-25"
+            },
+            {
+              "url": "https://blog.5625.cn/index.php/archives/46/",
+              "title": "TCL 雷鸟电视安装当贝桌面 & 卸载自带软件（设置→系统→本机信息→上下左右）",
+              "date": "2025-01-25"
+            }
+          ],
+          "risk_notes": "和上一代同一条路径，说明这个专属入口至少从 2021 年一直延续到 2026 年的国行固件，没有随灵控换代改掉。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "yes",
+        "hide": "unknown",
+        "uninstall_user0": "yes",
+        "notes": "disable_user 有 2026 年国行灵控机型上的实操记录（临时禁用安装器）；uninstall --user 0 是这代教程的主流做法。hide 在灵控代没有直接实测记录，标 unknown（瀑布式那代有实测）。",
+        "evidence_level": "单源",
+        "sources": [
+          {
+            "url": "https://youthlin.com/20261889.html",
+            "title": "TCL/雷鸟电视安装当贝桌面等第三方软件",
+            "date": "2026-02-08"
+          },
+          {
+            "url": "https://blog.5625.cn/index.php/archives/46/",
+            "title": "TCL 雷鸟电视安装当贝桌面 & 卸载自带软件",
+            "date": "2025-01-25"
+          }
+        ]
+      },
+      "must_keep": [
+        {
+          "pkg": "com.android.packageinstaller",
+          "what": "系统安装器",
+          "why": "同瀑布式那一代：临时 disable-user 用完必须 enable 回来，否则重启开不了机。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://youthlin.com/20261889.html",
+              "title": "TCL/雷鸟电视安装当贝桌面等第三方软件",
+              "date": "2026-02-08"
+            }
+          ]
+        }
+      ],
+      "junk": [
+        {
+          "pkg": "com.tcl.article.news",
+          "what": "头条新闻 / 资讯推荐位",
+          "why": "沿用上一代国行实测结论；灵控代是否仍预装未逐型核对。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1188736-1-1.html",
+              "title": "雷鸟电视删除系统自带软件、去开机广告、禁止自动更新",
+              "date": "2021-01-19"
+            }
+          ]
+        }
+      ],
+      "ask_user": [
+        {
+          "pkg": "com.tcl.versionUpdateApp",
+          "what": "系统更新 / 应用自动更新",
+          "why": "冻结可挡住「更新后广告又回来」，代价是不再收安全更新。灵控代常有功能性大版本推送（如 2.0 → 3.0），冻了就升不上去。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1188736-1-1.html",
+              "title": "雷鸟电视删除系统自带软件、去开机广告、禁止自动更新",
+              "date": "2021-01-19"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.update",
+          "what": "系统更新 / 应用自动更新",
+          "why": "冻结可挡住「更新后广告又回来」，代价是不再收安全更新。灵控代常有功能性大版本推送（如 2.0 → 3.0），冻了就升不上去。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1188736-1-1.html",
+              "title": "雷鸟电视删除系统自带软件、去开机广告、禁止自动更新",
+              "date": "2021-01-19"
+            }
+          ]
+        }
+      ],
+      "pitfalls": [
+        {
+          "what": "灵控桌面不是所有机型都能装。第三方教程明确限 MT9652（及 9653/9655）芯片机型，社区实测成功名单是 TCL Q10G、雷鸟 R645C、鹤6、鹤6 Pro、鹏6、鹏6 Pro。硬装到不在名单上的机型上，轻则装不上、重则桌面循环重启。",
+          "sources": [
+            {
+              "url": "https://www.bilibili.com/video/BV1ao4y1h75C/",
+              "title": "TCL 灵控桌面安装教程—TCL、雷鸟机型通用（限 9652 处理器型号）",
+              "date": "2023-04-17"
+            },
+            {
+              "url": "https://www.znds.com/tv-1250714-1-1.html",
+              "title": "雷鸟电视哪些机型支持灵控桌面？附灵控桌面升级名单",
+              "date": "2024-07-15"
+            }
+          ]
+        },
+        {
+          "what": "禁停（包名未查到）：灵控桌面本体（包名未查到） -- 当前默认桌面 灵控机型上灵控桌面就是 launcher。没有先装好并设为默认的第三方桌面就把它冻掉，开机会没有可操作的 UI——这是 Android TV 上通用的 launcher 自伤模式，国行同样成立。",
+          "sources": [
+            {
+              "url": "https://tv.cobanov.dev",
+              "title": "Android TV'ni temizle（launcher 禁用前必须先设好替代桌面）",
+              "date": "2026-09"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "国行 · 灵控系统 3.0（及传闻中的 3.5）",
+      "years": "3.0 于 2024-12 随伏羲 AI 大模型在 TCL 发布会上推出，2026 年仍是国行主力；「灵控桌面 3.5」传为 2026 Q1 大版本，仅见视频标题，未见官方公告",
+      "base_os": "android",
+      "android_version_range": "未确认（官方从不标注底层 Android 版本）",
+      "models_examples": [
+        "雷鸟 鹤7 24 款（R685C）",
+        "雷鸟 鹤6 Pro 24 款",
+        "雷鸟 鹤6 24 款",
+        "雷鸟 鹏7 24 款",
+        "雷鸟 鹤6 Pro 25 款、鹏7 25 款",
+        "雷鸟 雀5 25 款（机芯 V8-A963T01）",
+        "TCL Q10K / Q10K Pro、C11K 等 2024–2025 款国行机型"
+      ],
+      "identify_hints": "出厂就是灵控（不是后装的），首页是可自由编排的卡片桌面；设置里能看到「灵控系统 3.0」字样，带「灵动卡片」「艺术画廊 / AI 壁纸」「全景刮削墙海报」这些 3.0 专属功能；TCL 侧还会有「伏羲 AI」相关入口。上面那份 2024-07 的官方升级名单（鹤7 24 款 / 鹤6 Pro 24 款 / 鹤6 24 款 / 鹏7 24 款）是出厂自带灵控的分界线。",
+      "worth_it_hint": "收益最低的一档：全系无开机广告、实测 2 秒开机，内存普遍 4GB+，机龄 1–2 年。除非确实要装第三方桌面或卸特定预装，否则不值得动 ADB——先用设置里的「应用 → 应用商店 → 关闭自动推荐应用」把应用层推送关掉即可。",
+      "entries": [
+        {
+          "applies_to": "国行灵控系统 3.0 机型（2024–2026 款 TCL / 雷鸟）",
+          "steps": [
+            "设置 → 系统 → 关于本机 → 本机信息",
+            "在该页依次按遥控器 上、下、左、右 各一次",
+            "先打开出现的「商场模式」，它下面就会露出 ADB 开关",
+            "打开「ADB」",
+            "adb connect <电视IP>:5555，电视端弹窗选「允许 / 一律允许当前电脑调试」",
+            "用完建议把商场模式关回去"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://youthlin.com/20261889.html",
+              "title": "TCL/雷鸟电视安装当贝桌面等第三方软件（2026 年灵控机型实操，含商场模式细节）",
+              "date": "2026-02-08"
+            },
+            {
+              "url": "https://post.smzdm.com/p/a4qlqmzl",
+              "title": "智能电视隐藏设置：ADB 开关这样开，告别卡顿与广告",
+              "date": "2026-03-12"
+            },
+            {
+              "url": "https://post.smzdm.com/p/anvqdmn7",
+              "title": "TCL 电视到手先去广告装 App？三条路线加一个雷区讲清楚",
+              "date": "2026-08-08"
+            }
+          ],
+          "risk_notes": "商场模式（演示模式）会改变待机、亮度、自动演示等行为，只用它露出 ADB 开关，别长期开着。"
+        },
+        {
+          "applies_to": "部分较新雷鸟机型 / 固件（疑似标准 Android TV 路径，与上一条并列出现但适用机型未定）",
+          "steps": [
+            "设置 → 系统 → 关于本机，连续点击「版本号」7 次激活开发者选项",
+            "返回上级，进入「开发者选项」，开启「USB 调试」与「网络 ADB 调试」",
+            "adb connect <电视IP>:5555"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://ask.csdn.net/questions/8859200",
+              "title": "雷鸟电视预装应用无法卸载怎么办？",
+              "date": "2025-10-17"
+            },
+            {
+              "url": "https://post.smzdm.com/p/a4qlqmzl",
+              "title": "智能电视隐藏设置：ADB 开关这样开（把「连点版本号 7 次」和「上下左右」并列为 TCL 的两条路）",
+              "date": "2026-03-12"
+            }
+          ],
+          "risk_notes": "和「上下左右」路径的机型分界没查清，不排除是作者把通用 Android TV 教程套到了 TCL 上。实操顺序建议：先试「上下左右」，不灵再试连点版本号 7 次。见 open_questions。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "yes",
+        "hide": "unknown",
+        "uninstall_user0": "unknown",
+        "notes": "disable_user 有 2026 年国行实操记录。3.0 机型上直接 `pm uninstall --user 0` 系统包的成功回显没查到（老帖都是 2021–2022 年的瀑布式机型），未敢标 yes。这一代默认无开机广告，需要卸的系统包本来也少。",
+        "evidence_level": "单源",
+        "sources": [
+          {
+            "url": "https://youthlin.com/20261889.html",
+            "title": "TCL/雷鸟电视安装当贝桌面等第三方软件",
+            "date": "2026-02-08"
+          }
+        ]
+      },
+      "must_keep": [
+        {
+          "pkg": "com.android.packageinstaller",
+          "what": "系统安装器",
+          "why": "临时 disable-user 后不 enable 回来，重启开不了机。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://youthlin.com/20261889.html",
+              "title": "TCL/雷鸟电视安装当贝桌面等第三方软件",
+              "date": "2026-02-08"
+            }
+          ]
+        }
+      ],
+      "junk": [],
+      "ask_user": [
+        {
+          "pkg": "com.tcl.versionUpdateApp",
+          "what": "系统更新 / 应用自动更新",
+          "why": "3.0 还在持续迭代（传 3.5），冻结更新等于放弃后续功能与安全更新，必须问用户。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1188736-1-1.html",
+              "title": "雷鸟电视删除系统自带软件、去开机广告、禁止自动更新",
+              "date": "2021-01-19"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.update",
+          "what": "系统更新 / 应用自动更新",
+          "why": "3.0 还在持续迭代（传 3.5），冻结更新等于放弃后续功能与安全更新，必须问用户。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1188736-1-1.html",
+              "title": "雷鸟电视删除系统自带软件、去开机广告、禁止自动更新",
+              "date": "2021-01-19"
+            }
+          ]
+        }
+      ],
+      "pitfalls": [
+        {
+          "what": "这一代先别急着上 ADB：官方路线已经够用——设置 → 应用 → 应用商店 → 关闭「自动推荐应用」，就能压掉应用层的推送广告；开机广告本身这代就没有。",
+          "sources": [
+            {
+              "url": "https://post.smzdm.com/p/a3m96kn5",
+              "title": "雷鸟电视无广告实测：2 秒开机 + 隐藏设置彻底关闭所有广告",
+              "date": "unknown"
+            }
+          ]
+        },
+        {
+          "what": "「灵控桌面 3.5」目前只有一条 B 站视频标题提到（称 26 年 Q1 大版本），没有官方公告或第二来源佐证。别把它当作已发布版本来判断机型代际。",
+          "sources": [
+            {
+              "url": "https://play.google.com/store/apps/details?id=com.tcl.tclhome&hl=zh",
+              "title": "夯级电视系统 TCL 灵控桌面 3.5？来了，26 年 Q1 大版本精讲（视频标题转载）",
+              "date": "unknown"
+            }
+          ]
+        },
+        {
+          "what": "社区有 root / 刷机讨论（ZNDS 有雷鸟 root 与强刷帖），本项目不采用。",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1263894-1-1.html",
+              "title": "雷鸟电视雀无法弹出 adb 允许调试对话框了",
+              "date": "2025-09-22"
+            }
+          ]
+        },
+        {
+          "what": "禁停（包名未查到）：恢复出厂 -- 系统重置、recovery 与工厂模式入口 雷鸟「雀」系列 2025 款实例：卸掉重置系统的 app 后，恢复出厂、recovery、工厂菜单四位密码全部失效，最后靠 U 盘强刷救回。这是这一代最新的国行自伤案例。",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1263894-1-1.html",
+              "title": "雷鸟电视雀无法弹出 adb 允许调试对话框了",
+              "date": "2025-09-22"
+            }
+          ]
+        },
+        {
+          "what": "禁停（包名未查到）：工厂组件（包名未查到） -- 系统重置、recovery 与工厂模式入口 雷鸟「雀」系列 2025 款实例：卸掉重置系统的 app 后，恢复出厂、recovery、工厂菜单四位密码全部失效，最后靠 U 盘强刷救回。这是这一代最新的国行自伤案例。",
+          "sources": [
+            {
+              "url": "https://www.znds.com/tv-1263894-1-1.html",
+              "title": "雷鸟电视雀无法弹出 adb 允许调试对话框了",
+              "date": "2025-09-22"
+            }
+          ]
+        },
+        {
+          "what": "禁停（包名未查到）：灵控桌面本体（包名未查到） -- 默认桌面 launcher 这代出厂桌面就是灵控。没设好替代桌面就冻它，开机没有 UI。",
+          "sources": [
+            {
+              "url": "https://tv.cobanov.dev",
+              "title": "Android TV'ni temizle",
+              "date": "2026-09"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "海外 · TCL Android TV（非 Google TV，2019–2021 款为主）",
+      "years": "约 2019–2021 款；北美 3-Series / 4-Series，欧洲 P / C 系",
+      "base_os": "android",
+      "android_version_range": "Android TV 7 / 9 / 10 / 11",
+      "models_examples": [
+        "TCL 4-Series Android TV（北美）",
+        "TCL 3-Series Android TV",
+        "TCL P615 / P715 / P725（欧洲/澳新）",
+        "TCL C725 / C825"
+      ],
+      "identify_hints": "首页是 Android TV 的横向「频道行」布局（Play 商店 + 一行行推荐），左上角是 Android TV 字样而不是 Google TV；Settings → Device Preferences → About 里能看到「Android TV OS build」；遥控器有 Google Assistant 麦克风键，但没有 Roku 紫色标识。",
+      "worth_it_hint": "值得做：这代普遍 1.5GB/2GB 内存，Android TV 原生首页推荐 + TCL 自家频道一起拖慢，机龄 4 年以上，冻结收益明显。",
+      "entries": [
+        {
+          "applies_to": "TCL 海外 Android TV 机型（标准 Android TV 路径）",
+          "steps": [
+            "Settings → Device Preferences → About",
+            "滚到「Build」/「Android TV OS build」，连按 OK 键 7 次（部分机型要 8 次），直到提示 You are now a developer",
+            "返回 Settings → Device Preferences → Developer options",
+            "打开「USB debugging」/「ADB debugging」（部分机型叫 Network debugging）",
+            "在网络设置里查到电视 IP，电脑执行 adb connect <TV_IP>:5555",
+            "电视上会弹 Allow USB debugging 对话框，选 Allow（可勾 Always allow from this computer）"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://developers.google.com/cast/docs/android_tv_receiver/debugging",
+              "title": "Debugging（Google 官方：Settings → About → 连点 Build 多次成为开发者，再开 USB debugging）",
+              "date": "unknown"
+            },
+            {
+              "url": "https://www.esper.io/blog/android-dessert-bites-2-tips-tricks-3156978",
+              "title": "Take Control of Your Android Phone (or TV) with These Tips（含 adb connect 与授权弹窗流程）",
+              "date": "unknown"
+            },
+            {
+              "url": "https://community.home-assistant.io/t/tcl-series-4-androidtv-is-integrated-to-ha-and-i-can-control-it-via-adb-bridge-commands-i-can-turn-it-off-via-call-service-but-i-cant-turnin-back-on/362160",
+              "title": "TCL series 4 AndroidTV：用户在电视上开 developer options + USB debug 后用 ADB 控制",
+              "date": "unknown"
+            }
+          ],
+          "risk_notes": "Android 10 及以下才是固定 5555 端口的老式无线 ADB；这代机型多在此范围内。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "yes",
+        "hide": "unknown",
+        "uninstall_user0": "yes",
+        "notes": "海外 debloat 脚本与指南主推 `pm disable-user --user 0 <pkg>`（可逆，`pm enable` 恢复）；`pm uninstall --user 0` 也可用但不可逆，只能靠 `pm install-existing` 碰运气。hide 在海外资料里没见实测。",
+        "evidence_level": "多源",
+        "sources": [
+          {
+            "url": "https://tv.cobanov.dev",
+            "title": "Android TV'ni temizle（TCL debloat 指南）",
+            "date": "2026-09"
+          },
+          {
+            "url": "https://gist.github.com/0x4f53/27bee9a0069f7bd6a2aa9eb60bb10d1e",
+            "title": "TCL TV debloater.sh",
+            "date": "2024-07-21"
+          },
+          {
+            "url": "https://www.esper.io/blog/android-dessert-bites-2-tips-tricks-3156978",
+            "title": "Take Control of Your Android Phone (or TV) with These Tips",
+            "date": "unknown"
+          }
+        ]
+      },
+      "must_keep": [
+        {
+          "pkg": "com.tcl.suspension",
+          "what": "信号源 / 输入（Inputs）菜单服务",
+          "why": "禁用后遥控器「输入 / 信号源」键直接失灵，切不了 HDMI。名字像垃圾预装，实为核心功能；Mert Cobanov 给自己 TCL 电视 debloat 时踩中，事件被 Tom's Hardware / Frandroid / 36 氪等多家转载。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://tv.cobanov.dev",
+              "title": "Android TV'ni temizle（原文，土耳其语）",
+              "date": "2026-09"
+            },
+            {
+              "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/developer-uses-claude-code-to-debloat-android-smart-tv-for-unbelievable-performance-upgrade-tv-now-smoother-than-it-was-new-as-autonomous-agent-deactivates-apps-shortens-animations-all-without-root-access",
+              "title": "Developer uses Claude Code to debloat Android smart TV",
+              "date": "2026-09-02"
+            },
+            {
+              "url": "https://www.frandroid.com/produits-android/tv-connectee-produits/3226189_cest-genial-il-utilise-claude-pour-redonner-toute-sa-fluidite-a-android-tv-en-20-minutes",
+              "title": "«C'est génial»：他用 Claude 在 20 分钟内恢复 Android TV 流畅度",
+              "date": "2026-09"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.tv",
+          "what": "HDMI / 天线（DTV）输入与调谐服务",
+          "why": "社区 debloat 脚本明确标注为 Important TV elements（HDMI/AV switching），disable-user 清单普遍跳过。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://gist.github.com/0x4f53/27bee9a0069f7bd6a2aa9eb60bb10d1e",
+              "title": "TCL TV debloater.sh",
+              "date": "2024-07-21"
+            },
+            {
+              "url": "https://www.avsforum.com/threads/tcl-forced-firmware-update-automatic-updates-was-off.3344391",
+              "title": "TCL Forced firmware update（AVSForum 包名清单）",
+              "date": "unknown"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.tvinput",
+          "what": "HDMI / 天线（DTV）输入与调谐服务",
+          "why": "社区 debloat 脚本明确标注为 Important TV elements（HDMI/AV switching），disable-user 清单普遍跳过。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://gist.github.com/0x4f53/27bee9a0069f7bd6a2aa9eb60bb10d1e",
+              "title": "TCL TV debloater.sh",
+              "date": "2024-07-21"
+            },
+            {
+              "url": "https://www.avsforum.com/threads/tcl-forced-firmware-update-automatic-updates-was-off.3344391",
+              "title": "TCL Forced firmware update（AVSForum 包名清单）",
+              "date": "unknown"
+            }
+          ]
+        },
+        {
+          "pkg": "com.google.android.tv.remote.service",
+          "what": "遥控器配对与通信服务",
+          "why": "关掉会导致遥控器失联 / 无法配对，Cobanov 指南与 AVSForum 清单都列为 KEEP ENABLED。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://tv.cobanov.dev",
+              "title": "Android TV'ni temizle",
+              "date": "2026-09"
+            },
+            {
+              "url": "https://www.avsforum.com/threads/tcl-forced-firmware-update-automatic-updates-was-off.3344391",
+              "title": "TCL Forced firmware update",
+              "date": "unknown"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.tcl_bt_rcu_service",
+          "what": "遥控器配对与通信服务",
+          "why": "关掉会导致遥控器失联 / 无法配对，Cobanov 指南与 AVSForum 清单都列为 KEEP ENABLED。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://tv.cobanov.dev",
+              "title": "Android TV'ni temizle",
+              "date": "2026-09"
+            },
+            {
+              "url": "https://www.avsforum.com/threads/tcl-forced-firmware-update-automatic-updates-was-off.3344391",
+              "title": "TCL Forced firmware update",
+              "date": "unknown"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.autopair",
+          "what": "遥控器配对与通信服务",
+          "why": "关掉会导致遥控器失联 / 无法配对，Cobanov 指南与 AVSForum 清单都列为 KEEP ENABLED。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://tv.cobanov.dev",
+              "title": "Android TV'ni temizle",
+              "date": "2026-09"
+            },
+            {
+              "url": "https://www.avsforum.com/threads/tcl-forced-firmware-update-automatic-updates-was-off.3344391",
+              "title": "TCL Forced firmware update",
+              "date": "unknown"
+            }
+          ]
+        },
+        {
+          "pkg": "com.android.location.fused",
+          "what": "Android 融合定位服务",
+          "why": "在「位置」权限开启的状态下禁用它，电视会卡在开机 Logo 循环（bootloop），要刷机才能恢复；脚本作者本人复现确认。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://gist.github.com/0x4f53/27bee9a0069f7bd6a2aa9eb60bb10d1e",
+              "title": "TCL TV debloater.sh（评论区 BassMyAss 与作者回复）",
+              "date": "2024-08-09"
+            }
+          ]
+        },
+        {
+          "pkg": "com.google.android.tvlauncher",
+          "what": "Android TV 原生桌面 launcher",
+          "why": "不先装好并设为默认的第三方桌面（FLauncher / Projectivy）就禁用它，开机黑屏、无 UI 可操作。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://gist.github.com/0x4f53/27bee9a0069f7bd6a2aa9eb60bb10d1e",
+              "title": "TCL TV debloater.sh",
+              "date": "2024-08-08"
+            },
+            {
+              "url": "https://www.esper.io/blog/android-dessert-bites-2-tips-tricks-3156978",
+              "title": "Take Control of Your Android Phone (or TV) with These Tips",
+              "date": "unknown"
+            }
+          ]
+        }
+      ],
+      "junk": [
+        {
+          "pkg": "com.tcl.bootadservice",
+          "what": "开机广告服务",
+          "why": "脚本注释明确写 Ads within TCL apps；国行侧也有卸载 Success 的实测。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://gist.github.com/0x4f53/27bee9a0069f7bd6a2aa9eb60bb10d1e",
+              "title": "TCL TV debloater.sh",
+              "date": "2024-07-21"
+            },
+            {
+              "url": "https://www.znds.com/tv-1188736-1-1.html",
+              "title": "雷鸟电视删除系统自带软件、去开机广告、禁止自动更新",
+              "date": "2021-01-19"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.channelplus",
+          "what": "TCL 自家频道 / 桌面装饰 / 智能家居 / 厂商定制类软件",
+          "why": "海外机型 debloat 脚本与 AVSForum 清单已验证可安全 disable-user。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.avsforum.com/threads/tcl-forced-firmware-update-automatic-updates-was-off.3344391",
+              "title": "TCL Forced firmware update",
+              "date": "unknown"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.dashboard",
+          "what": "TCL 自家频道 / 桌面装饰 / 智能家居 / 厂商定制类软件",
+          "why": "海外机型 debloat 脚本与 AVSForum 清单已验证可安全 disable-user。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.avsforum.com/threads/tcl-forced-firmware-update-automatic-updates-was-off.3344391",
+              "title": "TCL Forced firmware update",
+              "date": "unknown"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.esticker",
+          "what": "TCL 自家频道 / 桌面装饰 / 智能家居 / 厂商定制类软件",
+          "why": "海外机型 debloat 脚本与 AVSForum 清单已验证可安全 disable-user。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.avsforum.com/threads/tcl-forced-firmware-update-automatic-updates-was-off.3344391",
+              "title": "TCL Forced firmware update",
+              "date": "unknown"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.exhibit",
+          "what": "TCL 自家频道 / 桌面装饰 / 智能家居 / 厂商定制类软件",
+          "why": "海外机型 debloat 脚本与 AVSForum 清单已验证可安全 disable-user。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.avsforum.com/threads/tcl-forced-firmware-update-automatic-updates-was-off.3344391",
+              "title": "TCL Forced firmware update",
+              "date": "unknown"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.gamebar",
+          "what": "TCL 自家频道 / 桌面装饰 / 智能家居 / 厂商定制类软件",
+          "why": "海外机型 debloat 脚本与 AVSForum 清单已验证可安全 disable-user。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.avsforum.com/threads/tcl-forced-firmware-update-automatic-updates-was-off.3344391",
+              "title": "TCL Forced firmware update",
+              "date": "unknown"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.hotelmenu",
+          "what": "TCL 自家频道 / 桌面装饰 / 智能家居 / 厂商定制类软件",
+          "why": "海外机型 debloat 脚本与 AVSForum 清单已验证可安全 disable-user。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.avsforum.com/threads/tcl-forced-firmware-update-automatic-updates-was-off.3344391",
+              "title": "TCL Forced firmware update",
+              "date": "unknown"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.initsetup",
+          "what": "TCL 自家频道 / 桌面装饰 / 智能家居 / 厂商定制类软件",
+          "why": "海外机型 debloat 脚本与 AVSForum 清单已验证可安全 disable-user。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.avsforum.com/threads/tcl-forced-firmware-update-automatic-updates-was-off.3344391",
+              "title": "TCL Forced firmware update",
+              "date": "unknown"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.interactive",
+          "what": "TCL 自家频道 / 桌面装饰 / 智能家居 / 厂商定制类软件",
+          "why": "海外机型 debloat 脚本与 AVSForum 清单已验证可安全 disable-user。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.avsforum.com/threads/tcl-forced-firmware-update-automatic-updates-was-off.3344391",
+              "title": "TCL Forced firmware update",
+              "date": "unknown"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.logkit",
+          "what": "TCL 自家频道 / 桌面装饰 / 智能家居 / 厂商定制类软件",
+          "why": "海外机型 debloat 脚本与 AVSForum 清单已验证可安全 disable-user。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.avsforum.com/threads/tcl-forced-firmware-update-automatic-updates-was-off.3344391",
+              "title": "TCL Forced firmware update",
+              "date": "unknown"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.partnercustomizer",
+          "what": "TCL 自家频道 / 桌面装饰 / 智能家居 / 厂商定制类软件",
+          "why": "海外机型 debloat 脚本与 AVSForum 清单已验证可安全 disable-user。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.avsforum.com/threads/tcl-forced-firmware-update-automatic-updates-was-off.3344391",
+              "title": "TCL Forced firmware update",
+              "date": "unknown"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.repairguide",
+          "what": "TCL 自家频道 / 桌面装饰 / 智能家居 / 厂商定制类软件",
+          "why": "海外机型 debloat 脚本与 AVSForum 清单已验证可安全 disable-user。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.avsforum.com/threads/tcl-forced-firmware-update-automatic-updates-was-off.3344391",
+              "title": "TCL Forced firmware update",
+              "date": "unknown"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.smartlink.core",
+          "what": "TCL 自家频道 / 桌面装饰 / 智能家居 / 厂商定制类软件",
+          "why": "海外机型 debloat 脚本与 AVSForum 清单已验证可安全 disable-user。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.avsforum.com/threads/tcl-forced-firmware-update-automatic-updates-was-off.3344391",
+              "title": "TCL Forced firmware update",
+              "date": "unknown"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.useragreement",
+          "what": "TCL 自家频道 / 桌面装饰 / 智能家居 / 厂商定制类软件",
+          "why": "海外机型 debloat 脚本与 AVSForum 清单已验证可安全 disable-user。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.avsforum.com/threads/tcl-forced-firmware-update-automatic-updates-was-off.3344391",
+              "title": "TCL Forced firmware update",
+              "date": "unknown"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.tv.plus",
+          "what": "TCL 自家频道 / 桌面装饰 / 智能家居 / 厂商定制类软件",
+          "why": "海外机型 debloat 脚本与 AVSForum 清单已验证可安全 disable-user。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.avsforum.com/threads/tcl-forced-firmware-update-automatic-updates-was-off.3344391",
+              "title": "TCL Forced firmware update",
+              "date": "unknown"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.ui_mediaCenter",
+          "what": "TCL 自家频道 / 桌面装饰 / 智能家居 / 厂商定制类软件",
+          "why": "海外机型 debloat 脚本与 AVSForum 清单已验证可安全 disable-user。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.avsforum.com/threads/tcl-forced-firmware-update-automatic-updates-was-off.3344391",
+              "title": "TCL Forced firmware update",
+              "date": "unknown"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.UpdatePeripheral",
+          "what": "TCL 自家频道 / 桌面装饰 / 智能家居 / 厂商定制类软件",
+          "why": "海外机型 debloat 脚本与 AVSForum 清单已验证可安全 disable-user。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.avsforum.com/threads/tcl-forced-firmware-update-automatic-updates-was-off.3344391",
+              "title": "TCL Forced firmware update",
+              "date": "unknown"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.guard",
+          "what": "TCL 自带「安全卫士」/ 杀毒",
+          "why": "后台常驻耗 CPU，社区评价极差（脚本注释写 Shitty antivirus）。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://gist.github.com/0x4f53/27bee9a0069f7bd6a2aa9eb60bb10d1e",
+              "title": "TCL TV debloater.sh",
+              "date": "2024-07-21"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.browser",
+          "what": "TCL 自带浏览器",
+          "why": "电视上基本不用，禁用无副作用。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://github.com/mojothemonkey2/TCL_Guide",
+              "title": "TCL_Guide",
+              "date": "unknown"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.t_solo",
+          "what": "TCL 内置多媒体播放器 / 账号中心 / 便签 / 消息盒",
+          "why": "非必需，禁用不影响 HDMI 与流媒体 App。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://gist.github.com/0x4f53/27bee9a0069f7bd6a2aa9eb60bb10d1e",
+              "title": "TCL TV debloater.sh",
+              "date": "2024-07-21"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.tvweishi",
+          "what": "TCL 内置多媒体播放器 / 账号中心 / 便签 / 消息盒",
+          "why": "非必需，禁用不影响 HDMI 与流媒体 App。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://gist.github.com/0x4f53/27bee9a0069f7bd6a2aa9eb60bb10d1e",
+              "title": "TCL TV debloater.sh",
+              "date": "2024-07-21"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.usercenter",
+          "what": "TCL 内置多媒体播放器 / 账号中心 / 便签 / 消息盒",
+          "why": "非必需，禁用不影响 HDMI 与流媒体 App。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://gist.github.com/0x4f53/27bee9a0069f7bd6a2aa9eb60bb10d1e",
+              "title": "TCL TV debloater.sh",
+              "date": "2024-07-21"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.gallery",
+          "what": "TCL 内置多媒体播放器 / 账号中心 / 便签 / 消息盒",
+          "why": "非必需，禁用不影响 HDMI 与流媒体 App。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://gist.github.com/0x4f53/27bee9a0069f7bd6a2aa9eb60bb10d1e",
+              "title": "TCL TV debloater.sh",
+              "date": "2024-07-21"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.notereminder",
+          "what": "TCL 内置多媒体播放器 / 账号中心 / 便签 / 消息盒",
+          "why": "非必需，禁用不影响 HDMI 与流媒体 App。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://gist.github.com/0x4f53/27bee9a0069f7bd6a2aa9eb60bb10d1e",
+              "title": "TCL TV debloater.sh",
+              "date": "2024-07-21"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.messagebox",
+          "what": "TCL 内置多媒体播放器 / 账号中心 / 便签 / 消息盒",
+          "why": "非必需，禁用不影响 HDMI 与流媒体 App。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://gist.github.com/0x4f53/27bee9a0069f7bd6a2aa9eb60bb10d1e",
+              "title": "TCL TV debloater.sh",
+              "date": "2024-07-21"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.audioplayer",
+          "what": "TCL 内置多媒体播放器 / 账号中心 / 便签 / 消息盒",
+          "why": "非必需，禁用不影响 HDMI 与流媒体 App。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://gist.github.com/0x4f53/27bee9a0069f7bd6a2aa9eb60bb10d1e",
+              "title": "TCL TV debloater.sh",
+              "date": "2024-07-21"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.imageplayer",
+          "what": "TCL 内置多媒体播放器 / 账号中心 / 便签 / 消息盒",
+          "why": "非必需，禁用不影响 HDMI 与流媒体 App。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://gist.github.com/0x4f53/27bee9a0069f7bd6a2aa9eb60bb10d1e",
+              "title": "TCL TV debloater.sh",
+              "date": "2024-07-21"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.videoplayer",
+          "what": "TCL 内置多媒体播放器 / 账号中心 / 便签 / 消息盒",
+          "why": "非必需，禁用不影响 HDMI 与流媒体 App。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://gist.github.com/0x4f53/27bee9a0069f7bd6a2aa9eb60bb10d1e",
+              "title": "TCL TV debloater.sh",
+              "date": "2024-07-21"
+            }
+          ]
+        },
+        {
+          "pkg": "com.google.android.leanbacklauncher.recommendations",
+          "what": "Android TV 首页内容推荐流 / Shop 行",
+          "why": "只负责首页推荐条，禁用后首页更干净，不影响桌面本体。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://gist.github.com/0x4f53/27bee9a0069f7bd6a2aa9eb60bb10d1e",
+              "title": "TCL TV debloater.sh",
+              "date": "2024-07-21"
+            }
+          ]
+        },
+        {
+          "pkg": "com.google.android.tvrecommendations",
+          "what": "Android TV 首页内容推荐流 / Shop 行",
+          "why": "只负责首页推荐条，禁用后首页更干净，不影响桌面本体。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://gist.github.com/0x4f53/27bee9a0069f7bd6a2aa9eb60bb10d1e",
+              "title": "TCL TV debloater.sh",
+              "date": "2024-07-21"
+            }
+          ]
+        }
+      ],
+      "ask_user": [
+        {
+          "pkg": "com.tcl.miracast",
+          "what": "投屏 / 语音助手集成",
+          "why": "家里真在用手机投屏或语音时不能关。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://gist.github.com/0x4f53/27bee9a0069f7bd6a2aa9eb60bb10d1e",
+              "title": "TCL TV debloater.sh",
+              "date": "2024-07-21"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.smartalexa",
+          "what": "投屏 / 语音助手集成",
+          "why": "家里真在用手机投屏或语音时不能关。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://gist.github.com/0x4f53/27bee9a0069f7bd6a2aa9eb60bb10d1e",
+              "title": "TCL TV debloater.sh",
+              "date": "2024-07-21"
+            }
+          ]
+        },
+        {
+          "pkg": "com.google.android.gms",
+          "what": "Google Play 服务 / GSF / Play 商店",
+          "why": "Cobanov 指南列为绝对不可关；但如果用户完全不用 Google 生态、只用 HDMI，才有讨论余地——默认答案是保留。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://tv.cobanov.dev",
+              "title": "Android TV'ni temizle",
+              "date": "2026-09"
+            }
+          ]
+        },
+        {
+          "pkg": "com.google.android.gsf",
+          "what": "Google Play 服务 / GSF / Play 商店",
+          "why": "Cobanov 指南列为绝对不可关；但如果用户完全不用 Google 生态、只用 HDMI，才有讨论余地——默认答案是保留。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://tv.cobanov.dev",
+              "title": "Android TV'ni temizle",
+              "date": "2026-09"
+            }
+          ]
+        },
+        {
+          "pkg": "com.android.vending",
+          "what": "Google Play 服务 / GSF / Play 商店",
+          "why": "Cobanov 指南列为绝对不可关；但如果用户完全不用 Google 生态、只用 HDMI，才有讨论余地——默认答案是保留。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://tv.cobanov.dev",
+              "title": "Android TV'ni temizle",
+              "date": "2026-09"
+            }
+          ]
+        },
+        {
+          "pkg": "com.netflix.ninja",
+          "what": "预装流媒体 App",
+          "why": "不用可禁用，可逆；但这是用户真会用的 App，必须先问。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.avsforum.com/threads/tcl-forced-firmware-update-automatic-updates-was-off.3344391",
+              "title": "TCL Forced firmware update",
+              "date": "unknown"
+            }
+          ]
+        },
+        {
+          "pkg": "com.netflix.tokenmanager",
+          "what": "预装流媒体 App",
+          "why": "不用可禁用，可逆；但这是用户真会用的 App，必须先问。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.avsforum.com/threads/tcl-forced-firmware-update-automatic-updates-was-off.3344391",
+              "title": "TCL Forced firmware update",
+              "date": "unknown"
+            }
+          ]
+        },
+        {
+          "pkg": "com.amazon.amazonvideo.livingroom",
+          "what": "预装流媒体 App",
+          "why": "不用可禁用，可逆；但这是用户真会用的 App，必须先问。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.avsforum.com/threads/tcl-forced-firmware-update-automatic-updates-was-off.3344391",
+              "title": "TCL Forced firmware update",
+              "date": "unknown"
+            }
+          ]
+        },
+        {
+          "pkg": "com.google.android.youtube.tv",
+          "what": "预装流媒体 App",
+          "why": "不用可禁用，可逆；但这是用户真会用的 App，必须先问。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.avsforum.com/threads/tcl-forced-firmware-update-automatic-updates-was-off.3344391",
+              "title": "TCL Forced firmware update",
+              "date": "unknown"
+            }
+          ]
+        }
+      ],
+      "pitfalls": [
+        {
+          "what": "同一个包名在不同机型/固件上表现不一致：com.tcl.waterfall.overseas 在个别欧版机型（如 55P635）上禁用会导致 Google TV logo 卡死无法开机，但在多数其他机型上可安全禁用。别照抄别人机型的清单，逐台小批量验证。",
+          "sources": [
+            {
+              "url": "https://gist.github.com/0x4f53/27bee9a0069f7bd6a2aa9eb60bb10d1e",
+              "title": "TCL TV debloater.sh",
+              "date": "2024-08-09"
+            }
+          ]
+        },
+        {
+          "what": "包名的字面意思会骗人：com.tcl.suspension 看起来像可有可无的组件，实际控制信号源菜单，禁用即刻让遥控器「输入」键失灵。动手前用 `adb shell pm list packages` 取真实包名，不要凭名字猜用途。",
+          "sources": [
+            {
+              "url": "https://tv.cobanov.dev",
+              "title": "Android TV'ni temizle",
+              "date": "2026-09"
+            }
+          ]
+        },
+        {
+          "what": "部分 TCL 机型的 Developer options 页面在非英文系统语言下滚不动 / 选不中，用户把系统语言临时改成 English 后恢复正常。",
+          "sources": [
+            {
+              "url": "https://www.reddit.com/r/AndroidTV/comments/1bo1bq1/developer_settings_problem_tcl_tv",
+              "title": "Developer settings problem tcl tv : r/AndroidTV",
+              "date": "unknown"
+            }
+          ]
+        },
+        {
+          "what": "禁停（包名未查到）：含 .inputmethod. 字段的包（如 Gboard） -- 屏幕软键盘 关掉后遥控器无法输入文字，搜索、登录账号会卡死。",
+          "sources": [
+            {
+              "url": "https://tv.cobanov.dev",
+              "title": "Android TV'ni temizle",
+              "date": "2026-09"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "海外 · TCL Google TV（2021 款 5/6-Series 起，含 Android TV 13/14 固件）",
+      "years": "2021 年 8 月 TCL 首次把 Google TV 用在 5-Series / 6-Series 上，此后逐步铺开；Roku OS 机型同期继续在售",
+      "base_os": "android",
+      "android_version_range": "Android 10 / 11 / 12 / 13 / 14（Google TV 界面层）",
+      "models_examples": [
+        "TCL 6-Series Google TV（R646）",
+        "TCL 5-Series Google TV（S546）",
+        "TCL C645 / C745 / C755 / C845 / C935（欧洲）",
+        "TCL P635 / P735 / P745 / P755",
+        "TCL X955 / C955（BeyondTV 固件平台）"
+      ],
+      "identify_hints": "首页顶部是 Google TV 的「For you / Live / Movies / Shows / Apps / Library」标签栏，会按账号推荐影片；遥控器有 Google Assistant 麦克风键和 Google TV 品牌标，没有 Roku 紫色标；Settings → System → About 里写 Android TV OS build 且带 Google TV 版本号。",
+      "worth_it_hint": "中等：内存普遍 2GB/3GB，首页推荐与赞助内容是主要负担，机龄 1–4 年。想彻底去广告通常要换第三方桌面（FLauncher / Projectivy），那一步比冻包名收益大得多。",
+      "entries": [
+        {
+          "applies_to": "TCL Google TV，系统底层 Android 10 及以下",
+          "steps": [
+            "Settings → System → About",
+            "找到「Android TV OS build」，连按 OK 键 7 次（部分机型 8 次），提示 You are now a developer",
+            "Settings → System → Developer options，打开「USB debugging」",
+            "adb connect <TV_IP>:5555",
+            "电视上弹 Allow USB debugging，选 Allow"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://developers.google.com/cast/docs/android_tv_receiver/debugging",
+              "title": "Debugging | Google Cast 官方文档（Settings → About → 连点 Build → USB debugging）",
+              "date": "unknown"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=uphHPwwZObc",
+              "title": "TCL Google TV: How To Enable Developer Options（Settings → System → About → Android TV OS build）",
+              "date": "unknown"
+            }
+          ],
+          "risk_notes": "Android 10 及以下才有固定 5555 端口的老式无线 ADB。"
+        },
+        {
+          "applies_to": "TCL Google TV，系统底层 Android 11 及以上（含 Android TV 13/14 固件）",
+          "steps": [
+            "Settings → System → About → 连点「Android TV OS build」7 次，成为开发者",
+            "Settings → System → Developer options → 打开「Wireless debugging」（无线调试），只开 USB debugging 已经不够",
+            "在 Wireless debugging 页里选「Pair device with pairing code」，屏幕上会给出 IP、配对端口和 6 位配对码（关掉弹窗就作废，端口和码每次都变）",
+            "电脑执行 adb pair <TV_IP>:<配对端口> 然后输入 6 位配对码",
+            "配对成功后回到 Wireless debugging 主页读「连接端口」（与配对端口不同，随机分配），执行 adb connect <TV_IP>:<连接端口>",
+            "电视上选 Allow / Always allow"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": true,
+          "port": null,
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://xdaforums.com/t/android-12-developer-options-adb-wireless-debugging-option-keeps-turning-off.4461375",
+              "title": "Android 12 Developer options adb Wireless debugging（Android 11 起改为 adb pair + 随机端口）",
+              "date": "unknown"
+            },
+            {
+              "url": "https://gadgetguideonline.com/android/android-adb-wireless-debugging",
+              "title": "A Complete Guide to Android ADB Wireless Debugging（配对端口与连接端口是两个不同端口）",
+              "date": "unknown"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=WVRBXktSw0c",
+              "title": "Google Breaks ADB On Android TV 14 - Lets FIX IT NOW（Android TV 14 上必须开 Wireless debugging 并出配对码）",
+              "date": "unknown"
+            }
+          ],
+          "risk_notes": "配对端口和配对码是一次性的，弹窗关掉就失效；连接端口在重启前不变。电脑和电视必须在同一 Wi-Fi 网段，一端走以太网一端走 Wi-Fi 常配对失败。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "yes",
+        "hide": "unknown",
+        "uninstall_user0": "yes",
+        "notes": "与 Android TV 那代一致；Google TV 上换桌面的标准命令是 `pm disable-user --user 0 com.google.android.apps.tv.launcherx`（Android TV 则是 com.google.android.tvlauncher）。",
+        "evidence_level": "多源",
+        "sources": [
+          {
+            "url": "https://www.esper.io/blog/android-dessert-bites-2-tips-tricks-3156978",
+            "title": "Take Control of Your Android Phone (or TV) with These Tips（分别给出 Android TV 与 Google TV 的 launcher 包名）",
+            "date": "unknown"
+          },
+          {
+            "url": "https://tv.cobanov.dev",
+            "title": "Android TV'ni temizle",
+            "date": "2026-09"
+          }
+        ]
+      },
+      "must_keep": [
+        {
+          "pkg": "com.google.android.apps.tv.launcherx",
+          "what": "Google TV 原生桌面 launcher",
+          "why": "禁用前必须先装好并设为默认的第三方桌面，否则开机黑屏、无 UI 可操作。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://www.esper.io/blog/android-dessert-bites-2-tips-tricks-3156978",
+              "title": "Take Control of Your Android Phone (or TV) with These Tips",
+              "date": "unknown"
+            },
+            {
+              "url": "https://tv.cobanov.dev",
+              "title": "Android TV'ni temizle",
+              "date": "2026-09"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.suspension",
+          "what": "信号源 / 输入菜单服务",
+          "why": "同 Android TV 那代：禁用后遥控器输入键失灵，切不了 HDMI。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://tv.cobanov.dev",
+              "title": "Android TV'ni temizle",
+              "date": "2026-09"
+            },
+            {
+              "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/developer-uses-claude-code-to-debloat-android-smart-tv-for-unbelievable-performance-upgrade-tv-now-smoother-than-it-was-new-as-autonomous-agent-deactivates-apps-shortens-animations-all-without-root-access",
+              "title": "Developer uses Claude Code to debloat Android smart TV",
+              "date": "2026-09-02"
+            }
+          ]
+        },
+        {
+          "pkg": "com.android.location.fused",
+          "what": "Android 融合定位服务",
+          "why": "位置权限开启状态下禁用会导致 Google TV logo 循环（bootloop），需刷机恢复。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://gist.github.com/0x4f53/27bee9a0069f7bd6a2aa9eb60bb10d1e",
+              "title": "TCL TV debloater.sh（评论区）",
+              "date": "2024-08-09"
+            }
+          ]
+        },
+        {
+          "pkg": "com.google.android.tv.remote.service",
+          "what": "遥控器配对与通信服务",
+          "why": "关掉遥控器会失联。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://tv.cobanov.dev",
+              "title": "Android TV'ni temizle",
+              "date": "2026-09"
+            },
+            {
+              "url": "https://www.avsforum.com/threads/tcl-forced-firmware-update-automatic-updates-was-off.3344391",
+              "title": "TCL Forced firmware update",
+              "date": "unknown"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.autopair",
+          "what": "遥控器配对与通信服务",
+          "why": "关掉遥控器会失联。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://tv.cobanov.dev",
+              "title": "Android TV'ni temizle",
+              "date": "2026-09"
+            },
+            {
+              "url": "https://www.avsforum.com/threads/tcl-forced-firmware-update-automatic-updates-was-off.3344391",
+              "title": "TCL Forced firmware update",
+              "date": "unknown"
+            }
+          ]
+        }
+      ],
+      "junk": [
+        {
+          "pkg": "com.tcl.waterfall.overseas",
+          "what": "TCL 海外「瀑布式桌面」首页推荐信息流",
+          "why": "首页赞助内容与推荐流组件。⚠️ 个别欧版机型（55P635）禁用后会卡在 Google TV logo，先在自己这台上小范围验证。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://gist.github.com/0x4f53/27bee9a0069f7bd6a2aa9eb60bb10d1e",
+              "title": "TCL TV debloater.sh（评论区）",
+              "date": "2024-08-09"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.overseas.waterfall",
+          "what": "TCL 海外「瀑布式桌面」首页推荐信息流",
+          "why": "首页赞助内容与推荐流组件。⚠️ 个别欧版机型（55P635）禁用后会卡在 Google TV logo，先在自己这台上小范围验证。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://gist.github.com/0x4f53/27bee9a0069f7bd6a2aa9eb60bb10d1e",
+              "title": "TCL TV debloater.sh（评论区）",
+              "date": "2024-08-09"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.bootadservice",
+          "what": "开机广告服务",
+          "why": "脚本注释写 Ads within TCL apps。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://gist.github.com/0x4f53/27bee9a0069f7bd6a2aa9eb60bb10d1e",
+              "title": "TCL TV debloater.sh",
+              "date": "2024-07-21"
+            },
+            {
+              "url": "https://www.znds.com/tv-1188736-1-1.html",
+              "title": "雷鸟电视删除系统自带软件、去开机广告、禁止自动更新",
+              "date": "2021-01-19"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.guard",
+          "what": "TCL 安全卫士 / 自带浏览器 / TCL Channel 免费频道",
+          "why": "海外脚本与论坛清单已验证可 disable-user。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://gist.github.com/0x4f53/27bee9a0069f7bd6a2aa9eb60bb10d1e",
+              "title": "TCL TV debloater.sh",
+              "date": "2024-07-21"
+            },
+            {
+              "url": "https://www.avsforum.com/threads/tcl-forced-firmware-update-automatic-updates-was-off.3344391",
+              "title": "TCL Forced firmware update",
+              "date": "unknown"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.browser",
+          "what": "TCL 安全卫士 / 自带浏览器 / TCL Channel 免费频道",
+          "why": "海外脚本与论坛清单已验证可 disable-user。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://gist.github.com/0x4f53/27bee9a0069f7bd6a2aa9eb60bb10d1e",
+              "title": "TCL TV debloater.sh",
+              "date": "2024-07-21"
+            },
+            {
+              "url": "https://www.avsforum.com/threads/tcl-forced-firmware-update-automatic-updates-was-off.3344391",
+              "title": "TCL Forced firmware update",
+              "date": "unknown"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.tv.plus",
+          "what": "TCL 安全卫士 / 自带浏览器 / TCL Channel 免费频道",
+          "why": "海外脚本与论坛清单已验证可 disable-user。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://gist.github.com/0x4f53/27bee9a0069f7bd6a2aa9eb60bb10d1e",
+              "title": "TCL TV debloater.sh",
+              "date": "2024-07-21"
+            },
+            {
+              "url": "https://www.avsforum.com/threads/tcl-forced-firmware-update-automatic-updates-was-off.3344391",
+              "title": "TCL Forced firmware update",
+              "date": "unknown"
+            }
+          ]
+        },
+        {
+          "pkg": "com.tcl.channelplus",
+          "what": "TCL 安全卫士 / 自带浏览器 / TCL Channel 免费频道",
+          "why": "海外脚本与论坛清单已验证可 disable-user。",
+          "evidence_level": "多源",
+          "sources": [
+            {
+              "url": "https://gist.github.com/0x4f53/27bee9a0069f7bd6a2aa9eb60bb10d1e",
+              "title": "TCL TV debloater.sh",
+              "date": "2024-07-21"
+            },
+            {
+              "url": "https://www.avsforum.com/threads/tcl-forced-firmware-update-automatic-updates-was-off.3344391",
+              "title": "TCL Forced firmware update",
+              "date": "unknown"
+            }
+          ]
+        }
+      ],
+      "ask_user": [
+        {
+          "pkg": "com.google.android.gms",
+          "what": "Google Play 服务 / Play 商店",
+          "why": "Google TV 机型上关掉会连带破坏账号、推送与装应用能力，默认保留。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://tv.cobanov.dev",
+              "title": "Android TV'ni temizle",
+              "date": "2026-09"
+            }
+          ]
+        },
+        {
+          "pkg": "com.android.vending",
+          "what": "Google Play 服务 / Play 商店",
+          "why": "Google TV 机型上关掉会连带破坏账号、推送与装应用能力，默认保留。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://tv.cobanov.dev",
+              "title": "Android TV'ni temizle",
+              "date": "2026-09"
+            }
+          ]
+        },
+        {
+          "pkg": "com.netflix.ninja",
+          "what": "预装流媒体 App",
+          "why": "可逆，但用户可能天天在用。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.avsforum.com/threads/tcl-forced-firmware-update-automatic-updates-was-off.3344391",
+              "title": "TCL Forced firmware update",
+              "date": "unknown"
+            }
+          ]
+        },
+        {
+          "pkg": "com.amazon.amazonvideo.livingroom",
+          "what": "预装流媒体 App",
+          "why": "可逆，但用户可能天天在用。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.avsforum.com/threads/tcl-forced-firmware-update-automatic-updates-was-off.3344391",
+              "title": "TCL Forced firmware update",
+              "date": "unknown"
+            }
+          ]
+        },
+        {
+          "pkg": "com.google.android.youtube.tv",
+          "what": "预装流媒体 App",
+          "why": "可逆，但用户可能天天在用。",
+          "evidence_level": "单源",
+          "sources": [
+            {
+              "url": "https://www.avsforum.com/threads/tcl-forced-firmware-update-automatic-updates-was-off.3344391",
+              "title": "TCL Forced firmware update",
+              "date": "unknown"
+            }
+          ]
+        }
+      ],
+      "pitfalls": [
+        {
+          "what": "Android TV 14 之后 USB debugging 单独打开已经连不上了，必须开 Wireless debugging 并走 adb pair 配对码流程；很多老教程和一些家庭自动化集成（如 Home Assistant ADB 集成）还停留在 5555 端口，会一直报 Failed to connect。",
+          "sources": [
+            {
+              "url": "https://www.youtube.com/watch?v=WVRBXktSw0c",
+              "title": "Google Breaks ADB On Android TV 14 - Lets FIX IT NOW",
+              "date": "unknown"
+            },
+            {
+              "url": "https://community.home-assistant.io/t/android-debug-bridge-on-chromecast-wgtv-4k-after-android-14-update/864037",
+              "title": "Android Debug Bridge on Chromecast wGTV 4K after Android 14 update",
+              "date": "unknown"
+            }
+          ]
+        },
+        {
+          "what": "不想动 ADB 的话，Google TV 机型有官方的广告收敛开关：首页 → Settings → Privacy → Ads → Delete Advertising ID（也可重置）。TCL 官方支持页明说「广告无法完全关闭，但可以控制广告 ID 怎么被用」。",
+          "sources": [
+            {
+              "url": "https://support.tcl.com/en_US/us-googletv-common-questions/can-i-change-the-ad-settings-on-my-tcl-google-tv",
+              "title": "TCL 官方支持：Can I change the ad settings on my TCL Google TV?",
+              "date": "unknown"
+            }
+          ]
+        },
+        {
+          "what": "部分 TCL 机型的 Developer options 在非英文系统语言下无法滚动或选中，临时把系统语言改成 English 可绕过。",
+          "sources": [
+            {
+              "url": "https://www.reddit.com/r/AndroidTV/comments/1bo1bq1/developer_settings_problem_tcl_tv",
+              "title": "Developer settings problem tcl tv : r/AndroidTV",
+              "date": "unknown"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "海外 · TCL Roku TV（ADB 不适用）",
+      "years": "2014 年起在北美等市场持续在售；2021 年 TCL 增加 Google TV 机型后，Roku OS 机型仍继续销售，两条线长期并存",
+      "base_os": "roku",
+      "android_version_range": "不适用——Roku OS 不是 Android，没有 Android 版本号",
+      "models_examples": [
+        "TCL 3-Series Roku TV（如 32S325）",
+        "TCL 4-Series Roku TV（如 55S425、75S425-CA）",
+        "TCL 5-Series Roku TV（S535）",
+        "TCL 6-Series Roku TV（如 65R615、75R615-CA）"
+      ],
+      "identify_hints": "遥控器上有紫色 Roku 标（多数还带 Netflix / Disney+ 等一排彩色快捷键）；首页是左侧竖排菜单 + 右侧方块频道网格的 Roku 界面；设置里写「Roku OS 版本」，整个「关于」页没有任何 Android 字样；开机画面是 Roku 的紫色 logo。",
+      "worth_it_hint": "不值得折腾 ADB——根本没有这个东西。Roku OS 机型卡顿主要靠减少频道和关掉推荐来缓解；真嫌慢就外接一个便宜的流媒体盒子从 HDMI 用。",
+      "entries": [],
+      "pm_caps": {
+        "disable_user": "no",
+        "hide": "no",
+        "uninstall_user0": "no",
+        "notes": "Roku OS 不是 Android，没有 adb、没有 pm、没有 package 概念。Roku 官方的「developer mode」是另一回事：在电视上用遥控器按特定序列打开后，通过浏览器访问电视 IP、用 rokudev 账号登录，进入 Development Application Installer 侧载 Roku 频道（.zip），只能装 Roku 频道，不能列出或停用系统组件。",
+        "evidence_level": "官方",
+        "sources": [
+          {
+            "url": "https://developer.roku.com/dev/docs/developer-setup",
+            "title": "Activating developer mode | Roku 官方开发者文档（developer mode = 浏览器侧载 Roku 频道）",
+            "date": "unknown"
+          }
+        ]
+      },
+      "must_keep": [],
+      "junk": [],
+      "ask_user": [],
+      "pitfalls": [
+        {
+          "what": "替代动作（这一代唯一能做的事）：设置 → Privacy → Advertising → Limit Ad Tracking 打开；设置 → Privacy → Advertising → Reset Advertising Identifier 重置广告 ID；设置 → Privacy → Smart TV Experience → Use Info from TV Inputs 关掉（这一条是 ACR 自动内容识别，关掉能挡住电视扫描你在 HDMI 上看什么）。首页推荐条则在 Home screen 的设置里减少频道来收敛。",
+          "sources": [
+            {
+              "url": "https://www.secretsofprivacy.com/p/smart-tv-privacy-settings",
+              "title": "Smart TV Privacy Settings：TCL (Roku TV) 专节，逐条给出设置路径",
+              "date": "unknown"
+            }
+          ]
+        },
+        {
+          "what": "买之前认平台：同一个 TCL 型号系列（4-Series / 5-Series / 6-Series）在北美同时有 Roku TV 和 Google TV 两个版本，硬件接近但系统完全不同——Google TV 版能做 ADB，Roku 版做不了。认遥控器上的紫色 Roku 标最快。",
+          "sources": [
+            {
+              "url": "https://www.theverge.com/2021/8/10/22616941/tcl-6-5-series-google-tv-price-specs",
+              "title": "TCL announces new 6-series and 5-series TVs with Google TV instead of Roku",
+              "date": "2021-08-10"
+            },
+            {
+              "url": "https://www.xda-developers.com/tcl-6-series-4k-5-series-4k-tvs-google-tv",
+              "title": "TCL launches new 6-series and 5-series 4K TVs with Google TV",
+              "date": "unknown"
+            }
+          ]
+        },
+        {
+          "what": "社区有对 Roku 设备做 root / 越狱的讨论，本项目不采用。",
+          "sources": [
+            {
+              "url": "https://developer.roku.com/dev/docs/developer-setup",
+              "title": "Activating developer mode | Roku 官方开发者文档",
+              "date": "unknown"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "open_questions": [
+    "国行灵控系统 3.0 / 3.5 下的广告与推荐组件到底叫什么包名？目前国行有实测回显的只有 2021 年瀑布式那代的 com.tcl.bootadservice / com.tcl.article.news / com.tcl.ffeducation / com.tcl.MultiScreenInteraction_TV / com.tcl.versionUpdateApp / com.tcl.update 六个；2024 年后的灵控机型没有找到任何一份 `pm list packages` 的公开输出可比对。",
+    "com.tcl.suspension、com.tcl.autopair、com.tcl.tcl_bt_rcu_service 这些「不可停」包名在国行灵控系统上是否同样存在、行为是否一致，完全没有国行实测记录——本文件已把它们标为海外证据，不要当成国行已验证结论向用户陈述。",
+    "国行 TCL / 雷鸟是否有标准 Android 11+ 的「无线调试 + 配对码」流程？查到的国行资料全部只有「本机信息 → 上下左右 → ADB 开关 → 5555」，没有任何国行配对码流程的截图或步骤记录。",
+    "「设置 → 关于本机 → 连点版本号 7 次 → 开发者选项」与「本机信息 → 上下左右」两条国行路径的机型分界仍未确定。2026-03 的值得买文章把两条并列为 TCL 的可选路径，但没说哪些型号走哪条，也可能只是把通用 Android TV 教程一并抄录了。",
+    "「商场模式」是否是所有国行固件开 ADB 的必经前置？2026 年的两篇教程提到要先打开商场模式，2021–2025 年的教程都只说按完上下左右就能看到 ADB 开关——不确定是新固件的变化，还是不同机型的差异。",
+    "国行「恢复出厂 / 工厂组件」和「天气」这两个致命包的实际包名未查到，目前只能给用户「名字里带 factory / reset / recovery / weather 的先别动」这种模糊指引。",
+    "「灵控桌面 3.5」只有一条视频标题提到（称 2026 Q1 大版本），没有官方公告或第二来源，发布时间与版本变化均不可采信。",
+    "工厂菜单路径（信源 → 模拟接收 → 对比度 → 1950）的适用型号清单未查到，只知道限于遥控器带数字键的机型（偏老款与部分海外机），国行现售机型是否仍保留该入口未经验证。",
+    "TCL 海外 Roku TV 在中国大陆没有销售，本文件的 Roku 分支只服务海外用户；国内不会遇到这一支。"
+  ],
+  "last_reviewed": "2026-09-15"
+}

@@ -1,0 +1,3 @@
+package:com.hisense.remoteupgrade
+package:com.android.wechathci
+package:com.android.bluetooth

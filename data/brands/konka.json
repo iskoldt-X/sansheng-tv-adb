@@ -1,0 +1,321 @@
+{
+  "brand": "康佳 / KKTV",
+  "region": "cn",
+  "aliases": ["康佳", "KONKA", "KKTV", "易柚", "YIUI", "me柚", "me柚OS", "易TV", "易AI"],
+  "status": "适用",
+  "summary": "能做：康佳的入口是「切到模拟电视信源 → 按菜单键 → 输入 2008 → 工厂菜单里打开 ADB」，开了之后 pm uninstall --user 0 很好使，社区有成熟的包名清单。最大的坎不是系统而是遥控器——近几年的蓝牙遥控器没有数字键，输不了 2008，得配一个蓝牙键盘。值不值得：2019–2023 年的易柚机型收益最大；2025 年起的易AI 机型没有任何实测记录。",
+  "identify_hints": {
+    "remote_has_digits": "这是康佳最关键的一条：2008 这个口令必须用数字键输入。老款红外遥控器带完整数字键盘；近几年的蓝牙语音遥控器（KKTV 及 R5 等系列）没有数字键，只能外接一个蓝牙键盘敲 2008。先翻遥控器再动手。",
+    "system_name_shown_at": "设置 →「关于本机」/「系统信息」；页面上写「易柚 YIUI x.x」或「me柚 OS」，近两年新机写「易AI」",
+    "about_page_fields": ["产品型号（如 B50U、75R5、LED55M2）", "系统版本（YIUI 易柚 x.x / me柚 OS / 易AI x.x）", "软件版本号", "MAC 地址"],
+    "model_naming_rule": "没有找到康佳官方的型号编码规则文档。从实际机型看常见形态是：老机型 LED + 尺寸 + 系列字母数字（LED55M2、LED42K1），近年机型 尺寸 + 系列字母 + 数字（75R5、B50U、D6S、S50U、X8、70U5D），2025 年新品走单字母+两位数（K10、G10、R10）；KKTV 子品牌另用 AK50 这类编号。所以不要靠型号猜系统代际，以「关于本机」里写的系统名为准。",
+    "sticker_location": "机身背面铭牌贴纸印型号与序列号",
+    "year_ranges": "易柚 YIUI 2.0 ≈ 2014 起，YIUI 7 = 2019-01，新版易柚 = 2019-11，YIUI 8.5 = 2021-02，me柚 OS 见于 R5 系列，易AI = 2025-07 起"
+  },
+  "series": [
+    {
+      "name": "易柚 YIUI 早期（2.0 – 5.x）",
+      "years": "2014–2018",
+      "base_os": "android",
+      "android_version_range": "Android 4.x–5.x（社区反馈中还见过标着「YIUI 易柚 3.5」的在用机型）",
+      "models_examples": [],
+      "identify_hints": "「关于本机」写「YIUI 易柚 2.x / 3.x / 5.0」。桌面是 Metro 风格的方块磁贴（易柚早期主打多套主题皮肤，方正色块是标志）；遥控器是带完整数字键盘的红外遥控。",
+      "worth_it_hint": "值得做但要先评估：这代机器 1GB 运存居多、机龄 8–12 年，清完确实快，但很多已经卡到连 adb 连接都不稳；如果电视本身已经开机要两分钟，清理救不回来，该换机就换机。",
+      "entries": [
+        {
+          "applies_to": "易柚早期机型通用：菜单键 + 2008 进工厂菜单",
+          "steps": [
+            "遥控器把信号源切到「模拟电视 / TV」",
+            "按一下菜单键（有的遥控器上是三道横杠的那个键）",
+            "画面弹出普通功能设置菜单后，用数字键输入 2008",
+            "稍等一下，屏幕出现 Factory Menu（工厂菜单）",
+            "在工厂菜单里找 ADB 开关并打开（各机型位置不同，见下面两条）"
+          ],
+          "has_auth_prompt": false,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://www.znds.com/tv-646692-1-1.html", "title": "康佳智能电视打开ADB调试，开启工程模式工厂模式方法介绍", "date": "2017-02-22"},
+            {"url": "https://jingyan.baidu.com/article/92255446f1d74fc41748f43d.html", "title": "康佳电视机怎么开启ADB模式？", "date": "2020-02-07"},
+            {"url": "https://zhuanlan.zhihu.com/p/1901349166480880333", "title": "汇总13款安卓电视机开启Adb（康佳段落）"}
+          ],
+          "risk_notes": "只改 ADB 那一项。工厂菜单里是屏幕色差、老化模式等硬件参数，原帖写明「仅适用于有技术功底的玩家」，误改有花屏/变砖风险。必须先切到模拟电视信源，在别的信源下按菜单键弹的不是同一个菜单。"
+        },
+        {
+          "applies_to": "工厂菜单里 ADB 开关在「高级设置」、要密码 123456 的一类机型",
+          "steps": [
+            "按上面的方法进入工厂菜单",
+            "选择「高级设置」",
+            "输入密码「123456」",
+            "找到 ADB 开关并打开"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "单源",
+          "sources": [
+            {"url": "https://www.znds.com/tv-646692-1-1.html", "title": "康佳智能电视打开ADB调试，开启工程模式工厂模式方法介绍", "date": "2017-02-22"}
+          ],
+          "risk_notes": "只改 ADB 这一项。⚠️ 原帖点名的型号（42K1 / 42K1T / 42K1Y / 42K1TY / 55K1 / 55K1T）归属存疑，看本系列 pitfalls 的第一条——把这些型号当成「康佳机型」去找是找不到的，但「高级设置 + 密码 123456」这个菜单形态本身在康佳机上被多篇二手教程沿用。"
+        },
+        {
+          "applies_to": "工厂菜单里没有 ADB 开关、只有「Adbd Enable」参数项的一类机型",
+          "steps": [
+            "按上面的方法进入工厂菜单",
+            "选择「其它设置」",
+            "找到「Adbd Enable」这一项",
+            "把参数值改成 1"
+          ],
+          "has_auth_prompt": false,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "单源",
+          "sources": [
+            {"url": "https://www.znds.com/tv-646692-1-1.html", "title": "康佳智能电视打开ADB调试，开启工程模式工厂模式方法介绍（40K1Y/49K1Y/49K1C 段落）", "date": "2017-02-22"}
+          ],
+          "risk_notes": "只改「Adbd Enable」这一项。同样注意型号归属存疑，见 pitfalls。"
+        },
+        {
+          "applies_to": "另一条工厂菜单口令：菜单键后连点 5 次「回看」键（不需要数字键）",
+          "steps": [
+            "按一下遥控器的 MENU / 菜单键，画面弹出普通功能设置菜单",
+            "在这个菜单上连续点按 5 次「回看」键",
+            "打开康佳工厂模式菜单"
+          ],
+          "has_auth_prompt": false,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "单源",
+          "sources": [
+            {"url": "https://www.right.com.cn/forum/thread-8275404-1-1.html", "title": "各品牌智能电视进入工程模式方法汇总（恩山无线论坛 111 楼）", "date": "2023-10-03"}
+          ],
+          "risk_notes": "只改 ADB 那一项。这条的价值在于不需要数字键，遥控器没有数字键盘时可以先试它；但只有一个来源、也没说适用型号范围，按不出来就换别的路子，别反复乱按。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "unknown",
+        "hide": "unknown",
+        "uninstall_user0": "unknown",
+        "notes": "这一代没有找到落到具体机型的 pm 命令实测记录，不照搬后面几代的结论。",
+        "evidence_level": "单源"
+      },
+      "pitfalls": [
+        {
+          "what": "🔴 网上到处流传的「康佳机型清单：42K1 / 42K1T / 42K1Y / 42K1TY / 55K1 / 55K1T 用密码 123456，40K1Y / 49K1Y / 49K1C 改 Adbd Enable，40U1 / 58U1 没有 ADB 选项」很可能是串品牌的。证据：同一位作者（ZNDS 用户「费老湿」）在 2017-02-22 同一天分别发了创维帖和康佳帖，两帖的这段型号清单一字不差；而 42K1 / 42K1Y / 55K1 / 40U1 在电商和刷机包页面上都是酷开（创维子品牌）的产品。后来知乎、百度经验、微信公众号的汇总文都从这两篇里抄，所以两边都能搜到同一串型号。结论：这串型号按酷开机型处理更合理；菜单形态（高级设置+123456 / 其它设置+Adbd Enable）在康佳机上仍可参考，但不要拿型号去对号入座。",
+          "sources": [
+            {"url": "https://www.znds.com/tv-646692-1-1.html", "title": "康佳智能电视打开ADB调试，开启工程模式工厂模式方法介绍", "date": "2017-02-22"},
+            {"url": "https://www.znds.com/tv-646545-1-1.html", "title": "创维智能电视打开工厂模式，开启ADB方法（同作者同日，同一串型号清单）", "date": "2017-02-22"},
+            {"url": "http://www.shafa.com/product/tv/y8O4JCloLmkXcro3/images.html", "title": "酷开40U1（酷开coocaa）产品参数页"}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "易柚 YIUI 7 / 8.x（含 8.5，KKTV 同步升级）",
+      "years": "2019-01 发布 YIUI 7；2019-11 新版易柚上机（APHAEA-A5、R3、丘比特系列）；2021-02 升级到 YIUI 8.5；该代持续到约 2023",
+      "base_os": "android",
+      "android_version_range": "未查到官方公布的 AOSP 版本区间",
+      "models_examples": ["康佳 B50U", "康佳 70U5D", "康佳 D6S", "康佳 S50U", "康佳 X8", "KKTV AK50", "康佳 APHAEA-A5", "康佳 R3"],
+      "identify_hints": "「关于本机」写「YIUI 易柚 7.x / 8.x / 8.5」。YIUI 7 起桌面改成 feed 流（一屏一屏往下滚的推荐流），YIUI 8.5 把原来的「首页」改名叫「精选」，并多了「热点资讯」「会员特权」版块——看到「精选 + 热点资讯 + 会员特权」这三个 Tab 基本就是 8.5。这一代开始主推 AI 远场语音，遥控器上有麦克风键。",
+      "worth_it_hint": "值得做：2–3GB 运存，机龄 2–7 年，开关机广告和 feed 流推荐最密；社区的康佳包名清单基本都是在这代机器上跑出来的，成功率最高。",
+      "entries": [
+        {
+          "applies_to": "B50U 等 2020 年后机型：工厂菜单里的「远程调试」二级菜单",
+          "steps": [
+            "把信号源切到模拟电视",
+            "按菜单键，用数字键输入 2008，进入底层菜单",
+            "找到「远程调试」这一项（B50U 上它在倒数第 2 项）",
+            "进入这个二级菜单",
+            "把「ADB 调试」和「ADBD 调试」两个开关都打开（B50U 上分别在第 1 项和第 3 项）"
+          ],
+          "has_auth_prompt": false,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://www.znds.com/tv-1250596-1-1.html", "title": "如何使用ADB工具卸载电视预装app、去广告、修改默认桌面（以康佳B50U为例）", "date": "2024-07-11"},
+            {"url": "https://blog.csdn.net/weixin_41961749/article/details/145452480", "title": "如何通过ADB修改康佳电视桌面，解决安装应用问题", "date": "2025-02-07"}
+          ],
+          "risk_notes": "只开「远程调试」里那两个开关。菜单文案从老机型的「ADB」改成了「远程调试」，位置也从一级菜单挪到二级，找的时候按名字找不要按位置数——原帖给的「倒数第 2 项」只对 B50U 成立。"
+        },
+        {
+          "applies_to": "工厂菜单里叫「软件调试」的一类机型",
+          "steps": [
+            "按菜单键 + 2008 进入工厂模式",
+            "选择「软件调试」",
+            "依次打开「adb」和「允许以 root 的方式调试」两项"
+          ],
+          "has_auth_prompt": false,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "单源",
+          "sources": [
+            {"url": "https://wangduola.com/archives/227.html", "title": "康佳电视更换系统桌面记录", "date": "2024-05-26"}
+          ],
+          "risk_notes": "只开这两项。注意第二项叫「允许以 root 的方式调试」，那是厂商工厂菜单自带的调试开关，不是给系统刷 root——本项目只用它把 adb 连上，不做任何 root/解锁相关操作，用完建议关掉。"
+        },
+        {
+          "applies_to": "工厂菜单里 ADB 在「其他选项」，且之后还要在系统设置里再开一次开发者选项的一类机型",
+          "steps": [
+            "切到模拟电视信源",
+            "按菜单键 + 2008，选中「其他选项」",
+            "打开 ADB 的开关",
+            "退出后进入「设置」",
+            "选择「通用设置」→「开发者选项」",
+            "把开关打开"
+          ],
+          "has_auth_prompt": false,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "单源",
+          "sources": [
+            {"url": "https://jingyan.baidu.com/article/92255446f1d74fc41748f43d.html", "title": "康佳电视机怎么开启ADB模式？", "date": "2020-02-07"}
+          ],
+          "risk_notes": "只改这两处开关。这一类机型两步都做完才生效，只开工厂菜单那一个连不上。"
+        },
+        {
+          "applies_to": "X8 等较新机型：不进工厂菜单，走连点版本号",
+          "steps": [
+            "设置 →「关于本机」（或「系统信息」）",
+            "连续点击「版本号」7 次，出现「开发者模式已开启」提示",
+            "返回设置，进入新出现的「开发者选项」",
+            "打开「USB 调试」"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "单源",
+          "sources": [
+            {"url": "https://www.informat.cn/qa/120685", "title": "康佳电视x8如何进入系统开发模式", "date": "2024-11-09"}
+          ],
+          "risk_notes": "这条是标准安卓路径，不进工厂菜单，风险最低，所以值得先试。但它在康佳上的实际覆盖范围没被多源确认——同为康佳近年机型的 75R5 就明确没有这个选项（见 me柚 OS 系列），所以试不出来是正常的，不要为了找它去翻设置里的其它开关。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "yes",
+        "hide": "unknown",
+        "uninstall_user0": "yes",
+        "notes": "证据落在 B50U 和 70U5D 这两台易柚机型上：非 root 状态下 pm disable-user 和 pm uninstall --user 0 都能用。已被记录成功的具体命令有 adb shell pm disable-user com.konka.livelauncher（冻结原厂桌面）、adb shell pm uninstall --user 0 com.konka.livelauncher（彻底删原厂桌面用于换第三方桌面）、adb uninstall -k --user 0 com.konka.kkweather、adb uninstall -k --user 0 com.konka.systemadvert。误删的恢复命令是 adb shell pm install-existing --user 0 <包名>。注意这和创维/酷开相反——酷开上 disable-user 对系统应用会直接报 SecurityException，康佳这一代不报。",
+        "evidence_level": "多源",
+        "sources": [
+          {"url": "https://www.znds.com/tv-1250596-1-1.html", "title": "如何使用ADB工具卸载电视预装app、去广告、修改默认桌面", "date": "2024-07-11"},
+          {"url": "https://wangduola.com/archives/227.html", "title": "康佳电视更换系统桌面记录", "date": "2024-05-26"},
+          {"url": "https://zhuanlan.zhihu.com/p/461862611", "title": "经验分享｜使用adb工具卸载安卓智能电视预装app、去广告"}
+        ]
+      },
+      "must_keep": [
+        {"pkg": "com.konka.livelauncher", "what": "康佳原厂桌面（易柚主界面）", "why": "可以删，但必须先装好第三方桌面并把它设成「永远运行 / 开机启动桌面」，否则删完按 Home 键黑屏、找不到任何应用。删掉之后原桌面回不来，除非重装系统。", "evidence_level": "多源", "sources": [{"url": "https://www.znds.com/tv-1250596-1-1.html", "title": "如何使用ADB工具卸载电视预装app、去广告、修改默认桌面", "date": "2024-07-11"}, {"url": "https://wangduola.com/archives/227.html", "title": "康佳电视更换系统桌面记录", "date": "2024-05-26"}]},
+        {"pkg": "com.droidlogic", "what": "晶晨（Amlogic）芯片平台的系统应用", "why": "🔴 流传的康佳一键去广告脚本里有这一条，但它不是广告——它是芯片厂商的系统组件，涉及播放、HDMI、信号源等底层能力。跑别人的批处理前一定要把这行删掉。", "evidence_level": "多源", "sources": [{"url": "https://www.right.com.cn/forum/thread-8275404-1-1.html", "title": "2023年9月新增一键去掉康佳电视开机广告和更换康佳电视默认桌面", "date": "2023-02-11"}, {"url": "https://www.right.com.cn/forum/thread-8431622-1-1.html", "title": "纯小白为康佳75R5电视机开启adb删除广告经验分享", "date": "2025-06-09"}]},
+        {"pkg": "com.android.vpndialogs", "what": "安卓原生 VPN 授权对话框", "why": "同样是被一键脚本误当成垃圾的 AOSP 系统组件；删了之后需要 VPN 授权的应用会直接失败。（两篇帖子里这行还被打错成 com.android.virtualdialogs，抄错的包名执行会报 not installed，属于无效命令。）", "evidence_level": "多源", "sources": [{"url": "https://www.right.com.cn/forum/thread-8275404-1-1.html", "title": "同上", "date": "2023-02-11"}, {"url": "https://www.right.com.cn/forum/thread-8431622-1-1.html", "title": "同上", "date": "2025-06-09"}]},
+        {"pkg": "com.android.proxyhandler", "what": "安卓原生代理处理组件", "why": "AOSP 系统组件，被一键脚本误列入删除清单，和广告无关", "evidence_level": "多源", "sources": [{"url": "https://www.right.com.cn/forum/thread-8275404-1-1.html", "title": "同上", "date": "2023-02-11"}, {"url": "https://www.right.com.cn/forum/thread-8431622-1-1.html", "title": "同上", "date": "2025-06-09"}]},
+        {"pkg": "com.android.location.fused", "what": "安卓原生融合定位服务", "why": "AOSP 系统组件，被一键脚本误列入删除清单；删了可能影响依赖定位的应用（天气、部分视频应用的地区判断）", "evidence_level": "多源", "sources": [{"url": "https://www.right.com.cn/forum/thread-8275404-1-1.html", "title": "同上", "date": "2023-02-11"}, {"url": "https://www.right.com.cn/forum/thread-8431622-1-1.html", "title": "同上", "date": "2025-06-09"}]}
+      ],
+      "junk": [
+        {"pkg": "com.konka.systemadvert", "what": "开关机系统广告", "why": "康佳去广告清单里最直接的一个，多源出现", "evidence_level": "多源", "sources": [{"url": "https://www.znds.com/tv-1250596-1-1.html", "title": "以康佳B50U为例", "date": "2024-07-11"}, {"url": "https://www.right.com.cn/forum/thread-8275404-1-1.html", "title": "一键去掉康佳电视开机广告", "date": "2023-02-11"}]},
+        {"pkg": "com.konka.adverttool", "what": "开机广告测试工具", "evidence_level": "多源", "sources": [{"url": "https://www.right.com.cn/forum/thread-8275404-1-1.html", "title": "同上", "date": "2023-02-11"}, {"url": "https://www.right.com.cn/forum/thread-8431622-1-1.html", "title": "康佳75R5 开启adb删除广告经验分享", "date": "2025-06-09"}]},
+        {"pkg": "com.konka.upgrade", "what": "系统升级（清单里注为「广告程序1」）", "why": "删掉可以顺带挡住 OTA 把你清掉的东西装回来；反面是以后收不到系统更新，怕不能升级的人放 ask_user 处理", "evidence_level": "多源", "sources": [{"url": "https://www.right.com.cn/forum/thread-8275404-1-1.html", "title": "同上", "date": "2023-02-11"}, {"url": "https://www.right.com.cn/forum/thread-8431622-1-1.html", "title": "同上", "date": "2025-06-09"}]},
+        {"pkg": "com.konka.appupgrade", "what": "应用自动更新", "evidence_level": "多源", "sources": [{"url": "https://www.right.com.cn/forum/thread-8275404-1-1.html", "title": "同上", "date": "2023-02-11"}, {"url": "https://www.right.com.cn/forum/thread-8431622-1-1.html", "title": "同上", "date": "2025-06-09"}]},
+        {"pkg": "com.konka.message", "what": "消息中心（推送/营销触达）", "evidence_level": "多源", "sources": [{"url": "https://www.right.com.cn/forum/thread-8275404-1-1.html", "title": "同上", "date": "2023-02-11"}, {"url": "https://www.right.com.cn/forum/thread-8431622-1-1.html", "title": "同上", "date": "2025-06-09"}]},
+        {"pkg": "com.konka.fourkshow", "what": "4K 技术展示（卖场演示片）", "evidence_level": "多源", "sources": [{"url": "https://www.right.com.cn/forum/thread-8275404-1-1.html", "title": "同上", "date": "2023-02-11"}, {"url": "https://www.right.com.cn/forum/thread-8431622-1-1.html", "title": "同上", "date": "2025-06-09"}]},
+        {"pkg": "com.konka.hotelmenu", "what": "酒店菜单（酒店机模式残留，家用完全用不到）", "evidence_level": "多源", "sources": [{"url": "https://www.right.com.cn/forum/thread-8275404-1-1.html", "title": "同上", "date": "2023-02-11"}, {"url": "https://www.right.com.cn/forum/thread-8431622-1-1.html", "title": "同上", "date": "2025-06-09"}]},
+        {"pkg": "com.tvtb.kj", "what": "信息流承接（第三方推荐流落地页）", "evidence_level": "多源", "sources": [{"url": "https://www.right.com.cn/forum/thread-8275404-1-1.html", "title": "同上", "date": "2023-02-11"}, {"url": "https://www.right.com.cn/forum/thread-8431622-1-1.html", "title": "同上", "date": "2025-06-09"}]},
+        {"pkg": "com.konka.kkweather", "what": "康佳自带天气", "evidence_level": "单源", "sources": [{"url": "https://www.znds.com/tv-1250596-1-1.html", "title": "以康佳B50U为例", "date": "2024-07-11"}]},
+        {"pkg": "com.bajintech.karaok", "what": "全民K歌助手（第三方预装推广）", "evidence_level": "多源", "sources": [{"url": "https://www.right.com.cn/forum/thread-8275404-1-1.html", "title": "同上", "date": "2023-02-11"}, {"url": "https://www.right.com.cn/forum/thread-8431622-1-1.html", "title": "同上", "date": "2025-06-09"}]}
+      ],
+      "ask_user": [
+        {"pkg": "com.konka.market.main", "what": "康佳应用商店", "why": "删了就只能靠 adb 或第三方市场装应用；家里有人自己装应用的话建议留", "evidence_level": "多源", "sources": [{"url": "https://www.right.com.cn/forum/thread-8275404-1-1.html", "title": "一键去掉康佳电视开机广告", "date": "2023-02-11"}, {"url": "https://www.right.com.cn/forum/thread-8431622-1-1.html", "title": "康佳75R5 经验分享", "date": "2025-06-09"}]},
+        {"pkg": "com.konka.account", "what": "康佳账号与账号授权", "why": "删了登不了康佳账号；买过康佳会员或用过投屏/智家绑定的人会受影响", "evidence_level": "多源", "sources": [{"url": "https://www.right.com.cn/forum/thread-8275404-1-1.html", "title": "同上", "date": "2023-02-11"}, {"url": "https://www.right.com.cn/forum/thread-8431622-1-1.html", "title": "同上", "date": "2025-06-09"}]},
+        {"pkg": "com.konka.kksmarthome", "what": "康佳智家（IoT 家电联动）", "why": "家里有康佳智能家电并用电视联动的话要留", "evidence_level": "多源", "sources": [{"url": "https://www.right.com.cn/forum/thread-8275404-1-1.html", "title": "同上", "date": "2023-02-11"}, {"url": "https://www.right.com.cn/forum/thread-8431622-1-1.html", "title": "同上", "date": "2025-06-09"}]},
+        {"pkg": "com.konka.cloudsearch", "what": "全网搜索", "why": "删了遥控器上的搜索按键会失效，平时靠搜片名找剧的人别删", "evidence_level": "多源", "sources": [{"url": "https://www.right.com.cn/forum/thread-8275404-1-1.html", "title": "同上", "date": "2023-02-11"}, {"url": "https://www.right.com.cn/forum/thread-8431622-1-1.html", "title": "同上", "date": "2025-06-09"}]},
+        {"pkg": "com.konka.downloadcenter", "what": "下载中心", "why": "应用商店与系统更新的下载通道，一起删掉才干净，单独留着也没大用——但如果保留了应用商店就一并保留", "evidence_level": "多源", "sources": [{"url": "https://www.right.com.cn/forum/thread-8275404-1-1.html", "title": "同上", "date": "2023-02-11"}, {"url": "https://www.right.com.cn/forum/thread-8431622-1-1.html", "title": "同上", "date": "2025-06-09"}]},
+        {"pkg": "com.konka.childrenlock", "what": "青少年模式 / 儿童锁", "why": "家里有小孩、靠它限制观看时长的话要留", "evidence_level": "多源", "sources": [{"url": "https://www.right.com.cn/forum/thread-8275404-1-1.html", "title": "同上", "date": "2023-02-11"}, {"url": "https://www.right.com.cn/forum/thread-8431622-1-1.html", "title": "同上", "date": "2025-06-09"}]},
+        {"pkg": "com.konka.apkhall.edu", "what": "易学（教育内容入口）", "why": "家里有学龄孩子在用就留", "evidence_level": "多源", "sources": [{"url": "https://www.right.com.cn/forum/thread-8275404-1-1.html", "title": "同上", "date": "2023-02-11"}, {"url": "https://www.right.com.cn/forum/thread-8431622-1-1.html", "title": "同上", "date": "2025-06-09"}]},
+        {"pkg": "com.konka.yilife", "what": "易生活（生活服务聚合页）", "evidence_level": "多源", "sources": [{"url": "https://www.right.com.cn/forum/thread-8275404-1-1.html", "title": "同上", "date": "2023-02-11"}, {"url": "https://www.right.com.cn/forum/thread-8431622-1-1.html", "title": "同上", "date": "2025-06-09"}]},
+        {"pkg": "com.cibn.tv", "what": "CIBN 影视（预装长视频）", "why": "这是牌照方内容源，删了部分直播/点播内容会打不开；家里老人靠它看电视剧的话别删", "evidence_level": "多源", "sources": [{"url": "https://www.right.com.cn/forum/thread-8275404-1-1.html", "title": "同上", "date": "2023-02-11"}, {"url": "https://www.right.com.cn/forum/thread-8431622-1-1.html", "title": "同上", "date": "2025-06-09"}]},
+        {"pkg": "com.ixigua.android.tv.wasu", "what": "西瓜视频 TV 版（华数牌照）", "why": "有人真在看，按用户习惯定", "evidence_level": "多源", "sources": [{"url": "https://www.right.com.cn/forum/thread-8275404-1-1.html", "title": "同上", "date": "2023-02-11"}, {"url": "https://www.right.com.cn/forum/thread-8431622-1-1.html", "title": "同上", "date": "2025-06-09"}]},
+        {"pkg": "com.tencent.qqmusictv", "what": "QQ 音乐 TV 版", "why": "会员在用就留", "evidence_level": "多源", "sources": [{"url": "https://www.right.com.cn/forum/thread-8275404-1-1.html", "title": "同上", "date": "2023-02-11"}, {"url": "https://www.right.com.cn/forum/thread-8431622-1-1.html", "title": "同上", "date": "2025-06-09"}]}
+      ],
+      "pitfalls": [
+        {"what": "冻结或卸载原厂桌面 com.konka.livelauncher 之前，必须先装好第三方桌面、按一次 Home 键选「永远运行」，并在电视自带的「电视管家」里把「开机启动桌面」改成新桌面。顺序反了就是按 Home 无响应或黑屏。", "sources": [{"url": "https://www.znds.com/tv-1250596-1-1.html", "title": "如何使用ADB工具卸载电视预装app、去广告、修改默认桌面", "date": "2024-07-11"}, {"url": "https://www.right.com.cn/forum/thread-8275404-1-1.html", "title": "2023年9月新增一键去掉康佳电视开机广告和更换康佳电视默认桌面", "date": "2023-02-11"}]},
+        {"what": "有人执行清单命令时报 Unknown option: --user，说明那台机器的 pm 版本不支持 --user 参数（安卓版本偏老）。这时不要硬试别的写法，改用 pm disable-user，或者干脆放弃这台。", "sources": [{"url": "https://www.right.com.cn/forum/thread-8275404-1-1.html", "title": "同上（5 楼回复）", "date": "2023-02-11"}]},
+        {"what": "较新的康佳系统默认屏蔽 U 盘直接安装第三方 APK（提示「有风险」拒装），所以 ADB 侧装基本是唯一路子。", "sources": [{"url": "https://www.znds.com/tv-1212867-1-1.html", "title": "康佳电视不支持apk安装？康佳电视解除禁止安装第三方软件"}]},
+        {"what": "操作失误的兜底：① 设置里「清除数据、恢复出厂设置」+ 清缓存双清；② 关机拔电源等 10 秒，插电后按住【音量下】+【开机键】进 recovery 双清；③ adb reboot recovery。非硬件故障基本都能救回来。", "sources": [{"url": "https://www.right.com.cn/forum/thread-8275404-1-1.html", "title": "同上", "date": "2023-02-11"}, {"url": "https://www.znds.com/tv-1250596-1-1.html", "title": "以康佳B50U为例", "date": "2024-07-11"}]}
+      ]
+    },
+    {
+      "name": "me柚 OS（Smartisan 深度定制，R5 系列）",
+      "years": "未查实具体起止；已知实测帖发于 2025-06，机型为康佳 75R5",
+      "base_os": "android",
+      "android_version_range": "未查到",
+      "models_examples": ["康佳 75R5"],
+      "identify_hints": "「关于本机」里系统名写「me柚 OS」（不是易柚）；界面是 Smartisan（锤子）团队深度定制的风格，默认首屏是「影音库」；随机是蓝牙语音遥控器，**没有数字键**。看到 me柚 + 蓝牙遥控器这个组合，就知道要准备蓝牙键盘。",
+      "worth_it_hint": "值得做，但主要不是为了性能：实测帖作者的动机是默认桌面/首屏对老人不友好、找不到想看的应用。这代机器性能不差，收益在「把界面改简单」和「去掉开机广告」。",
+      "entries": [
+        {
+          "applies_to": "康佳 75R5（me柚 OS + 蓝牙遥控器）：靠外接蓝牙键盘输入 2008",
+          "steps": [
+            "先在电视的蓝牙设置里配对一个蓝牙键盘（因为随机的蓝牙遥控器没有数字键，输不了 2008）",
+            "把信号源切到「模拟电视」",
+            "按遥控器上的菜单键（三个横杠）",
+            "在蓝牙键盘上输入 2008",
+            "选择底部的「其他选项」，找到「打开 ADB」，用遥控器点击开启",
+            "到网络设置里记下电视的 IPv4 地址，电脑 adb connect <IP> 连接"
+          ],
+          "has_auth_prompt": false,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "单源",
+          "sources": [
+            {"url": "https://www.right.com.cn/forum/thread-8431622-1-1.html", "title": "纯小白为康佳75R5电视机开启adb删除广告经验分享（me柚os+蓝牙遥控器版本）", "date": "2025-06-09"}
+          ],
+          "risk_notes": "只开「打开 ADB」这一项，「其他选项」里的其它条目不要动。这一代明确没有「连点版本号 7 次」的开发者选项（原帖作者翻遍论坛也没找到），别在设置里瞎点浪费时间。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "unknown",
+        "hide": "unknown",
+        "uninstall_user0": "yes",
+        "notes": "75R5 上 pm uninstall --user 0 对整套 com.konka.* 预装清单可用（作者原样执行了易柚代的同一份清单）；disable-user / hide 在这台机器上没有被测过。",
+        "evidence_level": "单源",
+        "sources": [
+          {"url": "https://www.right.com.cn/forum/thread-8431622-1-1.html", "title": "纯小白为康佳75R5电视机开启adb删除广告经验分享", "date": "2025-06-09"}
+        ]
+      },
+      "pitfalls": [
+        {"what": "75R5 的遥控器方向键用一阵子就会「连键」——按上下左右会跳到别的方向；原帖作者售后换了一个、网上又买了一个都没解决。如果用户抱怨方向键乱跳，那是硬件问题，不是你清理清出来的，事先说清楚。", "sources": [{"url": "https://www.right.com.cn/forum/thread-8431622-1-1.html", "title": "同上", "date": "2025-06-09"}]},
+        {"what": "KKTV 的蓝牙遥控器同样没有数字键，2008 输不进去，这是康佳/KKTV 近年机型最常见的卡点（恩山帖下就有人直接问「KKTV 遥控器没有数字按键，怎么输入 2008」）。解法是配一个蓝牙键盘。", "sources": [{"url": "https://www.right.com.cn/forum/thread-8275404-1-1.html", "title": "2023年9月新增一键去掉康佳电视开机广告（3 楼点评）", "date": "2023-10-02"}, {"url": "https://www.right.com.cn/forum/thread-8431622-1-1.html", "title": "康佳75R5 经验分享", "date": "2025-06-09"}]}
+      ]
+    },
+    {
+      "name": "易AI 系统",
+      "years": "2025-07 正式推出；2025-11 的 R10 搭载「易AI 1.6」",
+      "base_os": "android",
+      "android_version_range": "未公开",
+      "models_examples": ["康佳 K10（惊鸿 AI 画质芯片）", "康佳 G10", "康佳 R10（Mini LED，易AI 1.6）"],
+      "identify_hints": "「关于本机」写「易AI」或「易AI 1.x」，不再写易柚；官网产品页上这些机型的卖点标注是「易AI 系统 | 远程协助 | 视频通话」。主打多模态（语音 + 图片）交互和「易桌面」两步直达。",
+      "worth_it_hint": "先别做：2025 年之后的新机，性能和广告状况都不构成清理理由，而且没有任何 ADB 入口的实测记录。要先把广告关掉的话走系统设置里的推荐/个性化开关，别上 ADB。",
+      "entries": [],
+      "pm_caps": {
+        "disable_user": "unknown",
+        "hide": "unknown",
+        "uninstall_user0": "unknown",
+        "notes": "无任何实测记录。",
+        "evidence_level": "单源"
+      },
+      "pitfalls": [
+        {"what": "易AI 是 2025 年才推出的新系统，网上搜到的「康佳开 ADB」教程全部是易柚/me柚时代的，菜单文案和层级都可能已经变了；照着老教程在新机的工厂菜单里翻找是有风险的。", "sources": [{"url": "http://m.cpqr.net/jd/hy/13674.html", "title": "从「执行命令」到「主动懂你」：康佳易AI系统的破局之道", "date": "2025-07-28"}, {"url": "https://www.konka.com/item-1761.html", "title": "易AI Mini LED液晶智能平板R10（康佳官网产品页）"}]}
+      ]
+    }
+  ],
+  "open_questions": [
+    "🔴 广为流传的康佳机型清单（42K1 / 55K1 / 40K1Y / 49K1Y / 49K1C / 40U1 / 58U1）极可能是 2017 年同一位作者把创维/酷开那篇的段落复制到康佳帖里造成的串品牌，已在「易柚早期」系列的 pitfalls 里写明证据。要彻底定案，需要找到一台实体康佳机对上这些型号，本轮没做到。",
+    "易AI 系统（2025 年起，K10 / G10 / R10）没有任何 ADB 或开发者模式的实测记录；不确定它是延续「菜单键 + 2008」工厂菜单，还是改成了别的口令，或者已经封死。",
+    "康佳的无线调试是否有独立入口（Android 11+ 的配对码机制），还是必须先有线 adb tcpip 切换——没有查到康佳专属证据，现有资料全是 adb connect <IP>:5555。",
+    "康佳的「必须保留」包名只确认到桌面（com.konka.livelauncher）和几个被误列的 AOSP 组件；信号源、遥控器服务、输入法、工厂菜单本体这几类的康佳专属包名没有找到可靠来源，不像创维那样有完整的拆机清单。",
+    "康佳 LED55M2 有一篇 2020 年的 ZNDS 帖提到用无线鼠标「连续点击 系统 → 关于 → 生产…」开 Wi-Fi ADB，但摘要不全、没能取到完整步骤，本文件没有收录。",
+    "「菜单键后连点 5 次回看键」这条工厂菜单口令只有一个来源，也没给适用型号范围；它的价值在于不需要数字键，值得后续核实。",
+    "康佳近两年是否有 Google TV / 谷歌认证机型、其开发者选项是否已统一为标准「连点版本号 7 次」，缺官方或多源确认。"
+  ],
+  "last_reviewed": "2026-09-15"
+}

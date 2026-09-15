@@ -1,0 +1,875 @@
+{
+  "brand": "小米 / Redmi / Xiaomi TV",
+  "region": "both",
+  "aliases": [
+    "Xiaomi",
+    "小米电视",
+    "红米电视",
+    "Redmi 智能电视",
+    "Redmi TV",
+    "Mi TV",
+    "MI TV",
+    "Xiaomi TV",
+    "Xiaomi Smart TV",
+    "小米盒子",
+    "Mi Box",
+    "Xiaomi TV Box S",
+    "Mi TV Stick",
+    "小米电视棒",
+    "PatchWall",
+    "MIUI for TV",
+    "小米澎湃OS TV",
+    "Xiaomi HyperOS TV"
+  ],
+  "status": "适用",
+  "summary": "从 2013 年初代到 2026 年的澎湃 OS 4，小米/Redmi 电视一直走同一套「关于页连点解锁开发者 → 账号与安全里打开 ADB 调试 → 电脑 adb connect 电视IP:5555 → 电视上按确认授权」的路子，是国产电视里入口最稳定、教程最多的品牌；海外 Mi TV / Xiaomi TV 分 PatchWall（老机型，入口同国内）和 Google TV（新机型，改走 系统→关于→构建号连点→开发者选项）两条线。值得做：整机广告多、入门款只有 1.5–2GB 运存。",
+  "identify_hints": {
+    "remote_has_digits": "国内近年主力遥控（小米电视 A/S、Redmi A/X）是无数字键的蓝牙语音遥控，只有方向键、返回、主页和小爱/语音键；印度及东南亚的 PatchWall 机型遥控通常带完整数字键，并印有 Netflix / Prime Video / PatchWall / Xiaomi TV+ 快捷键——看到 PatchWall 实体键基本可断定是海外版",
+    "system_name_shown_at": "国内：设置 → 关于（老机型叫「小米电视设置 → 关于」，2018 年后多为「关于电视」）；海外 Google TV 机型：设置 → 系统 → 关于，或 设置 → 设备偏好设置 → 关于（小米香港官网给的查序列号路径就是 设置-附加设置-设备首选项-关于-状态）",
+    "about_page_fields": [
+      "产品型号（老机型在这一项上连点解锁开发者模式）",
+      "版本号 / 系统版本（2018 年后机型在这一项上连点）",
+      "MIUI TV 版本（MIUI for TV 时代显示）",
+      "小米澎湃OS 版本号，形如 OS3.0.28.0.UFTMATV —— 尾缀带 ATV 的就是电视端固件",
+      "Android TV OS build / 构建号（海外 Android TV、Google TV 机型）",
+      "网络信息：以太网 MAC、WiFi MAC、蓝牙 MAC（找客服关开机广告要用这三个）"
+    ],
+    "model_naming_rule": "国内整机型号印成 L<屏幕尺寸>M<平台代号>-<子系列后缀>，例如 L55M5-AZ = 小米电视4A 55 英寸(2017)、L55M5-AD = 同机型 2018 款、L65M7-Z2 = 小米电视6 OLED 65 英寸、L65M7-EA = 全面屏 EA 系列 65 英寸；后缀字母就是子系列（EA/ES/EC/EX、A、S、RA/RX=Redmi）。🔴 2023-03-20 小米官方（公关部总经理王化）宣布电视命名变更：EA/ES 里的 E 原本代表「无边框」，因为市面上已无有边框产品而去掉，EA→A 系列、ES→S 系列，所以 2023 年 3 月前后同一档产品名字会突然少一个字母，不是两条产品线。海外则用 Mi TV 4A/4X/4S/5X、Mi TV P1/Q1/A2、Xiaomi TV A / A Pro 这类名字，与国内型号不通用。",
+    "sticker_location": "机身背板右下角或接口区旁的铭牌贴纸上印 L..M..-.. 完整型号；不方便搬电视时，海外 Google TV 机型可在 设置 → 附加设置 → 设备首选项 → 关于 → 状态 → 序列号 里查（小米香港官网 KA-17810），国内机型在 设置 → 关于 → 产品型号 里查",
+    "year_ranges": "2013 小米电视初代（MIUI for TV 1.0）；2017–2019 小米电视4/4A/4C/4X/4S 与「全面屏」E 系列；2019–2021 小米电视5/6、Redmi 电视 A/X/MAX；2020-09 起推 MIUI for TV 3.0「无界桌面」；2022 推 MIUI 13 TV；2023-03 EA/ES 改名 A/S；2023-10 起澎湃OS(HyperOS) 逐步覆盖电视端，2026-01-31 官方公告电视端澎湃OS 3 正式版开推，2026-08 电视端澎湃OS 4 Beta 开推"
+  },
+  "series": [
+    {
+      "name": "MIUI for TV 1.x / 2.x 早期（小米电视 1/2/3、小米盒子 1–3 代）",
+      "years": "2013–2016",
+      "base_os": "android",
+      "android_version_range": "基于 Android 4.x–5.x 深度定制（小米香港官网 FAQ 明确早期机型为「基于安卓4版本深度定制的电视系统」）；小米官方未公开逐代 MIUI TV 与 Android 版本的对照表",
+      "models_examples": [
+        "小米电视（初代，2013）",
+        "小米电视2 40/49/55 英寸",
+        "小米电视3 / 3s",
+        "小米盒子3 / 3 增强版"
+      ],
+      "identify_hints": "关于页写「MIUI TV 版」而不是「小米澎湃OS」；主界面是横向排列的大图卡片＋左侧「小米电视设置」入口，没有 2020 年后的「无界桌面」；遥控器是只有方向键+主页+菜单的老式红外/蓝牙遥控，没有小爱语音键。",
+      "worth_it_hint": "机龄 10 年上下，运存普遍 1GB、存储 4–8GB，即便精简干净也只能缓解卡顿；广告主要是开机广告和应用商店推荐。除非只当播放器用，性价比更高的做法是外接一个新盒子，把电视当显示器。",
+      "entries": [
+        {
+          "applies_to": "小米电视 1/2/3 与小米盒子，遥控器在「产品型号」上连点",
+          "steps": [
+            "主页 → 我的应用 → 小米电视设置（老机型入口名就叫「小米电视设置」，不是「设置」）",
+            "进入「关于」",
+            "选中「产品型号」，用遥控器确认/OK 键连续点 5~8 次（百度经验记的是 6 次，多数教程写 7 次），直到提示「您已处于开发者模式」",
+            "返回 设置 → 账号与安全（老机型写作「帐户与安全」）",
+            "把「ADB 调试」设为「允许」，顺手打开「允许安装未知来源应用」",
+            "电脑执行 adb connect <电视IP>:5555（电视 IP 在 设置 → 关于 → 网络信息 里看），电视屏幕弹出「允许USB调试吗？」，用遥控器点确定"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "官方",
+          "sources": [
+            {"url": "https://dev.mi.com/docs/mitv/user_guide/", "title": "电视/盒子应用开发指南（小米开发者文档：主页→小米电视设置→账户与安全，允许安装未知来源应用、允许ADB调试）"},
+            {"url": "https://www.mi.com/hk/support/article/KA-17750/", "title": "如何打開小米電視並Mi Box開發者選項？如何開啟ADB調試（小米官方支持页）"},
+            {"url": "https://jingyan.baidu.com/article/3052f5a1ad8320d6f21f8677.html", "title": "小米电视怎样进入开发者模式开启ADB调试（进入关于→产品型号→连按6次OK）", "date": "2020-07-12"},
+            {"url": "https://blog.csdn.net/chenzhengfeng/article/details/89242654", "title": "打开小米电视的adb调试开关", "date": "2019-04-12"}
+          ],
+          "risk_notes": "首次连接必须在电视屏幕上手动点授权框，没法纯命令行静默完成。老机型系统分区小，卸载系统应用后若要恢复往往只能三清（恢复出厂），操作前先确认自己记得住三清方式。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "unknown",
+        "hide": "unknown",
+        "uninstall_user0": "unknown",
+        "notes": "这一代机型的社区教程集中在 2015–2017 年、且多数走 root/刷机路线，本次调研没有找到针对 Android 4/5 老机型、只用 pm disable-user 或 pm uninstall --user 0 的可靠实测报告。Android 4.x 上 `pm uninstall --user 0` 本身就不一定可用（多用户卸载是 Android 5.0 之后才普及的），所以这里一律留 unknown 而不是照抄新机型的结论。",
+        "evidence_level": "单源",
+        "sources": []
+      },
+      "must_keep": [],
+      "junk": [],
+      "ask_user": [],
+      "pitfalls": [
+        {
+          "what": "社区有针对这一代机型的 root / 刷机 / 救砖讨论，本项目不采用，也不记录相关方法。",
+          "sources": []
+        }
+      ]
+    },
+    {
+      "name": "MIUI for TV 2.x 后期 ～ 3.0「无界桌面」（小米电视 4/4A/4C/4X/4S、5、6，以及「全面屏」E 系列 EA/EC/EX/ES）",
+      "years": "2017–2021（MIUI for TV 3.0 自 2020 年 9 月起分批推送到已上市机型）",
+      "base_os": "android",
+      "android_version_range": "Android 6–9 区间（第三方精简教程提到「确保电视系统是安卓7以上」才好换第三方桌面，说明这一代跨了 7 前后两档）；小米未公开官方对照表",
+      "models_examples": [
+        "小米电视4A 55 英寸 L55M5-AZ(2017) / L55M5-AD(2018)",
+        "小米电视4C / 4X / 4S（2018-05-25 同批发布，1799 元起）",
+        "小米电视5 55 英寸 L55M6-5（2019-11-05）",
+        "小米电视6 OLED 65 英寸 L65M7-Z2",
+        "小米全面屏电视 E55A / E55S / EA Pro 75 / ES Pro 86",
+        "Redmi 智能电视 MAX 98（2020-03-24）、MAX 86（2021-02-25）"
+      ],
+      "identify_hints": "关于页仍写 MIUI TV 版本号，没有「小米澎湃OS」字样；2020-09 之后升过级的机型桌面是「无界桌面」（大图内容瀑布＋顶部 Tab），没升级的还是老版分行卡片桌面。型号铭牌上带 E 开头后缀（EA/EC/EX/ES）的一定是这一代的「全面屏」机型——2023 年 3 月官方把 E 去掉之后就不再有新的 E 系列了。",
+      "worth_it_hint": "这一代是精简收益最高的一档：机龄 5–9 年，运存多为 1.5–2GB，开机广告、桌面「今日头条框/视频头条」推荐位、应用商店推送全都在，禁掉后开机和桌面明显变快；同时系统还够新（多数 Android 7+），pm disable-user 可用。",
+      "entries": [
+        {
+          "applies_to": "小米电视 4 系列及以后国内整机，「版本号」连点解锁 → 账号与安全开 ADB（最主流路径）",
+          "steps": [
+            "设置 → 关于电视（部分机型显示为「关于」「关于本机」）",
+            "选中「版本号」（老一些的机型是「产品型号」），遥控器确认键连点 5~8 次，直到出现「您已成为开发者 / 您已处于开发者模式」",
+            "返回 设置 → 账号与安全（帐号与安全）",
+            "把「ADB 调试」设为「允许」",
+            "电脑执行 adb connect <电视IP>:5555，电视弹「允许USB调试吗？」用遥控器确认（建议勾「一律允许来自这台电脑」）"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://www.mi.com/hk/support/article/KA-17750/", "title": "如何打開小米電視並Mi Box開發者選項？如何開啟ADB調試（小米官方支持页）"},
+            {"url": "https://www.quicktvui.com/zh-CN/guide/device/xiaomi.html", "title": "小米机电视机/顶盒 打开USB调试教程（方法一）"},
+            {"url": "https://www.znds.com/tv-1177461-1-1.html", "title": "小米电视ADB删除系统自带无用软件及开机广告教程（作者机型为小米电视4C）", "date": "2020-07-14"},
+            {"url": "https://www.right.com.cn/forum/thread-8431736-1-1.html", "title": "纯小白通过adb精简小米电视自带软件：①设置—关于—产品型号连点 ②设置—账号与安全—ADB调试，弹窗点允许", "date": "2025-06-10"}
+          ],
+          "risk_notes": "点几次没有统一标准（官方支持页写 7 次，百度经验写 6 次，也有机型 5 次），以电视自己弹出的倒计时文案为准，点到提示出现就停。"
+        },
+        {
+          "applies_to": "部分机型「账号与安全」里找不到 ADB 调试时的备用路径：设置 → 更多设置 → 开发者选项",
+          "steps": [
+            "先按上一条把开发者模式解锁出来",
+            "返回 设置 → 更多设置 → 开发者选项",
+            "在开发者选项里分别打开「USB 调试」和「网络调试 / ADB 调试」两个开关（有的机型是两个独立开关，只开一个连不上）",
+            "电脑执行 adb connect <电视IP>:5555 并在电视上确认授权"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://www.quicktvui.com/zh-CN/guide/device/xiaomi.html", "title": "小米机电视机/顶盒 打开USB调试教程（方法二：返回设置→更多设置→开发者选项）"},
+            {"url": "https://ask.csdn.net/questions/9337825", "title": "小米电视启用ADB调试后仍无法连接，常见原因有哪些？（指出路径非线性：部分机型需先解锁开发者模式再进 设置→更多设置→开发者选项）"}
+          ],
+          "risk_notes": "开发者选项里除了调试开关还有一堆渲染/动画/进程数设置，只改 USB 调试和网络调试这两项，别顺手动别的。"
+        },
+        {
+          "applies_to": "小米官方开发者文档给的另一条入口（从应用商店进系统应用设置）",
+          "steps": [
+            "主页 → 应用商店 → 应用管理 → 系统应用 → 设置 → 开发者选项",
+            "打开右上角总开关",
+            "勾选需要的调试项，再回到 设置 → 账户与安全 确认「ADB 调试」为允许"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "官方",
+          "sources": [
+            {"url": "https://dev.mi.com/docs/mitv/user_guide/", "title": "电视/盒子应用开发指南（小米开发者平台，给出「主页→应用商店→应用管理→系统应用→设置→开发者选项」路径）"}
+          ],
+          "risk_notes": "官方文档面向开发者写的，普通用户用上面两条更顺；这条主要用于前两条路径的菜单被改掉时兜底。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "yes",
+        "hide": "unknown",
+        "uninstall_user0": "yes",
+        "notes": "两条命令都能执行。社区主推 `adb shell pm disable-user <包名>`：比 uninstall 更容易回滚（pm enable 就能恢复），也更不容易被系统自动恢复。`adb shell pm uninstall --user 0 <包名>` 对多数系统应用也返回 Success，但广告插件类（尤其 com.miui.systemAdSolution）有「重启后又回来」的用户回帖。`pm hide` 在电视上没有找到实测记录，留 unknown。",
+        "evidence_level": "多源",
+        "sources": [
+          {"url": "https://www.znds.com/tv-1177461-1-1.html", "title": "小米电视ADB删除系统自带无用软件及开机广告教程（含评论区「删了以后重启又有了」）", "date": "2020-07-14"},
+          {"url": "https://gist.github.com/liuxu623/e575acc0eb1139e7969c77eb8a600758", "title": "小米电视系统精简（disable-user 脚本与评论区实测反馈）", "date": "2023-09-14"},
+          {"url": "https://www.bilibili.com/read/cv9960951/", "title": "【教程】无需root！卸载小米电视/盒子内置应用竟如此简单"}
+        ]
+      },
+      "must_keep": [
+        {
+          "pkg": "com.mitv.tvhome",
+          "what": "MIUI TV 系统桌面 / Launcher",
+          "why": "🔴 全文档最高风险条目。实测反馈：禁用后立刻没有桌面（「没桌面了」），并且断电重启后设备起不来（「补充下：断电后重启，不开机了」）。要换第三方桌面必须先装好新桌面并设为默认、确认能自启，再考虑动它。",
+          "evidence_level": "单源",
+          "sources": [{"url": "https://gist.github.com/liuxu623/e575acc0eb1139e7969c77eb8a600758", "title": "小米电视系统精简（GitHub 评论区实测反馈）", "date": "2023-09-14"}]
+        },
+        {
+          "pkg": "com.xiaomi.mitv.tvmanager",
+          "what": "电视管家（内存清理、测网速等基础诊断）",
+          "why": "教程明确提示删掉后连测网速这类基础功能都没了，建议用第三方工具替代再决定，不要一上来就删。",
+          "evidence_level": "单源",
+          "sources": [{"url": "https://www.znds.com/tv-1177461-1-1.html", "title": "小米电视ADB删除系统自带无用软件及开机广告教程", "date": "2020-07-14"}]
+        },
+        {
+          "pkg": "com.sohu.inputmethod.sogou.tv",
+          "what": "系统内置搜狗电视输入法",
+          "why": "这是电视上唯一的输入法。删掉之后所有需要打字的场景（连 WiFi 输密码、搜片名、登录账号）全部失效。要删必须先装好带输入能力的替代方案（例如手机遥控器 App 自带输入法）并验证可用。",
+          "evidence_level": "单源",
+          "sources": [{"url": "https://www.znds.com/tv-1177461-1-1.html", "title": "小米电视ADB删除系统自带无用软件及开机广告教程", "date": "2020-07-14"}]
+        }
+      ],
+      "junk": [
+        {
+          "pkg": "com.miui.systemAdSolution",
+          "what": "系统广告插件（注意包名里 AS 两个字母大写）",
+          "why": "开机广告与系统级广告位的投放组件，是精简教程里第一优先禁用项。",
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://www.znds.com/tv-1177461-1-1.html", "title": "小米电视ADB删除系统自带无用软件及开机广告教程", "date": "2020-07-14"},
+            {"url": "https://gist.github.com/liuxu623/e575acc0eb1139e7969c77eb8a600758", "title": "小米电视系统精简", "date": "2023-09-14"}
+          ]
+        },
+        {
+          "pkg": "com.duokan.airkan.tvbox",
+          "what": "桌面「今日头条框」内容推荐横幅",
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://gist.github.com/liuxu623/e575acc0eb1139e7969c77eb8a600758", "title": "小米电视系统精简", "date": "2023-09-14"},
+            {"url": "https://www.znds.com/tv-1177461-1-1.html", "title": "小米电视ADB删除系统自带无用软件及开机广告教程", "date": "2020-07-14"}
+          ]
+        },
+        {
+          "pkg": "com.duokan.videodaily",
+          "what": "「视频头条 / 今日头屏」内容推荐位",
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://gist.github.com/liuxu623/e575acc0eb1139e7969c77eb8a600758", "title": "小米电视系统精简", "date": "2023-09-14"},
+            {"url": "https://www.znds.com/tv-1177461-1-1.html", "title": "小米电视ADB删除系统自带无用软件及开机广告教程", "date": "2020-07-14"}
+          ]
+        },
+        {
+          "pkg": "com.xiaomi.mitv.tvpush.tvpushservice",
+          "what": "电视推送服务（促销/活动消息推送）",
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://gist.github.com/liuxu623/e575acc0eb1139e7969c77eb8a600758", "title": "小米电视系统精简", "date": "2023-09-14"},
+            {"url": "https://www.znds.com/tv-1177461-1-1.html", "title": "小米电视ADB删除系统自带无用软件及开机广告教程", "date": "2020-07-14"}
+          ]
+        },
+        {
+          "pkg": "com.xm.webcontent",
+          "what": "电视活动中心（促销、广告类网页内容承载）",
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://www.znds.com/tv-1177461-1-1.html", "title": "小米电视ADB删除系统自带无用软件及开机广告教程", "date": "2020-07-14"},
+            {"url": "https://medium.com/@therealcomtom/make-your-android-tv-faster-c3d7c8cd3c7b", "title": "Make your Android TV faster（作者禁用清单里含 com.xm.webcontent）"}
+          ]
+        },
+        {
+          "pkg": "com.xiaomi.mitv.handbook",
+          "what": "「玩机手册」常驻推荐入口",
+          "evidence_level": "单源",
+          "sources": [{"url": "https://gist.github.com/liuxu623/e575acc0eb1139e7969c77eb8a600758", "title": "小米电视系统精简", "date": "2023-09-14"}]
+        },
+        {
+          "pkg": "com.xiaomi.mibox.gamecenter",
+          "what": "电视游戏中心及其运营推荐位",
+          "evidence_level": "单源",
+          "sources": [{"url": "https://gist.github.com/liuxu623/e575acc0eb1139e7969c77eb8a600758", "title": "小米电视系统精简", "date": "2023-09-14"}]
+        },
+        {
+          "pkg": "com.xiaomi.gamecenter.sdk.service.mibox",
+          "what": "游戏中心 SDK 服务（随游戏中心一起）",
+          "evidence_level": "单源",
+          "sources": [{"url": "https://gist.github.com/liuxu623/e575acc0eb1139e7969c77eb8a600758", "title": "小米电视系统精简", "date": "2023-09-14"}]
+        }
+      ],
+      "ask_user": [
+        {
+          "pkg": "com.xiaomi.mitv.shop",
+          "what": "小米商城（电视端）",
+          "why": "纯看片用不上，但有人用它买米家配件；确认不用再禁。",
+          "evidence_level": "单源",
+          "sources": [{"url": "https://gist.github.com/liuxu623/e575acc0eb1139e7969c77eb8a600758", "title": "小米电视系统精简", "date": "2023-09-14"}]
+        },
+        {
+          "pkg": "com.mipay.wallet.tv",
+          "what": "小米钱包 / 电视端支付",
+          "why": "禁掉后电视上买会员、买片需要改用手机付；家里有人习惯电视端续费会员就别动。",
+          "evidence_level": "单源",
+          "sources": [{"url": "https://gist.github.com/liuxu623/e575acc0eb1139e7969c77eb8a600758", "title": "小米电视系统精简", "date": "2023-09-14"}]
+        },
+        {
+          "pkg": "com.xiaomi.mi_connect_service",
+          "what": "小米互联服务（手机投屏、米家设备联动的底层服务）",
+          "why": "精简脚本里列为可禁，但它直接影响手机投屏和小米生态联动。家里常用手机投屏到电视的话保留。本次没有找到针对电视端禁用它的独立实测反馈。",
+          "evidence_level": "单源",
+          "sources": [{"url": "https://gist.github.com/liuxu623/e575acc0eb1139e7969c77eb8a600758", "title": "小米电视系统精简", "date": "2023-09-14"}]
+        },
+        {
+          "pkg": "com.xiaomi.wakeupserviceadb",
+          "what": "小爱语音唤醒服务",
+          "why": "禁用后遥控器语音键和「小爱同学」唤醒会失效。老人用语音搜片的家庭要保留。",
+          "evidence_level": "单源",
+          "sources": [{"url": "https://gist.github.com/liuxu623/e575acc0eb1139e7969c77eb8a600758", "title": "小米电视系统精简", "date": "2023-09-14"}]
+        },
+        {
+          "pkg": "com.mitv.gallery",
+          "what": "云相册 / 屏保画报（部分版本会往屏保里插推荐图）",
+          "why": "有人专门用它当电子相框，禁之前问一句。",
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://gist.github.com/liuxu623/e575acc0eb1139e7969c77eb8a600758", "title": "小米电视系统精简", "date": "2023-09-14"},
+            {"url": "https://www.znds.com/tv-1177461-1-1.html", "title": "小米电视ADB删除系统自带无用软件及开机广告教程", "date": "2020-07-14"}
+          ]
+        }
+      ],
+      "pitfalls": [
+        {
+          "what": "🔴 禁用桌面 com.mitv.tvhome 之后断电重启可能开不了机。实测报告来自一台 Redmi X55 2022 款（MIUI TV 2.27.5224）的精简脚本评论区：先是「没桌面了」，随后「断电后重启，不开机了」。要换第三方桌面的正确顺序是——先装好新桌面 → 设为默认并重启验证能自启 → 再禁系统桌面，且全程保持 ADB 可连（一旦黑屏，能连上 ADB 就还能 pm enable 救回来）。",
+          "sources": [{"url": "https://gist.github.com/liuxu623/e575acc0eb1139e7969c77eb8a600758", "title": "小米电视系统精简（Redmi X55 2022 款 MIUI TV 2.27.5224 实测脚本与评论）", "date": "2023-09-14"}]
+        },
+        {
+          "what": "用 pm uninstall --user 0 卸载广告类系统应用后，部分应用会在重启后被系统守护进程重新装回来（评论区「删了以后重启又有了」）。所以本项目一律优先 pm disable-user，既更持久也随时能 pm enable 回滚。",
+          "sources": [{"url": "https://www.znds.com/tv-1177461-1-1.html", "title": "小米电视ADB删除系统自带无用软件及开机广告教程（评论区）", "date": "2020-07-14"}]
+        },
+        {
+          "what": "电脑端连不上电视时，先查是不是别的软件占了 5037（adb server 默认端口）——各种手机助手、模拟器都会自带一个版本不同的 adb 常驻，会把连接抢走。",
+          "sources": [{"url": "https://www.znds.com/tv-1177461-1-1.html", "title": "小米电视ADB删除系统自带无用软件及开机广告教程", "date": "2020-07-14"}]
+        },
+        {
+          "what": "不要用「电视管家」清理垃圾来去广告：有教程记录，电视管家的清理会把用户手动替换过的 com.mitv.tvhome 缓存目录、/miad/ 广告素材目录一并「修好」，前面做的事白做。",
+          "sources": [{"url": "https://blog.csdn.net/qq_35989688/article/details/126525833", "title": "ADB彻底清除小米电视广告，本人实测", "date": "2022-08-25"}]
+        },
+        {
+          "what": "官方渠道可以永久关开机广告，不需要 ADB：在小米商城 App 里转人工客服（或打小米售后热线），说要关闭电视开机广告，客服会要 三个 MAC 地址——以太网 MAC、WiFi MAC、蓝牙 MAC，都在 设置 → 关于 → 网络信息 里；提交后约 2 个工作日后台生效。2023-10 起多家媒体和用户反馈一致，但没有找到小米官方公告页，所以评级为「多源但非官方」。对不敢碰 ADB 的家庭，这是首选动作。",
+          "sources": [
+            {"url": "https://www.donews.com/news/detail/1/3722168.html", "title": "小米电视可永久关闭开机广告：具体方法公布", "date": "2023-10-11"},
+            {"url": "https://i.ifeng.com/c/8Tnw2r8CeoQ", "title": "好消息！小米电视广告可永久关闭（称询问官方客服确认：提供小米 ID 与 WiFi MAC 后两个工作日生效）", "date": "2023-10-11"},
+            {"url": "https://www.chinaz.com/2023/1011/1565802.shtml", "title": "用户称小米电视已可关闭开机广告：方法公布", "date": "2023-10-11"},
+            {"url": "https://zhuanlan.zhihu.com/p/662208650", "title": "永久去除小米电视广告的方法，简单有效（以小米 ES 系列为例，含 设置>关于>网络信息 取 MAC 的截图步骤）", "date": "2023-10-19"}
+          ]
+        },
+        {
+          "what": "「设置 → 声音 → 开机广告音」只关声音，画面照放，别和「永久关闭开机广告」混为一谈。另外系统里还有「系统工具广告」总开关和各入口的「个性化推荐」开关，能关掉一批系统级广告位，属于零风险动作，应该在动 ADB 之前先做完。",
+          "sources": [
+            {"url": "https://www.mi.com/service/box/vip", "title": "小米帮助中心（小米商城官方）"},
+            {"url": "https://cj.sina.com.cn/articles/view/7879923744/1d5ae182006808mr92", "title": "为什么不推荐小米电视？开机广告已能永久关闭（提到「系统工具广告」总开关与逐项关闭个性化推荐）", "date": "2026-09-10"}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "MIUI 13 TV（2022 款 ES/EA、Redmi 智能电视 X/A 2022、Redmi MAX 98）",
+      "years": "2022 年 1 月起分批推送稳定版",
+      "base_os": "android",
+      "android_version_range": "未查到官方公布的 Android 基线版本",
+      "models_examples": [
+        "小米电视 ES55 / ES65 / ES75 2022 款",
+        "小米电视 EA 2022 款",
+        "Redmi 智能电视 X55 / X65 / X75 2022 款",
+        "Redmi 智能电视 X Pro 65（L65R9-XP，2022-10-18）",
+        "Redmi MAX 98 英寸"
+      ],
+      "identify_hints": "关于页版本号写「MIUI 13」而不是「小米澎湃OS」；机型名还带 E（ES/EA），且是 2022 年款——2023 年 3 月之后发布的同档产品已经改叫 S/A 了。官方专题页 miui13.home.miui.com/tv 上列的机型就是这一批。",
+      "worth_it_hint": "机龄 3–4 年，运存 1.5–2GB 居多（Redmi X Pro 等高配到 3GB）。这一代广告形态和上一代一样（开机广告＋桌面推荐位），精简收益仍然明显，且系统够新、pm 命令可用，是「做了就舒服」的一档。",
+      "entries": [
+        {
+          "applies_to": "MIUI 13 TV 全系，路径与上一代完全相同",
+          "steps": [
+            "设置 → 关于电视 → 选中「版本号」，遥控确认键连点 5~8 次，直到提示已成为开发者",
+            "返回 设置 → 账号与安全 → 「ADB 调试」改为允许",
+            "找不到时退而求其次：设置 → 更多设置 → 开发者选项 → 打开 USB 调试与网络调试",
+            "电脑 adb connect <电视IP>:5555，在电视上确认授权弹窗"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://miui13.home.miui.com/tv", "title": "MIUI 13（电视端）官方专题页（列出 ES/EA 2022 款、Redmi X 2022 款、Redmi MAX 98 等适配机型）"},
+            {"url": "https://www.mi.com/hk/support/article/KA-17750/", "title": "如何打開小米電視並Mi Box開發者選項？如何開啟ADB調試（小米官方支持页）"},
+            {"url": "https://www.quicktvui.com/zh-CN/guide/device/xiaomi.html", "title": "小米机电视机/顶盒 打开USB调试教程"}
+          ],
+          "risk_notes": "本次没有找到「MIUI 13 TV 改了 ADB 入口」的任何记录，各版本教程给的都是同一条路径。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "yes",
+        "hide": "unknown",
+        "uninstall_user0": "yes",
+        "notes": "精简脚本的实测机型正是这一代（Redmi X55 2022 款，MIUI TV 2.27.5224），disable-user 全套可用；uninstall --user 0 同样可执行，仍有广告类应用自动恢复的风险。",
+        "evidence_level": "多源",
+        "sources": [
+          {"url": "https://gist.github.com/liuxu623/e575acc0eb1139e7969c77eb8a600758", "title": "小米电视系统精简（Redmi X55 2022 款实测）", "date": "2023-09-14"},
+          {"url": "https://www.right.com.cn/forum/thread-8431736-1-1.html", "title": "纯小白通过adb精简小米电视自带软件（解决内存清理弹窗）", "date": "2025-06-10"}
+        ]
+      },
+      "must_keep": [
+        {
+          "pkg": "com.mitv.tvhome",
+          "what": "MIUI TV 系统桌面",
+          "why": "同上一代：Redmi X55 2022 款上的实测就是禁用后没桌面、断电重启起不来。",
+          "evidence_level": "单源",
+          "sources": [{"url": "https://gist.github.com/liuxu623/e575acc0eb1139e7969c77eb8a600758", "title": "小米电视系统精简（GitHub 评论区实测反馈）", "date": "2023-09-14"}]
+        },
+        {
+          "pkg": "com.sohu.inputmethod.sogou.tv",
+          "what": "系统内置搜狗电视输入法",
+          "why": "删了就没法在电视上打字，先备好替代输入方案。",
+          "evidence_level": "单源",
+          "sources": [{"url": "https://www.znds.com/tv-1177461-1-1.html", "title": "小米电视ADB删除系统自带无用软件及开机广告教程", "date": "2020-07-14"}]
+        }
+      ],
+      "junk": [
+        {
+          "pkg": "com.miui.systemAdSolution",
+          "what": "系统广告插件",
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://www.znds.com/tv-1177461-1-1.html", "title": "小米电视ADB删除系统自带无用软件及开机广告教程", "date": "2020-07-14"},
+            {"url": "https://gist.github.com/liuxu623/e575acc0eb1139e7969c77eb8a600758", "title": "小米电视系统精简", "date": "2023-09-14"}
+          ]
+        },
+        {
+          "pkg": "com.duokan.videodaily",
+          "what": "「视频头条」桌面推荐位",
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://gist.github.com/liuxu623/e575acc0eb1139e7969c77eb8a600758", "title": "小米电视系统精简", "date": "2023-09-14"},
+            {"url": "https://www.znds.com/tv-1177461-1-1.html", "title": "小米电视ADB删除系统自带无用软件及开机广告教程", "date": "2020-07-14"}
+          ]
+        },
+        {
+          "pkg": "com.xiaomi.mitv.tvpush.tvpushservice",
+          "what": "电视推送服务",
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://gist.github.com/liuxu623/e575acc0eb1139e7969c77eb8a600758", "title": "小米电视系统精简", "date": "2023-09-14"},
+            {"url": "https://www.znds.com/tv-1177461-1-1.html", "title": "小米电视ADB删除系统自带无用软件及开机广告教程", "date": "2020-07-14"}
+          ]
+        }
+      ],
+      "ask_user": [
+        {
+          "pkg": "com.xiaomi.mitv.tvmanager",
+          "what": "电视管家",
+          "why": "这一代的「内存清理弹窗」就是它弹的，被精简教程点名；但删掉后测网速等诊断功能一起没了。想根治弹窗的可以禁，想留诊断的就留。",
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://www.right.com.cn/forum/thread-8431736-1-1.html", "title": "纯小白通过adb精简小米电视自带软件（解决内存清理弹窗）", "date": "2025-06-10"},
+            {"url": "https://www.znds.com/tv-1177461-1-1.html", "title": "小米电视ADB删除系统自带无用软件及开机广告教程", "date": "2020-07-14"}
+          ]
+        }
+      ],
+      "pitfalls": [
+        {
+          "what": "找客服永久关开机广告这条路对这一代同样成立（知乎那篇实测用的就是小米 ES 系列），且零风险，建议先做这个再考虑 ADB。",
+          "sources": [{"url": "https://zhuanlan.zhihu.com/p/662208650", "title": "永久去除小米电视广告的方法，简单有效（以小米 ES 系列为例）", "date": "2023-10-19"}]
+        }
+      ]
+    },
+    {
+      "name": "小米澎湃 OS（Xiaomi HyperOS）TV —— A / S / S Pro 系列与 Redmi A / A Pro / X / MAX",
+      "years": "2023 年 10 月澎湃 OS 发布后逐步覆盖电视端；官方公告电视端澎湃 OS 3 正式版自 2026-01-31 起开推，澎湃 OS 4 Beta 自 2026-08-14 起在小米电视 S Pro Mini LED 2026 系列开推",
+      "base_os": "android",
+      "android_version_range": "未查到官方公布的 Android 基线；澎湃 OS 官方定位为「基于 Android 及 Xiaomi Vela」",
+      "models_examples": [
+        "小米电视 S Mini LED（澎湃 OS 3 版本号 OS3.0.28.0.UFTMATV）",
+        "小米电视 S Pro Mini LED 2026 系列（首批澎湃 OS 4 Beta）",
+        "REDMI 电视 MAX 2025 系列（OS3.0.28.0.UFTMATV / OS3.0.17.0.USTAATV）",
+        "REDMI 智能电视 A Pro 系列（OS3.0.17.0.USTAATV）",
+        "REDMI 智能电视 A 2025 系列（OS3.0.6.0.UFZAATV / OS3.0.11.0.PSTAATV）",
+        "小米电视 A75 竞技版（2023-05-23）"
+      ],
+      "identify_hints": "关于页的系统名写「小米澎湃OS」，版本号形如 OS3.0.28.0.UFTMATV —— 🔴 尾缀带 ATV 的一定是电视端固件，别拿手机端的 OS3.0.x 版本号对号入座。机型名不带 E（A / A Pro / S / S Pro / X / MAX），是 2023 年 3 月官方去掉 E 之后的命名。桌面上多了「控制中心」（可以直接切信号源、控米家设备），这是澎湃 OS 2 电视篇加的。",
+      "worth_it_hint": "分两档：入门的 REDMI A 系列 2GB+32GB（2024 款更差，1.5GB+8GB），开机就吃掉 1.2–1.5GB，装两个视频 App 就转圈，精简收益最大；A Pro（3GB+64GB）和 S / S Pro Mini LED 本身不卡，做精简主要是为了去广告和推荐位。机龄都在 3 年内，系统还在收更新，动之前先想清楚是不是真的卡。",
+      "entries": [
+        {
+          "applies_to": "澎湃 OS(HyperOS) TV 各版本，国内整机与盒子",
+          "steps": [
+            "设置 → 关于（关于电视）",
+            "选中「版本号」或「产品型号」，遥控确认键连点 5~8 次，直到提示已进入开发者模式",
+            "返回 设置 → 账号与安全 → 「ADB 调试」改为允许",
+            "备用路径：设置 → 更多设置 → 开发者选项 → 打开 USB 调试与网络调试",
+            "电脑 adb connect <电视IP>:5555（小米官方开发者文档写明电视/盒子默认支持网络 adb 调试），在电视上确认「允许USB调试吗？」"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://dev.mi.com/xiaomihyperos/documentation/detail?pId=1329", "title": "电视应用开发指南（小米澎湃OS 开发者平台：小米电视/盒子默认支持网络 adb 调试，打开 adb 方式同旧版）", "date": "2024-11-14"},
+            {"url": "https://www.right.com.cn/forum/thread-8431736-1-1.html", "title": "纯小白通过adb精简小米电视自带软件（2025 年仍是 设置—关于—产品型号连点 + 设置—账号与安全—ADB调试）", "date": "2025-06-10"},
+            {"url": "https://www.mi.com/hk/support/article/KA-17750/", "title": "如何打開小米電視並Mi Box開發者選項？如何開啟ADB調試（小米官方支持页）"},
+            {"url": "https://zhuanlan.zhihu.com/p/691431320", "title": "小米Android电视或盒子ADB 开启方法", "date": "2024-04-09"}
+          ],
+          "risk_notes": "小米官方开发者平台 2024-11 的电视文档明确写「打开 adb 方式同旧版」，本次调研也没有找到任何「澎湃 OS 改了电视端 ADB 入口」的记录；但手机端澎湃 OS 对「USB 调试（安全设置）」这类高权限开关有强制联网＋登录小米账号的要求，电视端是否同样收紧尚无专属证据，见 open_questions。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "yes",
+        "hide": "unknown",
+        "uninstall_user0": "unknown",
+        "notes": "2025-06 的精简帖在澎湃 OS 时代的机型上仍在用同一套 ADB 精简流程，disable-user 路线可用。但本次没有找到 2024 年之后专门针对澎湃 OS TV 的逐命令实测报告（尤其是 uninstall --user 0 的自动恢复行为在澎湃 OS 上是否还存在），所以 uninstall_user0 留 unknown 而不是照抄 MIUI TV 的结论。",
+        "evidence_level": "单源",
+        "sources": [
+          {"url": "https://www.right.com.cn/forum/thread-8431736-1-1.html", "title": "纯小白通过adb精简小米电视自带软件", "date": "2025-06-10"}
+        ]
+      },
+      "must_keep": [
+        {
+          "pkg": "com.mitv.tvhome",
+          "what": "系统桌面（澎湃 OS TV 沿用同一包名的可能性高，但本次未找到澎湃 OS 机型上的包名核验记录）",
+          "why": "🔴 在 MIUI TV 机型上禁用它出现过「断电重启不开机」。在澎湃 OS 机型上动手前，务必先 `adb shell pm list packages | grep -i home` 核对当前桌面的真实包名，别按旧清单盲禁。",
+          "evidence_level": "单源",
+          "sources": [{"url": "https://gist.github.com/liuxu623/e575acc0eb1139e7969c77eb8a600758", "title": "小米电视系统精简（GitHub 评论区实测反馈）", "date": "2023-09-14"}]
+        }
+      ],
+      "junk": [],
+      "ask_user": [],
+      "pitfalls": [
+        {
+          "what": "🔴 澎湃 OS TV 的包名清单本项目没有独立核验过。上一代（MIUI TV / MIUI 13 TV）的 junk 清单只能当候选，执行前必须先 `adb shell pm list packages` 拉一份真实清单逐个对照，对不上的直接跳过。这是本品牌当前最大的空白。",
+          "sources": []
+        },
+        {
+          "what": "电视端澎湃 OS 3 正式版从 2026-01-31 起分批推送（小米电视 S Mini LED、REDMI MAX 2025、REDMI A Pro、REDMI A 2025 等），澎湃 OS 4 Beta 从 2026-08-14 起在小米电视 S Pro Mini LED 2026 系列开推。也就是说这一代机型的系统还在滚动更新，一次 OTA 就可能把禁用状态改回去或改掉菜单路径——做完精简后，若发现广告回来了，先查是不是刚升过级。",
+          "sources": [
+            {"url": "https://web.vip.miui.com/page/info/mio/mio/detail?postId=52994474", "title": "小米电视S Mini LED等小米澎湃OS 3正式版推送公告（小米社区官方发版公告账号）", "date": "2026-01-31"},
+            {"url": "https://web.vip.miui.com/page/info/mio/mio/detail?postId=50796507", "title": "小米澎湃OS 3 正式版推送计划公告"}
+          ]
+        },
+        {
+          "what": "找客服永久关开机广告这条路在这一代依然有效且是零风险首选：小米商城 App 转人工客服或打售后热线，提供 设置 → 关于 → 网络信息 里的以太网 MAC、WiFi MAC、蓝牙 MAC，约 2 个工作日后台生效。针对 Redmi A Pro 的实测记录指出这不是「遥控器一键关」，而是一次 10 分钟以上的申请流程。",
+          "sources": [
+            {"url": "https://post.smzdm.com/p/a26emqx2", "title": "Redmi A Pro去广告真相：不是一键关闭，而是10分钟客服申请"},
+            {"url": "https://www.donews.com/news/detail/1/3722168.html", "title": "小米电视可永久关闭开机广告：具体方法公布", "date": "2023-10-11"}
+          ]
+        },
+        {
+          "what": "动 ADB 之前先把免费的开关关掉：系统设置里有「系统工具广告」总开关，各内容入口还有各自的「个性化推荐」开关，关掉能去掉一批系统级广告位。",
+          "sources": [{"url": "https://cj.sina.com.cn/articles/view/7879923744/1d5ae182006808mr92", "title": "为什么不推荐小米电视？开机广告已能永久关闭", "date": "2026-09-10"}]
+        }
+      ]
+    },
+    {
+      "name": "【海外】Mi TV / Xiaomi TV · PatchWall on Android TV（Mi TV 4A/4X/4S/5X、Mi TV P1 / Q1 / A2）",
+      "years": "2017–2023",
+      "base_os": "android",
+      "android_version_range": "Android 8–11 区间（有实测记录的 MiTV4I 为 Android 9）",
+      "models_examples": [
+        "Mi LED TV 4A Pro 43（印度）",
+        "Mi LED TV 4X Pro 55（印度）",
+        "MiTV4I（印度，Android 9）",
+        "Mi TV P1 32/43/50/55",
+        "Mi TV Q1 75（L75M6-ESG）",
+        "Mi TV A2 32"
+      ],
+      "identify_hints": "开机后除了 Android TV 原生桌面，还有一层 PatchWall 内容墙，遥控器上有独立的「PatchWall」实体键（以及 Netflix / Prime Video / Xiaomi TV+ 快捷键、完整数字键）——看到 PatchWall 键基本可确认是海外版，国内机型没有这个键。系统语言/商店是 Google Play，不是小米应用商店。",
+      "worth_it_hint": "机龄 3–8 年，1–2GB 运存居多。海外版没有国内的开机广告，但 PatchWall 桌面本身塞满了内容推荐行（Xiaomi TV+、JioHotstar、Prime Video 卡片），一位用户的原话是桌面「表现得像块广告牌」。精简收益主要在流畅度和桌面清净度。",
+      "entries": [
+        {
+          "applies_to": "Mi TV / Mi Box 海外版，小米官方英文支持页给的标准路径",
+          "steps": [
+            "Settings → About → 选中 product model（产品型号），按 OK 键连点 7 次",
+            "出现「You are now a developer」后返回 Settings → Account & Security",
+            "把「ADB debug」设为 Allow（官方原文：After turning on developer options, Setting >> account and security will display ADB debug option, select allow）",
+            "电脑 adb connect <TV IP>:5555，在电视上确认授权弹窗"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "官方",
+          "sources": [
+            {"url": "https://www.mi.com/global/support/article/KA-06513", "title": "How to turn on the Mi TV and Mi Box developer options? How to turn on ADB debug?（小米全球官方支持页）"},
+            {"url": "https://www.mi.com/uk/support/article/KA-06513", "title": "同一篇官方支持文章的英国站版本"}
+          ],
+          "risk_notes": "官方原文特别说明：因为电视/盒子功能与手机不同，这一代海外机型的「Developer options」里其实只暴露 ADB debug 这一项，不要指望看到手机上那一整页开关。"
+        },
+        {
+          "applies_to": "走原生 Android TV 菜单的海外机型（Settings → System → About）",
+          "steps": [
+            "Settings（全部设置）→ System → About",
+            "找到 Build / Android TV OS build，按 OK 连点 7 次，直到出现「You are now a developer」",
+            "返回 System → Developer options",
+            "打开 USB debugging（如果只用网线/WiFi，则打开 Network debugging / ADB debugging）",
+            "回到主界面一次（Google 官方文档强调必须返回主屏幕设置才生效）",
+            "在 Settings → Network → Wi-Fi → 已连接网络 → Status info 里查 IP，然后 adb connect <IP>:5555 并在电视上确认授权"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": null,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://developers.google.com/cast/docs/android_tv_receiver/debugging", "title": "Debugging（Google 官方 Android TV 调试文档：Device → About → Build 连点、Developer options → USB debugging、Status info 查 IP）"},
+            {"url": "https://www.youtube.com/watch?v=dvPZcStI_Pk", "title": "XIAOMI Mi TV Box 3S - How to Enable Developer Options（HardReset.Info，逐步演示 Quick Settings → All settings → System → About → Android TV OS build ×7）", "date": "2026-02-16"},
+            {"url": "https://stackoverflow.com/questions/55290963/android-tv-debugging-via-adb-device-not-found", "title": "Android TV Debugging via ADB Device NOT FOUND（回答者用 Mi TV 实测：除 USB debugging 外还要打开 MiTv Adb 选项）"}
+          ],
+          "risk_notes": "🔴 Google 官方文档明确：零售版 Android TV 设备默认不监听 ADB 端口，开发机才自动监听。所以部分海外机型必须先用 USB 线连一次把端口初始化出来，之后才能纯走网络 adb connect。国内机型不受此限（小米官方文档写明默认支持网络 adb 调试）。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "yes",
+        "hide": "unknown",
+        "uninstall_user0": "yes",
+        "notes": "海外 Android TV 机型上两种方式都有实测：一位用户用 `pm disable-user --user 0 <pkg>` 批量禁用后用 `pm list packages -d` 核对结果；另一位在 MiTV4I（Android 9）上用 `pm uninstall --user 0` 完成清理。",
+        "evidence_level": "多源",
+        "sources": [
+          {"url": "https://medium.com/@therealcomtom/make-your-android-tv-faster-c3d7c8cd3c7b", "title": "Make your Android TV faster（附作者用 pm list packages -d 导出的完整已禁用清单）"},
+          {"url": "https://not-afraid.medium.com/debloating-my-mi-tv-and-replacing-home-with-a-minimal-home-screen-using-codex-ef4489abd91e", "title": "Debloating My Mi TV and Replacing Home with a minimal Home Screen（MiTV4I / Android 9 实测，用 pm uninstall --user 0）"}
+        ]
+      },
+      "must_keep": [
+        {
+          "pkg": "com.mitv.tvhome.atv",
+          "what": "海外版 PatchWall / 小米电视桌面（Android TV 版，注意包名比国内多一个 .atv 后缀）",
+          "why": "它可能正是当前正在用的桌面。海外 debloat 清单把它列为可卸，但那是在已经装好并切换到 Google TV 桌面或第三方桌面的前提下。没换桌面就卸＝没有桌面可回。",
+          "evidence_level": "单源",
+          "sources": [{"url": "https://gist.github.com/alexander-danilenko/f0643eb1180912fa6243892bf7a1ca0b", "title": "Debloat Xiaomi Smart TV Box S (2nd Gen) [Windows]"}]
+        },
+        {
+          "pkg": "com.xiaomi.mitv.res",
+          "what": "小米电视系统资源包（UI 资源）",
+          "why": "属于系统 UI 依赖，名字看着没用但被 Launcher/Settings 引用；一份海外实测清单里虽然禁过它，但没有报告禁用后的长期影响，本项目按保留处理。",
+          "evidence_level": "单源",
+          "sources": [{"url": "https://medium.com/@therealcomtom/make-your-android-tv-faster-c3d7c8cd3c7b", "title": "Make your Android TV faster"}]
+        }
+      ],
+      "junk": [
+        {
+          "pkg": "com.mitv.tvhome.mitvplus",
+          "what": "Xiaomi TV+ 免费频道内容源（PatchWall 桌面里那一整行 TV+ 卡片）",
+          "evidence_level": "单源",
+          "sources": [{"url": "https://gist.github.com/alexander-danilenko/f0643eb1180912fa6243892bf7a1ca0b", "title": "Debloat Xiaomi Smart TV Box S (2nd Gen) [Windows]"}]
+        },
+        {
+          "pkg": "com.mitv.tvhome.michannel",
+          "what": "PatchWall 内容频道推荐源",
+          "evidence_level": "单源",
+          "sources": [{"url": "https://gist.github.com/alexander-danilenko/f0643eb1180912fa6243892bf7a1ca0b", "title": "Debloat Xiaomi Smart TV Box S (2nd Gen) [Windows]"}]
+        },
+        {
+          "pkg": "com.miui.tv.analytics",
+          "what": "小米电视数据统计 / 上报",
+          "evidence_level": "单源",
+          "sources": [{"url": "https://gist.github.com/alexander-danilenko/f0643eb1180912fa6243892bf7a1ca0b", "title": "Debloat Xiaomi Smart TV Box S (2nd Gen) [Windows]"}]
+        },
+        {
+          "pkg": "com.xiaomi.android.tvsetup.partnercustomizer",
+          "what": "合作方定制组件（开箱引导里塞预装 App 和合作内容的那一套）",
+          "evidence_level": "单源",
+          "sources": [{"url": "https://gist.github.com/alexander-danilenko/f0643eb1180912fa6243892bf7a1ca0b", "title": "Debloat Xiaomi Smart TV Box S (2nd Gen) [Windows]"}]
+        },
+        {
+          "pkg": "com.xm.webcontent",
+          "what": "活动中心 / 网页内容承载（国内海外同名）",
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://medium.com/@therealcomtom/make-your-android-tv-faster-c3d7c8cd3c7b", "title": "Make your Android TV faster（已禁用清单里含 com.xm.webcontent）"},
+            {"url": "https://www.znds.com/tv-1177461-1-1.html", "title": "小米电视ADB删除系统自带无用软件及开机广告教程（国内同名包）", "date": "2020-07-14"}
+          ]
+        },
+        {
+          "pkg": "com.mitv.dream",
+          "what": "屏保 / Daydream 推荐图",
+          "evidence_level": "单源",
+          "sources": [{"url": "https://gist.github.com/alexander-danilenko/f0643eb1180912fa6243892bf7a1ca0b", "title": "Debloat Xiaomi Smart TV Box S (2nd Gen) [Windows]"}]
+        },
+        {
+          "pkg": "com.google.android.leanbacklauncher.recommendations",
+          "what": "Android TV 桌面推荐行服务（桌面上那些「猜你想看」卡片的来源）",
+          "evidence_level": "单源",
+          "sources": [{"url": "https://gist.github.com/alexander-danilenko/f0643eb1180912fa6243892bf7a1ca0b", "title": "Debloat Xiaomi Smart TV Box S (2nd Gen) [Windows]"}]
+        },
+        {
+          "pkg": "fusion.android.tv.demo",
+          "what": "卖场演示模式 App",
+          "evidence_level": "单源",
+          "sources": [{"url": "https://medium.com/@therealcomtom/make-your-android-tv-faster-c3d7c8cd3c7b", "title": "Make your Android TV faster"}]
+        }
+      ],
+      "ask_user": [
+        {
+          "pkg": "com.xiaomi.mitv.updateservice",
+          "what": "小米电视系统更新服务",
+          "why": "禁掉＝以后收不到系统更新（也就收不到安全补丁）。想彻底躲开 OTA 把设置改回去的人会禁，想保持更新的别动。",
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://gist.github.com/alexander-danilenko/f0643eb1180912fa6243892bf7a1ca0b", "title": "Debloat Xiaomi Smart TV Box S (2nd Gen) [Windows]"},
+            {"url": "https://medium.com/@therealcomtom/make-your-android-tv-faster-c3d7c8cd3c7b", "title": "Make your Android TV faster"}
+          ]
+        },
+        {
+          "pkg": "com.xiaomi.mitv.smartshare",
+          "what": "小米投屏 / SmartShare",
+          "why": "手机投屏到电视要靠它。家里常投屏就保留。",
+          "evidence_level": "单源",
+          "sources": [{"url": "https://medium.com/@therealcomtom/make-your-android-tv-faster-c3d7c8cd3c7b", "title": "Make your Android TV faster"}]
+        },
+        {
+          "pkg": "com.xiaomi.amazon.alexa",
+          "what": "内置 Alexa 语音助手",
+          "why": "不用 Alexa 的家庭可以禁；用语音控制的保留。",
+          "evidence_level": "单源",
+          "sources": [{"url": "https://medium.com/@therealcomtom/make-your-android-tv-faster-c3d7c8cd3c7b", "title": "Make your Android TV faster"}]
+        },
+        {
+          "pkg": "com.netflix.ninja",
+          "what": "预装 Netflix（电视版）",
+          "why": "海外机型遥控器上通常有 Netflix 实体键，卸掉后那颗键失效。是订阅用户就别动。",
+          "evidence_level": "单源",
+          "sources": [{"url": "https://gist.github.com/alexander-danilenko/f0643eb1180912fa6243892bf7a1ca0b", "title": "Debloat Xiaomi Smart TV Box S (2nd Gen) [Windows]"}]
+        },
+        {
+          "pkg": "com.amazon.amazonvideo.livingroom",
+          "what": "预装 Prime Video",
+          "why": "同上，遥控器上多半有对应实体键。",
+          "evidence_level": "单源",
+          "sources": [{"url": "https://gist.github.com/alexander-danilenko/f0643eb1180912fa6243892bf7a1ca0b", "title": "Debloat Xiaomi Smart TV Box S (2nd Gen) [Windows]"}]
+        },
+        {
+          "pkg": "com.google.android.tts",
+          "what": "Google 文字转语音",
+          "why": "禁了会影响无障碍朗读和部分 App 的语音播报；家里有视障或老人用朗读功能的保留。",
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://gist.github.com/alexander-danilenko/f0643eb1180912fa6243892bf7a1ca0b", "title": "Debloat Xiaomi Smart TV Box S (2nd Gen) [Windows]"},
+            {"url": "https://medium.com/@therealcomtom/make-your-android-tv-faster-c3d7c8cd3c7b", "title": "Make your Android TV faster"}
+          ]
+        }
+      ],
+      "pitfalls": [
+        {
+          "what": "🔴 海外版没有国内那套开机广告，所以「找客服关广告」这条路不适用；海外用户的痛点是 PatchWall 桌面的内容推荐行。一位 MiTV4I（Android 9）用户的实测结论很重要：把 Xiaomi TV+、Prime Video 行背后的 App 全删掉之后，桌面本身仍然会渲染自己的推荐行和赞助卡片——真正的解法是换一个极简第三方桌面，而不是逐个删内容源 App。",
+          "sources": [{"url": "https://not-afraid.medium.com/debloating-my-mi-tv-and-replacing-home-with-a-minimal-home-screen-using-codex-ef4489abd91e", "title": "Debloating My Mi TV and Replacing Home with a minimal Home Screen using Codex（MiTV4I / Android 9 实测）"}]
+        },
+        {
+          "what": "海外 Android TV 有一批「名字看着没用、其实挂着信号源/调谐器/Play 服务/桌面」的包。那位 MiTV4I 用户特别提醒：因为家里用同轴线看 Free Dish，他刻意没碰 tuner 和 Live TV 相关的包。随手删包是让电视变得更难用的可靠办法。",
+          "sources": [{"url": "https://not-afraid.medium.com/debloating-my-mi-tv-and-replacing-home-with-a-minimal-home-screen-using-codex-ef4489abd91e", "title": "Debloating My Mi TV and Replacing Home with a minimal Home Screen using Codex"}]
+        },
+        {
+          "what": "做完精简记得回去把 Developer options 里的 USB / 网络调试关掉。开着网络 ADB 等于电视在局域网上一直监听调试端口，短时间维护可以，不该长期保持。",
+          "sources": [{"url": "https://not-afraid.medium.com/debloating-my-mi-tv-and-replacing-home-with-a-minimal-home-screen-using-codex-ef4489abd91e", "title": "Debloating My Mi TV and Replacing Home with a minimal Home Screen using Codex"}]
+        }
+      ]
+    },
+    {
+      "name": "【海外】Xiaomi TV A / A Pro、Xiaomi TV Box S、TV Stick · Google TV",
+      "years": "2022–2026",
+      "base_os": "android",
+      "android_version_range": "Google TV（Android 11 / 12 及以后）；Xiaomi TV Box S 2nd Gen 为 MDZ-28-AA，3rd Gen 为 MDZ-32-AA（2025）",
+      "models_examples": [
+        "Xiaomi TV A Pro 32 / 43 / 55 / 65（2025、2026 款）",
+        "Xiaomi Smart TV A 系列 32 / 40 / 43（Google TV + PatchWall Plus）",
+        "Xiaomi Smart QLED TV 32 (2025)",
+        "Xiaomi TV Box S 2nd Gen（MDZ-28-AA）",
+        "Xiaomi TV Box S 3rd Gen（MDZ-32-AA，2025）",
+        "Mi TV Stick / TV Stick 4K"
+      ],
+      "identify_hints": "桌面是 Google TV 的「For you」大横幅样式（不是 Android TV 的横排 App 行），设置里出现「Device Preferences / 设备偏好设置」这一层；遥控器有 Google Assistant 键。Xiaomi Smart TV A 系列是 Google TV 与 PatchWall 双界面并存（官方以 PatchWall Plus 形式保留），所以看到 Google TV 桌面不代表没有 PatchWall。",
+      "worth_it_hint": "机龄 0–4 年，系统较新、本身不算卡。Xiaomi TV A Pro 2025 被评测者称为「终于没广告了」，所以这一档的动机主要是去掉 Google TV 桌面的赞助推荐行和预装流媒体，而不是救卡顿。如果只是嫌桌面乱，先在 Google TV 设置里关掉个性化推荐，再考虑换桌面。",
+      "entries": [
+        {
+          "applies_to": "Google TV 界面的小米电视与盒子（Xiaomi TV A Pro、TV Box S、TV Stick）",
+          "steps": [
+            "主界面 → 设置（齿轮）→ 系统 System（部分机型路径为 设置 → 设备偏好设置 Device Preferences）",
+            "进入 关于 About",
+            "找到「Android TV OS build」或「构建号 / Build」，按 OK 键连点 7 次，直到出现「You are now a developer」",
+            "返回上一级 System / 设备偏好设置 → 开发者选项 Developer options",
+            "打开「USB 调试 USB debugging」；只走网络的打开「网络调试 / ADB 调试」",
+            "在 设置 → 网络 → 已连接的 Wi-Fi → Status info 里查 IP，电脑执行 adb connect <IP>:5555，在电视上确认授权弹窗（勾「Always allow from this computer」）"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": null,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://www.youtube.com/watch?v=dvPZcStI_Pk", "title": "XIAOMI Mi TV Box 3S - How to Enable Developer Options（HardReset.Info 逐步演示，含完整字幕）", "date": "2026-02-16"},
+            {"url": "https://www.youtube.com/watch?v=ZDMuV7nq7IQ", "title": "XIAOMI TV A Pro 32 (2026) - 开启开发者选项与ADB 网络调试（章节：设置→设备偏好设置/关于→连点构建号→开发者选项→打开ADB网络调试）", "date": "2026-07-05"},
+            {"url": "https://developers.google.com/cast/docs/android_tv_receiver/debugging", "title": "Debugging（Google 官方 Android TV / Google TV 调试文档）"}
+          ],
+          "risk_notes": "Android 11 以上的原生「无线调试」是带配对码的（Settings → Developer options → Wireless debugging → Pair device with pairing code，端口随机不是 5555）。本次调研没有找到小米这批 Google TV 机型上「无线调试配对码」界面的确认记录，所以 wireless_pairing 留空；实操时先按传统 5555 试，界面里如果出现 Wireless debugging 就按配对码流程走。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "yes",
+        "hide": "unknown",
+        "uninstall_user0": "yes",
+        "notes": "Xiaomi Smart TV Box S (2nd Gen) 的公开 debloat 清单整篇用 `pm uninstall -k --user 0`；XDA 上救砖的用户则是用 ADB 把被禁的 Google TV 桌面 `pm enable` 回来，说明 disable/enable 这条路在 Google TV 机型上双向可用。",
+        "evidence_level": "多源",
+        "sources": [
+          {"url": "https://gist.github.com/alexander-danilenko/f0643eb1180912fa6243892bf7a1ca0b", "title": "Debloat Xiaomi Smart TV Box S (2nd Gen) [Windows]"},
+          {"url": "https://xdaforums.com/t/xiaomi-tv-box-s-2nd-gen-mdz-28-aa-partially-bricked-how-to-recovery.4616797", "title": "Xiaomi TV box S 2nd gen MDZ-28-AA partially bricked, how to recovery?（用 ADB TV App 把 Google TV 系统桌面重新启用，成功解砖）"}
+        ]
+      },
+      "must_keep": [],
+      "junk": [
+        {
+          "pkg": "com.mitv.tvhome.mitvplus",
+          "what": "Xiaomi TV+ 免费频道内容源",
+          "evidence_level": "单源",
+          "sources": [{"url": "https://gist.github.com/alexander-danilenko/f0643eb1180912fa6243892bf7a1ca0b", "title": "Debloat Xiaomi Smart TV Box S (2nd Gen) [Windows]"}]
+        },
+        {
+          "pkg": "com.miui.tv.analytics",
+          "what": "小米电视数据统计 / 上报",
+          "evidence_level": "单源",
+          "sources": [{"url": "https://gist.github.com/alexander-danilenko/f0643eb1180912fa6243892bf7a1ca0b", "title": "Debloat Xiaomi Smart TV Box S (2nd Gen) [Windows]"}]
+        },
+        {
+          "pkg": "com.xiaomi.android.tvsetup.partnercustomizer",
+          "what": "合作方定制 / 预装推广组件",
+          "evidence_level": "单源",
+          "sources": [{"url": "https://gist.github.com/alexander-danilenko/f0643eb1180912fa6243892bf7a1ca0b", "title": "Debloat Xiaomi Smart TV Box S (2nd Gen) [Windows]"}]
+        },
+        {
+          "pkg": "com.google.android.leanbacklauncher.recommendations",
+          "what": "桌面推荐行服务",
+          "evidence_level": "单源",
+          "sources": [{"url": "https://gist.github.com/alexander-danilenko/f0643eb1180912fa6243892bf7a1ca0b", "title": "Debloat Xiaomi Smart TV Box S (2nd Gen) [Windows]"}]
+        }
+      ],
+      "ask_user": [
+        {
+          "pkg": "com.mitv.tvhome.atv",
+          "what": "小米 PatchWall 桌面（Android TV 版）",
+          "why": "Google TV 机型上它是第二个桌面。如果家里人习惯按遥控器的 PatchWall 键，卸掉那颗键就没用了；不用 PatchWall 的可以禁，但要先确认 Google TV 桌面正常。",
+          "evidence_level": "单源",
+          "sources": [{"url": "https://gist.github.com/alexander-danilenko/f0643eb1180912fa6243892bf7a1ca0b", "title": "Debloat Xiaomi Smart TV Box S (2nd Gen) [Windows]"}]
+        },
+        {
+          "pkg": "com.xiaomi.mitv.updateservice",
+          "what": "系统更新服务",
+          "why": "禁掉就不再收 OTA 和安全补丁。",
+          "evidence_level": "单源",
+          "sources": [{"url": "https://gist.github.com/alexander-danilenko/f0643eb1180912fa6243892bf7a1ca0b", "title": "Debloat Xiaomi Smart TV Box S (2nd Gen) [Windows]"}]
+        },
+        {
+          "pkg": "com.google.android.videos",
+          "what": "Google TV / Play 影视",
+          "why": "在 Google TV 上它同时承担一部分内容库能力，不是纯粹的可弃 App；不买片的家庭才禁。",
+          "evidence_level": "单源",
+          "sources": [{"url": "https://gist.github.com/alexander-danilenko/f0643eb1180912fa6243892bf7a1ca0b", "title": "Debloat Xiaomi Smart TV Box S (2nd Gen) [Windows]"}]
+        }
+      ],
+      "pitfalls": [
+        {
+          "what": "🔴 具体机型的变砖案例：Xiaomi TV Box S 2nd Gen（MDZ-28-AA）。用户装了 Projectivy Launcher 之后用 ADB TV 把 Google TV 系统桌面禁掉，结果开机黑屏，遥控器完全没反应——这就是「部分变砖」。救回方式：从手机端的 ADB TV App 里列出设备上的应用，打开 ADB TV（它本身装在盒子上），用它把 Google TV 系统桌面重新 enable 回来。Xiaomi TV Box S 3rd Gen（MDZ-32-AA）的同类事故里，用户是接 USB 键盘按 Alt+PrintScreen+i 调出设置界面，再进开发者选项打开 ADB 调试，然后用电脑 ADB 把 Google TV 桌面启用回来。注意：Google TV 桌面是禁用不是卸载，所以永远能用同样的方式启用回来。",
+          "sources": [
+            {"url": "https://xdaforums.com/t/xiaomi-tv-box-s-2nd-gen-mdz-28-aa-partially-bricked-how-to-recovery.4616797", "title": "Xiaomi TV box S 2nd gen MDZ-28-AA partially bricked, how to recovery?（XDA）"},
+            {"url": "https://xdaforums.com/t/xiaomi-tv-box-3rd-gen-recovery-mode-2025.4734913/post-90602942", "title": "Xiaomi TV Box 3rd Gen - Recovery mode? 2025（XDA，含 Alt+PrintScreen+i 调出设置的救援手法）"},
+            {"url": "https://www.reddit.com/r/AndroidTV/comments/1nu69a1/help_i_think_i_have_bricked_my_xiaomi_tv_box_s/", "title": "Help: I think I have bricked my Xiaomi TV Box S（Reddit，回帖确认「你无法卸载这个 launcher，用禁用时的同一种方法就能再启用回来」）", "date": "2025-09-30"}
+          ]
+        },
+        {
+          "what": "换第三方桌面的正确顺序（XDA 那位用户吃过亏之后总结的）：装好 Projectivy 等第三方桌面 → 在无障碍设置里给它开启自启权限 → 确认重启后能自动进第三方桌面 → 最后才禁用 Google TV 桌面。顺序反了就是黑屏。",
+          "sources": [{"url": "https://xdaforums.com/t/xiaomi-tv-box-3rd-gen-recovery-mode-2025.4734913/post-90602942", "title": "Xiaomi TV Box 3rd Gen - Recovery mode? 2025（XDA）"}]
+        },
+        {
+          "what": "Google 官方文档提醒：零售版 Android TV / Google TV 设备默认不监听 ADB 网络端口，只有开发机才自动监听。海外机型如果 adb connect 一直连不上，先用 USB 线连一次把端口初始化出来。",
+          "sources": [{"url": "https://developers.google.com/cast/docs/android_tv_receiver/debugging", "title": "Debugging（Google 官方 Android TV 文档）"}]
+        },
+        {
+          "what": "社区有针对 Xiaomi TV Box S 刷 boot.img、进 recovery 的讨论（也有人因此彻底刷砖），本项目不采用、不记录刷机方法。",
+          "sources": []
+        }
+      ]
+    }
+  ],
+  "open_questions": [
+    "国内小米/Redmi 电视是否在某个版本引入了 Android 11+ 那种带配对码的「无线调试」独立界面？本次查到的全部国内教程（含 2025-06、2026 年的）都还是「账号与安全 → ADB 调试」+ adb connect 5555 的传统模式，小米官方开发者文档也只写「默认支持网络 adb 调试」，没有配对码相关说明。",
+    "海外 Google TV 机型（Xiaomi TV A Pro 2025/2026、TV Box S 2nd/3rd Gen）的开发者选项里到底有没有原生「Wireless debugging + 配对码」项？教程视频只演示到「ADB 网络调试」，没有出现配对码界面的画面证据。",
+    "澎湃 OS（HyperOS）TV 的系统应用包名清单没有独立核验。当前 junk / must_keep 清单全部来自 MIUI TV 与 MIUI 13 TV 时代的实测，澎湃 OS 上包名是否改名、是否新增广告组件未知——这是本品牌最大的空白，也是给用户执行前必须先 pm list packages 对照的原因。",
+    "澎湃 OS TV 上 `pm uninstall --user 0` 是否仍有「重启后被守护进程装回来」的现象，以及 `pm hide` 在电视端是否可用，均无实测记录。",
+    "电视端「账号与安全 → ADB 调试」是否像手机端澎湃 OS 那样强制要求联网并登录小米账号？目前只有手机端 MIUI 2016 年的官方公告和第三方文章可类推，没有电视端专属证据。",
+    "MIUI for TV 2.0 的确切发布年份与首发机型未找到权威资料，只确认了 1.0（2013）和 3.0（2020-09）两个节点；各代 MIUI TV 与 Android 基线版本的官方对照表也始终没有公开。",
+    "小米电视 S Pro Mini LED 2026 系列上的澎湃 OS 4（2026-08 起 Beta）是否改动了开发者模式或 ADB 菜单路径，尚无任何教程或用户报告。",
+    "海外 Google TV 机型上 Google TV 系统桌面的确切包名未从权威来源取得（XDA / Reddit 的帖子都只写「Google TV launcher」而没给包名），所以本文件没有把它写进 must_keep 的包名清单，只在 pitfalls 里描述。执行时应现场用 pm list packages 取真实包名。",
+    "小米/Redmi 电视棒、盒子与整机电视在包名清单上的具体差异有多大（国内侧）未做系统比对；本文件的国内包名证据主要来自整机电视。"
+  ],
+  "last_reviewed": "2026-09-15"
+}

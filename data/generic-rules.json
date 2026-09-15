@@ -1,0 +1,126 @@
+{
+  "_comment": "通用禁停模式（G4 硬名单）与垃圾候选模式（只作提示，须用户确认）。模式是不区分大小写的正则，作用于完整包名。",
+  "must_keep_patterns": [
+    {
+      "pattern": "launcher|tvhome|homescreen|\\.home$|\\.desktop$",
+      "why": "桌面/主界面：停了开机黑屏（小米 com.mitv.tvhome 有变砖案例）"
+    },
+    {
+      "pattern": "tvinput|\\.tv\\.input|inputsource|tvcenter|wwtv|suspension|signalsource|hdmi",
+      "why": "信号源 / HDMI 切换：停了信号源键失灵（TCL com.tcl.suspension 案例）"
+    },
+    {
+      "pattern": "inputmethod|\\.ime$|latinime|sogou|gboard|keyboard",
+      "why": "输入法：停了没法打字"
+    },
+    {
+      "pattern": "packageinstaller|installer$|install\\b",
+      "why": "安装器：临时停用后忘了恢复会开不了机（TCL 国行案例）"
+    },
+    {
+      "pattern": "\\.settings$|settings\\.|tvsettings|systemsettings|systemui|framework|\\.phone$|providers\\.",
+      "why": "系统设置 / 系统 UI / 框架 / 内容提供者：系统骨架"
+    },
+    {
+      "pattern": "bluetooth|\\brcu\\b|remote(control|service)|rcservice|voiceremote|btrc",
+      "why": "遥控器 / 蓝牙：停了遥控器可能失联"
+    },
+    {
+      "pattern": "factory|fac(tory)?mode|\\breset\\b|recovery|fota|\\bota\\b|update(service)?$|upgrade",
+      "why": "工厂 / 恢复出厂 / OTA：停了恢复出厂与工厂菜单可能失效；OTA 类多数机型受保护"
+    },
+    {
+      "pattern": "tvservice|tv\\.service|\\btvs\\b|jamdeo|mstar\\.android\\.tv|mediatek\\.tv|\\.tvx$|dtv\\.tv|tvplatform",
+      "why": "电视核心服务：图像/声音/频道全靠它"
+    },
+    {
+      "pattern": "^android$|^com\\.android\\.(shell|externalstorage|defcontainer|keychain|certinstaller|location\\.fused|inputdevices)$",
+      "why": "AOSP 基础组件"
+    },
+    {
+      "pattern": "webview|trichrome",
+      "why": "WebView：很多系统应用依赖它渲染"
+    },
+    {
+      "pattern": "talkback|accessibility|\\btts\\b",
+      "why": "无障碍 / 读屏：有人靠它用电视"
+    },
+    {
+      "pattern": "cec|hdmicec|bravia\\.sync|simplink|anynet",
+      "why": "HDMI-CEC 联动"
+    },
+    {
+      "pattern": "drm|widevine|hdcp",
+      "why": "版权模块：停了流媒体黑屏"
+    },
+    {
+      "pattern": "\\.gms$|\\.gsf$|\\.vending$|permissioncontroller|networkstack|tethering|captiveportallogin|configupdater|ext\\.(services|shared)$|modulemetadata|partnersetup|\\.provision$|statementservice|proxyhandler|pacprocessor|\\.se$|sharedstoragebackup|wallpaperbackup|onetimeinitializer|\\.resources$|\\.overlay\\.|overlay\\.|documentsui|providers?\\.(media|settings|tv|downloads)",
+      "why": "Google 服务 / Play / 权限控制器 / 网络栈 / 系统覆盖层：停了登录、商店、联网、权限对话框会坏（Google TV 与 Android TV 通用）"
+    },
+    {
+      "pattern": "remote\\.service|tv\\.remote|rcu|voiceremote|nvidia\\.(shield|tegra)|shield.*remote",
+      "why": "遥控器服务：停了遥控器可能失联"
+    }
+  ],
+  "junk_hint_patterns": [
+    {
+      "pattern": "\\.(ad|ads|adv|advert\\w*|adsdk|admanager|adservice|bootad\\w*|advertisement\\w*)(\\.|$)",
+      "label": "广告"
+    },
+    {
+      "pattern": "shopping|\\.shop(\\.|$)|payment|\\bpay\\b|epos|mall",
+      "label": "购物 / 支付"
+    },
+    {
+      "pattern": "demo(nstrate|mode)?(\\.|$)|showroom|retail|electronictutorial|tutorial",
+      "label": "卖场演示 / 教程"
+    },
+    {
+      "pattern": "report|metrics|analytics|statistic|\\bdas\\b|tracking|collector|log(upload|service)",
+      "label": "上报 / 统计"
+    },
+    {
+      "pattern": "push(service)?(\\.|$)|message(center|service)?(\\.|$)|notify",
+      "label": "推送 / 消息"
+    },
+    {
+      "pattern": "silent(install|package)|autoinstall|preinstall|appstore\\.silent",
+      "label": "静默安装"
+    },
+    {
+      "pattern": "gamecenter|\\.game(s)?(\\.|$)",
+      "label": "游戏中心"
+    },
+    {
+      "pattern": "karaoke|ktv|migu|qqmusic|iqiyi|youku|tencent\\.qqlive|chatroom|videochat",
+      "label": "第三方影音 / K 歌"
+    },
+    {
+      "pattern": "tvrecommendations|recommendation|backdrop|screensaver|daydream|ambient|\\.feedback$|printspooler|bugreport|crashreport",
+      "label": "推荐行 / 屏保 / 反馈上报"
+    },
+    {
+      "pattern": "speech|voice(control|assistant)|assistant|keylab|xiaoai|alexa|katniss",
+      "label": "语音助手（问用户）"
+    },
+    {
+      "pattern": "airplay|miracast|wifidisplay|multiscreen|screenhelper|airjoy|dlna|\\bcast(\\.|$)|mediashell|chromecast",
+      "label": "投屏（问用户）"
+    },
+    {
+      "pattern": "youtube|netflix|primevideo|amazon\\.avod|disney|hbo|hulu|spotify|tubi|plex|kodi",
+      "label": "流媒体应用（问用户）"
+    }
+  ],
+  "ask_user_labels": [
+    "语音助手（问用户）",
+    "投屏（问用户）",
+    "流媒体应用（问用户）"
+  ],
+  "protected_known": [
+    {
+      "pattern": "^com\\.amazon\\.(tv\\.launcher|device\\.software\\.ota|client\\.metrics|device\\.metrics|device\\.crashmanager)$",
+      "why": "Fire OS 受保护包：disable-user 直接 SecurityException（实机证据）"
+    }
+  ]
+}

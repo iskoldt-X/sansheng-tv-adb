@@ -1,0 +1,65 @@
+{
+  "brand": "Vizio",
+  "region": "global",
+  "aliases": ["VIZIO", "SmartCast", "VIZIO OS", "Inscape"],
+  "status": "不适用",
+  "summary": "Vizio 用自家的 SmartCast / VIZIO OS，不是 Android，没有 adb、没有 pm 命令，本项目的清理流程一条也用不上。Vizio 是最早被 FTC 罚过「未经告知采集观看数据」的电视厂商，它的 ACR 叫 Viewing Data（早期叫 Smart Interactivity），设置里能关，而且关掉会触发删除该设备已存的观看历史。仅北美等海外市场销售，国行见不到。",
+  "identify_hints": {
+    "remote_has_digits": "Vizio 遥控普遍是长条形、带 0–9 数字键，下方一排流媒体快捷键（WatchFree+、Netflix、Prime Video 等）；部分年份的遥控正面印着 VIZIO 字样和一个 V 键。没有 Roku 那种紫色圆盘，也没有 Google 助理麦克风键（Vizio 靠外部的 Alexa / Google Home 设备控制，不做机内语音助手）。",
+    "system_name_shown_at": "菜单（Menu）→ 设置 → 全部设置（All Settings）→ 系统 / 管理与隐私；主屏顶部的 SmartCast 横条本身就是标志。",
+    "about_page_fields": [
+      "型号 / Model",
+      "系统版本（SmartCast / VIZIO OS 版本，不是 Android 版本号）",
+      "序列号",
+      "隐私与法律（Privacy & Legal）/ 管理与隐私（Admin & Privacy）入口"
+    ],
+    "model_naming_rule": "型号形如 M65Q7-J01、V505-J09、P75Q9-H1：开头字母是产品线档位（V=入门 V-Series、M=中端 M-Series、P/PQ=高端 P-Series、OLED=OLED），紧接着的数字是尺寸，Q 表示量子点，最后一位字母是年份代际（…H=2020、J=2021、K/L 依次后推），末尾数字是版本号。",
+    "sticker_location": "机身背面铭牌贴纸印 Model 与 Serial。",
+    "year_ranges": "SmartCast 自 2016 年起用于 Vizio 智能电视，2023 年前后官方逐步改称 VIZIO OS；2016 年之前是 Vizio Internet Apps / Vizio Internet Apps Plus（部分早期机型基于 Google TV，但那是 2012 年前后的极小一批，早已停产停更）。2024 年 Vizio 被沃尔玛收购。"
+  },
+  "not_applicable": {
+    "reason": "Vizio 的 SmartCast / VIZIO OS 是封闭自研系统（非 Android），没有开发者选项、没有 USB 调试、没有 adb、没有 pm，也没有对外开放的应用侧载通道——连三星 Tizen、LG webOS 那种「给开发者调试自家应用」的模式都没有公开提供。本项目的整套流程在 Vizio 上无从下手。",
+    "alternative": "Vizio 的可关项就两组，但都要做，而且新老机型菜单位置不同：\n\n【1. ACR：Viewing Data】\n· 新机型（VIZIO OS）：菜单 → 设置 → 全部设置（All Settings）→ 隐私与法律（Privacy & Legal）→ 观看数据（Viewing Data）→ 关掉。\n· 略早的机型：全部设置 → 管理与隐私（Admin & Privacy）→ 观看数据 → 关掉。\n· 更老的机型：按遥控 MENU 键（或打开 HDTV Settings 应用）→ 系统（System）→ 重置与管理（Reset & Admin）→ 光标停在「观看数据（Viewing Data）」或旧称「智能交互（Smart Interactivity）」→ 按右方向键改成 Off。\nVizio 官方隐私政策明确写了两件好事：关掉 Viewing Data 不影响电视和任何在线服务的性能；关掉会触发删除该设备上已有的 Viewing Data 历史日志。\n\n【2. 广告与活动数据的边界（这条是坏消息，必须讲）】Vizio 官方同时写明：关掉 Viewing Data 不会停止 Activity Data 的采集——那是你在 SmartCast 首页和 WatchFree+ 页面上点了什么、搜了什么，用于推荐内容和在部分应用内投放定向广告。Activity Data 在设置里没有独立开关，官方给的唯一办法是把电视恢复出厂设置（Factory Reset）。而且初始设置时如果拒绝 Activity Data，SmartCast 的音视频流媒体功能就不能用了——也就是说这一项实际上是绑定的。\n\n【3. 恢复出厂后要重做】官方提醒：任何一次恢复出厂之后，设备回到默认状态，Viewing Data 会被重置为 OFF（这一条对用户有利），但你之前做的其他设置也都没了，记得重新检查一遍。\n\n实在找不到 Viewing Data 这一项时，Vizio 官方给了联系方式：privacy@vizio.com 或 1-855-472-8817。",
+    "sources": [
+      {"url": "https://www.vizio.com/en/terms/privacy-policy", "title": "VIZIO Privacy Policy（官方：All Settings > Privacy & Legal > Viewing Data，老机型走 Admin & Privacy；关掉会触发删除该设备的历史日志；Activity Data 只能靠恢复出厂关闭）"},
+      {"url": "https://www.vizio.com/en/terms/privacy-policy/viewing-data-privacy-policy", "title": "Viewing Data Supplement（官方补充条款：关掉不影响性能；恢复出厂后 Viewing Data 重置为 OFF；找不到开关时的官方联系方式）"},
+      {"url": "https://support.vizio.com/s/article/Smart-Interactivity-Broadcast-Interactivity-FAQ-How-to-turn-Smart-Interactivity-Broadcast-Interactivity-on-or-off", "title": "How to turn Viewing Data On, Off, or Delete（Vizio 官方支持：MENU → System → Reset & Admin → Viewing Data → 右方向键切换）"},
+      {"url": "https://www.consumerreports.org/electronics/privacy/how-to-turn-off-smart-tv-snooping-features-a4840102036", "title": "How to Turn Off Smart TV Snooping Features（Consumer Reports 实测：新老机型菜单位置差异；并确认关掉 Viewing Data 不影响 SmartCast 的 Activity Data 采集）"},
+      {"url": "https://www.kraftkennedy.com/why-you-should-turn-off-acr-on-smart-tvs-and-business-displays", "title": "Why You Should Turn Off ACR on Smart TVs and Business Displays（System > Reset & Admin > Viewing Data / Smart Interactivity）"}
+    ]
+  },
+  "series": [
+    {
+      "name": "SmartCast / VIZIO OS（2016 至今，全线）",
+      "years": "2016至今",
+      "base_os": "other",
+      "android_version_range": "不适用",
+      "models_examples": ["V505-J09", "M65Q7-J01", "P75Q9-H1", "OLED65-H1"],
+      "identify_hints": "开机后主屏顶部是 SmartCast 的横向频道带，首页固定有一块 WatchFree+ 的免费频道入口（Vizio 自家的免费直播流媒体，这是 Vizio 最独特的界面特征）。设置树里找不到任何「Android 版本」「Build number」字样，也没有 Google Play。遥控是带数字键的长条，无语音麦克风键。",
+      "worth_it_hint": "不适用：不是安卓，本项目流程用不上。而且 Vizio 的商业模式高度依赖广告与观看数据（Inscape 数据业务），机内可关的项目本身就是被设计成有限的。",
+      "entries": [],
+      "pitfalls": [
+        {
+          "what": "🔴 Vizio 的「关掉 Viewing Data」不等于「关掉全部采集」。官方白纸黑字写着 Activity Data（你在 SmartCast 首页与 WatchFree+ 上的点击、搜索行为）不受这个开关影响，也没有独立开关，唯一办法是恢复出厂；而初始设置时拒绝 Activity Data 会导致 SmartCast 的流媒体功能不可用。给用户交代这条设置时必须同时说明这个边界，不要说成「关了就不采集了」。",
+          "sources": [
+            {"url": "https://www.vizio.com/en/terms/privacy-policy", "title": "VIZIO Privacy Policy"},
+            {"url": "https://www.consumerreports.org/electronics/privacy/how-to-turn-off-smart-tv-snooping-features-a4840102036", "title": "How to Turn Off Smart TV Snooping Features"}
+          ]
+        },
+        {
+          "what": "同一个开关在不同年份的机器上有三个位置、两个名字（Smart Interactivity → Viewing Data；Reset & Admin → Admin & Privacy → Privacy & Legal）。按名字找不到就按语义找，三条路径都试一遍。",
+          "sources": [
+            {"url": "https://www.consumerreports.org/electronics/privacy/how-to-turn-off-smart-tv-snooping-features-a4840102036", "title": "How to Turn Off Smart TV Snooping Features（明确记载老机在 System > Reset & Admin，新机在 All Settings > Admin & Privacy）"},
+            {"url": "https://support.vizio.com/s/article/Smart-Interactivity-Broadcast-Interactivity-FAQ-How-to-turn-Smart-Interactivity-Broadcast-Interactivity-on-or-off", "title": "How to turn Viewing Data On, Off, or Delete（Vizio 官方支持页标题里同时保留 Smart Interactivity 与 Broadcast Interactivity 两个旧名）"}
+          ]
+        }
+      ]
+    }
+  ],
+  "open_questions": [
+    "2012 年前后有极小一批 Vizio 机型基于 Google TV（Co-Star 系列与少数电视），理论上是 Android。这批机器早已停产停更、存量极少，没有去核实它们的开发者选项与 ADB 情况，本文件按「不适用」整体处理。",
+    "2024 年沃尔玛收购 Vizio 之后，隐私菜单与数据政策是否有变化，未核实；本文件引用的官方隐私政策抓取于 2026-09-15。",
+    "中国大陆没有 Vizio 正式销售渠道，本文件对国行用户的意义主要是「排除」。"
+  ],
+  "last_reviewed": "2026-09-15"
+}

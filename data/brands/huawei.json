@@ -1,0 +1,218 @@
+{
+  "brand": "华为智慧屏",
+  "region": "cn",
+  "aliases": ["HUAWEI Vision", "华为电视", "智慧屏", "华为Vision智慧屏", "华为智慧屏 MateTV"],
+  "status": "部分适用",
+  "summary": "2019-2026 年出厂系统是 HarmonyOS 4.X 及以下的智慧屏（V / S / SE / X / B / Vision 全系）底层仍是 Android/AOSP 分支，连点版本号出开发人员选项后能开 ADB，社区教程多；只有 2025 年起的 MateTV 系列出厂即 HarmonyOS 5.1/6.1（纯鸿蒙），没有 ADB，且官方确认既不能回退到 4.X、老机型也不会升到 5/6/7——所以「能不能做」看的是关于本机里的 HarmonyOS 版本号，不是买的年份。",
+  "identify_hints": {
+    "remote_has_digits": "未核实：未找到华为官方对智慧屏遥控器按键布局的说明，不要靠遥控器判断，直接看关于本机的版本号",
+    "system_name_shown_at": "智慧屏主页 → 设置 → 系统 → 关于本机；HarmonyOS 5.1 及以上的机器路径变成：设置 → 点击你的设备名称 → 关于本机（华为官方说明）。也可以在手机「智慧生活 App」里点智慧屏卡片 → 右上角 → 设备设置 → 设备信息 → HarmonyOS 版本",
+    "about_page_fields": [
+      "HarmonyOS 版本（智慧屏有自己独立的版本号轨道，形如 2.0.0.580、4.2.0.160(SP5)、4.3.0.115(SP3)、5.1、6.1，与手机端的版本号不是一回事）",
+      "设备型号（形如 HEGE-550、HD55KUNL、HD65AJMS、HD65EDIH）",
+      "序列号"
+    ],
+    "model_naming_rule": "🔴 判断能不能做只看版本号，型号只用来对系列。归纳自华为官方机型清单：2019 年首批用 HEGE-550/560/570（V 系列）、PLAT-760（X65）；之后统一为 HD + 尺寸两位 + 四位平台代码，如 HD55KANB（智慧屏 S 55）、HD65DESA（智慧屏 SE 65）、HD65MILA（Vision 智慧屏 65）、HD65QINA（Vision 3）、HD55KUNL（Vision 4 SE）、HD65AJMS（S3 Pro）、HD65KULU（Vision 5 SE）；2024 年后新增 HDB5266H / HDB526G6 / HDB525A9 这类 HDB 开头的编号。🔴 MateTV 系列固定是 HD__EDIH（MateTV）/ HD__EDIJ（MateTV Pro、Max），看到 EDIH/EDIJ 就是纯鸿蒙、没有 ADB",
+    "sticker_location": "未找到华为官方对智慧屏铭牌位置的说明；型号和版本号建议直接在「设置 → 系统 → 关于本机」里看，最稳",
+    "year_ranges": "2019-08 首发（X/V 系列，HarmonyOS 1.x）→ 2020-2022 S/SE/B3（2.x-3.x）→ 2021-2026 Vision/Z/V5/S3/S5/4SE/5SE（3.x-4.3）→ 2025-2026 MateTV 系列（出厂 HarmonyOS 5.1/6.1，官方已预告 2026 Q4 推 HarmonyOS 7）"
+  },
+  "series": [
+    {
+      "name": "智慧屏 X 系列 / V 系列（初代 ~ 2021 款）",
+      "years": "2019-2021",
+      "base_os": "harmony",
+      "android_version_range": "华为未公开；HarmonyOS 1.x-2.x 的 TV 固件是兼容 Android/AOSP 的分支，adb 能连上、pm 命令存在",
+      "models_examples": ["华为智慧屏 X65（PLAT-760）", "华为智慧屏 V55i（HEGE-550/550B/550C）", "华为智慧屏 V65（HEGE-560）", "华为智慧屏 V75（HEGE-570）", "华为智慧屏 V 系列 2021 款 55/65/75/85（HD55THAA / HD65THAA / HD75THAA / HD85THAA）"],
+      "identify_hints": "关于本机里版本号是 1.x 或 2.x；型号以 HEGE- 或 PLAT- 开头的就是 2019-2020 那两批首发机；桌面是早期「智慧屏」大卡片布局，带 AI 慧眼摄像头（V 系列可升降）",
+      "worth_it_hint": "值得做：机龄 6-7 年、内存小、系统层广告与预装最多，清理后收益最明显；但这批机器已过保，动手前先确认还在正常使用",
+      "entries": [
+        {
+          "applies_to": "HarmonyOS 4.X 及以下的华为智慧屏通用路径（2019-2026 除 MateTV 外全系）",
+          "steps": [
+            "智慧屏主页 → 设置 → 关于本机（部分固件路径是：设置 → 系统和更新 → 关于本机）",
+            "连续点击【版本号】7 次，直到提示已进入开发者模式（不同固件写的次数从 5 到 8 不等，多点几下即可，不需要密码）",
+            "返回【设置】→【系统和更新】→【开发人员选项】",
+            "打开【USB 调试】；部分固件在它下方还有一个【启用 ADB】子开关，要一起打开（另有教程里这个开关叫【HDB 调试】，看到哪个开哪个）",
+            "电脑与智慧屏连同一个局域网，执行 adb connect <电视IP>:5555（也可以用 USB 线直连）",
+            "首次连接时电视上会弹出调试授权确认框（类似手机的 RSA 指纹确认），用遥控器选允许"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://quicktvui.com/zh-CN/guide/device/huawei.html", "title": "HuaWei | QuickTVUI 打开 USB 调试教程"},
+            {"url": "https://ask.zol.com.cn/x/16779157.html", "title": "华为智慧屏 adb 方式怎么打开 - ZOL 问答"},
+            {"url": "https://community.aijishu.com/a/1060000000016999", "title": "Android 手机、电视(盒子) 打开 ADB 调试一览表", "date": "2019-10-12"},
+            {"url": "https://www.bilibili.com/video/BV1ut421F7tT/", "title": "华为智慧屏使用 ADB 教程，可开无障碍"},
+            {"url": "https://zhuanlan.zhihu.com/p/585539070", "title": "adb 也能用来卸载华为智慧屏的自带应用（该文把开关写作「hdb 调试」）", "date": "2022-11-22"},
+            {"url": "https://www.zhihu.com/question/339809553/answer/785404970", "title": "如何看待华为智慧屏中的鸿蒙系统带有安卓的 ADB？", "date": "2019-08-10"}
+          ],
+          "risk_notes": "华为官方文档从未正面确认过 TV 端 ADB，全部是社区教程与网友实测；2021 年有用户在华为开发者论坛反馈自己的 V55i（HEGE-550，版本 2.0.0.188）只能打开【开发人员选项】、里面找不到 ADB 开关，官方没给过原因，所以存在「按教程做了但开关不存在」的情况"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "unknown",
+        "hide": "unknown",
+        "uninstall_user0": "unknown",
+        "notes": "只查到一篇知乎专栏标题直指「adb 卸载华为智慧屏自带应用」，正文未抓取成功，没有可引用的命令与返回值；网上流传的华为包名清单几乎都来自手机端 EMUI/HarmonyOS 教程，未核实在 TV 固件上是否同名。动手前请先跑 adb shell pm list packages 看实际输出，再逐个试 pm disable-user，不要照搬手机教程",
+        "evidence_level": "单源",
+        "sources": [
+          {"url": "https://zhuanlan.zhihu.com/p/585539070", "title": "adb 也能用来卸载华为智慧屏的自带应用", "date": "2022-11-22"}
+        ]
+      },
+      "pitfalls": [
+        {
+          "what": "部分固件的【开发人员选项】里只有【USB 调试】，没有下面那个【启用 ADB】子开关，导致 adb devices 一直空；2021 年华为开发者论坛有两例同类反馈（型号 HEGE-550，版本 2.0.0.188(SP...)），官方未给根因或解法",
+          "sources": [
+            {"url": "https://developer.huawei.com/consumer/cn/forum/topic/0202673793540930339", "title": "华为智慧屏怎么打开 usb 调试", "date": "2021-09-18"},
+            {"url": "https://developer.huawei.com/consumer/cn/forum/topic/0201653752486740539", "title": "求助! 智慧屏无法连接调试", "date": "2021-08-26"}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "智慧屏 S 系列 / SE 系列 / B3 系列",
+      "years": "2020-2022",
+      "base_os": "harmony",
+      "android_version_range": "华为未公开；HarmonyOS 2.x-3.x 的 TV 固件仍是 Android/AOSP 兼容分支",
+      "models_examples": ["华为智慧屏 S 55（HD55KANB/HD55KANC）", "华为智慧屏 S Pro 65（HD65KANS）", "华为智慧屏 S86 Pro（HD86KEPA）", "华为智慧屏 SE 55（HD55DESA）", "华为智慧屏 SE 系列 MEMC 版（HD43KHAA/HD55KHAA/HD65KHAA）", "华为智慧屏 B3-500（HD55DESB）"],
+      "identify_hints": "关于本机版本号是 2.x 或 3.x；型号形如 HD55KAN*（S 系列）、HD55DES*（SE 与 B3 系列）、HD__KHAA（SE MEMC 版）。S 系列 2020-12-21 发布，SE 系列 2021 年发布、配磁吸式摄像头",
+      "worth_it_hint": "值得做：4-6 年机龄，2GB/3GB 内存机型在 2026 年已明显吃力，关掉开机广告与后台推荐类应用收益大",
+      "entries": [
+        {
+          "applies_to": "同「智慧屏 X/V 系列」条目的通用路径（设置 → 关于本机 → 连点版本号 7 次 → 开发人员选项 → USB 调试 / 启用 ADB / HDB 调试 → adb connect IP:5555 → 电视上点允许）",
+          "steps": [
+            "设置 → 关于本机 →【版本号】连点 7 次",
+            "设置 → 系统和更新 → 开发人员选项",
+            "打开【USB 调试】及其下方的【启用 ADB】（或写作【HDB 调试】）",
+            "adb connect <电视IP>:5555，在电视上确认授权弹窗"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://quicktvui.com/zh-CN/guide/device/huawei.html", "title": "HuaWei | QuickTVUI 打开 USB 调试教程"},
+            {"url": "https://ask.zol.com.cn/x/16779157.html", "title": "华为智慧屏 adb 方式怎么打开 - ZOL 问答"},
+            {"url": "https://zhuanlan.zhihu.com/p/585539070", "title": "adb 也能用来卸载华为智慧屏的自带应用", "date": "2022-11-22"}
+          ],
+          "risk_notes": "同上：华为官方无 TV 端 ADB 文档；个别固件缺少 ADB 子开关"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "unknown",
+        "hide": "unknown",
+        "uninstall_user0": "unknown",
+        "notes": "未找到该系列的 pm 命令实测记录，先 pm list packages 再逐个试",
+        "evidence_level": "单源",
+        "sources": [
+          {"url": "https://zhuanlan.zhihu.com/p/585539070", "title": "adb 也能用来卸载华为智慧屏的自带应用", "date": "2022-11-22"}
+        ]
+      }
+    },
+    {
+      "name": "Vision 智慧屏 / Z 电竞版 / V5 / S3·S5 / Vision 3·4SE·5·5SE（HarmonyOS 3.x-4.3，最后一代 Android 底层）",
+      "years": "2021-2026",
+      "base_os": "harmony",
+      "android_version_range": "华为未公开；出厂版本 HarmonyOS 4.3 及以下，官方明确这批机器不会升到 5/6/7，所以 Android 兼容层和 ADB 路径会一直在",
+      "models_examples": ["华为 Vision 智慧屏 65（HD65MILA）", "华为 Vision 智慧屏 Z65 电竞版（HD65FRUC）", "华为智慧屏 V65 Pro（HD65FRUA）", "华为智慧屏 V5 Pro 75（HD75ARKA）", "华为 Vision 智慧屏 3 65（HD65QINA）", "华为 Vision 智慧屏 SE3 65（HD65KUNA）", "华为 Vision 智慧屏 4 SE 55（HD55KUNL）", "华为智慧屏 S3 Pro 65（HD65AJMS）", "华为智慧屏 S5 65（HDB5266H）", "华为 Vision 智慧屏 5 SE 65（HD65KULU）"],
+      "identify_hints": "关于本机版本号是 3.x / 4.0 / 4.2 / 4.3（如 4.2.0.160(SP5)、4.3.0.115(SP3)）；型号是 HD + 尺寸 + MILA/QINA/KUNA/KUNL/KULU/FRU*/ARK*/AJM*，或 HDB52 开头。🔴 只要版本号是 4 开头或更低，这台机器就永远停在这一代（官方已声明不升级）",
+      "worth_it_hint": "1-5 年机龄，内存通常 3-4GB，卡顿没那么严重，但首页推荐位与预装影音应用最多；主要收益在关广告/推荐而不是抢内存。做之前先看关于本机版本号确认是 4.X 及以下",
+      "entries": [
+        {
+          "applies_to": "HarmonyOS 4.X 及以下的在售/在用机型",
+          "steps": [
+            "设置 → 关于本机（或 设置 → 系统和更新 → 关于本机）→【版本号】连点 7 次",
+            "返回 设置 → 系统和更新 → 开发人员选项",
+            "打开【USB 调试】，以及下方的【启用 ADB】/【HDB 调试】开关",
+            "adb connect <电视IP>:5555，在电视上勾选允许（可勾「一律允许」）"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://quicktvui.com/zh-CN/guide/device/huawei.html", "title": "HuaWei | QuickTVUI 打开 USB 调试教程"},
+            {"url": "https://www.bilibili.com/video/BV1ut421F7tT/", "title": "华为智慧屏使用 ADB 教程，可开无障碍"},
+            {"url": "https://zhuanlan.zhihu.com/p/585539070", "title": "adb 也能用来卸载华为智慧屏的自带应用", "date": "2022-11-22"}
+          ],
+          "risk_notes": "2024-2026 年新机是否仍保留 ADB 开关，没有找到 2025 年之后的实测帖；官方只保证系统版本不变，没保证开发者开关不变"
+        },
+        {
+          "applies_to": "HDC 调试（面向原生 HarmonyOS/ArkTS 应用，和上面的 Android ADB 是两条独立通路）",
+          "steps": [
+            "在【开发人员选项】里找到并打开【HDC 调试】开关",
+            "电脑装 DevEco Studio（或华为 Command Line Tools）",
+            "在 DevEco Studio 里用 IPConnect 连接同一局域网的智慧屏",
+            "Run 配置里 Select Device 选中智慧屏"
+          ],
+          "has_auth_prompt": null,
+          "wireless_pairing": true,
+          "port": null,
+          "evidence_level": "单源",
+          "sources": [
+            {"url": "https://bbs.itying.com/topic/67a5f27a55a429007d7d12bd", "title": "HarmonyOS 鸿蒙 Next 华为智慧屏的 HDC 调试功能已上线", "date": "约 2025-02"}
+          ],
+          "risk_notes": "只有一篇论坛帖，帖里网友追问「智慧屏的 udid 怎么获取」没人答，流程本身不完整；哪些型号/固件起有这个开关、要不要登录开发者账号，官方都没文档。这条通路用于装原生鸿蒙应用，不是清理预装的工具"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "unknown",
+        "hide": "unknown",
+        "uninstall_user0": "unknown",
+        "notes": "没有该系列的 pm 实测证据",
+        "evidence_level": "单源",
+        "sources": [
+          {"url": "https://zhuanlan.zhihu.com/p/585539070", "title": "adb 也能用来卸载华为智慧屏的自带应用", "date": "2022-11-22"}
+        ]
+      }
+    },
+    {
+      "name": "智慧屏 MateTV / MateTV Pro / MateTV Max（出厂 HarmonyOS 5.1 及以上）",
+      "years": "2025-2026",
+      "base_os": "harmony",
+      "android_version_range": "无 Android 框架：官方文档写明当前仅 MateTV 系列出厂版本为 HarmonyOS 5 及以上（在售固件 5.1 / 6.1），且不支持回退到 4.X",
+      "models_examples": ["华为智慧屏 MateTV 65/75/85/98（HD65EDIH / HD75EDIH / HD8XEDIH / HD98EDIH）", "华为智慧屏 MateTV Pro 75/85/98（HD75EDIJ / HD8XEDIJ / HD98EDIJ）", "华为智慧屏 MateTV Max 110（HD1XEDIJ）"],
+      "identify_hints": "关于本机的 HarmonyOS 版本是 5.1 或 6.1；查版本的路径本身也变了——设置里先点你的设备名称，再进关于本机（HarmonyOS 5.1 及以上才是这个路径）；型号带 EDIH / EDIJ",
+      "worth_it_hint": "🔴 不用做：新机、内存充足，而且系统里没有 ADB 这条路。官方已预告 2026 Q4 推 HarmonyOS 7，版本只会往前走不会回退",
+      "entries": [],
+      "pm_caps": {
+        "disable_user": "unknown",
+        "hide": "unknown",
+        "uninstall_user0": "unknown",
+        "notes": "纯鸿蒙没有 Android 的 pm 命令体系；未找到任何 MateTV 上执行包管理命令的公开记录",
+        "evidence_level": "官方",
+        "sources": [
+          {"url": "https://consumer.huawei.com/cn/support/content/zh-cn16064291", "title": "华为智慧屏 HarmonyOS 4.X 及以下系统是否支持升级至 HarmonyOS 5/6/7 系统（官方：当前仅 MateTV 系列出厂版本为 HarmonyOS 5 及以上）"}
+        ]
+      },
+      "pitfalls": [
+        {
+          "what": "🔴 别把手机端「HarmonyOS 5 起砍掉 ADB」的结论直接套到所有智慧屏上，也别反过来。华为官方明确：2019 年以后全系智慧屏都叫 HarmonyOS，但出厂 4.X 及以下的机器没有升级到 5/6/7 的计划，只有 MateTV 系列出厂就是 5 及以上。所以同一时间在售的两台华为电视，一台能 adb、一台完全没有，唯一判据是关于本机里的版本号",
+          "sources": [
+            {"url": "https://consumer.huawei.com/cn/support/content/zh-cn16064291", "title": "华为智慧屏 HarmonyOS 4.X 及以下系统是否支持升级至 HarmonyOS 5 系统/HarmonyOS 6/HarmonyOS 7 系统"},
+            {"url": "https://consumer.huawei.com/cn/support/content/zh-cn16064288", "title": "华为智慧屏 MateTV 是否支持回退至 HarmonyOS 4.X 系统（官方：不支持回退）"},
+            {"url": "https://consumer.huawei.com/cn/support/content/zh-cn16116391", "title": "华为智慧屏 MateTV 系列是否支持升级至 HarmonyOS 7 系统（官方：后续支持，预计 2026 Q4 推送）"}
+          ]
+        },
+        {
+          "what": "智慧屏的固件版本号是独立轨道，官方支持文档里会出现 HarmonyOS 4.3.0.115(SP3)、4.2.0.160(SP5) 这种四段号，和手机端版本号不一一对应；某些论坛把智慧屏帖子归到「HarmonyOS Next」板块，但帖内用户机器显示的是 2.0.0.580——分类标签不等于真实系统代际",
+          "sources": [
+            {"url": "https://consumer.huawei.com/cn/support/content/zh-cn16033111/", "title": "华为智慧屏、手机、平板支持投屏反控列表（列出各机型对应的 TV 固件版本号）"},
+            {"url": "https://consumer.huawei.com/cn/support/content/zh-cn15815796", "title": "华为智慧屏如何查看系统版本信息（官方）"},
+            {"url": "https://bbs.itying.com/topic/67a5f27a55a429007d7d12bd", "title": "HarmonyOS 鸿蒙 Next 华为智慧屏的 HDC 调试功能已上线", "date": "约 2025-02"}
+          ]
+        }
+      ]
+    }
+  ],
+  "open_questions": [
+    "HarmonyOS 4.X 及以下的智慧屏上，pm disable-user / pm uninstall --user 0 到底能不能用、返回什么，没有一条带命令输出的实测记录；TV 端专属的包名清单（广告、推荐、上报）也完全没有可引用来源",
+    "2024-2026 年出厂的 4.X 机型（HDB52 系列、Vision 5 SE 等）是否仍保留【启用 ADB】开关，没找到 2025 年之后的实测帖",
+    "【HDC 调试】开关从哪个型号/固件版本开始出现、是否需要登录华为开发者账号，官方无文档",
+    "2021 年用户反馈的「有开发人员选项但没有 ADB 子开关」的根因（固件版本？地区版本？账号限制？）无解释，也不知道现在还存不存在",
+    "MateTV 系列的首销时间未逐一核实（官方支持页只标注适用版本 HarmonyOS 5.1 / 6.1）"
+  ],
+  "last_reviewed": "2026-09-15"
+}

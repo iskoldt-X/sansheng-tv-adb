@@ -1,0 +1,10 @@
+{
+  "name": "sansheng-tv-adb",
+  "description": "Debloat an Android TV over ADB with an AI agent: brand-by-brand developer-mode entries, twelve safety gates, every step reversible. No root.",
+  "version": "0.1.0",
+  "author": { "name": "叁笙 (sansheng)", "email": "sandypoli@gmail.com" },
+  "homepage": "https://github.com/sanshengai/sansheng-tv-adb",
+  "repository": "https://github.com/sanshengai/sansheng-tv-adb",
+  "license": "MIT",
+  "keywords": ["claude-code", "claude-code-skills", "claude-skills", "agent-skills", "android-tv", "adb", "debloat", "fire-tv", "google-tv", "chinese"]
+}

@@ -1,0 +1,16 @@
+# secrets（本项目无密钥，保留惯例）
+.env
+*.env
+!.env.example
+
+# 本 skill 的运行产物：清理工作目录默认在 ~/tv-adb/，不在仓内；测试临时目录
+/tmp/
+*.log
+.pytest_cache/
+__pycache__/
+*.pyc
+.DS_Store
+
+# 假 adb 状态
+mock_tv_state.json
+# 网站副本由 --web-dir 显式生成，不在本仓

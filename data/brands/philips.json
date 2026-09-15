@@ -1,0 +1,230 @@
+{
+  "brand": "飞利浦 / TP Vision",
+  "region": "both",
+  "aliases": ["Philips", "PHILIPS", "TP Vision", "TPV", "冠捷", "小飞", "飞利浦电视"],
+  "status": "部分适用",
+  "summary": "飞利浦是本项目里系统血统最杂的品牌：同一个牌子下同时卖 Android TV / Google TV、SAPHI、Titan OS、北美 Roku TV、国行京东OS 联名款五套互不相通的系统，只有 Android TV / Google TV 那一支能做 ADB；其余四支不是安卓，只能走「关广告 / 关推荐」的设置项。动手前必须先用型号和关于页确认自己是哪一支。",
+  "identify_hints": {
+    "remote_has_digits": "分血统：Android TV / Google TV 机型多配无数字键的精简遥控（带 Google 助理麦克风键、Netflix / YouTube 等快捷键）；SAPHI 与 Titan OS 机型多配带 0–9 数字键的传统长条遥控；北美 Roku TV 机型是紫色圆形方向盘（Roku 紫色 d-pad）加四个流媒体快捷键。遥控只是旁证，最终以关于页为准。",
+    "system_name_shown_at": "欧版 / 亚太：设置 → 全部设置 → Android 设置 / 关于（Android 机型这一层会出现 Android TV OS Build 字样）。北美 Roku 机型：设置 → System → About（显示 Roku OS 版本与 Roku TV support）。SAPHI / Titan OS 只有「软件版本」，整页不出现 Android 字样。",
+    "about_page_fields": [
+      "Android TV OS Build / 版本号（只有 Android TV、Google TV 机型有）",
+      "Android 安全补丁级别",
+      "Roku OS 版本 + Roku TV support 厂商联系方式（北美 Roku TV 机型）",
+      "软件版本 / Software version（SAPHI、Titan OS 只有这一项）"
+    ],
+    "model_naming_rule": "欧版 / 亚太型号末位数字 = 上市年份：…1=2016、2=2017、3=2018、4=2019、5=2020、6=2021、7=2022、8=2023、9=2024、0=2025（FlatpanelsHD 长期维护的对照规律）。字母段表示面板与市场：PUS / PUH / PUD / PUL 为 4K LCD，OLED 打头为 OLED，MLED 为 miniLED。北美型号形如 55PUL7875/F7（PUL 前缀 + /F7 市场后缀），基本都是 Roku TV。国行京东联名款型号带 /T3 后缀，如 65MLED621/T3、32PFF6899/T3。",
+    "sticker_location": "机身背面带条形码的贴纸上印有型号（Model）与序列号（Serial），这是官方给出的第一种查法；机内第二种查法是服务菜单 / 关于页。",
+    "year_ranges": "Android TV 约 2014–2023（中高端）；Google TV 2022 起（仅高端，2025 年只剩 OLED950 / OLED910 / OLED810 等）；SAPHI 约 2016–2024（中低端）；Titan OS 2024 起，2025 年几乎全部 LCD 与入门 OLED760 都改成 Titan OS；北美 Roku TV 常年在售。"
+  },
+  "series": [
+    {
+      "name": "Android TV（欧版 / 亚太，PUS / PUH / PUD / OLED 系列，Android 5.1–10）",
+      "years": "约2014–2021（按型号末位数字 4 及以前，加上 2020/2021 的部分中高端）",
+      "base_os": "android",
+      "android_version_range": "5.1–10",
+      "models_examples": ["65PUH7700", "65PUH7129", "55PUD8125/30", "50PUH7251/96", "OLED754", "OLED804"],
+      "identify_hints": "开机后主屏是 Android TV 原生启动器（横向卡片行，左上角有 Google 助理搜索图标）；官方支持文档给的判据就是「Android TV 可以通过主页左上角的 Google 助理搜索图标认出来」。设置里能找到独立的一层「Android 设置」，关于页有「Android TV OS Build」。遥控通常有 Google 助理麦克风键。",
+      "worth_it_hint": "值得做。这批机器普遍 1.5–2GB 内存、机龄 5–10 年，Android 9/10 的启动器与后台服务是卡顿主因，禁用不用的预装流媒体与演示类应用收益明显。机龄越老、内存越小，收益越大。",
+      "entries": [
+        {
+          "applies_to": "Android TV 5.1–10 的飞利浦机型（欧版 / 亚太 / 国行同路径）",
+          "steps": [
+            "遥控按「设置」齿轮键 → 全部设置（All settings）",
+            "进入「Android 设置」（Android Settings）",
+            "设备偏好设置 / 系统 → 关于（About）",
+            "把光标移到「Android TV OS Build」或「版本号」那一行，连按 OK 键 7 次，直到提示「您现在已是开发者」",
+            "返回上一级 → 开发者选项（Developer options）",
+            "打开「USB 调试」（部分固件只有 USB 调试、没有独立的 ADB 调试开关）",
+            "设置 → 网络和互联网 → 状态，记下电视的 192.168.x.x 地址",
+            "电脑上执行 adb connect <电视IP>:5555，电视端会弹授权框，选「允许」"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://blog.codetitans.pl/post/howto-enable-android-developer-options-on-philips-tv", "title": "HowTo: Enable Android Developer Options on Philips TV（给出 Settings > All settings > Android Settings 这一层飞利浦特有的菜单结构）"},
+            {"url": "https://www.znds.com/tv-1270973-1-1.html", "title": "电视adb调试怎么打开？2026各品牌电视打开ADB调式的方法汇总", "date": "2026-06-01"},
+            {"url": "https://g.pconline.com.cn/ask/239350.html", "title": "飞利浦电视安装第三方应用要开开发者模式吗", "date": "2026-05-14"}
+          ],
+          "risk_notes": "飞利浦的菜单比其他 Android TV 品牌多一层：必须先进「Android 设置」，直接在飞利浦自己的设置树里翻是找不到关于页的。另有用户报告部分飞利浦固件的开发者选项里只有「USB 调试」没有「ADB 调试」，打开 USB 调试即可，不要因为找不到同名开关就以为失败。"
+        },
+        {
+          "applies_to": "老款飞利浦部分机型（隐藏工厂菜单；年代与具体机型均未查到）",
+          "steps": [
+            "设置 → 本机信息",
+            "用遥控方向键依次输入：上 上 下 下 左 右 左 右",
+            "进入工厂模式后在「高级设置」里找 ADB 开关，只把这一项打开"
+          ],
+          "has_auth_prompt": false,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "单源",
+          "sources": [
+            {"url": "https://www.znds.com/tv-1270973-1-1.html", "title": "电视adb调试怎么打开？2026各品牌电视打开ADB调式的方法汇总", "date": "2026-06-01"}
+          ],
+          "risk_notes": "🔴 工厂菜单里只改 ADB 这一项，别的一律不碰——工厂菜单同屏还有面板类型、背光电流、出厂复位等会把电视改砖或改花屏的项目。该来源本身还提醒：网上有教程把康佳 K1 系列的型号和出厂密码错误地写进飞利浦教程，容易串台。优先用上面的开发者选项，这条只作为开发者选项被屏蔽时的兜底，且未找到第二来源印证。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "unknown",
+        "hide": "no",
+        "uninstall_user0": "unknown",
+        "notes": "没有找到飞利浦机型的 pm disable-user / pm uninstall --user 0 实测记录。这一代机器是标准 Android TV，理论上与其他 Android TV 品牌一致，但按本项目「有证据才写 yes/no」的口径记为 unknown，实际操作请先在自己机器上拿一个无关紧要的包试一次再批量做。pm hide 记 no 的依据见第一轮 general.json：该命令自 Android 7.0 起已被系统锁定，多数设备直接抛权限异常，与品牌无关。",
+        "evidence_level": "单源",
+        "sources": [
+          {"url": "https://developer.android.com/tools/adb", "title": "Android Debug Bridge (adb) — Table 2 Available package manager commands（官方只记录 uninstall / disable / disable-user / enable，无 hide）"}
+        ]
+      },
+      "must_keep": [],
+      "junk": [],
+      "ask_user": [],
+      "pitfalls": [
+        {
+          "what": "同一年份、同一系列里不同尺寸可能是不同系统。2019 年的 PUS6814 就是从 Android TV 换成飞利浦自研 SAPHI 的典型，型号只差一位却完全不能套用 ADB 流程。买二手或帮别人看机器时，型号对上了也要开机看一眼主屏。",
+          "sources": [
+            {"url": "https://www.flatpanelshd.com/article.php?subaction=showfull&id=1564732800", "title": "Philips 2019 TV line-up（明确记载 PUS6814 从 Android TV 切到 Saphi）"}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Google TV / Android TV 11+（高端 OLED 与 PUS9000 等，MediaTek 平台）",
+      "years": "2022至今（2025 年仅 OLED950 / OLED910 / OLED810 保留 Google TV，其余全线 Titan OS）",
+      "base_os": "android",
+      "android_version_range": "11–14",
+      "models_examples": ["OLED950", "OLED910", "OLED810", "OLED807", "OLED808", "PUS8807"],
+      "identify_hints": "主屏是 Google TV 的「为你推荐」大图海报流（不是 Android TV 的横向应用卡片行），右上角有 Google 账号头像。关于页写「Android TV OS Build」且 Android 版本 ≥ 11。2025 款 Google TV 机型出厂即 Android 14，硬件是 MediaTek 方案、只有两个 HDMI 2.1 口（Titan OS 机型是 Novatek 方案、四个 HDMI 2.1 口），这个接口数差异可以在不开机的情况下从机背区分。",
+      "worth_it_hint": "中等。机龄新、内存一般 3GB 以上，卡顿收益不如老机器明显；主要收益是关掉 Google TV 首页的推荐流与预装流媒体的后台唤醒。机器还在保修期内的话建议先只做 disable-user 这一档。",
+      "entries": [
+        {
+          "applies_to": "Android 11 及以上的飞利浦 Google TV 机型",
+          "steps": [
+            "设置 → 系统 → 关于（Google TV 上不再需要先进「Android 设置」这一层）",
+            "光标移到「Android TV OS Build」，连按 OK 键 7 次，提示「您现在已是开发者」",
+            "返回 → 系统 → 开发者选项",
+            "打开「USB 调试」；如果同时有「无线调试」开关，也打开",
+            "开发者选项 → 无线调试 → 使用配对码配对设备，电视会显示 IP、配对端口和 6 位配对码",
+            "电脑执行 adb pair <电视IP>:<配对端口>，输入 6 位配对码",
+            "配对成功后 adb connect <电视IP>:<调试端口>（这个端口与配对端口不同，在无线调试主页面显示）"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": true,
+          "port": null,
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://developer.android.com/tools/adb", "title": "Android Debug Bridge (adb) — Wireless debugging / adb pair 官方说明"},
+            {"url": "https://www.reddit.com/r/AndroidTV/comments/j5yyee/phillips_android_tv_no_network_debugging_option", "title": "Phillips Android TV no network debugging option?（飞利浦机型上无线调试开关存在与否随固件而异的用户报告）"},
+            {"url": "https://www.znds.com/tv-1270973-1-1.html", "title": "电视adb调试怎么打开？2026各品牌电视打开ADB调式的方法汇总", "date": "2026-06-01"}
+          ],
+          "risk_notes": "Android 11 起的无线调试端口是随机分配的，关掉「配对设备」弹窗后配对码和端口都会变；不要按老教程写死 5555。飞利浦部分固件只给 USB 调试、不给无线调试，这时要么插 USB 线走 adb tcpip 5555，要么放弃。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "unknown",
+        "hide": "no",
+        "uninstall_user0": "unknown",
+        "notes": "同上一系列，无飞利浦机型专属实测。Android 12 以后部分厂商会把自家启动器和商店标为不可禁用，飞利浦机型是否如此未核实。",
+        "evidence_level": "单源",
+        "sources": [
+          {"url": "https://developer.android.com/tools/adb", "title": "Android Debug Bridge (adb) — Table 2 Available package manager commands"}
+        ]
+      },
+      "must_keep": [],
+      "junk": [],
+      "ask_user": [],
+      "pitfalls": []
+    },
+    {
+      "name": "SAPHI（TP Vision 自研 Linux 系统）",
+      "years": "约2016–2024（中低端；2024 年起被 Titan OS 取代）",
+      "base_os": "saphi",
+      "android_version_range": "不适用（非 Android，没有 ADB、没有开发者选项）",
+      "models_examples": ["PUS6814（2019 年从 Android TV 改为 Saphi 的典型）"],
+      "identify_hints": "开机主屏不是 Android TV 的卡片行，也没有 Google 助理搜索图标；应用是固定的一排图标、装不了 Google Play；关于页只有「软件版本」，整页不出现 Android 字样。官方支持文档把 Saphi 与 Titan OS、Google、Android、Linux 并列为五种不同平台，说明这不是 Android 的皮肤而是另一套系统。",
+      "worth_it_hint": "不适用。不是安卓，没有 pm 命令，本项目的清理流程一条也用不上。这类机器的卡顿只能靠减少后台应用、恢复出厂、或外接一个安卓电视盒子解决。",
+      "entries": [],
+      "pitfalls": [
+        {
+          "what": "🔴 SAPHI 机型不能做 ADB。替代动作：设置 → 通用设置 / General → 隐私设置（Privacy settings）→ 隐私偏好 → 更多选择 → 选「全部拒绝」；再在全部设置里找「广告 ID」重置 ID，并打开「限制广告跟踪」。飞利浦把这两组开关放在同一棵设置树下，SAPHI 与 Titan OS 的路径基本一致（下面 Titan OS 那条给的实拍视频是 32PFS6939）。",
+          "sources": [
+            {"url": "https://tv-sound-monitors.philips.com/s/article/How-to-tell-if-the-Philips-TV-is-a-Titan-OS-Google-Android-Saphi-or-Linux-TV", "title": "How to tell if the Philips TV is a Titan OS, Google, Android, Saphi or Linux TV（飞利浦官方支持，确认 Saphi 是与 Android 并列的独立平台）"},
+            {"url": "https://www.tpv-tech.com/BuildingSmart.html", "title": "打造智能平台到电视中（TP Vision 官方 SAPHI 介绍）"},
+            {"url": "https://www.youtube.com/watch?v=VRLc7zXzwXs", "title": "PHILIPS 32PFS6939 - How to Disable Personalized Ads（逐步实拍：Settings → General → Privacy settings → 更多选择 → 全部拒绝；Advertising ID → Reset ID；Limited Ad Tracking）"}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Titan OS（Linux，2024 年起的新中低端平台）",
+      "years": "2024至今",
+      "base_os": "other",
+      "android_version_range": "不适用（Titan OS 是轻量 Linux 系统，非 Android，无 ADB）",
+      "models_examples": ["43PUS8079", "32PFS6939", "MLED950", "MLED910", "MLED810", "PUS9000", "PUS8500", "OLED760"],
+      "identify_hints": "主屏是 Titan OS 的自有排版（无 Google 助理图标、无 Google 账号头像），应用不需要「安装」、点开即用；关于页只有「软件版本」。硬件线索：Titan OS 机型用 Novatek 方案、机背有四个 HDMI 2.1 带宽接口，同代 Google TV 机型用 MediaTek 方案、只有两个。2024 年起飞利浦把 OLED759 / OLED769 以下的整条线都换成了 Titan OS，2025 年全线 LCD 都是 Titan OS。",
+      "worth_it_hint": "不适用。非安卓，本项目流程用不上。机龄也新，卡顿本来就不是主要矛盾。",
+      "entries": [],
+      "pitfalls": [
+        {
+          "what": "🔴 Titan OS 机型不能做 ADB。替代动作（32PFS6939 实拍）：遥控齿轮键 → General（通用）→ Privacy settings（隐私设置）→ Privacy Preferences → More choices（更多选择）→ 选「Reject all（全部拒绝）」并确认；再按齿轮键 → All settings → Advertising ID → Reset ID（重置广告 ID）→ 打开 Limited Ad Tracking（限制广告跟踪）。改完要等流媒体频道列表刷新才看得出效果。",
+          "sources": [
+            {"url": "https://www.youtube.com/watch?v=VRLc7zXzwXs", "title": "PHILIPS 32PFS6939 - How to Disable Personalized Ads（带时间轴的逐步实拍）"},
+            {"url": "https://www.flatpanelshd.com/article.php?subaction=showfull&id=1740562450", "title": "Philips 2025 TV line-up（2025 年各系列所用系统、Novatek/MediaTek 方案与 HDMI 2.1 接口数差异）", "date": "2026-02-26"},
+            {"url": "https://www.t3.com/news/titan-os-philips-tv-hands-on", "title": "I've seen the future for Philips TVs（Titan OS 取代 Saphi 的背景与上机体验）"}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "北美飞利浦 Roku TV（PUL… /F7 型号）",
+      "years": "约2019至今（北美市场，由授权厂商生产）",
+      "base_os": "roku",
+      "android_version_range": "不适用（Roku OS 非 Android，无 ADB）",
+      "models_examples": ["43PUL7875/F7", "50PUL7875/F7", "55PUL7875/F7", "65PUL7875/F7", "50PUL7985/F7", "55PUL7985/F7", "65PUL7985/F7"],
+      "identify_hints": "机身正面右下角有 Roku TV 标；遥控是紫色圆形方向盘加四个流媒体快捷键；主屏是 Roku 的九宫格图标网格。设置 → System → About 里显示 Roku OS 版本，并有一行「Roku TV support」写着实际制造商的联系方式。型号是 PUL 前缀 + /F7 后缀。",
+      "worth_it_hint": "不适用。Roku OS 不是安卓，没有 pm。Roku 机型本身占用低、不太卡，主要困扰是首页广告位和 ACR 跟踪，走设置里关即可。",
+      "entries": [],
+      "pitfalls": [
+        {
+          "what": "🔴 北美飞利浦 = Roku TV，不能做 ADB，也不要把欧版飞利浦的 Android 教程套上来。替代动作：Settings → Privacy → Smart TV Experience → 取消勾选「Use Info from TV Inputs」（这一项就是 Roku 的 ACR）；Settings → Privacy → Advertising → 勾上「Limit Ad Tracking」。详细见本项目的 roku.json。",
+          "sources": [
+            {"url": "https://www.usa.philips.com/c-m-so/tv/ambilight", "title": "Ambilight | Philips 美国官网（7875 / 7985 全系标注为 Roku TV，型号 PUL…/F7）"},
+            {"url": "https://www.roku.com/en-ca/products/finder/roku-tv/philips", "title": "Philips Roku TV models – Roku 官方机型目录"},
+            {"url": "https://support.roku.com/article/how-to-know-if-you-have-a-roku-tv", "title": "How to know if you have a Roku TV or a Roku branded TV（Roku 官方识别方法）", "date": "2026-06-18"}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "国行「京东OS 联名款」（/T3 后缀）",
+      "years": "2025至今",
+      "base_os": "other",
+      "android_version_range": "未核实（京东OS 是否基于 AOSP、有无开发者选项，均未找到公开说明）",
+      "models_examples": ["65MLED621/T3", "75MLED621/T3", "32PFF6899/T3", "飞利浦京东OS联名款50英寸144Hz"],
+      "identify_hints": "只在国内电商（主要是京东）卖，商品标题里直接写「京东OS」「京东联名款」「开机无广告」；型号末尾是 /T3。开机不播开机广告、直接进桌面，桌面是京东OS 的自有排版，不是 Android TV 卡片行也不是 Google TV 海报流。",
+      "worth_it_hint": "待核实。这条线的卖点本来就是「开机无广告」，本项目最主要的收益（去广告）已经被厂商在出厂时做掉了一半；剩下的内存与后台收益要等确认系统底层之后才谈得上。",
+      "entries": [],
+      "pitfalls": [
+        {
+          "what": "京东OS 不是飞利浦一家的系统层：创维 / 酷开的 JD01 联名款、KTC 的 43/50 英寸机型也都用它（KTC 那批标的是「京东OS 2.0」），说明它是一套可以移植到不同厂商硬件上的系统。百度百科条目称京东OS 电视「基于自研系统，开机后可直达桌面，且不包含开机广告」，但没说底层是不是 AOSP，也没有任何开发者选项 / ADB 的实测记录。在拿到实机确认之前，不要按 Android TV 的路径去试。",
+          "sources": [
+            {"url": "https://baike.baidu.com/item/%E4%BA%AC%E4%B8%9COS%E7%94%B5%E8%A7%86/67234593", "title": "京东OS电视（百度百科）"},
+            {"url": "https://www.jd.com/hprm/7373d68d6d02e1b91a0.html", "title": "飞利浦电视 京东OS 开机无广告 65MLED621/T3 等在售型号（京东）"},
+            {"url": "https://www.bilibili.com/video/BV1csKf6XEhB/", "title": "飞利浦电视32英寸京东联名款OS开机无广告全高清智能平板液晶电视机32PFF6899/T3", "date": "2026-06-30"},
+            {"url": "https://www.163.com/dy/article/KG116GOO0511B8LM.html", "title": "KTC推出799/899元43/50英寸电视：京东OS系统，无开机广告", "date": "2025-12-05"}
+          ]
+        }
+      ]
+    }
+  ],
+  "open_questions": [
+    "没有找到任何飞利浦机型的预装包名清单（com.tpvision.* 之类），所以 must_keep / junk / ask_user 三组全是空的。这是本文件最大的空白：拿到实机后跑一次 adb shell pm list packages -s 就能补上。",
+    "飞利浦机型的 pm disable-user / pm uninstall --user 0 没有任何实测记录，pm_caps 全部只能记 unknown。",
+    "国行「京东OS 联名款」的系统底层（是否基于 AOSP）、有无开发者选项与 ADB，均未找到公开资料；本文件只能确认它是与 Android TV / SAPHI / Titan OS 并列的第四套国行血统。",
+    "SAPHI 机型在国行市场的具体型号列表未核实（现有证据都是欧版，如 PUS6814）。",
+    "隐藏工厂菜单「上上下下左右左右」适用的具体飞利浦机型和年代范围只有单一中文论坛来源，未找到官方或第二来源印证。",
+    "官方支持文档 How to tell if the Philips TV is a Titan OS, Google, Android, Saphi or Linux TV 是识别血统最权威的一页，但该页是 Salesforce 单页应用、抓取工具取不到正文，本文件只引用到了搜索引擎摘要里那句「Android TV 可以通过主页左上角的 Google 助理搜索图标认出来」。需要人工打开确认其余四种平台的官方识别判据。"
+  ],
+  "last_reviewed": "2026-09-15"
+}

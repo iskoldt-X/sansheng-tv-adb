@@ -1,0 +1,301 @@
+{
+  "brand": "Google TV 播放设备（Chromecast with Google TV / Google TV Streamer / onn 4K）",
+  "region": "global",
+  "aliases": [
+    "Chromecast with Google TV",
+    "CCwGTV",
+    "Chromecast 4K",
+    "Chromecast HD",
+    "Google TV Streamer",
+    "Google TV Streamer 4K",
+    "onn 4K",
+    "onn. 4K Pro",
+    "onn 4K Plus",
+    "Walmart onn",
+    "谷歌电视棒",
+    "Google TV 盒子"
+  ],
+  "status": "适用",
+  "summary": "这几款都是原生 Android TV / Google TV，开发者选项和 ADB 全开，`pm disable-user --user 0` 可用可回滚。🔴 唯一的分水岭是 Android 版本：Android 12 及以前打开 USB 调试就能 `adb connect IP:5555` 直连；升到 Android 13/14 之后必须走「无线调试 + 配对码」，端口随机、重启失效。另外不改任何包也能先做一步：Google 官方的「仅应用模式（Apps only mode）」能关掉个性化推荐。",
+  "identify_hints": {
+    "remote_has_digits": false,
+    "system_name_shown_at": "设置 → 系统（System）→ 关于（About）→ 「Android TV OS 版本 / Android TV OS Build」。Chromecast with Google TV 的设置入口在首页右上角的头像里（按遥控中键打开通知/设置面板再选设置）。",
+    "about_page_fields": [
+      "设备名称（Chromecast / Google TV Streamer / onn 4K 等）",
+      "Android 版本（10 / 11 / 12 / 14 — 决定用哪套 ADB 流程）",
+      "Android TV OS 版本 / Build（连点这一行 7 次开开发者模式）",
+      "Android 安全补丁级别",
+      "Google TV 版本 / 内部版本号"
+    ],
+    "model_naming_rule": "Google 自家产品按代际命名：Chromecast with Google TV (4K) 2020、Chromecast with Google TV (HD) 2022、Google TV Streamer 4K 2024。Walmart 的 onn 用「onn. 4K / 4K Pro / 4K Plus + 年份」，不带字母编码。`adb shell getprop ro.product.model` 和 `ro.build.version.release` 能一次读出机型和 Android 版本。",
+    "sticker_location": "Chromecast 的型号印在机身背面（椭圆形吊坠状本体）；onn 盒子在底部贴纸；Google TV Streamer 在底面。但最可靠的还是关于页里的 Android 版本 — 型号定不了流程，Android 版本才定。",
+    "year_ranges": "2020（Chromecast with Google TV 4K）至今。2025 年这批设备普遍被推到 Android 14，原来能用的 5555 直连大面积失效。"
+  },
+  "series": [
+    {
+      "name": "Chromecast with Google TV（4K，2020）/（HD，2022）— Android 10 / 11 / 12 阶段",
+      "years": "2020–2024（升到 Android 14 之前）",
+      "base_os": "android",
+      "android_version_range": "出厂 Android 10（4K 款）/ Android 12（HD 款），期间升到 Android 12",
+      "models_examples": [
+        "Chromecast with Google TV (4K, 2020)",
+        "Chromecast with Google TV (HD, 2022)"
+      ],
+      "identify_hints": "椭圆形吊坠状本体 + 一支小巧的语音遥控（顶部有麦克风，底部有 YouTube 和 Netflix 专属键），遥控器没有数字键。关于页里 Android 版本显示 10、11 或 12 — 这一段就走 5555 直连。首页是 Google TV 界面：顶部一大块推荐横幅，下面「为你推荐 / 应用 / 影视库」几行。",
+      "worth_it_hint": "🔴 收益很大。CCwGTV 4K 只有 2 GB 内存 + 8 GB 存储（HD 款更低），装三四个流媒体 App 就开始提示存储不足、切换变慢，是这一组里最值得动手的机器。三个信号：内存小（成立）、广告多（首页整块推荐横幅，成立）、机龄 4–6 年（成立）。",
+      "entries": [
+        {
+          "applies_to": "Android 12 及以下的 Chromecast with Google TV",
+          "steps": [
+            "首页右上角选头像 / 按遥控中键打开面板 → 设置（Settings）",
+            "设置 → 系统（System）→ 关于（About）",
+            "滚到「Android TV OS 版本 / Android TV OS Build」，用遥控中键连点 7 次 → 「您现在是开发者」",
+            "返回：设置 → 系统 → 开发者选项（Developer options）",
+            "在 Debugging 一段里打开「USB 调试（USB debugging）」，弹确认框选「确定 / 允许」",
+            "在 设置 → 网络和互联网 里查本机 IP",
+            "电脑执行 `adb connect <IP>:5555`",
+            "电视上弹「允许 USB 调试吗」，选「允许」并勾「一律允许来自此计算机」"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://allaboutchromecast.com/using-adb-on-google-tv-streamer", "title": "A Comprehensive Guide to Enabling and Using ADB on Google TV Streamer and Chromecast with Google TV — 明确说明 Android 13 之前 USB debugging 会同时开启 TCP/IP 监听"},
+            {"url": "https://allaboutchromecast.com/enable-developer-options-in-chromecast-with-google-tv", "title": "How to enable developer options in Chromecast with Google TV and Google TV Streamer?"},
+            {"url": "https://www.reddit.com/r/Chromecast/comments/s96moi/how_to_connect_to_ccwgtv_via_adb_using_only_wifi", "title": "r/Chromecast：How to connect to CCwGTV via ADB using only WiFi"}
+          ],
+          "risk_notes": "这台设备的「USB 调试」开关同时管着网络那一路 — Android 13 以前打开它，adbd 会在 USB 和 TCP/IP 两边一起监听，所以不插线也能连。升级到 Android 13/14 之后这个行为就没了，要改走下面那条无线调试流程。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "yes",
+        "hide": "unknown",
+        "uninstall_user0": "yes",
+        "notes": "原生 Android TV 行为：`adb shell pm disable-user --user 0 <包名>` 有效，`pm enable --user 0 <包名>` 回滚；`pm uninstall -k --user 0` 也可用，恢复用 `pm install-existing`。XDA 的 Google TV 换 launcher 教程明确给出了成对的 disable / enable 命令。",
+        "evidence_level": "多源",
+        "sources": [
+          {"url": "https://xdaforums.com/t/how-to-disable-google-tv-launcher-install-3rd-party-launcher.4601397", "title": "How-To: Disable Google TV Launcher, Install 3rd Party Launcher — XDA"},
+          {"url": "https://forum.xda-developers.com/t/guides-2023-walmart-onn-google-tv.4610749", "title": "[Guides] 2023 Walmart ONN Google TV — 含 disable / enable 成对命令"},
+          {"url": "https://www.esper.io/blog/android-dessert-bites-2-tips-tricks-3156978", "title": "Esper：Android TV / Google TV 通过 ADB 换默认 launcher"}
+        ]
+      },
+      "must_keep": [
+        {"pkg": "com.google.android.apps.tv.launcherx", "what": "Google TV 桌面（首页本身）", "why": "禁了按 Home 键无处可去；只有在已经装好第三方 launcher 之后才谈得上禁它", "evidence_level": "多源", "sources": [{"url": "https://xdaforums.com/t/how-to-disable-google-tv-launcher-install-3rd-party-launcher.4601397", "title": "XDA：Google TV 桌面包名 = com.google.android.apps.tv.launcherx"}, {"url": "https://www.esper.io/blog/android-dessert-bites-2-tips-tricks-3156978", "title": "Esper：Google TV 桌面包名确认"}]},
+        {"pkg": "com.google.android.tungsten.setupwraith", "what": "设置向导 / 回退桌面", "why": "🔴 双面性：不换 launcher 时绝对不能动（它是系统回退路径）；换 launcher 时必须和 launcherx 一起禁，否则它会把 Google TV 桌面自动重新启用", "evidence_level": "多源", "sources": [{"url": "https://freya.cat/blog/post/2025-03-11", "title": "How to unenshittificate your Google TV：setupwraith 会自动把默认 launcher 重新启用"}, {"url": "https://xdaforums.com/t/how-to-disable-google-tv-launcher-install-3rd-party-launcher.4601397", "title": "XDA：两个包必须一起禁，出问题用 pm enable 一起恢复"}]},
+        {"pkg": "com.android.systemui", "what": "Android 系统界面", "why": "任何 Android 设备都不能动", "evidence_level": "多源", "sources": [{"url": "https://github.com/bryanroscoe/shield_optimizer", "title": "shield_optimizer：支持 Chromecast with Google TV，内置 do-not-disable 清单"}]},
+        {"pkg": "com.google.android.inputmethod.latin", "what": "Gboard 输入法", "why": "禁了输不了 Wi-Fi 密码和搜索关键词", "evidence_level": "单源", "sources": [{"url": "https://diegoderksen.nl/blog/Nvidia-Shield-Debloating", "title": "Debloating Nvidia Shield（同源 Android TV 输入法包名参考）"}]}
+      ],
+      "junk": [
+        {"pkg": "com.google.android.tvrecommendations", "what": "Android TV / Google TV 推荐服务", "why": "首页推荐行和「为你推荐」的数据源", "evidence_level": "多源", "sources": [{"url": "https://diegoderksen.nl/blog/Nvidia-Shield-Debloating", "title": "Android TV 通用 debloat 清单"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse Android TV debloat 清单"}]},
+        {"pkg": "com.google.android.leanbacklauncher.recommendations", "what": "桌面推荐行组件", "why": "首页那条推荐行", "evidence_level": "多源", "sources": [{"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "Level1Techs Android TV debloat 清单"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.google.android.backdrop", "what": "屏保 / 背景图轮播（Backdrop）", "why": "待机时从网上拉图，纯装饰且一直联网", "evidence_level": "多源", "sources": [{"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "Level1Techs 清单"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.google.android.feedback", "what": "Google 反馈上报", "why": "遥测", "evidence_level": "多源", "sources": [{"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "Level1Techs 清单"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.google.android.tv.bugreportsender", "what": "Bug 报告自动上传", "why": "遥测", "evidence_level": "多源", "sources": [{"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "Level1Techs 清单"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.google.android.backuptransport", "what": "Google 备份传输", "why": "不用 Google 备份就无用", "evidence_level": "单源", "sources": [{"url": "https://diegoderksen.nl/blog/Nvidia-Shield-Debloating", "title": "Android TV debloat 清单"}]},
+        {"pkg": "com.google.android.partnersetup", "what": "OEM 合作预置引导", "why": "一次性内容常驻", "evidence_level": "单源", "sources": [{"url": "https://diegoderksen.nl/blog/Nvidia-Shield-Debloating", "title": "Android TV debloat 清单"}]}
+      ],
+      "ask_user": [
+        {"pkg": "com.google.android.katniss", "what": "Google 助理 / 全局搜索（Android TV 版）", "why": "🔴 禁了遥控上的语音键和全局搜索就没了；而且实测系统开机会把它自动重新启用，需要每次开机再禁一遍", "evidence_level": "多源", "sources": [{"url": "https://freya.cat/blog/post/2025-03-11", "title": "How to unenshittificate your Google TV：禁 katniss / gms 后「tv enables them on boot」"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单：katniss 与 gms / vending 归为一组"}]},
+        {"pkg": "com.google.android.gms", "what": "Google Play 服务", "why": "🔴 禁了之后大量流媒体 App 拒绝启动或无法登录；且开机自动重新启用", "evidence_level": "多源", "sources": [{"url": "https://freya.cat/blog/post/2025-03-11", "title": "freya.cat：gms 被禁后系统开机会重新启用"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.android.vending", "what": "Google Play 商店", "why": "禁了装不了、更新不了任何 Play 上的 App。freya.cat 的记录：禁掉默认 launcher 之后就没法从 Google TV 界面装 App 了", "evidence_level": "多源", "sources": [{"url": "https://freya.cat/blog/post/2025-03-11", "title": "How to unenshittificate your Google TV"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.google.android.videos", "what": "Google TV / Play 影视（影视库）", "why": "在 Play 上买过或租过片子的要留", "evidence_level": "多源", "sources": [{"url": "https://forum.xda-developers.com/t/guides-2023-walmart-onn-google-tv.4610749", "title": "XDA onn 指南：pm disable-user --user 0 com.google.android.videos"}]},
+        {"pkg": "com.google.android.play.games", "what": "Google Play 游戏", "why": "不在电视上打游戏就能关", "evidence_level": "多源", "sources": [{"url": "https://forum.xda-developers.com/t/guides-2023-walmart-onn-google-tv.4610749", "title": "XDA onn 指南：pm disable-user --user 0 com.google.android.play.games"}]},
+        {"pkg": "com.google.android.tts", "what": "Google 文字转语音", "why": "开了无障碍朗读的要留", "evidence_level": "单源", "sources": [{"url": "https://diegoderksen.nl/blog/Nvidia-Shield-Debloating", "title": "Android TV debloat 清单"}]}
+      ],
+      "pitfalls": [
+        {"what": "🔴 换第三方 launcher 时 launcherx 和 setupwraith 必须一起禁：只禁 launcherx 的话，setupwraith 会自动把 Google TV 桌面重新启用。搞砸黑屏了就 `adb shell pm enable --user 0 com.google.android.apps.tv.launcherx` 加 `... com.google.android.tungsten.setupwraith` 一起恢复 — 这条恢复命令一定要在动手前先记下来。", "sources": [{"url": "https://xdaforums.com/t/how-to-disable-google-tv-launcher-install-3rd-party-launcher.4601397", "title": "XDA：黑屏恢复命令原文"}, {"url": "https://freya.cat/blog/post/2025-03-11", "title": "freya.cat：setupwraith 作为 fallback 会重新启用默认 launcher"}]},
+        {"what": "第三方 launcher 要用 `adb install` 装，不要从 Play 商店或文件管理器装 — 从 Play 装的 launcher 在 Google TV 上拿不到需要的权限。", "sources": [{"url": "https://xdaforums.com/t/how-to-disable-google-tv-launcher-install-3rd-party-launcher.4601397", "title": "XDA：「You need to install it via adb」"}]},
+        {"what": "不动任何包也能先减一半噪音：设置 → 账号与登录（Accounts & Sign In）→ 选自己的 Google 账号 → 「仅应用模式（Apps only mode）」→ 打开。首页会变成一排 App 图标。代价是搜索和 Google 助理用不了，而且 Google 自己说明：赞助内容和热门影视预告仍然会出现，顶部那条横幅也还在。", "sources": [{"url": "https://support.google.com/googletv/answer/10070784?hl=en", "title": "Hide personalized recommendations on Google TV — Google 官方"}, {"url": "https://support.google.com/googletv/thread/261238101/recommendation-banner-shown-in-apps-only-mode?hl=en", "title": "Google 官方社区：仅应用模式下顶部横幅仍在（那是 what's new 不是个性化推荐）"}]},
+        {"what": "社区有解锁 bootloader / 刷 LineageOS 的讨论，本项目不采用，也不记录方法。", "sources": []}
+      ]
+    },
+    {
+      "name": "Chromecast with Google TV / Google TV Streamer / onn — Android 13 及以上（含 2025 年推送的 Android 14）",
+      "years": "2024 至今（老 Chromecast 在 2025 年被推到 Android 14 后也归入这一档）",
+      "base_os": "android",
+      "android_version_range": "Android 13 / 14（部分设备已到 Android TV OS 15）",
+      "models_examples": [
+        "Google TV Streamer 4K (2024, Android 14)",
+        "Chromecast with Google TV 4K（2025 年升级到 Android 14 之后）",
+        "Chromecast with Google TV HD（升级后）",
+        "onn. 4K Plus（升到 Android 14 之后）"
+      ],
+      "identify_hints": "判据只有一条：设置 → 系统 → 关于 里的 Android 版本是 13 或 14（或 Android TV OS 15）。另一个特征是开发者选项里出现了独立的「无线调试（Wireless debugging）」条目，而不再只有「USB 调试」。Google TV Streamer 4K 是一台扁平的浅色小盒子（不再是吊坠形），带以太网口。",
+      "worth_it_hint": "看具体机器：Google TV Streamer 4K 是 4 GB 内存 / 32 GB 存储，性能不紧张，做它主要是关推荐行和遥测；而升上 Android 14 的老 Chromecast（2 GB / 8 GB）本来就紧，新系统只会更吃资源，收益依然大。注意这一档的操作成本明显更高 — 每次重启都要重新配对。",
+      "entries": [
+        {
+          "applies_to": "Android 13 / 14 的 Google TV 设备，走 Wi-Fi 连接时（这是绝大多数情况）",
+          "steps": [
+            "首页右上角头像 → 设置 → 系统（System）→ 关于（About）",
+            "「Android TV OS 版本 / Build」连点 7 次 → 「您现在是开发者」",
+            "返回：设置 → 系统 → 开发者选项",
+            "找到 Debugging 段里的「无线调试（Wireless debugging）」→ 打开 → 弹窗选「允许」",
+            "在无线调试页面里选「使用配对码配对设备（Pair device with pairing code）」，屏幕上会显示一个 6 位配对码和一个 IP:配对端口 — 这一页不要退出",
+            "电脑执行 `adb pair <IP>:<配对端口>`，按提示输入 6 位配对码",
+            "配对成功后回到无线调试主页面，上面显示的是另一个「IP 地址和端口」（调试端口，和配对端口不同）",
+            "电脑执行 `adb connect <IP>:<调试端口>`，再 `adb devices -l` 确认已连上"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": true,
+          "port": null,
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://allaboutchromecast.com/using-adb-on-google-tv-streamer", "title": "A Comprehensive Guide to Enabling and Using ADB on Google TV Streamer and Chromecast with Google TV — 明确 Android 13 起无线调试与 USB 调试分离，2025 年两款设备都升到 Android 14"},
+            {"url": "https://community.home-assistant.io/t/android-debug-bridge-on-chromecast-wgtv-4k-after-android-14-update/864037", "title": "Home Assistant 社区：Chromecast wGTV 4K 升 Android 14 后 USB 调试失效，adb pair → adb connect 的完整步骤"},
+            {"url": "https://www.reddit.com/r/AndroidTV/comments/1pxv69g/working_fix_chromecast_android_14_adb_port_5555", "title": "r/AndroidTV：Chromecast Android 14 ADB — Wireless Debugging → Pair device with pairing code"},
+            {"url": "https://www.youtube.com/watch?v=iFzz744quJ4", "title": "How to Enable and Use Wireless Debugging on Google TV Streamer 4K | ADB Over Wi-Fi Setup Guide（实机演示）"}
+          ],
+          "risk_notes": "🔴 端口和配对码每次都不一样，而且设备重启后无线调试会自动关闭、端口重新随机 — 每次要用都得重新配一遍。像 Home Assistant 那种需要长期保持 ADB 连接的场景，在 Android 14 上基本没法自动化。做完一次性清理就关掉无线调试。"
+        },
+        {
+          "applies_to": "Android 13 / 14 设备，走 USB 线连接时",
+          "steps": [
+            "同上打开开发者选项",
+            "开发者选项 → Debugging → 打开「USB 调试（USB debugging）」",
+            "弹出确认框选「确定 / 允许」",
+            "用 USB 线连接电脑（Chromecast / Streamer 需要支持数据的 USB-C 线或带 USB 口的供电底座）",
+            "`adb devices` 确认；电视上弹「允许 USB 调试吗」，选「允许」并勾「一律允许」"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": null,
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://allaboutchromecast.com/using-adb-on-google-tv-streamer", "title": "All About Chromecast：按连接方式选 USB 调试或无线调试"},
+            {"url": "https://gadgetguideonline.com/android/android-adb-wireless-debugging", "title": "A Complete Guide to Android ADB Wireless Debugging — 两种调试方式的分工"}
+          ],
+          "risk_notes": "Android 14 上 USB 调试只管 USB 那一路，不再顺带开 TCP/IP 监听 — 也就是说开了 USB 调试之后 `adb connect IP:5555` 依然连不上，这是很多人以为「ADB 被砍了」的真实原因。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "yes",
+        "hide": "unknown",
+        "uninstall_user0": "yes",
+        "notes": "连上之后包管理行为和 Android 12 阶段一样：`pm disable-user --user 0` / `pm enable --user 0` 成对可用，`pm uninstall -k --user 0` 也可用。变的只是「怎么连上去」，不是「连上去能干什么」。",
+        "evidence_level": "多源",
+        "sources": [
+          {"url": "https://forum.xda-developers.com/t/guides-2023-walmart-onn-google-tv.4610749", "title": "[Guides] 2023 Walmart ONN Google TV — disable-user / enable 成对命令"},
+          {"url": "https://xdaforums.com/t/how-to-disable-google-tv-launcher-install-3rd-party-launcher.4601397", "title": "XDA：该教程在 2024 款 Chromecast with Google TV 4K 上仍然有效"},
+          {"url": "https://github.com/bryanroscoe/shield_optimizer", "title": "shield_optimizer：明确支持 Onn 4K Pro / Chromecast with Google TV / Google TV Streamer"}
+        ]
+      },
+      "must_keep": [
+        {"pkg": "com.google.android.apps.tv.launcherx", "what": "Google TV 桌面", "why": "首页本身；不换 launcher 就不能动", "evidence_level": "多源", "sources": [{"url": "https://xdaforums.com/t/how-to-disable-google-tv-launcher-install-3rd-party-launcher.4601397", "title": "XDA：该教程在 2024 款 Chromecast 上仍有效"}, {"url": "https://www.esper.io/blog/android-dessert-bites-2-tips-tricks-3156978", "title": "Esper：Google TV 桌面包名"}]},
+        {"pkg": "com.google.android.tungsten.setupwraith", "what": "设置向导 / 回退桌面", "why": "不换 launcher 时不能动；换 launcher 时必须与 launcherx 一起禁", "evidence_level": "多源", "sources": [{"url": "https://freya.cat/blog/post/2025-03-11", "title": "freya.cat：setupwraith 会自动重新启用默认 launcher"}, {"url": "https://forum.xda-developers.com/t/guides-2023-walmart-onn-google-tv.4610749", "title": "XDA onn 指南：两个包成对 disable / enable"}]},
+        {"pkg": "com.android.systemui", "what": "Android 系统界面", "why": "不能动", "evidence_level": "多源", "sources": [{"url": "https://github.com/bryanroscoe/shield_optimizer", "title": "shield_optimizer do-not-disable 清单"}]},
+        {"pkg": "com.google.android.inputmethod.latin", "what": "Gboard 输入法", "why": "输 Wi-Fi 密码和配对码要用", "evidence_level": "单源", "sources": [{"url": "https://diegoderksen.nl/blog/Nvidia-Shield-Debloating", "title": "Android TV 通用清单"}]},
+        {"pkg": "com.mediatek.tv.oneworld.tvcenter", "what": "🔴 MediaTek 方案 Google TV 电视上的 HDMI 信号源切换器（仅电视，播放盒子 / 电视棒上没有这个包）", "why": "名字看着像 bloat，实际是切信号源的。这是「照抄通用 Android TV 清单」最典型的误杀之一 — 禁了之后接在 HDMI 上的机顶盒 / 游戏机全都切不过去", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak README：「com.mediatek.tv.oneworld.tvcenter looks like bloat and is the HDMI input switcher」（Sharp 4K Google TV / Android 14 实机核对）"}]}
+      ],
+      "junk": [
+        {"pkg": "com.google.android.tvrecommendations", "what": "推荐服务", "why": "首页推荐行数据源", "evidence_level": "多源", "sources": [{"url": "https://diegoderksen.nl/blog/Nvidia-Shield-Debloating", "title": "Android TV debloat 清单"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.google.android.leanbacklauncher.recommendations", "what": "桌面推荐行", "why": "首页推荐行本体", "evidence_level": "多源", "sources": [{"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "Level1Techs 清单"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.google.android.backdrop", "what": "屏保 / 背景图轮播", "why": "待机拉图，纯装饰", "evidence_level": "多源", "sources": [{"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "Level1Techs 清单"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.google.android.feedback", "what": "Google 反馈上报", "why": "遥测", "evidence_level": "多源", "sources": [{"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "Level1Techs 清单"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.google.android.tv.bugreportsender", "what": "Bug 报告上传", "why": "遥测", "evidence_level": "多源", "sources": [{"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "Level1Techs 清单"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]}
+      ],
+      "ask_user": [
+        {"pkg": "com.google.android.katniss", "what": "Google 助理 / 全局搜索", "why": "🔴 禁了语音键和搜索失效，且开机会自动重新启用", "evidence_level": "多源", "sources": [{"url": "https://freya.cat/blog/post/2025-03-11", "title": "freya.cat：katniss 开机自动重新启用"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.google.android.gms", "what": "Google Play 服务", "why": "🔴 禁了大量 App 起不来，且开机自动重新启用", "evidence_level": "多源", "sources": [{"url": "https://freya.cat/blog/post/2025-03-11", "title": "freya.cat：gms 开机自动重新启用"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.android.vending", "what": "Google Play 商店", "why": "禁了装不了 App", "evidence_level": "多源", "sources": [{"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.google.android.videos", "what": "Google TV / Play 影视", "why": "在 Play 上买过片子的要留", "evidence_level": "多源", "sources": [{"url": "https://forum.xda-developers.com/t/guides-2023-walmart-onn-google-tv.4610749", "title": "XDA onn 指南"}]},
+        {"pkg": "com.google.android.play.games", "what": "Play 游戏", "why": "不打游戏可关", "evidence_level": "多源", "sources": [{"url": "https://forum.xda-developers.com/t/guides-2023-walmart-onn-google-tv.4610749", "title": "XDA onn 指南"}]},
+        {"pkg": "com.netflix.ninja", "what": "预装 Netflix（Android TV 版）", "why": "遥控器上往往有 Netflix 专属键，禁了那个键就失效；不用 Netflix 的可关", "evidence_level": "单源", "sources": [{"url": "https://forum.xda-developers.com/t/guides-2023-walmart-onn-google-tv.4610749", "title": "XDA onn 指南：Netflix / YouTube / YouTube Music 归在「装了但禁不掉、只能 disable-user」一组"}]},
+        {"pkg": "com.google.android.youtube.tv", "what": "预装 YouTube（电视版）", "why": "遥控器上有 YouTube 专属键；不用的可关", "evidence_level": "单源", "sources": [{"url": "https://forum.xda-developers.com/t/guides-2023-walmart-onn-google-tv.4610749", "title": "XDA onn 指南"}]}
+      ],
+      "pitfalls": [
+        {"what": "🔴 Android 14 上插着网线时「无线调试」开关打不开 — 一打开就自动弹回关闭。要配对只能改走 Wi-Fi，或者先拔网线配对完再插回去。这是 XDA 上明确记录的 2024 款 Chromecast 行为。", "sources": [{"url": "https://forum.xda-developers.com/t/how-to-disable-google-tv-launcher-install-3rd-party-launcher.4601397/post-90604208", "title": "XDA：「on Android 14 with the ethernet plugged in, the wireless debugging setting won't enable, it flips back to disabled」"}, {"url": "https://community.home-assistant.io/t/android-debug-bridge-on-chromecast-wgtv-4k-after-android-14-update/864037", "title": "Home Assistant 社区：无线调试要求两端同一 Wi-Fi，会废掉以太网方案"}]},
+        {"what": "🔴 无线调试的端口和配对码每次重启都变，且无线调试开关在开机时默认关闭。一次性清理没问题，但想长期保持 ADB 连接（Home Assistant 之类）在 Android 14 上基本做不到自动化。", "sources": [{"url": "https://community.home-assistant.io/t/android-debug-bridge-on-chromecast-wgtv-4k-after-android-14-update/864037", "title": "Home Assistant 社区：重启后连接不保留，端口一直在变"}, {"url": "https://github.com/mouldybread/adb-auto-enable", "title": "adb-auto-enable：为解决这个问题而生的第三方工具（Android 14+，需要在设备上装 APK）"}]},
+        {"what": "🔴 onn 4K Plus 升到 Android 14 之后有一条额外限制：侧载的 App 要想拿到「无障碍（Accessibility）」权限，必须用 `adb install` 安装 — 从文件管理器或 Play 装的拿不到。Projectivy Launcher、TVQuickActions 这类依赖无障碍权限的工具直接受影响。", "sources": [{"url": "https://www.aftvnews.com/onn-4k-plus-runs-android-tv-14-and-its-accompanying-issues-no-signs-of-ai-upscaling-yet", "title": "AFTVnews：Onn 4K Plus runs Android TV 14 and its accompanying issues"}]},
+        {"what": "🔴 不要照抄通用 Android TV 包清单。MediaTek 方案的 Google TV 电视上 com.mediatek.tv.oneworld.tvcenter 看着像 bloat，实际是 HDMI 信号源切换器 — 这类误杀的症状（切不了信号源、某个 App 打不开）很难反查回是清理造成的。动手前先在本机跑 `pm list packages` 现抓一份，别套别人的表。", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak README：Generic Android TV lists are how Widevine gets broken"}]},
+        {"what": "同 Android 12 阶段：换 launcher 前先记下恢复命令 `adb shell pm enable --user 0 com.google.android.apps.tv.launcherx` + `... com.google.android.tungsten.setupwraith`；第三方 launcher 必须用 `adb install` 装。", "sources": [{"url": "https://forum.xda-developers.com/t/guides-2023-walmart-onn-google-tv.4610749", "title": "XDA onn 指南：黑屏恢复命令"}]}
+      ]
+    },
+    {
+      "name": "onn. 4K / 4K Pro / 4K Plus（Walmart 自有品牌）",
+      "years": "2021 至今",
+      "base_os": "android",
+      "android_version_range": "按批次不同：早期 Android 10 / 11，2023 款 Android 12，2025 款 onn 4K Plus 已到 Android 14",
+      "models_examples": [
+        "onn. 4K Streaming Box (2021, Android 10)",
+        "onn. 4K Google TV Box (2023, Android 12)",
+        "onn. 4K Pro (2024)",
+        "onn. 4K Plus (2025, Android 14)",
+        "onn. 4K Streaming Stick"
+      ],
+      "identify_hints": "Walmart 自有品牌，机身印 onn. 字样（小写加一个点），外形是白色 / 黑色小方盒或电视棒；遥控器上有 Walmart 生态的快捷键。界面和 Chromecast 完全一样（都是 Google TV），所以不看界面看机身 logo。关于页的 Android 版本决定用哪套 ADB 流程 — onn 各批次版本跨度很大，必须实地看。",
+      "worth_it_hint": "onn 4K（2021）2 GB 内存、onn 4K Pro（2024）3 GB 内存。这一系列本来就是低价机，内存和存储都不宽裕，做的收益不错；而且 onn 对侧载相对友好（有 YouTube 教程直接说「Google TV 设备对侧载很友好」）。但 2025 年的 onn 4K Plus 升 Android 14 后多了无障碍权限限制，要提前告诉用户。",
+      "entries": [
+        {
+          "applies_to": "onn 全系（先在关于页确认 Android 版本再决定走哪套流程）",
+          "steps": [
+            "设置 → 系统（System）→ 关于（About）",
+            "滚到最底，「Android TV OS 版本 / Build」连点 7 次 → 「您现在是开发者」",
+            "返回：设置 → 系统 → 开发者选项",
+            "Android 12 及以下：打开「USB 调试」，然后 `adb connect <IP>:5555`",
+            "Android 13 / 14：打开「无线调试」→「使用配对码配对设备」→ `adb pair <IP>:<配对端口>` 输码 → `adb connect <IP>:<调试端口>`",
+            "两种方式首次连接都会在电视上弹「允许 USB 调试吗」，选「允许」并勾「一律允许」"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": null,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://www.youtube.com/watch?v=3hpAJuBXO3o", "title": "How to Sideload the Onn 4K stick — 演示 设置 → 系统 → 关于 → 点 TV OS build 开开发者选项"},
+            {"url": "https://www.youtube.com/watch?v=vLR-b2pZ8Sw", "title": "Full walkthrough: Walmart onn UHD streaming box — Settings → Device Preferences → About → Build 点 7 次 → Developer Options → USB Debugging"},
+            {"url": "https://forum.xda-developers.com/t/guides-2023-walmart-onn-google-tv.4610749", "title": "[Guides] 2023 Walmart ONN Google TV (4K YOC) — XDA"},
+            {"url": "https://www.aftvnews.com/onn-4k-plus-runs-android-tv-14-and-its-accompanying-issues-no-signs-of-ai-upscaling-yet", "title": "AFTVnews：Onn 4K Plus（Android 14）仍可解锁开发者选项并侧载"}
+          ],
+          "risk_notes": "onn 各批次的 Android 版本差别很大（同一个「onn 4K」名字下从 Android 10 到 14 都有），port=5555 只对 Android 12 及以下成立 — 一定要先在关于页看 Android 版本，别按型号名猜。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "yes",
+        "hide": "unknown",
+        "uninstall_user0": "yes",
+        "notes": "XDA 的 2023 Walmart ONN Google TV 指南直接给出了 `pm disable-user --user 0` 的批量命令和对应的 `pm enable --user 0` 恢复命令，覆盖 launcher、Play 游戏、Play 影视、Netflix、YouTube 等。",
+        "evidence_level": "多源",
+        "sources": [
+          {"url": "https://forum.xda-developers.com/t/guides-2023-walmart-onn-google-tv.4610749", "title": "[Guides] 2023 Walmart ONN Google TV — 含成对的 disable / enable 命令"},
+          {"url": "https://github.com/bryanroscoe/shield_optimizer", "title": "shield_optimizer：明确支持 Onn 4K Pro"}
+        ]
+      },
+      "must_keep": [
+        {"pkg": "com.google.android.apps.tv.launcherx", "what": "Google TV 桌面", "why": "首页本身", "evidence_level": "多源", "sources": [{"url": "https://forum.xda-developers.com/t/guides-2023-walmart-onn-google-tv.4610749", "title": "XDA onn 指南"}]},
+        {"pkg": "com.google.android.tungsten.setupwraith", "what": "设置向导 / 回退桌面", "why": "不换 launcher 时不能动；换 launcher 时与 launcherx 成对处理", "evidence_level": "多源", "sources": [{"url": "https://forum.xda-developers.com/t/guides-2023-walmart-onn-google-tv.4610749", "title": "XDA onn 指南：两包成对 disable / enable"}]},
+        {"pkg": "com.android.systemui", "what": "Android 系统界面", "why": "不能动", "evidence_level": "多源", "sources": [{"url": "https://github.com/bryanroscoe/shield_optimizer", "title": "shield_optimizer do-not-disable 清单"}]},
+        {"pkg": "com.google.android.inputmethod.latin", "what": "Gboard 输入法", "why": "输密码要用", "evidence_level": "单源", "sources": [{"url": "https://diegoderksen.nl/blog/Nvidia-Shield-Debloating", "title": "Android TV 通用清单"}]}
+      ],
+      "junk": [
+        {"pkg": "com.google.android.tvrecommendations", "what": "推荐服务", "why": "首页推荐行数据源", "evidence_level": "多源", "sources": [{"url": "https://diegoderksen.nl/blog/Nvidia-Shield-Debloating", "title": "Android TV debloat 清单"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.google.android.leanbacklauncher.recommendations", "what": "桌面推荐行", "why": "首页推荐行本体", "evidence_level": "多源", "sources": [{"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "Level1Techs 清单"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.google.android.backdrop", "what": "屏保 / 背景图轮播", "why": "纯装饰", "evidence_level": "多源", "sources": [{"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "Level1Techs 清单"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.google.android.feedback", "what": "Google 反馈上报", "why": "遥测", "evidence_level": "多源", "sources": [{"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]}
+      ],
+      "ask_user": [
+        {"pkg": "com.google.android.play.games", "what": "Google Play 游戏", "why": "XDA onn 指南把它列在「卸不掉只能 disable-user」一组；不打游戏可关", "evidence_level": "多源", "sources": [{"url": "https://forum.xda-developers.com/t/guides-2023-walmart-onn-google-tv.4610749", "title": "XDA onn 指南原文命令"}]},
+        {"pkg": "com.google.android.videos", "what": "Google TV / Play 影视", "why": "买过片子的要留", "evidence_level": "多源", "sources": [{"url": "https://forum.xda-developers.com/t/guides-2023-walmart-onn-google-tv.4610749", "title": "XDA onn 指南原文命令"}]},
+        {"pkg": "com.netflix.ninja", "what": "预装 Netflix", "why": "遥控器 Netflix 快捷键会失效", "evidence_level": "单源", "sources": [{"url": "https://forum.xda-developers.com/t/guides-2023-walmart-onn-google-tv.4610749", "title": "XDA onn 指南：Netflix / YouTube / YouTube Music 一组"}]},
+        {"pkg": "com.google.android.youtube.tv", "what": "预装 YouTube", "why": "遥控器 YouTube 快捷键会失效", "evidence_level": "单源", "sources": [{"url": "https://forum.xda-developers.com/t/guides-2023-walmart-onn-google-tv.4610749", "title": "XDA onn 指南"}]},
+        {"pkg": "com.google.android.katniss", "what": "Google 助理 / 搜索", "why": "语音搜索会失效，且开机可能自动重新启用", "evidence_level": "多源", "sources": [{"url": "https://freya.cat/blog/post/2025-03-11", "title": "freya.cat：katniss 开机自动重新启用"}]},
+        {"pkg": "com.google.android.gms", "what": "Play 服务", "why": "🔴 禁了大量 App 起不来", "evidence_level": "多源", "sources": [{"url": "https://freya.cat/blog/post/2025-03-11", "title": "freya.cat"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]}
+      ],
+      "pitfalls": [
+        {"what": "🔴 同一个「onn 4K」名字下，2021 / 2023 / 2024 / 2025 各批次的 Android 版本从 10 跨到 14，ADB 连接方式完全不同。必须先在关于页看 Android 版本，不能按型号名或购买年份猜。", "sources": [{"url": "https://xdaforums.com/t/walmart-onn-google-tv.4586587/page-3", "title": "XDA Walmart ONN Google TV 讨论帖：不同批次预装 Android 版本不一致"}, {"url": "https://www.aftvnews.com/onn-4k-plus-runs-android-tv-14-and-its-accompanying-issues-no-signs-of-ai-upscaling-yet", "title": "AFTVnews：Onn 4K Plus 已是 Android TV 14"}]},
+        {"what": "🔴 Android 14 版 onn 上，侧载 App 想拿到无障碍权限必须用 `adb install` 装。要给用户装 Projectivy Launcher 或 TVQuickActions 的，别让他们从 Play / 文件管理器装。", "sources": [{"url": "https://www.aftvnews.com/onn-4k-plus-runs-android-tv-14-and-its-accompanying-issues-no-signs-of-ai-upscaling-yet", "title": "AFTVnews：Onn 4K Plus / Android 14 的无障碍权限限制"}]},
+        {"what": "有用户反馈 onn 4K 升级到 Android 14 之后出现无法保持联网的问题。这与 ADB 清理无关，但接手一台「升级后就不正常」的 onn 时要先排除系统本身的问题，别把锅算到清理上。", "sources": [{"url": "https://www.aftvnews.com/onn-4k-plus-runs-android-tv-14-and-its-accompanying-issues-no-signs-of-ai-upscaling-yet", "title": "AFTVnews 评论区：升 Android 14 后掉网反馈"}]},
+        {"what": "社区有解锁 bootloader / 刷 LineageOS 的教程（早期批次可解，后来的强制更新会封掉解锁能力），本项目不采用，也不记录方法。", "sources": []}
+      ]
+    }
+  ],
+  "open_questions": [
+    "Chromecast with Google TV 4K / HD 各自的内存和存储确切规格。本轮沿用的是社区普遍说法（4K 款 2 GB / 8 GB），没有取到 Google 官方规格页；Google TV Streamer 4 GB / 32 GB 同样未取官方页。",
+    "onn 4K（2021）2 GB、onn 4K Pro（2024）3 GB 的内存数字同样来自社区说法，未取到 Walmart 官方规格页。",
+    "Google TV 设备上 `pm hide` 是否可用？本轮所有来源用的都是 disable-user / uninstall -k --user 0。",
+    "Google TV 首页顶部那条推广横幅（Google 官方社区说它是 what's new 而不是个性化推荐）对应的是哪个包？关掉 tvrecommendations 之后横幅是否还在？本轮没有定位到。",
+    "Android TV OS 15 在这些设备上的行为（无线调试流程是否又有变化）本轮没有取到实机证据，只在一条视频标题里出现过 Android TV OS 15 字样。",
+    "onn 4K Pro（2024）出厂 Android 版本是 12 还是 14？本轮没有取到明确来源，models_examples 里未标注版本。",
+    "Google TV Streamer 是否也有和 onn 4K Plus 一样的「侧载 App 拿不到无障碍权限」限制？AFTVnews 那条只针对 onn，作者自己也在猜是不是所有 onn 设备通用。"
+  ],
+  "last_reviewed": "2026-09-15"
+}

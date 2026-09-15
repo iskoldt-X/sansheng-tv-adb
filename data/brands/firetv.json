@@ -1,0 +1,516 @@
+{
+  "brand": "Amazon Fire TV（全系）",
+  "region": "global",
+  "aliases": [
+    "Fire TV",
+    "Fire TV Stick",
+    "Firestick",
+    "火电视棒",
+    "Fire TV Cube",
+    "Fire TV Edition",
+    "Fire OS",
+    "亚马逊 Fire TV",
+    "Toshiba Fire TV",
+    "Insignia Fire TV",
+    "Hisense Fire TV",
+    "Amazon Omni QLED",
+    "Fire TV 4-Series",
+    "TCL Fire TV"
+  ],
+  "status": "部分适用",
+  "summary": "Fire OS 5～8（底层是 Android 5.1/7.1/9/11）的机器全部能开 ADB，入口统一在「设置 → My Fire TV → About → 点设备名 7 次」，端口 5555；但 2025 年起新出的 Fire TV Stick 改用 Vega OS，没有开发者选项也不能侧载，完全做不了。老机器（Fire OS 5/6、1～2 GB 内存）收益最大。",
+  "identify_hints": {
+    "remote_has_digits": false,
+    "system_name_shown_at": "设置（齿轮）→ My Fire TV（较新系统叫 Device & Software）→ About。第一行是设备名（如 Fire TV Stick 4K Max），下面能看到 Fire OS 版本号；About → Network 里能看到本机 IP 地址，adb connect 要用它。",
+    "about_page_fields": [
+      "设备名（Fire TV Stick / Fire TV Stick 4K / Fire TV Cube / 电视品牌名）",
+      "Fire OS 版本（如 5.2.7.x / 6.2.x / 7.6.x / 8.1.x）",
+      "Software Version 内部版本号（如 PS7242、PS7704、RS8149）",
+      "Serial Number 序列号",
+      "Storage 存储占用",
+      "Network（IP 地址、MAC）"
+    ],
+    "model_naming_rule": "Amazon 内部设备代号一律以 AFT 开头，adb 通了之后 `adb shell getprop ro.product.model` 能直接读出来。常见对应：AFTM=Stick 1 代(2014)、AFTB=Fire TV 盒子 1 代、AFTS=Fire TV 盒子 2 代(2015)、AFTT=Stick 2 代/Basic Edition(2016–2019)、AFTN=Fire TV 盒子 3 代(2017)、AFTRS=Element 4K(2017)、AFTA=Cube 1 代(2018)、AFTMM=Stick 4K 1 代(2018)、AFTSS=Stick Lite(2020)、AFTKA=Stick 4K Max 1 代(2021)、AFTKM=Stick 4K 2 代(2023)、AFTKRT=Stick 4K Max 2 代(2023)；Fire TV Edition 电视用另一套：AFTBAMR311/AFTEAMR311=Toshiba/Insignia HD(2018–2020)、AFTKMST12=Toshiba 4K(2018–2019)、AFTLE=Onida HD(2019)、AFTDCT31=Toshiba/Insignia 4K UHD(2020)、AFTHA004=Hisense/Toshiba 4K UHD(2022)、AFTMD001=TCL S4/Q6(2023)、AFTSHN02=TCL 32/40 吋(2023)、AFTKA002=Fire TV 2-Series(2023)。",
+    "sticker_location": "Stick 机身侧面、Cube 底部、电视后壳贴纸上印有型号，但最可靠的还是 About 页里的设备名 + Fire OS 版本，贴纸上多是零售型号不是 AFT 代号。",
+    "year_ranges": "2014 年（Fire TV 1 代 / Stick 1 代）至今。2025 年起新款 Stick（Fire TV Stick 4K Select、新 Fire TV Stick HD）改用 Vega OS，不再是 Android。"
+  },
+  "series": [
+    {
+      "name": "Fire OS 5（Android 5.1 / API 22）",
+      "years": "2014–2019（含 2019 年仍在售的 Stick 2 代）",
+      "base_os": "fireos",
+      "android_version_range": "Android 5.1 Lollipop（API 22）",
+      "models_examples": [
+        "Fire TV Stick 1st Gen (AFTM, 2014)",
+        "Fire TV 1st Gen (AFTB, 2014)",
+        "Fire TV 2nd Gen (AFTS, 2015)",
+        "Fire TV Stick 2nd Gen / Basic Edition (AFTT, 2016–2019)",
+        "Element 4K Fire TV (AFTRS, 2017)"
+      ],
+      "identify_hints": "About 页的 Fire OS 版本以 5. 开头（如 5.2.7.4、5.2.9.x）。桌面是老版深蓝灰横条 Launcher，顶部一排大分类标签。遥控器没有数字键、没有 Alexa 蓝圈按钮（Stick 1 代连语音键都没有）。",
+      "worth_it_hint": "整个 Fire TV 系列里收益最大的一代：机器最老、内存最小（社区普遍称 Stick 2 代为 1 GB RAM / 8 GB 存储，本轮未取到 Amazon 官方规格页，见 open_questions），而且这代 Fire OS 还没封死 `pm uninstall -k --user 0`，能真正把包从当前用户下卸掉腾空间，不是只「停用」。三个信号全中：机龄 6 年以上 + 内存小 + 首页全是推荐位。",
+      "entries": [
+        {
+          "applies_to": "Fire OS 5 全部机型",
+          "steps": [
+            "主页 → 右侧「设置」（齿轮）→ My Fire TV → About",
+            "光标停在第一行的设备名（如 Fire TV Stick）上，用遥控中间的确认键连点 7 次，屏幕提示「You are now a developer」（部分固件版本是在 About → Your TV 上按方向盘 D-pad 7 次）",
+            "返回：设置 → My Fire TV → Developer Options",
+            "打开 ADB Debugging",
+            "打开 Apps from Unknown Sources（只装 apk 要它，纯 adb 命令不需要）",
+            "在 设置 → My Fire TV → About → Network 里看本机 IP",
+            "电脑上执行 `adb connect <IP>:5555`，电视上会弹出「Allow ADB debugging?」，用遥控选 Allow，并勾上 Always allow from this device"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "官方",
+          "sources": [
+            {"url": "https://developer.amazon.com/docs/fire-tv/connecting-adb-to-device.html", "title": "Connect to Fire TV Through ADB (Fire TV) — Amazon 官方开发者文档"},
+            {"url": "https://developer.amazon.com/docs/fire-tv/developer-tools.html", "title": "Developer Tools Menu (Fire TV) — 官方，明确 adb connect IP:5555 端口固定 5555"},
+            {"url": "https://displayhub.us/decoders-firetv", "title": "Fire TV ADB 启用流程与授权弹窗（含 Always allow 勾选）"}
+          ],
+          "risk_notes": "ADB Debugging 打开后，同一局域网内任何人都能往这台机器装东西（电视上自己的警告文案就是这么写的）。做完事建议把 ADB Debugging 关回去。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "yes",
+        "hide": "unknown",
+        "uninstall_user0": "yes",
+        "notes": "这代机器上 `adb uninstall -k --user 0 <包名>` 与 `pm disable <包名>` 社区教程都在用且有成功回报；`-k` 保留数据、可用 `pm install-existing <包名>` 恢复。注意 Fire OS 5 上早期教程用的是不带 `--user 0` 的 `pm disable`，那是需要 shell 权限的整机停用，现在新系统上已被受保护包机制拦住。",
+        "evidence_level": "多源",
+        "sources": [
+          {"url": "https://xdaforums.com/t/guide-no-root-disable-bloatware-on-2nd-gen-fire-tv-stick.3674629", "title": "[GUIDE][NO ROOT] Disable Bloatware on 2nd Gen Fire TV Stick — XDA"},
+          {"url": "https://github.com/esc0rtd3w/firestick-loader/blob/master/scripts/debloat/bloat-disable.sh", "title": "firestick-loader bloat-disable.sh（按 Fire OS 5.2.x 版本分段的包清单）"}
+        ]
+      },
+      "must_keep": [
+        {"pkg": "com.amazon.tv.launcher", "what": "Amazon 桌面（Launcher）", "why": "禁掉后没有主界面，按 Home 键黑屏；除非已经装好并设为默认的第三方 launcher，否则绝对不要动", "evidence_level": "多源", "sources": [{"url": "https://github.com/WB2024/firestrip", "title": "firestrip：NEVER_TOUCH 列表包含 com.amazon.tv.launcher"}]},
+        {"pkg": "com.amazon.tv.settings.core", "what": "Fire OS 设置核心", "why": "禁掉之后进不去设置页，也就没法把 ADB 再关掉", "evidence_level": "多源", "sources": [{"url": "https://github.com/esc0rtd3w/firestick-loader/blob/master/scripts/debloat/full-debloat.sh", "title": "firestick-loader 脚本原文标注「REMOVAL CAN BREAK AMAZON UI」"}]},
+        {"pkg": "com.amazon.tv.ime", "what": "Fire TV 输入法", "why": "没有输入法就没法输 Wi-Fi 密码和搜索关键词", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak keep.conf（Fire TV 实机 keep 名单）"}]},
+        {"pkg": "com.amazon.fireinputdevices", "what": "遥控器 / 输入设备驱动", "why": "禁掉遥控器可能失灵", "evidence_level": "多源", "sources": [{"url": "https://github.com/esc0rtd3w/firestick-loader/blob/master/scripts/debloat/bloat-disable.sh", "title": "firestick-loader：com.amazon.fireinputdevices 被注释掉，标注「Removal May Break Some Stock Settings」"}]},
+        {"pkg": "com.amazon.device.controllermanager", "what": "手柄 / 配件管理", "why": "同上，属于输入链路", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak keep.conf"}]}
+      ],
+      "junk": [
+        {"pkg": "com.amazon.tv.legal.notices", "what": "法律声明页", "why": "纯静态文本，占空间", "evidence_level": "多源", "sources": [{"url": "https://github.com/esc0rtd3w/firestick-loader/blob/master/scripts/debloat/testing/bloat-disable_5211.sh", "title": "firestick-loader bloat-disable_5211.sh"}]},
+        {"pkg": "com.amazon.tv.oobe", "what": "开箱引导（Out Of Box Experience）", "why": "只在第一次开机跑一次，之后常驻无用", "evidence_level": "单源", "sources": [{"url": "https://github.com/esc0rtd3w/firestick-loader/blob/master/scripts/debloat/testing/bloat-disable_5211.sh", "title": "firestick-loader bloat-disable_5211.sh"}]},
+        {"pkg": "com.amazon.tmm.tutorial", "what": "新手教程", "why": "一次性内容常驻", "evidence_level": "多源", "sources": [{"url": "https://github.com/esc0rtd3w/firestick-loader/blob/master/scripts/debloat/full-debloat.sh", "title": "firestick-loader full-debloat.sh"}]},
+        {"pkg": "com.amazon.storm.lightning.tutorial", "what": "遥控器 App 教程", "why": "一次性内容常驻", "evidence_level": "多源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（cruft 层）"}]},
+        {"pkg": "com.amazon.tv.releasenotes", "what": "更新说明弹窗", "why": "每次升级弹一次", "evidence_level": "多源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（cruft 层）"}]}
+      ],
+      "ask_user": [
+        {"pkg": "com.amazon.venezia", "what": "Amazon Appstore 应用商店", "why": "禁掉之后装不了任何 Amazon 商店里的 App，只能侧载", "evidence_level": "多源", "sources": [{"url": "https://github.com/esc0rtd3w/firestick-loader/blob/master/scripts/debloat/full-debloat.sh", "title": "firestick-loader：明确标注「Only Disable If Amazon Video and Store Will Not Be Needed」"}]},
+        {"pkg": "com.amazon.avod", "what": "Prime Video（Fire OS 5/6 上的视频本体）", "why": "用 Prime Video 就不能禁；不用就是最大的一块", "evidence_level": "多源", "sources": [{"url": "https://github.com/esc0rtd3w/firestick-loader/blob/master/scripts/debloat/full-debloat.sh", "title": "firestick-loader full-debloat.sh"}]},
+        {"pkg": "com.amazon.wcast.sink", "what": "投屏接收（Miracast / 屏幕镜像）", "why": "不用手机投屏就可以关", "evidence_level": "多源", "sources": [{"url": "https://github.com/esc0rtd3w/firestick-loader/blob/master/scripts/debloat/full-debloat.sh", "title": "firestick-loader：标注 Screen Mirroring Function"}]}
+      ],
+      "pitfalls": [
+        {"what": "这代机器已经停在 Android 5.1，很多新版流媒体 App 直接装不上或装上闪退；清理完也换不来新 App 的兼容性，只能换来更顺的老 App 体验。", "sources": [{"url": "https://developer.amazon.com/docs/fire-tv/fire-os-overview.html", "title": "Fire OS Overview — 官方：Fire OS 5 = API Level 22"}]}
+      ]
+    },
+    {
+      "name": "Fire OS 6（Android 7.1 / API 25）",
+      "years": "2017–2020",
+      "base_os": "fireos",
+      "android_version_range": "Android 7.1.2 Nougat（API 25）",
+      "models_examples": [
+        "Fire TV 3rd Gen (AFTN, 2017)",
+        "Fire TV Cube 1st Gen (AFTA, 2018)",
+        "Fire TV Stick 4K 1st Gen (AFTMM, 2018)",
+        "Toshiba HD Fire TV Edition (AFTBAMR311, 2018–2020)",
+        "Insignia HD Fire TV Edition (AFTEAMR311, 2018–2020)",
+        "Toshiba 4K Fire TV Edition (AFTKMST12, 2018–2019)",
+        "Onida HD Fire TV Edition (AFTLE, 2019)"
+      ],
+      "identify_hints": "About 页的 Fire OS 版本以 6. 开头（如 6.2.7.x、6.7.1.1）。这代开始遥控器上普遍有 Alexa 语音键（蓝圈）。Fire TV Edition 电视（东芝 / Insignia 那批）在 About 页会显示电视品牌名而不是 Fire TV Stick。",
+      "worth_it_hint": "收益仍然很大：机龄 6–8 年，首页已经是 Amazon 推荐位 + 自动播预告片的形态。注意 Amazon 后来把部分 Fire OS 6 设备直接推到了 Fire OS 7，先看 About 页实际版本号再决定按哪一代做。",
+      "entries": [
+        {
+          "applies_to": "Fire OS 6 全部机型（含 Fire TV Edition 电视）",
+          "steps": [
+            "设置 → My Fire TV → About",
+            "光标停在设备名那一行，确认键连点 7 次，出现「You are now a developer」",
+            "返回：设置 → My Fire TV → Developer Options",
+            "打开 ADB Debugging；要侧载 apk 再打开 Apps from Unknown Sources",
+            "About → Network 里看 IP，电脑执行 `adb connect <IP>:5555`",
+            "电视上弹「Allow ADB debugging?」→ Allow（勾 Always allow from this device）"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "官方",
+          "sources": [
+            {"url": "https://developer.amazon.com/docs/fire-tv/connecting-adb-to-device.html", "title": "Connect to Fire TV Through ADB — Amazon 官方"},
+            {"url": "https://developer.amazon.com/docs/device-specs/identify-fire-tv-devices.html", "title": "Identify Fire TV Devices — 官方设备代号 / Fire OS 对照表"}
+          ],
+          "risk_notes": "Fire TV Cube 和 Fire TV 盒子有 USB 口，Developer Options 里还会多一个 USB Debugging。官方文档提醒：USB Debugging 打开后 USB 口不能再当外接存储或接键鼠用，要恢复就把它关掉。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "yes",
+        "hide": "unknown",
+        "uninstall_user0": "yes",
+        "notes": "这代还在社区 `pm uninstall -k --user 0` 教程的覆盖范围内。但从 Fire OS 7.2.4.2 前后开始，OTA 相关包（com.amazon.device.software.ota / .override）已经变成受保护包，命令会报 SecurityException — Fire OS 6 末期升上去的机器会先撞到这个。",
+        "evidence_level": "多源",
+        "sources": [
+          {"url": "https://xdaforums.com/t/guide-no-root-disable-bloatware-on-2nd-gen-fire-tv-stick.3674629", "title": "[GUIDE][NO ROOT] Disable Bloatware — XDA"},
+          {"url": "https://troypoint.com/block-amazon-fire-tv-updates", "title": "How to Block Amazon Fire TV Updates — 评论区大量用户在 7.2.4.2 上报 Cannot disable a protected package"}
+        ]
+      },
+      "must_keep": [
+        {"pkg": "com.amazon.tv.launcher", "what": "Amazon 桌面", "why": "同 Fire OS 5，禁了没主界面", "evidence_level": "多源", "sources": [{"url": "https://github.com/WB2024/firestrip", "title": "firestrip NEVER_TOUCH 列表"}]},
+        {"pkg": "com.amazon.tv.settings.v2", "what": "Fire OS 设置（v2 版）", "why": "这代开始设置页拆成 core + v2 两个包，都不能动", "evidence_level": "多源", "sources": [{"url": "https://github.com/esc0rtd3w/firestick-loader/blob/master/scripts/debloat/full-debloat.sh", "title": "firestick-loader：标注「Amazon Settings v2 (REMOVAL CAN BREAK AMAZON UI)」"}]},
+        {"pkg": "com.amazon.franktvinput", "what": "电视信号源 / TIF 输入（Fire TV Edition 电视 + Fire TV Recast）", "why": "Fire TV Edition 电视上禁了就切不了 HDMI 信号源，这是最典型的误杀", "evidence_level": "多源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak keep.conf 明确保留 com.amazon.franktvinput"}, {"url": "https://github.com/WB2024/firestrip", "title": "firestrip：Fire TV Box 上的 live TV tuner 包列入 NEVER_TOUCH"}]},
+        {"pkg": "com.amazon.tv.ime", "what": "输入法", "why": "输 Wi-Fi 密码要用", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak keep.conf"}]}
+      ],
+      "junk": [
+        {"pkg": "com.amazon.tv.forcedotaupdater.v2", "what": "强制应用 / 系统更新推送器", "why": "专门用来把你已经关掉的东西再推回来", "evidence_level": "多源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（ota 层，Fire OS 8 实机可禁）"}, {"url": "https://github.com/esc0rtd3w/firestick-loader/blob/master/scripts/debloat/full-debloat.sh", "title": "firestick-loader full-debloat.sh"}]},
+        {"pkg": "com.amazon.tv.easyupgrade", "what": "推销新款 Fire TV 的升级引导", "why": "纯营销弹窗", "evidence_level": "多源", "sources": [{"url": "https://github.com/niftiest/Firestick-Cleaner-And-Launcher-Replacer", "title": "Firestick-Cleaner：Easy Upgrade — prompts to upgrade to newer Fire TV devices"}, {"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（ota 层）"}]},
+        {"pkg": "com.amazon.shoptv.client", "what": "Fire TV 购物入口", "why": "在电视上买东西的入口，绝大多数人用不到", "evidence_level": "多源", "sources": [{"url": "https://github.com/esc0rtd3w/firestick-loader/blob/master/scripts/debloat/full-debloat.sh", "title": "firestick-loader full-debloat.sh"}, {"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（promo 层）"}]},
+        {"pkg": "com.amazon.tv.legal.notices", "what": "法律声明", "why": "静态文本", "evidence_level": "多源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（cruft 层，实测 5.7 MB）"}]},
+        {"pkg": "com.amazon.tahoe", "what": "Amazon Kids / FreeTime 儿童模式", "why": "不给小孩用就是死重量（实测 8.6 MB）", "evidence_level": "多源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（cruft 层）"}, {"url": "https://github.com/esc0rtd3w/firestick-loader/blob/master/scripts/debloat/full-debloat.sh", "title": "firestick-loader：Amazon FreeTime"}]}
+      ],
+      "ask_user": [
+        {"pkg": "com.amazon.venezia", "what": "Amazon Appstore", "why": "禁了只能侧载装 App", "evidence_level": "多源", "sources": [{"url": "https://github.com/esc0rtd3w/firestick-loader/blob/master/scripts/debloat/full-debloat.sh", "title": "firestick-loader full-debloat.sh"}]},
+        {"pkg": "com.amazon.avod", "what": "Prime Video", "why": "有 Prime 会员就留着", "evidence_level": "多源", "sources": [{"url": "https://github.com/esc0rtd3w/firestick-loader/blob/master/scripts/debloat/full-debloat.sh", "title": "firestick-loader full-debloat.sh"}]},
+        {"pkg": "com.amazon.tv.alexadestination", "what": "Alexa 购物 / 语音落地页", "why": "不用 Alexa 语音就能关，用的话会影响语音结果", "evidence_level": "单源", "sources": [{"url": "https://gist.github.com/FrenchBen/1476e45815504b6dcc33c10ebd1d47dc", "title": "List of commands available for ADB against FireTV smart TV（gist）"}]},
+        {"pkg": "com.amazon.wcast.sink", "what": "投屏接收", "why": "不用手机投屏可关", "evidence_level": "多源", "sources": [{"url": "https://github.com/esc0rtd3w/firestick-loader/blob/master/scripts/debloat/full-debloat.sh", "title": "firestick-loader full-debloat.sh"}]}
+      ],
+      "pitfalls": []
+    },
+    {
+      "name": "Fire OS 7（Android 9 / API 28）",
+      "years": "2019–2023（至今仍是大量在用机器和 Fire TV 电视的主力版本）",
+      "base_os": "fireos",
+      "android_version_range": "Android 9 Pie（API 28）",
+      "models_examples": [
+        "Fire TV Stick Lite 1st Gen (AFTSS, 2020)",
+        "Fire TV Stick 3rd Gen (2020)",
+        "Fire TV Stick 4K Max 1st Gen (AFTKA, 2021)",
+        "Fire TV Omni / Omni QLED、Fire TV 4-Series（Amazon 自营电视，2021 起）",
+        "Toshiba / Insignia 4K UHD Fire TV (AFTDCT31, 2020)",
+        "Hisense / Toshiba 4K UHD Fire TV (AFTHA004, 2022)",
+        "TCL S4 / Q6 Fire TV (AFTMD001, 2023)",
+        "TCL 32\"/40\" Fire TV (AFTSHN02, 2023)",
+        "Fire TV 2-Series (AFTKA002 / AFTKAUK002, 2023)"
+      ],
+      "identify_hints": "About 页的 Fire OS 版本以 7. 开头（常见 7.2.x、7.6.x）。Amazon 自营电视（Omni / 4-Series）和 Hisense / TCL / 东芝的 Fire TV 电视都属于这一代：它们的设置入口写作「Device & Software」而不是「My Fire TV」，About 里第一行显示的是「Your TV」而不是 Fire TV Stick。遥控器带 Alexa 键，Omni 系列还有远场麦克风开关。",
+      "worth_it_hint": "值得做，但要认清边界：这代开始 Amazon 把 OTA 和 metrics 设成受保护包，挡不住系统更新；能拿回来的是首页推荐位、自动播预告片、环境屏保和一堆遥测服务。Fire TV Stick Lite / 2-Series 这类 1 GB 级低配机型收益最明显；Omni QLED 这类电视主要是去广告位而不是救卡顿。",
+      "entries": [
+        {
+          "applies_to": "Fire OS 7 的 Stick / Cube / 盒子",
+          "steps": [
+            "设置 → My Fire TV → About",
+            "光标停在设备名那一行，确认键连点 7 次 → 「You are now a developer」",
+            "返回：设置 → My Fire TV → Developer Options",
+            "打开 ADB Debugging（要装 apk 再打开 Apps from Unknown Sources；新固件上这一项叫「Install unknown apps」，要对具体的安装器 App 单独授权）",
+            "设置 → My Fire TV → About → Network 看 IP",
+            "电脑执行 `adb connect <IP>:5555`，电视上选 Allow"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "官方",
+          "sources": [
+            {"url": "https://developer.amazon.com/docs/fire-tv/connecting-adb-to-device.html", "title": "Connect to Fire TV Through ADB — Amazon 官方"},
+            {"url": "https://www.kunalganglani.com/blog/fire-tv-sideloading-restrictions", "title": "Amazon Fire TV Sideloading Restrictions [2026 Guide]（记录了新固件把开关改名为 Install unknown apps）", "date": "2026"}
+          ],
+          "risk_notes": ""
+        },
+        {
+          "applies_to": "Fire TV Edition / Amazon 自营电视（Omni、4-Series、Hisense / TCL / 东芝 Fire TV）",
+          "steps": [
+            "设置（齿轮）→ Device & Software（这批机器上没有 My Fire TV 这个字样）→ About",
+            "光标停在「Your TV」那一行，确认键连点 7 次；屏幕下方会提示还差几次",
+            "返回：设置 → Device & Software → Developer Options",
+            "打开 ADB Debugging",
+            "About → Network 看 IP，电脑执行 `adb connect <IP>:5555`，电视上选 Allow"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://developer.amazon.com/docs/fire-tv/developer-tools.html", "title": "Developer Tools Menu (Fire TV) — 官方明确「Settings > My Fire TV (or Device & Software) > About」两种菜单名"},
+            {"url": "https://www.youtube.com/watch?v=8qnoMsP1Pgc", "title": "How to Locate Developer Options & Install Unknown Apps / ADB Debugging on Amazon Fire TV（YourSixTech，演示 Devices and Software 路径）", "date": "2025-05-17"},
+            {"url": "https://www.reddit.com/r/fireTV/comments/1najvul/developer_options", "title": "r/fireTV：Developer Options 路径确认"}
+          ],
+          "risk_notes": ""
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "yes",
+        "hide": "unknown",
+        "uninstall_user0": "no",
+        "notes": "🔴 分两类：普通包用 `adb shell pm disable-user --user 0 <包名>` 有效且可用 `pm enable --user 0` 恢复；但 OTA、metrics、crashmanager 这几个被 Amazon 标成受保护包，命令直接抛 `java.lang.SecurityException: Cannot disable a protected package`，`pm uninstall -k --user 0` 返回 `DELETE_FAILED_INTERNAL_ERROR`。大量 7.2.4.2 用户在 troypoint 评论区复现了同样报错。挡系统更新只能在路由器 / DNS 层做，本项目不涉及。",
+        "evidence_level": "多源",
+        "sources": [
+          {"url": "https://troypoint.com/block-amazon-fire-tv-updates", "title": "How to Block Amazon Fire TV Updates — 评论区多名 7.2.4.2 / 7.2.5.5 用户报 Cannot disable a protected package"},
+          {"url": "https://xdaforums.com/t/amazon-blocks-users-from-blocking-updates.4413683", "title": "Amazon Blocks Users From Blocking Updates — XDA"},
+          {"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf：blocked 层附实测报错原文"}
+        ]
+      },
+      "must_keep": [
+        {"pkg": "com.amazon.tv.launcher", "what": "Amazon 桌面", "why": "禁了没主界面；且较新安全补丁已把它设为受保护包，命令本身也会失败", "evidence_level": "多源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak keep.conf"}, {"url": "https://github.com/WB2024/firestrip", "title": "firestrip NEVER_TOUCH"}]},
+        {"pkg": "com.amazon.firebat", "what": "🔴 Prime Video 应用本体（名字像「电池分析」，实际不是）", "why": "网上流传的清单把它标成「Amazon 电池 / 功耗分析服务」建议禁掉，但 Fire OS 8 实机上它就是 Prime Video；照抄通用清单会直接打掉串流播放", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak README：「com.amazon.firebat looks like a service worth killing and is the Prime Video app」（Fire TV Stick 4K Max 实机核对）"}]},
+        {"pkg": "com.amazon.tv.keypolicymanager", "what": "DRM 密钥策略管理", "why": "动了 Widevine / 正版串流会挂", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak keep.conf（DRM 类）"}]},
+        {"pkg": "com.amazon.dcp", "what": "Amazon 设备通信平台（账号 / 授权底座）", "why": "账号体系依赖，禁了会连锁失败", "evidence_level": "多源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak keep.conf"}, {"url": "https://www.jonathanclarke.ie/2025/10/07/debloating-amazon-fire-8-hd.html", "title": "Debloating the Amazon Fire HD 8：com.amazon.dcp 为设备通信平台"}]},
+        {"pkg": "com.amazon.identity.auth.device.authorization", "what": "账号授权", "why": "同上，账号 / 授权链路", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak keep.conf"}]},
+        {"pkg": "com.amazon.ale", "what": "Amazon 授权 / 许可组件", "why": "keep 名单里的 DRM / licensing 一类", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak keep.conf"}]},
+        {"pkg": "com.amazon.tv.settings.core", "what": "设置核心", "why": "禁了进不去设置", "evidence_level": "多源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak keep.conf"}]},
+        {"pkg": "com.amazon.tv.settings.v2", "what": "设置 v2", "why": "同上", "evidence_level": "多源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak keep.conf"}]},
+        {"pkg": "com.amazon.tv.ime", "what": "输入法", "why": "输密码 / 搜索要用", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak keep.conf"}]},
+        {"pkg": "com.amazon.fireinputdevices", "what": "遥控器 / 输入设备", "why": "遥控链路", "evidence_level": "多源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak keep.conf"}]},
+        {"pkg": "com.amazon.device.controllermanager", "what": "配件 / 手柄管理", "why": "输入链路", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak keep.conf"}]},
+        {"pkg": "com.amazon.franktvinput", "what": "电视信号源 / TIF 输入", "why": "Fire TV 电视上禁了切不了 HDMI；Stick 上不存在这个包", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak keep.conf"}]},
+        {"pkg": "com.amazon.tv.routing", "what": "系统内部路由 / 意图分发", "why": "禁了 App 之间跳转会断", "evidence_level": "多源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak keep.conf"}, {"url": "https://github.com/esc0rtd3w/firestick-loader/blob/master/scripts/debloat/full-debloat.sh", "title": "firestick-loader 里 FTV Routing 也被列出（旧脚本把它当可禁，实机 keep 名单反对）"}]},
+        {"pkg": "com.amazon.webview.chromium", "what": "系统 WebView", "why": "很多 App 的内嵌页面依赖它", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak keep.conf"}]},
+        {"pkg": "com.android.systemui", "what": "Android 系统界面", "why": "任何 Android 设备都不能动", "evidence_level": "多源", "sources": [{"url": "https://github.com/WB2024/firestrip", "title": "firestrip NEVER_TOUCH"}]}
+      ],
+      "junk": [
+        {"pkg": "com.amazon.tv.ftvambient", "what": "环境屏保（Ambient Experience，待机时轮播图片 + 推广位）", "why": "实测常驻内存 104 MB，是单项最大的一块", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf：promo 层，dumpsys meminfo 实测 104 MB"}]},
+        {"pkg": "com.amazon.ftv.screensaver", "what": "屏保服务", "why": "与上面配套", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（promo 层）"}]},
+        {"pkg": "com.amazon.sneakpeek", "what": "首页自动播放预告片", "why": "光标停在某个片子上就自动出声播预告，最招人烦的一项", "evidence_level": "多源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（promo 层）"}, {"url": "https://xdaforums.com/t/system-user-fire-cube-stick-tv-tablet-ps7704-fireos7-rs8149-fireos8.4759215/page-11", "title": "XDA [SYSTEM USER] Fire Cube/Stick/TV/Tablet 帖：pm disable-user com.amazon.sneakpeek"}]},
+        {"pkg": "com.amazon.tv.acr", "what": "自动内容识别（ACR，识别屏幕上正在播什么）", "why": "典型的收看行为采集", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（ads 层）"}]},
+        {"pkg": "com.amazon.aca", "what": "ACR 伴生服务（HDMI 监听 + 前台应用切换监听）", "why": "实测 15 MB，与上面配套", "evidence_level": "多源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（ads 层，实测 15 MB）"}, {"url": "https://github.com/esc0rtd3w/firestick-loader/blob/master/scripts/debloat/full-debloat.sh", "title": "firestick-loader：ACAFireTVAndroidClient"}]},
+        {"pkg": "com.amazon.hybridadidservice", "what": "广告标识（Advertising ID）服务", "why": "广告归因用", "evidence_level": "多源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（ads 层）"}, {"url": "https://github.com/niftiest/Firestick-Cleaner-And-Launcher-Replacer", "title": "Firestick-Cleaner 包说明表"}]},
+        {"pkg": "com.amazon.ftvads.deeplinking", "what": "广告点击跳转", "why": "把首页广告位点击路由到内容页", "evidence_level": "多源", "sources": [{"url": "https://github.com/niftiest/Firestick-Cleaner-And-Launcher-Replacer", "title": "Firestick-Cleaner：Ad Deeplinking — routes ad clicks to content"}, {"url": "https://github.com/WB2024/firestrip", "title": "firestrip telemetry 层包含 com.amazon.ftvads.deeplinking"}]},
+        {"pkg": "com.amazon.device.telemetry.emitter", "what": "遥测上报", "why": "使用行为回传", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（ads 层）"}]},
+        {"pkg": "com.amazon.wirelessmetrics.service", "what": "无线网络指标采集", "why": "遥测", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（ads 层）"}]},
+        {"pkg": "com.amazon.dp.logger", "what": "日志上报", "why": "遥测", "evidence_level": "多源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（ads 层）"}, {"url": "https://github.com/esc0rtd3w/firestick-loader/blob/master/scripts/debloat/bloat-remove.sh", "title": "firestick-loader bloat-remove.sh"}]},
+        {"pkg": "com.amazon.media.recommendations", "what": "内容推荐服务", "why": "首页推荐位的数据源", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（promo 层）"}]},
+        {"pkg": "com.amazon.shoptv.client", "what": "电视购物入口", "why": "购物", "evidence_level": "多源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（promo 层）"}, {"url": "https://github.com/esc0rtd3w/firestick-loader/blob/master/scripts/debloat/full-debloat.sh", "title": "firestick-loader full-debloat.sh"}]},
+        {"pkg": "com.amazon.shoptv.firetv.client", "what": "电视购物入口（Fire TV 版）", "why": "购物", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（promo 层）"}]},
+        {"pkg": "com.amazon.minitv.android.app", "what": "miniTV（Amazon 免费广告频道，主要在印度地区）", "why": "广告支撑的免费频道", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（promo 层）"}]},
+        {"pkg": "com.amazon.gamehub", "what": "游戏中心推广位", "why": "推广", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（promo 层）"}]},
+        {"pkg": "com.amazon.tv.website_launcher", "what": "网页推广位启动器", "why": "推广", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（promo 层）"}]},
+        {"pkg": "com.amazon.bueller.photos", "what": "Amazon Photos（相册）", "why": "实测 27 MB，多数人从不在电视上看相册", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（promo 层，实测 27 MB）"}]},
+        {"pkg": "com.amazon.bueller.music", "what": "Amazon Music 首页模块", "why": "不用 Amazon Music 就是常驻死重量", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（promo 层）"}]},
+        {"pkg": "com.amazon.tv.forcedotaupdater.v2", "what": "强制更新推送器", "why": "把关掉的东西推回来", "evidence_level": "多源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（ota 层，实机可禁）"}, {"url": "https://github.com/esc0rtd3w/firestick-loader/blob/master/scripts/debloat/full-debloat.sh", "title": "firestick-loader：Forced App Updater"}]},
+        {"pkg": "com.amazon.tv.easyupgrade", "what": "推销新设备", "why": "营销弹窗", "evidence_level": "多源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（ota 层）"}, {"url": "https://github.com/niftiest/Firestick-Cleaner-And-Launcher-Replacer", "title": "Firestick-Cleaner 包说明表"}]},
+        {"pkg": "com.amazon.tv.support", "what": "远程支持 / 诊断", "why": "很少用到，常驻", "evidence_level": "多源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（cruft 层）"}, {"url": "https://github.com/niftiest/Firestick-Cleaner-And-Launcher-Replacer", "title": "Firestick-Cleaner：TV Support — 远程支持/诊断工具"}]},
+        {"pkg": "com.amazon.firetv.troubleshooting", "what": "故障排查向导", "why": "一次性内容常驻", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（cruft 层）"}]},
+        {"pkg": "com.amazon.tahoe", "what": "Amazon Kids 儿童模式", "why": "实测 8.6 MB，不给小孩用就是死重量", "evidence_level": "多源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（cruft 层，实测 8.6 MB）"}, {"url": "https://github.com/niftiest/Firestick-Cleaner-And-Launcher-Replacer", "title": "Firestick-Cleaner：Tahoe"}]},
+        {"pkg": "com.amazon.tv.legal.notices", "what": "法律声明", "why": "实测 5.7 MB 静态文本", "evidence_level": "多源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（cruft 层，实测 5.7 MB）"}]},
+        {"pkg": "com.amazon.ods.kindleconnect", "what": "Kindle 设备关联", "why": "电视上用不到", "evidence_level": "多源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（cruft 层）"}, {"url": "https://github.com/niftiest/Firestick-Cleaner-And-Launcher-Replacer", "title": "Firestick-Cleaner：Kindle Connect"}]},
+        {"pkg": "com.amazon.tv.releasenotes", "what": "更新说明弹窗", "why": "每次升级弹一次", "evidence_level": "多源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（cruft 层）"}]},
+        {"pkg": "com.amazon.storm.lightning.tutorial", "what": "遥控 App 教程", "why": "一次性内容常驻", "evidence_level": "多源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（cruft 层）"}]},
+        {"pkg": "com.amazon.tmm.tutorial", "what": "新手教程", "why": "一次性内容常驻", "evidence_level": "多源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（cruft 层）"}]},
+        {"pkg": "com.amazon.tv.notificationcenter", "what": "通知中心", "why": "主要用来推 Amazon 自家消息", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（cruft 层）"}]},
+        {"pkg": "com.amazon.uxnotification", "what": "界面提示弹窗", "why": "推广类提示", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（cruft 层）"}]},
+        {"pkg": "com.amazon.logan", "what": "日志代理服务", "why": "遥测", "evidence_level": "单源", "sources": [{"url": "https://github.com/niftiest/Firestick-Cleaner-And-Launcher-Replacer", "title": "Firestick-Cleaner：Log Agent"}]},
+        {"pkg": "com.amazon.spiderpork", "what": "后台行为分析", "why": "遥测", "evidence_level": "单源", "sources": [{"url": "https://github.com/niftiest/Firestick-Cleaner-And-Launcher-Replacer", "title": "Firestick-Cleaner：SpiderPork — Amazon background analytics service"}]},
+        {"pkg": "com.amazon.device.rdmapplication", "what": "远程设备管理（允许 Amazon 远程管理这台设备）", "why": "普通家庭用户用不到", "evidence_level": "单源", "sources": [{"url": "https://github.com/niftiest/Firestick-Cleaner-And-Launcher-Replacer", "title": "Firestick-Cleaner：Remote Device Management"}]},
+        {"pkg": "com.amazon.wifilocker", "what": "把 Wi-Fi 密码同步给 Amazon 账号", "why": "隐私敏感且无必要", "evidence_level": "单源", "sources": [{"url": "https://github.com/niftiest/Firestick-Cleaner-And-Launcher-Replacer", "title": "Firestick-Cleaner：WiFi Locker — shares your WiFi password with Amazon"}]}
+      ],
+      "ask_user": [
+        {"pkg": "com.amazon.venezia", "what": "Amazon Appstore", "why": "禁了商店里的 App 装不了也更新不了，只能侧载", "evidence_level": "多源", "sources": [{"url": "https://github.com/esc0rtd3w/firestick-loader/blob/master/scripts/debloat/full-debloat.sh", "title": "firestick-loader full-debloat.sh"}, {"url": "https://liliputing.com/amazon-fire-hd-8-2020-how-to-disable-specific-amazon-apps-and-features", "title": "Liliputing：Amazon Appstore = com.amazon.venezia"}]},
+        {"pkg": "com.amazon.imp", "what": "安装管理器（Install Manager Process）", "why": "禁了之后 Appstore 就装不了任何东西；tv-tweak 把它归在 opt-in 的 aggressive 层", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf：aggressive 层，注释「disabling stops Appstore installs」"}]},
+        {"pkg": "com.amazon.ceviche", "what": "远程配置下发 + 指标框架（A/B 实验）", "why": "实测 13 MB，属遥测；但它同时在下发远程配置，归 aggressive 层", "evidence_level": "多源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（aggressive 层，实测 13 MB）"}, {"url": "https://github.com/niftiest/Firestick-Cleaner-And-Launcher-Replacer", "title": "Firestick-Cleaner：Ceviche — A/B testing and experimentation framework"}]},
+        {"pkg": "com.amazon.tv.alexaalerts", "what": "Alexa 提醒 / 闹钟", "why": "属 Alexa 语音链路，全禁之后语音遥控会失效", "evidence_level": "多源", "sources": [{"url": "https://github.com/esc0rtd3w/firestick-loader/blob/master/scripts/debloat/full-debloat.sh", "title": "firestick-loader：Fire TV Alexa Alerts"}, {"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf：alexa 层注明「voice remote stops working if you apply this tier」"}]},
+        {"pkg": "com.amazon.tv.alexadestination", "what": "Alexa 语音结果落地页", "why": "同上，属语音链路", "evidence_level": "单源", "sources": [{"url": "https://gist.github.com/FrenchBen/1476e45815504b6dcc33c10ebd1d47dc", "title": "List of commands available for ADB against FireTV smart TV（gist）"}]},
+        {"pkg": "com.amazon.wcast.sink", "what": "投屏接收（屏幕镜像）", "why": "不用手机投屏就能关", "evidence_level": "多源", "sources": [{"url": "https://github.com/esc0rtd3w/firestick-loader/blob/master/scripts/debloat/full-debloat.sh", "title": "firestick-loader：Screen Mirroring Function"}]},
+        {"pkg": "com.amazon.whisperlink.core.android", "what": "Whisperlink（Amazon 设备间互联：手机遥控 App、Echo 联动）", "why": "用手机当遥控器或有 Echo 联动的要留", "evidence_level": "多源", "sources": [{"url": "https://github.com/WB2024/firestrip", "title": "firestrip telemetry 层包含 com.amazon.whisperlink.core.android"}, {"url": "https://xdaforums.com/t/guide-no-root-disable-bloatware-on-2nd-gen-fire-tv-stick.3674629", "title": "XDA 2 代 Stick 清单"}]},
+        {"pkg": "com.amazon.tv.livetv", "what": "直播电视 / 频道聚合入口", "why": "在 Fire TV 电视（带调谐器 / 天线）上禁了会丢直播功能；Stick 上只是个聚合推广位", "evidence_level": "多源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（promo 层，Stick 机型）"}, {"url": "https://github.com/WB2024/firestrip", "title": "firestrip：Fire TV Box 上的 live TV tuner 包列入 NEVER_TOUCH"}]}
+      ],
+      "pitfalls": [
+        {"what": "🔴 挡不住系统更新。com.amazon.device.software.ota / .override 是受保护包，`pm disable-user` 直接抛 SecurityException，实机上 31 MB 照常在跑。社区做法是在路由器 / DNS 层拦，本项目不涉及。", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf blocked 层（Fire OS 8.1.8.0 实测报错原文）"}, {"url": "https://xdaforums.com/t/amazon-blocks-users-from-blocking-updates.4413683", "title": "Amazon Blocks Users From Blocking Updates — XDA"}]},
+        {"what": "系统更新会把一部分被停用的包重新启用；出现异常想恢复出厂时，先把之前禁的包 `pm enable --user 0` 全部启回来再重置 — 有用户在禁用状态下直接恢复出厂导致开机循环。", "sources": [{"url": "https://www.reddit.com/r/fireTV/comments/wovw3t/update_and_factory_reset_fire_tv_after_disabling", "title": "r/fireTV：禁用包后恢复出厂导致 boot loop，建议先 re-enable"}]},
+        {"what": "换第三方 Launcher（Projectivy / Wolf）时，「装好并设为默认」和「禁掉 Amazon 桌面」是两步。2025 年 12 月及以后的安全补丁把 com.amazon.tv.launcher 设成了受保护包，最后那步会 SecurityException — 前三步仍然有效，只是 Amazon 桌面会不时抢回 Home 键。", "sources": [{"url": "https://github.com/WB2024/firestrip", "title": "firestrip README：Launcher Swap 第 4 步在 2025-12+ 补丁上遇到 SecurityException"}]},
+        {"what": "🔴 别照抄通用 Android TV 清单。com.amazon.firebat 名字像「电池分析」，实机上是 Prime Video 本体；这类误杀直接打碎 Widevine 串流，且症状是「某个 App 打不开」，很难反查到是清理造成的。", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak README：Generic Android TV lists are how Widevine gets broken"}]},
+        {"what": "2024 年起 Amazon 对侧载持续收紧：先是被标记的包能装但一启动就被禁用，到 2026 年初升级为在安装阶段按包名直接拦截（提示 App installation blocked）。这与 ADB 清理本身无关，但会影响「清理完再装别的 App」这条路。", "sources": [{"url": "https://www.aftvnews.com/amazon-blocks-long-running-fire-tv-capability-breaking-popular-apps-with-no-warning-and-giving-developers-the-runaround", "title": "AFTVnews：Amazon blocks long-running Fire TV capability"}, {"url": "https://www.pocket-lint.com/amazon-new-crackdown-on-piracy-apps-fire-tv", "title": "Pocket-lint：Amazon launches a new crackdown on piracy apps for Fire TV Sticks"}]}
+      ]
+    },
+    {
+      "name": "Fire OS 8（Android 11 / API 30）",
+      "years": "2023 至今",
+      "base_os": "fireos",
+      "android_version_range": "Android 11（API 30）",
+      "models_examples": [
+        "Fire TV Stick 4K 2nd Gen (AFTKM, 2023, 8 GB)",
+        "Fire TV Stick 4K Max 2nd Gen (AFTKRT, 2023, 16 GB)"
+      ],
+      "identify_hints": "About 页的 Fire OS 版本以 8. 开头（如 8.1.5.x、8.1.8.0）。首页是新版 Fire TV 界面，顶部一整条横幅推广位 + 待机进入「Ambient Experience」环境屏保轮播图片。",
+      "worth_it_hint": "机器本身不慢（4K Max 2 代 16 GB 存储），做的收益主要在「去广告位 / 去遥测」而不是救卡顿：单是环境屏保一个包就实测常驻 104 MB。反过来，这代受保护包最多，挡更新、换桌面这两件事基本做不成，要先跟用户说清楚边界。",
+      "entries": [
+        {
+          "applies_to": "Fire OS 8 全部机型",
+          "steps": [
+            "设置 → My Fire TV（或 Device & Software）→ About",
+            "光标停在设备名那一行，确认键连点 7 次 → 「You are now a developer」",
+            "返回：设置 → My Fire TV → Developer Options",
+            "打开 ADB Debugging",
+            "要侧载 apk：Developer Options → Install unknown apps → 对具体的安装器 App（如 Downloader）单独打开",
+            "About → Network 看 IP，电脑执行 `adb connect <IP>:5555`，电视上选 Allow 并勾 Always allow"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "官方",
+          "sources": [
+            {"url": "https://developer.amazon.com/docs/fire-tv/connecting-adb-to-device.html", "title": "Connect to Fire TV Through ADB — Amazon 官方"},
+            {"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak：Fire TV Stick 4K Max (AFTKRT) / Fire OS 8.1.8.0 实机验证，走的就是 adb 5555"}
+          ],
+          "risk_notes": "Fire OS 8 仍是端口 5555 直连，不需要无线调试配对码 — 这一点和同期的 Google TV 设备不一样。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "yes",
+        "hide": "unknown",
+        "uninstall_user0": "no",
+        "notes": "Fire OS 8.1.8.0 实机验证：普通包 `pm disable-user --user 0` 成功、`pm enable --user 0` 可回滚；受保护包（com.amazon.device.software.ota、.ota.override、com.amazon.client.metrics、com.amazon.device.metrics、com.amazon.device.crashmanager）报 `java.lang.SecurityException: Cannot disable a protected package`，`pm uninstall -k --user 0` 返回 `DELETE_FAILED_INTERNAL_ERROR`。",
+        "evidence_level": "多源",
+        "sources": [
+          {"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf：blocked 层，附 Fire OS 8.1.8.0 实机报错原文"},
+          {"url": "https://github.com/WB2024/firestrip", "title": "firestrip：全部操作用 pm disable-user --user 0，可随时 re-enable"}
+        ]
+      },
+      "must_keep": [
+        {"pkg": "com.amazon.tv.launcher", "what": "Amazon 桌面", "why": "2025-12+ 补丁上已是受保护包，且禁了没主界面", "evidence_level": "多源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak keep.conf（AFTKRT 实机）"}, {"url": "https://github.com/WB2024/firestrip", "title": "firestrip NEVER_TOUCH"}]},
+        {"pkg": "com.amazon.firebat", "what": "🔴 Prime Video 应用本体", "why": "通用清单把它误标为「电池分析服务」，实机上是 Prime Video，禁了直接丢串流", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak README + keep.conf（AFTKRT / Fire OS 8.1.8.0 实机）"}]},
+        {"pkg": "com.amazon.tv.keypolicymanager", "what": "DRM 密钥策略", "why": "动了正版串流播不了", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak keep.conf"}]},
+        {"pkg": "com.amazon.ale", "what": "Amazon 授权 / licensing", "why": "DRM / 授权链路", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak keep.conf"}]},
+        {"pkg": "com.amazon.dcp", "what": "设备通信平台（账号底座）", "why": "账号链路", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak keep.conf"}]},
+        {"pkg": "com.amazon.identity.auth.device.authorization", "what": "账号授权", "why": "账号链路", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak keep.conf"}]},
+        {"pkg": "com.amazon.tv.settings.core", "what": "设置核心", "why": "禁了进不去设置，ADB 也关不掉", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak keep.conf"}]},
+        {"pkg": "com.amazon.tv.settings.v2", "what": "设置 v2", "why": "同上", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak keep.conf"}]},
+        {"pkg": "com.amazon.tv.ime", "what": "输入法", "why": "输密码 / 搜索", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak keep.conf"}]},
+        {"pkg": "com.amazon.fireinputdevices", "what": "遥控器 / 输入设备", "why": "遥控链路", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak keep.conf"}]},
+        {"pkg": "com.amazon.device.controllermanager", "what": "配件 / 手柄管理", "why": "输入链路", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak keep.conf"}]},
+        {"pkg": "com.amazon.tv.routing", "what": "系统内部意图路由", "why": "App 间跳转", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak keep.conf"}]},
+        {"pkg": "com.amazon.tv.intentsupport", "what": "Intent 支持组件", "why": "同上", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak keep.conf"}]},
+        {"pkg": "com.amazon.ssm", "what": "系统管理代理（System Service Manager）", "why": "开发者工具面板与系统叠加层依赖它；keep 名单在列", "evidence_level": "多源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak keep.conf"}, {"url": "https://developer.amazon.com/docs/fire-tv/developer-tools.html", "title": "Amazon 官方：Developer Tools 面板走 com.amazon.ssm/.OverlayService"}]},
+        {"pkg": "com.amazon.ssmsys", "what": "系统管理系统服务", "why": "同上", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak keep.conf"}]},
+        {"pkg": "com.amazon.tcomm", "what": "Amazon 通信服务客户端库", "why": "keep 名单在列；旧脚本把它当可禁，实机名单反对", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak keep.conf"}]},
+        {"pkg": "com.amazon.tcomm.client", "what": "同上（客户端）", "why": "同上", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak keep.conf"}]},
+        {"pkg": "com.amazon.webview.chromium", "what": "系统 WebView", "why": "App 内嵌页面依赖", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak keep.conf"}]},
+        {"pkg": "com.android.systemui", "what": "Android 系统界面", "why": "不能动", "evidence_level": "多源", "sources": [{"url": "https://github.com/WB2024/firestrip", "title": "firestrip NEVER_TOUCH"}]},
+        {"pkg": "com.android.providers.downloads", "what": "系统下载管理器", "why": "禁了所有 App 的下载都会失败", "evidence_level": "单源", "sources": [{"url": "https://github.com/WB2024/firestrip", "title": "firestrip NEVER_TOUCH"}]}
+      ],
+      "junk": [
+        {"pkg": "com.amazon.tv.ftvambient", "what": "环境屏保（Ambient Experience）", "why": "实测常驻 104 MB，Fire OS 8 上单项最大的一块", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（AFTKRT / 8.1.8.0 实测 104 MB）"}]},
+        {"pkg": "com.amazon.ftv.screensaver", "what": "屏保服务", "why": "与上面配套", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（promo 层）"}]},
+        {"pkg": "com.amazon.sneakpeek", "what": "首页自动播预告片", "why": "光标停留就自动出声播预告", "evidence_level": "多源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（promo 层）"}, {"url": "https://github.com/WB2024/firestrip", "title": "firestrip telemetry/services 层包含 com.amazon.sneakpeek"}]},
+        {"pkg": "com.amazon.tv.acr", "what": "自动内容识别（ACR）", "why": "采集你在看什么", "evidence_level": "多源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（ads 层）"}, {"url": "https://github.com/WB2024/firestrip", "title": "firestrip telemetry 层包含 com.amazon.tv.acr"}]},
+        {"pkg": "com.amazon.aca", "what": "ACR 伴生（HDMI 监听 + 应用切换监听）", "why": "实测 15 MB", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（实测 15 MB）"}]},
+        {"pkg": "com.amazon.hybridadidservice", "what": "广告 ID 服务", "why": "广告归因", "evidence_level": "多源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（ads 层）"}, {"url": "https://github.com/WB2024/firestrip", "title": "firestrip telemetry 层"}]},
+        {"pkg": "com.amazon.device.telemetry.emitter", "what": "遥测上报", "why": "行为回传", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（ads 层）"}]},
+        {"pkg": "com.amazon.wirelessmetrics.service", "what": "无线指标采集", "why": "遥测", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（ads 层）"}]},
+        {"pkg": "com.amazon.perfc", "what": "性能数据采集", "why": "遥测", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（ads 层）"}]},
+        {"pkg": "com.amazon.perfcollection", "what": "性能数据采集（另一个）", "why": "遥测", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（ads 层）"}]},
+        {"pkg": "com.amazon.dp.logger", "what": "日志上报", "why": "遥测", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（ads 层）"}]},
+        {"pkg": "com.amazon.media.recommendations", "what": "内容推荐服务", "why": "首页推荐位数据源", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（promo 层）"}]},
+        {"pkg": "com.amazon.shoptv.client", "what": "电视购物", "why": "购物入口", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（promo 层）"}]},
+        {"pkg": "com.amazon.shoptv.firetv.client", "what": "电视购物（Fire TV 版）", "why": "购物入口", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（promo 层）"}]},
+        {"pkg": "com.amazon.minitv.android.app", "what": "miniTV 免费广告频道", "why": "广告支撑的频道", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（promo 层）"}]},
+        {"pkg": "com.amazon.gamehub", "what": "游戏中心推广位", "why": "推广", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（promo 层）"}]},
+        {"pkg": "com.amazon.tv.website_launcher", "what": "网页推广位启动器", "why": "推广", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（promo 层）"}]},
+        {"pkg": "com.amazon.bueller.photos", "what": "Amazon Photos", "why": "实测 27 MB", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（promo 层，实测 27 MB）"}]},
+        {"pkg": "com.amazon.bueller.music", "what": "Amazon Music 首页模块", "why": "不用就是死重量", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（promo 层）"}]},
+        {"pkg": "com.amazon.tv.forcedotaupdater.v2", "what": "强制更新推送器", "why": "把关掉的东西推回来（这个包本身可以禁，真正的 OTA 包禁不掉）", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（ota 层，实机可禁）"}]},
+        {"pkg": "com.amazon.tv.easyupgrade", "what": "推销新设备", "why": "营销", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（ota 层）"}]},
+        {"pkg": "com.amazon.tahoe", "what": "Amazon Kids", "why": "实测 8.6 MB", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（cruft 层）"}]},
+        {"pkg": "com.amazon.tv.legal.notices", "what": "法律声明", "why": "实测 5.7 MB", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（cruft 层）"}]},
+        {"pkg": "com.amazon.tv.support", "what": "远程支持 / 诊断", "why": "常驻无用", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（cruft 层）"}]},
+        {"pkg": "com.amazon.firetv.troubleshooting", "what": "故障排查向导", "why": "常驻无用", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（cruft 层）"}]},
+        {"pkg": "com.amazon.tv.notificationcenter", "what": "通知中心", "why": "主要推 Amazon 自家消息", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（cruft 层）"}]},
+        {"pkg": "com.amazon.uxnotification", "what": "界面提示弹窗", "why": "推广提示", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（cruft 层）"}]},
+        {"pkg": "com.amazon.systemnotices", "what": "系统公告", "why": "静态提示", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（cruft 层）"}]},
+        {"pkg": "com.amazon.ods.kindleconnect", "what": "Kindle 设备关联", "why": "电视上用不到", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（cruft 层）"}]},
+        {"pkg": "com.amazon.audiohome", "what": "音频首页模块", "why": "常驻无用", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（cruft 层）"}]},
+        {"pkg": "com.amazon.dummy.alarmclock", "what": "占位假应用（闹钟）", "why": "Amazon 为满足 Android 接口放的空壳，一整组 com.amazon.dummy.* 都是（calendar / contacts / gallery / music / settings / soundpicker）", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（cruft 层，列出全部 dummy 包）"}]}
+      ],
+      "ask_user": [
+        {"pkg": "com.amazon.imp", "what": "安装管理器", "why": "禁了 Appstore 装不了东西", "evidence_level": "单源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（aggressive 层）"}]},
+        {"pkg": "com.amazon.ceviche", "what": "远程配置 + 指标下发", "why": "实测 13 MB，但同时在下发远程配置", "evidence_level": "多源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（aggressive 层）"}, {"url": "https://github.com/niftiest/Firestick-Cleaner-And-Launcher-Replacer", "title": "Firestick-Cleaner 包说明表"}]},
+        {"pkg": "com.amazon.tv.livetv", "what": "直播电视聚合", "why": "Stick 上是推广位；带调谐器的 Fire TV 电视上是真功能", "evidence_level": "多源", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf（promo 层，Stick 机型）"}, {"url": "https://github.com/WB2024/firestrip", "title": "firestrip：Fire TV Box live TV tuner 包列入 NEVER_TOUCH"}]},
+        {"pkg": "com.amazon.venezia", "what": "Amazon Appstore", "why": "禁了只能侧载", "evidence_level": "多源", "sources": [{"url": "https://liliputing.com/amazon-fire-hd-8-2020-how-to-disable-specific-amazon-apps-and-features", "title": "Liliputing：com.amazon.venezia = Amazon Appstore"}]},
+        {"pkg": "com.amazon.whisperlink.core.android", "what": "Whisperlink 设备互联", "why": "手机遥控 App / Echo 联动要用", "evidence_level": "多源", "sources": [{"url": "https://github.com/WB2024/firestrip", "title": "firestrip telemetry 层"}]},
+        {"pkg": "com.amazon.sharingservice.android.client.proxy", "what": "跨设备分享服务", "why": "用 Amazon 生态分享的才留", "evidence_level": "单源", "sources": [{"url": "https://github.com/niftiest/Firestick-Cleaner-And-Launcher-Replacer", "title": "Firestick-Cleaner：Sharing Service"}]}
+      ],
+      "pitfalls": [
+        {"what": "🔴 受保护包一组：OTA、OTA override、client.metrics、device.metrics、crashmanager。这五个在 Fire OS 8.1.8.0 上 disable-user 和 uninstall 都失败，且 OTA 包实测 31 MB 照常运行。承诺用户「能挡更新」是错的。", "sources": [{"url": "https://github.com/26zl/tv-tweak", "title": "tv-tweak packages.conf blocked 层（实机报错原文）"}]},
+        {"what": "Fire OS 8 不会再升到 Fire OS 16 — Amazon 已确认现有 Android 版 Fire TV Stick 不再升级 Android 版本，新的 Fire OS 只给智能电视。也就是说这批机器的软件形态基本定型了，做一次能管很久。", "sources": [{"url": "https://www.pocket-lint.com/amazon-is-leaving-fire-sticks-behind-with-its-latest-update", "title": "Pocket-lint：Amazon is leaving Fire Sticks behind with its latest update"}]}
+      ]
+    },
+    {
+      "name": "Fire OS 14（Android 14）",
+      "years": "2025 起（仅智能电视，不给 Stick）",
+      "base_os": "fireos",
+      "android_version_range": "Android 14（API 34）",
+      "models_examples": [],
+      "identify_hints": "About 页的 Fire OS 版本以 14. 开头。只出现在 2025 年及以后发布的 Fire TV 智能电视上，Stick 不会升到这一代。",
+      "worth_it_hint": "新机器，性能不紧张；做的价值主要是关广告位和遥测。本轮没有拿到这一代的实机包清单和入口截图，动手前建议先在实机上 `pm list packages` 现抓一份，不要套用 Fire OS 7/8 的清单。",
+      "entries": [
+        {
+          "applies_to": "Fire OS 14 智能电视（路径按 Fire OS 7/8 推断，未在实机核实）",
+          "steps": [
+            "设置 → Device & Software → About",
+            "光标停在「Your TV」那一行，确认键连点 7 次",
+            "返回：设置 → Device & Software → Developer Options → ADB Debugging",
+            "About → Network 看 IP，`adb connect <IP>:5555`"
+          ],
+          "has_auth_prompt": null,
+          "wireless_pairing": null,
+          "port": 5555,
+          "evidence_level": "单源",
+          "sources": [
+            {"url": "https://developer.amazon.com/docs/fire-tv/fire-os-overview.html", "title": "Fire OS Overview — 官方文档列出 Fire OS 14 / Fire OS 16 分支"}
+          ],
+          "risk_notes": "🔴 这一代的入口路径是从 Fire OS 7/8 推断的，本轮没有找到实机演示。Android 14 在原生 Android 上已经把无线调试和 USB 调试拆开（要配对码），Amazon 是否跟进不明 — 见 open_questions。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "unknown",
+        "hide": "unknown",
+        "uninstall_user0": "unknown",
+        "notes": "本轮未取到 Fire OS 14 实机证据。",
+        "evidence_level": "单源",
+        "sources": [{"url": "https://developer.amazon.com/docs/fire-tv/fire-os-overview.html", "title": "Fire OS Overview — 官方"}]
+      },
+      "must_keep": [],
+      "junk": [],
+      "ask_user": [],
+      "pitfalls": []
+    },
+    {
+      "name": "Vega OS（不适用）",
+      "years": "2025 起",
+      "base_os": "other",
+      "android_version_range": "不是 Android — Amazon 自研的 Linux 系统",
+      "models_examples": [
+        "Fire TV Stick 4K Select (2025)",
+        "Fire TV Stick HD (2025 新款)"
+      ],
+      "identify_hints": "About 页里看不到 Fire OS 版本号，也翻不出 Developer Options 这个菜单，任何地方都找不到「Apps from Unknown Sources / Install unknown apps」开关 — 这三条同时成立就是 Vega OS。2025 年及以后新买的入门款 Fire TV Stick 最可能是这种。",
+      "worth_it_hint": "🔴 做不了，别试。Vega OS 不是 Android，没有开发者选项、没有 ADB、不支持侧载 — Amazon 明确说这是为「增强安全性」有意为之。要清理只能换设备。",
+      "entries": [],
+      "pm_caps": {
+        "disable_user": "no",
+        "hide": "no",
+        "uninstall_user0": "no",
+        "notes": "整个 Android 包管理体系不存在。",
+        "evidence_level": "多源",
+        "sources": [
+          {"url": "https://www.pocket-lint.com/amazon-is-leaving-fire-sticks-behind-with-its-latest-update", "title": "Pocket-lint：Vega OS 不支持侧载，Amazon 称为有意的安全设计"},
+          {"url": "https://www.kunalganglani.com/blog/fire-tv-sideloading-restrictions", "title": "Amazon Fire TV Sideloading Restrictions [2026 Guide]：Vega OS 没有 Developer Options / Unknown Sources，无解", "date": "2026"}
+        ]
+      },
+      "must_keep": [],
+      "junk": [],
+      "ask_user": [],
+      "pitfalls": [
+        {"what": "Amazon 已确认今后所有新款 Fire TV Stick 都用 Vega OS。也就是说「买新 Fire TV Stick 回来清理」这条路从 2025 年起就断了，二手老款反而是能做的那一批。", "sources": [{"url": "https://www.pocket-lint.com/fire-sticks-are-blocked-from-getting-this-amazon-update", "title": "Pocket-lint：所有未来 Fire TV Stick 都将运行 Vega OS"}]}
+      ]
+    }
+  ],
+  "open_questions": [
+    "Fire TV Cube 2 代（2019）和 3 代（2022）分别是 Fire OS 6 / 7 / 8 的哪一代？本轮在 Amazon 官方设备对照表里没有取到 Cube 2/3 代的明确行，不要凭印象填。",
+    "Fire TV Stick 2 代（AFTT）的 RAM 和存储具体规格。社区普遍说 1 GB RAM / 8 GB 存储，本轮没有取到 Amazon 官方规格页面佐证，worth_it_hint 里已按「社区说法」标注。",
+    "Fire OS 14 的开发者选项入口路径、是否改成 Android 14 原生的「无线调试 + 配对码」、以及实机包清单 — 全部缺实机证据。",
+    "Fire OS 5 / 6 上 `pm hide` 是否可用？本轮所有来源用的都是 disable / disable-user / uninstall -k --user 0，没有一条用 pm hide。",
+    "tv-tweak 的 alexa 层和 smarthome 层具体包含哪些包名？抓取时这两段被截断，只知道 alexa 层应用后语音遥控会失效。",
+    "Amazon 自营电视（Omni QLED / 4-Series）上是否有 Stick 没有的独占包（远场麦克风、Alexa 免提模式、内置调谐器）？本轮没有实机 `pm list packages` 样本。",
+    "社区有 root / 刷机相关讨论（TWRP、Magisk、开发者版固件），本项目不采用，也不记录。"
+  ],
+  "last_reviewed": "2026-09-15"
+}

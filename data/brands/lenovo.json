@@ -1,0 +1,87 @@
+{
+  "brand": "联想 ideatv（老联想智能电视，含夏普贴牌机）",
+  "region": "cn",
+  "aliases": ["Lenovo ideatv", "联想智能电视", "联想电视", "IdeaTV", "17TV", "联想智慧电视"],
+  "status": "部分适用",
+  "summary": "2012-2014 年那批联想 ideatv（Android 4.0.4）情况很特殊：adb 的 5555 端口出厂就开着、连的时候电视上连授权弹窗都没有，一条命令就连上——但连上之后什么也改不了。固件里根本没有 com.android.settings，所以「开发者选项」这个菜单压根不存在；pm disable 对系统包直接报 SecurityException，没有 pm hide，pm uninstall 也不带 --user 参数，66 个系统预装包一个都动不了，只有 /data/app 下用户自己装的第三方包能卸。一句话：连得上，改不了。",
+  "identify_hints": {
+    "remote_has_digits": "未核实",
+    "system_name_shown_at": "这一代固件没有安卓原生设置，看不到标准的「关于本机 → 版本号」；判断靠 adb 连上后执行 adb shell getprop ro.build.fingerprint，出现 lenovo/ideatv 字样即是",
+    "about_page_fields": [
+      "adb shell getprop ro.build.fingerprint → 形如 lenovo/ideatv/ideatv_K82:4.0.4/P0031.42/0083:user/dev-keys",
+      "机器自带的系统设置里只有电视功能项（信号源、图像、声音、网络），没有安卓的开发者选项"
+    ],
+    "model_naming_rule": "联想自有机型叫 K 系列 / S 系列（K72、K82、50S9、55S9i）与 17TV（50i、55i2）；🔴 更容易踩空的是贴牌：机器外壳印的是「夏普」，但 fingerprint 里写的是 lenovo/ideatv/ideatv_K82——品牌和系统主体不是一回事，按外壳品牌去搜教程会全部搜错",
+    "sticker_location": "机身背面铭牌（未找到该代官方文档确认，按常规位置）",
+    "year_ranges": "约 2012-2016，Android 4.0.4（ICS）时代；本机实测机型为 2013 年的夏普 LCD-80LX850A"
+  },
+  "series": [
+    {
+      "name": "ideatv 平台（Android 4.0.4，K/S 系列 + 夏普等贴牌机）",
+      "years": "约 2012-2016",
+      "base_os": "android",
+      "android_version_range": "4.0.4（ICS）",
+      "models_examples": ["夏普 LCD-80LX850A（本机实测，fingerprint 为 ideatv_K82）", "联想 K72", "联想 K82", "联想 50S9", "联想 55S9i", "17TV 50i / 55i2", "联想 42K81"],
+      "identify_hints": "开机桌面是联想那一代方块磁贴式界面；系统设置里只有电视相关项，没有安卓设置；1GB 内存（实测可用 653MB、空闲仅 90MB），全机只有 68 个包。最硬的判据是 adb 连上后看 fingerprint 里有没有 ideatv",
+      "worth_it_hint": "🔴 连得上改不了：能进 adb，但系统包一个都停不掉，清理带不来任何内存变化。这台机器的卡顿是 2012 年的硬件天花板（1GB 内存 / Android 4.0.4），不是预装应用造成的，做完等于白做。真想改善只能外接一个电视盒子当主力，把电视当显示器用",
+      "entries": [
+        {
+          "applies_to": "夏普 LCD-80LX850A（本机实测；fingerprint: lenovo/ideatv/ideatv_K82:4.0.4/P0031.42/0083:user/dev-keys）",
+          "steps": [
+            "不需要在电视上做任何操作：这代固件没有 com.android.settings，「开发者选项」菜单不存在，任何连点版本号、按键组合都无处可点",
+            "确认电视和电脑在同一个局域网，在电视的网络设置里记下电视 IP",
+            "电脑上直接执行 adb connect <电视IP>:5555",
+            "立刻连上，电视上不会弹任何授权确认框"
+          ],
+          "has_auth_prompt": false,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "本机实测",
+          "sources": [
+            {"url": "https://www.znds.com/bbs-69-1.html", "title": "ZNDS 联想智能电视版块（该代机型的集中讨论区，可交叉印证机型与固件命名）"}
+          ],
+          "verified_by": "叁笙本机实测 2026-09-14（夏普 LCD-80LX850A）",
+          "risk_notes": "🔴 出厂就监听 5555 且没有授权确认，意味着同一局域网里任何设备都能直连这台电视的 adb。这是这代固件的既有状态，不是你打开的；知道了就别把它放在不可信的公共网络里"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "no",
+        "hide": "no",
+        "uninstall_user0": "no",
+        "notes": "本机实测：pm disable 对系统包直接返回 SecurityException；系统里根本没有 pm hide 命令；pm uninstall 不支持 --user 参数；无 su。66 个系统预装包全部动不了，只有 /data/app 下的第三方包能 pm uninstall",
+        "evidence_level": "本机实测",
+        "sources": []
+      },
+      "junk": [
+        {
+          "pkg": "com.tianci.ad",
+          "what": "酷开广告 SDK（第三方包，装在 /data/app）",
+          "why": "已实测可以 pm uninstall 卸掉；但卸载前后进程里本来就没有它，内存占用无变化",
+          "evidence_level": "本机实测"
+        },
+        {
+          "pkg": "com.lenovo.tvmanager",
+          "what": "联想电视管家（第三方包，装在 /data/app）",
+          "why": "已实测可以 pm uninstall；同样未在运行，卸掉不影响内存",
+          "evidence_level": "本机实测"
+        }
+      ],
+      "pitfalls": [
+        {
+          "what": "网上多数「电视开 ADB」教程的第一步都是「设置 → 关于 → 连点版本号」，对这一代机器完全不适用——它的固件里没有安卓设置这个应用，不是藏起来了，是不存在",
+          "sources": []
+        },
+        {
+          "what": "社区有 root 讨论（ZNDS 上流传过一个 2016 年的联想电视 root 工具），本项目不采用",
+          "sources": []
+        }
+      ]
+    }
+  ],
+  "open_questions": [
+    "K72 / 50S9 / 55S9i / 17TV 50i 等同代机型是否与实测的 K82 平台完全一致（同样没有开发者选项、adb 5555 出厂开放、pm disable 报错），没有找到其他机型的独立实测记录，只能从同平台推断，不构成证据",
+    "这一代 ideatv 是否还有官方固件更新渠道，以及更新后 adb 5555 是否仍然出厂开放，未核实",
+    "贴牌范围有多大：除夏普 LCD-80LX850A 外，还有哪些品牌/型号实际跑的是 ideatv 平台，没有可引用的清单"
+  ],
+  "last_reviewed": "2026-09-15"
+}

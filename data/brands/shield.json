@@ -1,0 +1,290 @@
+{
+  "brand": "NVIDIA Shield TV",
+  "region": "global",
+  "aliases": [
+    "Shield",
+    "Shield Android TV",
+    "Shield TV Pro",
+    "Shield TV Tube",
+    "英伟达 Shield",
+    "NVIDIA SHIELD"
+  ],
+  "status": "适用",
+  "summary": "三代 Shield（2015 / 2017 / 2019）都是原生 Android TV，开发者选项和 ADB 完全开放，而且最后全部升到了 Android 11（Shield Experience 9.x），`pm uninstall -k --user 0` 可用、可回滚。Shield 本身不卡也没有 Amazon 那种广告位，做它主要是关 2021 年 Google 塞进首页的推荐 / 广告行，以及去掉 NVIDIA 和 Google 的一堆遥测服务。",
+  "identify_hints": {
+    "remote_has_digits": false,
+    "system_name_shown_at": "设置 → 设备偏好设置（Device Preferences）→ 关于（About）。页面底部有「SHIELD Android TV 软件版本」（Shield Experience 版本号，如 9.2.x）和「Android 版本」两行，两个都要看：硬件代际看不出来，但 Shield Experience 版本能确认已升到 Android 11。",
+    "about_page_fields": [
+      "设备名称（SHIELD Android TV / SHIELD TV Pro）",
+      "Android 版本（最终都是 11）",
+      "SHIELD Android TV 软件版本（Shield Experience，如 9.0.0 / 9.2.x）",
+      "内部版本号 / Build（连点这一行 7 次开开发者模式）",
+      "Android 安全补丁级别"
+    ],
+    "model_naming_rule": "NVIDIA 不用型号字母编码，按发售年份和 Pro/非 Pro 区分：2015 款（含 2015 Pro）、2017 款（含 2017 Pro）、2019 款有两个形态 — 圆柱形的 Shield TV（俗称 Tube，2 GB 内存）和方形的 Shield TV Pro（3 GB 内存）。`adb shell getprop ro.product.model` 能直接读出机型字符串。",
+    "sticker_location": "机身底部贴纸印有型号和序列号；2019 Tube 是圆柱体，贴纸在底面。",
+    "year_ranges": "2015 / 2017 / 2019 三代；2019 款至今仍在售。"
+  },
+  "series": [
+    {
+      "name": "Shield TV / Shield TV Pro（2015 款）",
+      "years": "2015–2017 发售，软件支持延续至今",
+      "base_os": "android",
+      "android_version_range": "出厂 Android 5.1，通过 Shield Experience 逐代升级，最终到 Android 11（Shield Experience 9.0 起）",
+      "models_examples": [
+        "NVIDIA SHIELD Android TV (2015)",
+        "NVIDIA SHIELD Android TV Pro (2015, 500 GB)"
+      ],
+      "identify_hints": "扁平的三角形黑色盒子，正面有一条绿色发光条；标配的是游戏手柄而不是小遥控器（遥控器当年是另买的）。关于页里 Android 版本经过更新后会显示 11。",
+      "worth_it_hint": "机龄 10 年上下，但 3 GB 内存在电视盒子里仍然够用，卡不卡主要看装了多少 App。做它的三个信号里「广告」最成立：2021 年 Android TV 桌面更新后首页多了推荐行和横幅推广位，而且关不干净。机龄信号成立、内存信号不成立。",
+      "entries": [
+        {
+          "applies_to": "2015 款（升到 Shield Experience 9.x / Android 11 之后）",
+          "steps": [
+            "设置 → 设备偏好设置（Device Preferences）→ 关于（About）",
+            "滚到最底下的「内部版本号 / Build」，用遥控确认键连点 7 次，出现「您现在是开发者」",
+            "返回：设置 → 设备偏好设置 → 开发者选项（Developer options）",
+            "走网线 / Wi-Fi 远程连：打开「网络调试（Network debugging）」，页面上会直接显示 IP:端口",
+            "用 USB 线连：改为打开「USB 调试（USB debugging）」",
+            "电脑执行 `adb connect <IP>:5555`，电视上会弹「允许 USB 调试吗」，选「一律允许」"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://nvidia.custhelp.com/app/answers/detail/a_id/4367/~/how-to-use-the-new-shield-tv-in-mtp-or-adb-mode", "title": "How to Use the New SHIELD TV in MTP or ADB mode — NVIDIA 官方支持文章（Settings→About→Build 按 7 次）"},
+            {"url": "https://forums.developer.nvidia.com/t/nvidia-shield-tv-how-to-enable-usb-adopted-storage-using-adb-complete-step-by-step-guide-verification/362774", "title": "NVIDIA 开发者论坛：Network debugging 与 USB debugging 的正确用法"},
+            {"url": "https://www.reddit.com/r/ShieldAndroidTV/comments/qupv9c/adb_connect_shield_tv_2019_tube_over_network", "title": "r/ShieldAndroidTV：adb connect Shield TV over Network 实操"}
+          ],
+          "risk_notes": "🔴 NVIDIA 开发者论坛明确更正过一个流传很广的错误：USB 调试和网络调试不要同时打开，按连接方式二选一。另外打开 USB 调试时，USB 口上原来接的存储或键鼠要先拔掉。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "yes",
+        "hide": "unknown",
+        "uninstall_user0": "yes",
+        "notes": "原生 Android TV，`adb shell pm uninstall -k --user 0 <包名>` 和 `pm disable-user --user 0 <包名>` 都可用；`-k` 保留数据，恢复用 `adb shell pm install-existing <包名>`。多篇 Shield 专门的 debloat 指南用的都是 uninstall 路线并给了成对的恢复命令。",
+        "evidence_level": "多源",
+        "sources": [
+          {"url": "https://florisse.nl/shield-debloat", "title": "Debloat NVIDIA Shield TV Pro guide — Florisse creative（成对给出移除 / 重装命令）"},
+          {"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "[Tutorial] De-Bloat and De-Google Nvidia Shield Pro — Level1Techs"},
+          {"url": "https://github.com/bryanroscoe/shield_optimizer", "title": "shield_optimizer：带 do-not-disable 清单和一键 Recovery 恢复"}
+        ]
+      },
+      "must_keep": [
+        {"pkg": "com.google.android.tvlauncher", "what": "Android TV 桌面（Leanback Launcher）", "why": "这就是首页本身。只有在已经装好并设为默认的第三方 launcher 之后才谈得上禁它，否则按 Home 键无处可去", "evidence_level": "多源", "sources": [{"url": "https://www.esper.io/blog/android-dessert-bites-2-tips-tricks-3156978", "title": "Esper：Android TV 用 pm disable-user com.google.android.tvlauncher 换第三方桌面"}, {"url": "https://github.com/bryanroscoe/shield_optimizer", "title": "shield_optimizer：内置 do-not-disable 清单，换 launcher 走专门的 Launcher Wizard"}]},
+        {"pkg": "com.android.systemui", "what": "Android 系统界面", "why": "任何 Android 设备都不能动", "evidence_level": "多源", "sources": [{"url": "https://github.com/bryanroscoe/shield_optimizer", "title": "shield_optimizer：curated do-not-disable list blocks brick-tier disables"}]},
+        {"pkg": "com.android.tv.settings", "what": "Android TV 设置界面", "why": "禁了进不去设置，也就没法把网络调试关回去", "evidence_level": "单源", "sources": [{"url": "https://github.com/bryanroscoe/shield_optimizer", "title": "shield_optimizer do-not-disable 清单"}]},
+        {"pkg": "com.google.android.inputmethod.latin", "what": "Gboard 输入法", "why": "Shield Experience 9 把 Gboard 设成了默认键盘，禁了输不了 Wi-Fi 密码", "evidence_level": "单源", "sources": [{"url": "https://www.xda-developers.com/nvidia-releases-recovery-images-for-shield-experience-9-0-0-based-on-android-11-ota-rollout-imminent", "title": "XDA：Shield Experience 9.0.0 更新说明（新增内置 Gboard 键盘）"}]}
+      ],
+      "junk": [
+        {"pkg": "com.nvidia.stats", "what": "NVIDIA 使用统计上报", "why": "遥测", "evidence_level": "多源", "sources": [{"url": "https://florisse.nl/shield-debloat", "title": "Florisse Shield debloat 清单"}, {"url": "https://diegoderksen.nl/blog/Nvidia-Shield-Debloating", "title": "Debloating Nvidia Shield — Diégo Derksen"}]},
+        {"pkg": "com.nvidia.enhancedlogging", "what": "增强日志采集", "why": "遥测", "evidence_level": "多源", "sources": [{"url": "https://florisse.nl/shield-debloat", "title": "Florisse Shield debloat 清单"}, {"url": "https://diegoderksen.nl/blog/Nvidia-Shield-Debloating", "title": "Debloating Nvidia Shield"}]},
+        {"pkg": "com.nvidia.SHIELD.Platform.Analyser", "what": "平台行为分析", "why": "遥测", "evidence_level": "多源", "sources": [{"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "Level1Techs De-Bloat and De-Google 清单"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse Shield debloat 清单"}]},
+        {"pkg": "com.nvidia.diagtools", "what": "诊断工具", "why": "日常用不到，常驻", "evidence_level": "多源", "sources": [{"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "Level1Techs 清单"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.nvidia.feedback", "what": "反馈上报", "why": "遥测", "evidence_level": "多源", "sources": [{"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "Level1Techs 清单"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.nvidia.shield.registration", "what": "产品注册引导", "why": "一次性内容常驻", "evidence_level": "多源", "sources": [{"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "Level1Techs 清单"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.nvidia.shieldbeta", "what": "Shield Beta 测试计划入口", "why": "不参加测试就没用", "evidence_level": "多源", "sources": [{"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "Level1Techs 清单"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.nvidia.benchmarkblocker", "what": "跑分屏蔽器（防止跑分软件识别）", "why": "对普通用户无意义", "evidence_level": "多源", "sources": [{"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}, {"url": "https://diegoderksen.nl/blog/Nvidia-Shield-Debloating", "title": "Debloating Nvidia Shield"}]},
+        {"pkg": "com.nvidia.developerwidget", "what": "开发者小部件", "why": "开发调试用", "evidence_level": "多源", "sources": [{"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}, {"url": "https://diegoderksen.nl/blog/Nvidia-Shield-Debloating", "title": "Debloating Nvidia Shield"}]},
+        {"pkg": "com.google.android.tvrecommendations", "what": "Android TV 推荐服务", "why": "首页推荐行的数据源，2021 年首页广告争议的直接相关方", "evidence_level": "多源", "sources": [{"url": "https://diegoderksen.nl/blog/Nvidia-Shield-Debloating", "title": "Debloating Nvidia Shield"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.google.android.leanbacklauncher.recommendations", "what": "桌面推荐行组件", "why": "首页那条「推荐 / 精选」行", "evidence_level": "多源", "sources": [{"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "Level1Techs 清单"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.google.android.backdrop", "what": "屏保 / 背景图轮播", "why": "待机时拉图，纯装饰", "evidence_level": "多源", "sources": [{"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "Level1Techs 清单"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.google.android.feedback", "what": "Google 反馈上报", "why": "遥测", "evidence_level": "多源", "sources": [{"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "Level1Techs 清单"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.google.android.tv.bugreportsender", "what": "Bug 报告上传", "why": "遥测", "evidence_level": "多源", "sources": [{"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "Level1Techs 清单"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.google.android.backuptransport", "what": "Google 备份传输", "why": "不用 Google 备份就无用", "evidence_level": "单源", "sources": [{"url": "https://diegoderksen.nl/blog/Nvidia-Shield-Debloating", "title": "Debloating Nvidia Shield"}]},
+        {"pkg": "com.google.android.partnersetup", "what": "OEM 合作预置引导", "why": "一次性内容常驻", "evidence_level": "单源", "sources": [{"url": "https://diegoderksen.nl/blog/Nvidia-Shield-Debloating", "title": "Debloating Nvidia Shield"}]}
+      ],
+      "ask_user": [
+        {"pkg": "com.google.android.katniss", "what": "Google 搜索 / 语音助手（Android TV 版）", "why": "禁了遥控上的语音搜索和全局搜索就没了", "evidence_level": "多源", "sources": [{"url": "https://florisse.nl/shield-debloat", "title": "Florisse：Playstore & services 段落把 katniss 与 gms / vending 归为一组，明确说明是「不需要时」才动"}, {"url": "https://freya.cat/blog/post/2025-03-11", "title": "How to unenshittificate your Google TV（记录 katniss 被禁后系统开机会自动重新启用）"}]},
+        {"pkg": "com.google.android.gms", "what": "Google Play 服务", "why": "🔴 禁了之后大量流媒体 App 会拒绝启动或无法登录，Play 商店也用不了。Florisse 把它列为「不需要 Play 生态时」才动的一组", "evidence_level": "多源", "sources": [{"url": "https://florisse.nl/shield-debloat", "title": "Florisse Shield debloat：Playstore & services 段"}, {"url": "https://freya.cat/blog/post/2025-03-11", "title": "freya.cat：禁 gms 后系统开机会把它重新启用"}]},
+        {"pkg": "com.android.vending", "what": "Google Play 商店", "why": "禁了装不了、更新不了任何 Play 上的 App", "evidence_level": "多源", "sources": [{"url": "https://florisse.nl/shield-debloat", "title": "Florisse Shield debloat 清单"}]},
+        {"pkg": "com.nvidia.ota", "what": "NVIDIA 系统更新（Shield Experience OTA）", "why": "禁了收不到 Shield Experience 更新，包括安全补丁。要不要挡更新由用户决定", "evidence_level": "多源", "sources": [{"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "Level1Techs 清单"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.nvidia.shield.remote.server", "what": "Shield 远程控制服务端（手机 App 当遥控器 / 键盘用）", "why": "社区清单列为可删，但用手机 App 控制 Shield 的人会直接丢功能", "evidence_level": "多源", "sources": [{"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "Level1Techs 清单"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.nvidia.hotwordsetup", "what": "「Hey Google」唤醒词设置", "why": "用远场语音唤醒的要留", "evidence_level": "多源", "sources": [{"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}, {"url": "https://diegoderksen.nl/blog/Nvidia-Shield-Debloating", "title": "Debloating Nvidia Shield"}]},
+        {"pkg": "com.nvidia.shieldtech.hooks", "what": "Shield 系统适配钩子", "why": "🔴 名字看不出用途，社区 debloat 清单里有，但没有任何一篇说清楚它管什么、禁了会丢什么。属于「有来源但风险不明」，默认不动", "evidence_level": "多源", "sources": [{"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "Level1Techs 清单（列出但无说明）"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单（列出但无说明）"}]},
+        {"pkg": "com.nvidia.shieldtech.proxy", "what": "Shield 系统适配代理", "why": "同上，用途不明，默认不动", "evidence_level": "多源", "sources": [{"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "Level1Techs 清单"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.nvidia.ocs", "what": "NVIDIA 在线客服 / 采集组件（社区未统一说明用途）", "why": "多份清单都列为可删，但用途没有权威说明", "evidence_level": "多源", "sources": [{"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "Level1Techs 清单"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.google.android.videos", "what": "Google TV / Play 影视", "why": "在 Play 上买过片子的要留", "evidence_level": "多源", "sources": [{"url": "https://diegoderksen.nl/blog/Nvidia-Shield-Debloating", "title": "Debloating Nvidia Shield"}]},
+        {"pkg": "com.google.android.tts", "what": "Google 文字转语音", "why": "开了无障碍朗读 / 语音播报的要留", "evidence_level": "单源", "sources": [{"url": "https://diegoderksen.nl/blog/Nvidia-Shield-Debloating", "title": "Debloating Nvidia Shield"}]}
+      ],
+      "pitfalls": [
+        {"what": "🔴 首页广告关不干净。2021 年 Google 推的 Android TV 桌面更新给 Shield 首页加了横幅推广位，NVIDIA 把责任推给 Google，Google 论坛给出的唯一「官方」办法是回滚 Android TV Home 的更新（清数据 + 卸载更新 + 关自动更新），会一直落后版本。真正干净的做法是换第三方 launcher。", "sources": [{"url": "https://news.ycombinator.com/item?id=27883715", "title": "Nvidia Shield TV Owners Are Pissed About the Banner Ads in Android TV — Hacker News"}, {"url": "https://support.google.com/androidtv/thread/114999022/turn-off-ads-on-my-200-device", "title": "Android TV 社区官方回复：只能回滚 Android TV Home 更新"}]},
+        {"what": "不装第三方 launcher 也能减掉一部分：设置 → 主屏幕（Home screen）→ 自定义频道（Customize channels）里把不想要的频道全关，再关掉「启用视频预览」和「启用音频预览」，首页就只剩一排 App 图标。这是零风险的第一步，应该先做完再考虑动包。", "sources": [{"url": "https://emby.media/community/topic/99519-nvidia-shield-home-screen-ads", "title": "Emby 社区：Shield 首页 customize channels + 关视频/音频预览的实操"}]},
+        {"what": "🔴 Shield 上换 Projectivy 等第三方 launcher 要两处设置同时开才生效：① launcher 自己的设置里打开「覆盖当前启动器 / override current launcher」；② 设置 → 设备偏好设置 → 无障碍（Accessibility）里给这个 launcher 打开权限。只做一处 Home 键不会跳转，这是最常见的卡点。", "sources": [{"url": "https://www.youtube.com/watch?v=6PEFyFttSDQ", "title": "STOP NVIDIA Shield Ads – Best Home Screen Setup（unboxd.tech，演示两处设置必须同时开）", "date": "2026-02-25"}]},
+        {"what": "`pm uninstall -k --user 0` 只是对当前用户卸载，系统分区里的包还在；恢复用 `adb shell pm install-existing <包名>`。但 Shield Experience 系统更新之后部分包可能会回来，做完记得留一份自己动过的包名清单。", "sources": [{"url": "https://florisse.nl/shield-debloat", "title": "Florisse：每组命令都成对给出移除和重装命令"}, {"url": "https://github.com/bryanroscoe/shield_optimizer", "title": "shield_optimizer：Recovery 功能一键 re-enable 全部被禁包"}]},
+        {"what": "🔴 NVIDIA 官方更正：USB 调试和网络调试不要同时打开，按连接方式二选一。网上不少教程（包括一份被广泛引用的 PDF）写成两个都开，那是错的。", "sources": [{"url": "https://forums.developer.nvidia.com/t/nvidia-shield-tv-how-to-enable-usb-adopted-storage-using-adb-complete-step-by-step-guide-verification/362774", "title": "NVIDIA 开发者论坛官方更正帖"}]},
+        {"what": "社区有 root / 解锁 bootloader / 刷开发者版固件的讨论，本项目不采用，也不记录方法。", "sources": []}
+      ]
+    },
+    {
+      "name": "Shield TV（2017 款）",
+      "years": "2017–2019 发售",
+      "base_os": "android",
+      "android_version_range": "出厂 Android 7，最终升到 Android 11（Shield Experience 9.0 起）",
+      "models_examples": [
+        "NVIDIA SHIELD Android TV (2017)",
+        "NVIDIA SHIELD Android TV Pro (2017, 500 GB)"
+      ],
+      "identify_hints": "外形和 2015 款几乎一样（扁三角形 + 绿色光条），但盒子里标配的是小遥控器而不是手柄，遥控器是细长的三角柱形、顶部有麦克风孔。关于页 Android 版本经更新后显示 11。",
+      "worth_it_hint": "和 2015 款一样：3 GB 内存不紧张，做它是为了去首页推荐位和遥测，不是救卡顿。机龄 8 年左右，还在正常吃 Shield Experience 更新。",
+      "entries": [
+        {
+          "applies_to": "2017 款",
+          "steps": [
+            "设置 → 设备偏好设置 → 关于",
+            "「内部版本号 / Build」连点 7 次 → 「您现在是开发者」",
+            "返回：设置 → 设备偏好设置 → 开发者选项",
+            "远程连打开「网络调试（Network debugging）」，页面会显示 IP 和端口；USB 线连则打开「USB 调试」（二选一，不要同开）",
+            "电脑 `adb connect <IP>:5555`，电视上选「一律允许」"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://nvidia.custhelp.com/app/answers/detail/a_id/4367/~/how-to-use-the-new-shield-tv-in-mtp-or-adb-mode", "title": "How to Use the New SHIELD TV in MTP or ADB mode — NVIDIA 官方"},
+            {"url": "https://www.reddit.com/r/ShieldAndroidTV/comments/hrq7yo/is_there_any_way_to_access_adb_for_nvidia", "title": "r/ShieldAndroidTV：Shield 支持通过 Wi-Fi 或以太网走 adb"},
+            {"url": "https://www.nvidia.com/en-us/geforce/forums/shield-tv/9/423710/how-to-enable-adb-network-debugging", "title": "NVIDIA GeForce 论坛：How to enable ADB network debugging"}
+          ],
+          "risk_notes": "同 2015 款：USB 调试与网络调试二选一；USB 调试打开时 USB 口不能同时接存储/键鼠。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "yes",
+        "hide": "unknown",
+        "uninstall_user0": "yes",
+        "notes": "与 2015 款同一套 Shield Experience 系统，包管理行为一致。",
+        "evidence_level": "多源",
+        "sources": [
+          {"url": "https://florisse.nl/shield-debloat", "title": "Debloat NVIDIA Shield TV Pro guide — Florisse creative"},
+          {"url": "https://xdaforums.com/t/debloat.4695673", "title": "XDA Debloat 帖：Tested on Nvidia Shield 2019，同一套 ADB 禁用 / 卸载方法"}
+        ]
+      },
+      "must_keep": [
+        {"pkg": "com.google.android.tvlauncher", "what": "Android TV 桌面", "why": "首页本身，没换 launcher 前不能动", "evidence_level": "多源", "sources": [{"url": "https://www.esper.io/blog/android-dessert-bites-2-tips-tricks-3156978", "title": "Esper：Android TV 桌面包名及换 launcher 方法"}]},
+        {"pkg": "com.android.systemui", "what": "Android 系统界面", "why": "不能动", "evidence_level": "多源", "sources": [{"url": "https://github.com/bryanroscoe/shield_optimizer", "title": "shield_optimizer do-not-disable 清单"}]},
+        {"pkg": "com.android.tv.settings", "what": "Android TV 设置", "why": "禁了进不去设置", "evidence_level": "单源", "sources": [{"url": "https://github.com/bryanroscoe/shield_optimizer", "title": "shield_optimizer do-not-disable 清单"}]}
+      ],
+      "junk": [
+        {"pkg": "com.nvidia.stats", "what": "NVIDIA 使用统计", "why": "遥测", "evidence_level": "多源", "sources": [{"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}, {"url": "https://diegoderksen.nl/blog/Nvidia-Shield-Debloating", "title": "Debloating Nvidia Shield"}]},
+        {"pkg": "com.nvidia.enhancedlogging", "what": "增强日志", "why": "遥测", "evidence_level": "多源", "sources": [{"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}, {"url": "https://diegoderksen.nl/blog/Nvidia-Shield-Debloating", "title": "Debloating Nvidia Shield"}]},
+        {"pkg": "com.nvidia.SHIELD.Platform.Analyser", "what": "平台分析", "why": "遥测", "evidence_level": "多源", "sources": [{"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "Level1Techs 清单"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.google.android.tvrecommendations", "what": "Android TV 推荐服务", "why": "首页推荐行数据源", "evidence_level": "多源", "sources": [{"url": "https://diegoderksen.nl/blog/Nvidia-Shield-Debloating", "title": "Debloating Nvidia Shield"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.google.android.leanbacklauncher.recommendations", "what": "桌面推荐行", "why": "首页推荐行本体", "evidence_level": "多源", "sources": [{"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "Level1Techs 清单"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.google.android.backdrop", "what": "屏保 / 背景图轮播", "why": "纯装饰", "evidence_level": "多源", "sources": [{"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "Level1Techs 清单"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.nvidia.shield.registration", "what": "产品注册", "why": "一次性内容", "evidence_level": "多源", "sources": [{"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.nvidia.shieldbeta", "what": "Beta 计划", "why": "不参加就没用", "evidence_level": "多源", "sources": [{"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.nvidia.diagtools", "what": "诊断工具", "why": "日常用不到", "evidence_level": "多源", "sources": [{"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "Level1Techs 清单"}]}
+      ],
+      "ask_user": [
+        {"pkg": "com.google.android.katniss", "what": "Google 搜索 / 语音助手", "why": "禁了语音搜索没了", "evidence_level": "多源", "sources": [{"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.google.android.gms", "what": "Play 服务", "why": "禁了很多 App 起不来", "evidence_level": "多源", "sources": [{"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.android.vending", "what": "Play 商店", "why": "禁了装不了 App", "evidence_level": "多源", "sources": [{"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.nvidia.ota", "what": "系统更新", "why": "禁了收不到安全补丁", "evidence_level": "多源", "sources": [{"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.nvidia.shield.remote.server", "what": "手机远程控制服务端", "why": "用手机 App 控制的要留", "evidence_level": "多源", "sources": [{"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]}
+      ],
+      "pitfalls": [
+        {"what": "2017 款和 2015 款外形几乎一样，靠盒子里配的是手柄还是遥控器来分；但对 ADB 操作来说两代没有差别，不必纠结。", "sources": [{"url": "https://www.androidpolice.com/nvidia-shield-android-11-tease", "title": "Android Police：Shield Experience 9 覆盖 2015 / 2015 Pro / 2017 / 2019 / 2019 Pro 全部五款"}]}
+      ]
+    },
+    {
+      "name": "Shield TV（2019 Tube）/ Shield TV Pro（2019）",
+      "years": "2019 至今在售",
+      "base_os": "android",
+      "android_version_range": "出厂 Android 9，升到 Android 11（Shield Experience 9.0 起）",
+      "models_examples": [
+        "NVIDIA SHIELD TV (2019, 圆柱形 Tube, 2 GB RAM)",
+        "NVIDIA SHIELD TV Pro (2019, 方形, 3 GB RAM)"
+      ],
+      "identify_hints": "2019 Tube 是一根圆柱体、两头接线，遥控器是三角柱形带背光按键和内置寻物蜂鸣器；2019 Pro 是方形黑盒子、带两个 USB 口。关于页 Android 版本 11、Shield Experience 9.x。",
+      "worth_it_hint": "🔴 2019 Tube 只有 2 GB 内存（Pro 是 3 GB），是三代 Shield 里内存最紧的一台 — 装满流媒体 App 之后切换会明显变慢，遥测和推荐服务的常驻开销在这台上最值得清。2019 Pro 不缺内存，做它纯粹是去广告位。两款都还在吃更新，机龄信号不成立。",
+      "entries": [
+        {
+          "applies_to": "2019 Tube 与 2019 Pro",
+          "steps": [
+            "设置 → 设备偏好设置（Device Preferences）→ 关于（About）",
+            "滚到底，「内部版本号 / Build」连点 7 次 → 「您现在是开发者」",
+            "返回：设置 → 设备偏好设置 → 开发者选项",
+            "打开「网络调试（Network debugging）」，开关下面会直接显示可连的 IP:端口 — 记下它",
+            "电脑执行 `adb connect <IP>:5555`",
+            "电视上弹出「允许 USB 调试吗」，选「允许」并勾「一律允许来自此计算机」"
+          ],
+          "has_auth_prompt": true,
+          "wireless_pairing": false,
+          "port": 5555,
+          "evidence_level": "多源",
+          "sources": [
+            {"url": "https://www.reddit.com/r/ShieldAndroidTV/comments/qupv9c/adb_connect_shield_tv_2019_tube_over_network", "title": "r/ShieldAndroidTV：adb connect Shield TV 2019 (Tube) over Network — 需先开 Network debugging，首次连会弹授权"},
+            {"url": "https://forums.developer.nvidia.com/t/nvidia-shield-tv-how-to-enable-usb-adopted-storage-using-adb-complete-step-by-step-guide-verification/362774", "title": "NVIDIA 开发者论坛：Shield TV Pro 2019 走 ADB over Network 的完整步骤"},
+            {"url": "https://nvidia.custhelp.com/app/answers/detail/a_id/4367/~/how-to-use-the-new-shield-tv-in-mtp-or-adb-mode", "title": "How to Use the New SHIELD TV in MTP or ADB mode — NVIDIA 官方"}
+          ],
+          "risk_notes": "Shield 到 Android 11 为止仍然是传统的 5555 端口直连，没有改成 Android 13+ 那套「无线调试 + 配对码」流程 — 这一点和同期的 Chromecast / Google TV 设备不同，不要把两边的步骤搞混。"
+        }
+      ],
+      "pm_caps": {
+        "disable_user": "yes",
+        "hide": "unknown",
+        "uninstall_user0": "yes",
+        "notes": "XDA 上的 Shield debloat 帖明确标注「Tested on Nvidia Shield 2019」，用的就是 ADB 禁用 / 卸载两条路线；shield_optimizer 工具也在 Shield 2019 上跑，并提供一键 Recovery 把所有被禁包重新启用。",
+        "evidence_level": "多源",
+        "sources": [
+          {"url": "https://xdaforums.com/t/debloat.4695673", "title": "XDA Debloat：Tested on Nvidia Shield 2019"},
+          {"url": "https://github.com/bryanroscoe/shield_optimizer", "title": "shield_optimizer：支持 Shield TV / Onn 4K Pro / Chromecast with Google TV，含 Recovery"},
+          {"url": "https://florisse.nl/shield-debloat", "title": "Florisse Shield debloat 指南（成对的移除 / 重装命令）"}
+        ]
+      },
+      "must_keep": [
+        {"pkg": "com.google.android.tvlauncher", "what": "Android TV 桌面", "why": "首页本身", "evidence_level": "多源", "sources": [{"url": "https://www.esper.io/blog/android-dessert-bites-2-tips-tricks-3156978", "title": "Esper：Android TV 桌面 = com.google.android.tvlauncher"}]},
+        {"pkg": "com.android.systemui", "what": "Android 系统界面", "why": "不能动", "evidence_level": "多源", "sources": [{"url": "https://github.com/bryanroscoe/shield_optimizer", "title": "shield_optimizer do-not-disable 清单"}]},
+        {"pkg": "com.android.tv.settings", "what": "Android TV 设置", "why": "禁了关不回网络调试", "evidence_level": "单源", "sources": [{"url": "https://github.com/bryanroscoe/shield_optimizer", "title": "shield_optimizer do-not-disable 清单"}]},
+        {"pkg": "com.google.android.inputmethod.latin", "what": "Gboard 输入法", "why": "Shield Experience 9 的默认键盘", "evidence_level": "单源", "sources": [{"url": "https://www.xda-developers.com/nvidia-releases-recovery-images-for-shield-experience-9-0-0-based-on-android-11-ota-rollout-imminent", "title": "XDA：Shield Experience 9.0.0 内置 Gboard"}]}
+      ],
+      "junk": [
+        {"pkg": "com.nvidia.stats", "what": "NVIDIA 使用统计", "why": "遥测", "evidence_level": "多源", "sources": [{"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}, {"url": "https://diegoderksen.nl/blog/Nvidia-Shield-Debloating", "title": "Debloating Nvidia Shield"}]},
+        {"pkg": "com.nvidia.enhancedlogging", "what": "增强日志", "why": "遥测", "evidence_level": "多源", "sources": [{"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}, {"url": "https://diegoderksen.nl/blog/Nvidia-Shield-Debloating", "title": "Debloating Nvidia Shield"}]},
+        {"pkg": "com.nvidia.SHIELD.Platform.Analyser", "what": "平台行为分析", "why": "遥测", "evidence_level": "多源", "sources": [{"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "Level1Techs 清单"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.nvidia.feedback", "what": "反馈上报", "why": "遥测", "evidence_level": "多源", "sources": [{"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "Level1Techs 清单"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.nvidia.diagtools", "what": "诊断工具", "why": "常驻无用", "evidence_level": "多源", "sources": [{"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "Level1Techs 清单"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.nvidia.shield.registration", "what": "产品注册引导", "why": "一次性内容", "evidence_level": "多源", "sources": [{"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "Level1Techs 清单"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.nvidia.shieldbeta", "what": "Beta 测试计划", "why": "不参加就没用", "evidence_level": "多源", "sources": [{"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "Level1Techs 清单"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.nvidia.benchmarkblocker", "what": "跑分屏蔽器", "why": "对普通用户无意义", "evidence_level": "多源", "sources": [{"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}, {"url": "https://diegoderksen.nl/blog/Nvidia-Shield-Debloating", "title": "Debloating Nvidia Shield"}]},
+        {"pkg": "com.nvidia.developerwidget", "what": "开发者小部件", "why": "开发调试用", "evidence_level": "多源", "sources": [{"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}, {"url": "https://diegoderksen.nl/blog/Nvidia-Shield-Debloating", "title": "Debloating Nvidia Shield"}]},
+        {"pkg": "com.nvidia.shield.nvcustomize", "what": "NVIDIA 定制化组件", "why": "社区清单标为可删的 NVIDIA 附加件", "evidence_level": "多源", "sources": [{"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}, {"url": "https://diegoderksen.nl/blog/Nvidia-Shield-Debloating", "title": "Debloating Nvidia Shield"}]},
+        {"pkg": "com.nvidia.shield.appselector", "what": "应用选择器（NVIDIA 附加界面）", "why": "常驻无用", "evidence_level": "多源", "sources": [{"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}, {"url": "https://diegoderksen.nl/blog/Nvidia-Shield-Debloating", "title": "Debloating Nvidia Shield"}]},
+        {"pkg": "com.google.android.tvrecommendations", "what": "Android TV 推荐服务", "why": "首页推荐行数据源", "evidence_level": "多源", "sources": [{"url": "https://diegoderksen.nl/blog/Nvidia-Shield-Debloating", "title": "Debloating Nvidia Shield"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.google.android.leanbacklauncher.recommendations", "what": "桌面推荐行", "why": "首页推荐行本体", "evidence_level": "多源", "sources": [{"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "Level1Techs 清单"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.google.android.backdrop", "what": "屏保 / 背景图轮播", "why": "纯装饰", "evidence_level": "多源", "sources": [{"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "Level1Techs 清单"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.google.android.tv.bugreportsender", "what": "Bug 报告上传", "why": "遥测", "evidence_level": "多源", "sources": [{"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "Level1Techs 清单"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.google.android.feedback", "what": "Google 反馈上报", "why": "遥测", "evidence_level": "多源", "sources": [{"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "Level1Techs 清单"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]}
+      ],
+      "ask_user": [
+        {"pkg": "com.google.android.katniss", "what": "Google 搜索 / 语音助手", "why": "禁了遥控上的语音搜索失效", "evidence_level": "多源", "sources": [{"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}, {"url": "https://freya.cat/blog/post/2025-03-11", "title": "freya.cat：katniss 被禁后开机会自动重新启用"}]},
+        {"pkg": "com.google.android.gms", "what": "Play 服务", "why": "🔴 禁了大量流媒体 App 拒绝启动", "evidence_level": "多源", "sources": [{"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}, {"url": "https://freya.cat/blog/post/2025-03-11", "title": "freya.cat：gms 被禁后系统开机会重新启用"}]},
+        {"pkg": "com.android.vending", "what": "Play 商店", "why": "禁了装不了 App", "evidence_level": "多源", "sources": [{"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.nvidia.ota", "what": "Shield Experience 系统更新", "why": "禁了收不到安全补丁和新功能", "evidence_level": "多源", "sources": [{"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "Level1Techs 清单"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.nvidia.shield.remote.server", "what": "手机远程控制服务端", "why": "用手机 App 当遥控器的要留", "evidence_level": "多源", "sources": [{"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "Level1Techs 清单"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.nvidia.hotwordsetup", "what": "「Hey Google」唤醒词", "why": "用语音唤醒的要留", "evidence_level": "多源", "sources": [{"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}, {"url": "https://diegoderksen.nl/blog/Nvidia-Shield-Debloating", "title": "Debloating Nvidia Shield"}]},
+        {"pkg": "com.nvidia.shieldtech.hooks", "what": "Shield 系统适配钩子（用途不明）", "why": "🔴 社区清单列为可删但没人说清楚它管什么，默认不动", "evidence_level": "多源", "sources": [{"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "Level1Techs 清单（无说明）"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单（无说明）"}]},
+        {"pkg": "com.nvidia.shieldtech.proxy", "what": "Shield 系统适配代理（用途不明）", "why": "同上，默认不动", "evidence_level": "多源", "sources": [{"url": "https://forum.level1techs.com/t/tutorial-de-bloat-and-de-google-nvidia-shield-pro/247451", "title": "Level1Techs 清单"}, {"url": "https://florisse.nl/shield-debloat", "title": "Florisse 清单"}]},
+        {"pkg": "com.google.android.videos", "what": "Google TV / Play 影视", "why": "在 Play 上买过片子的要留", "evidence_level": "多源", "sources": [{"url": "https://diegoderksen.nl/blog/Nvidia-Shield-Debloating", "title": "Debloating Nvidia Shield"}]},
+        {"pkg": "com.google.android.tts", "what": "Google 文字转语音", "why": "开无障碍朗读的要留", "evidence_level": "单源", "sources": [{"url": "https://diegoderksen.nl/blog/Nvidia-Shield-Debloating", "title": "Debloating Nvidia Shield"}]}
+      ],
+      "pitfalls": [
+        {"what": "🔴 2019 Tube 只有 2 GB 内存。清理之后确实会宽松一些，但如果用户装了 6–8 个流媒体 App，切换卡顿的根因是内存不够，清遥测服务只能缓解不能根治 — 别把预期说成「清完就不卡了」。", "sources": []},
+        {"what": "Shield 到 Android 11 为止仍是 5555 直连，没有配对码。如果在 Shield 上找不到「无线调试」选项，那是正常的，要找的是「网络调试（Network debugging）」。", "sources": [{"url": "https://www.nvidia.com/en-us/geforce/forums/shield-tv/9/423710/how-to-enable-adb-network-debugging", "title": "NVIDIA GeForce 论坛：用户找不到 ADB network debugging 的位置"}]},
+        {"what": "同 2015/2017 款：换 Projectivy 等 launcher 要「launcher 内的覆盖开关」+「设置 → 设备偏好 → 无障碍里给它授权」两处同时开；只做一处 Home 键不跳转。", "sources": [{"url": "https://www.youtube.com/watch?v=6PEFyFttSDQ", "title": "STOP NVIDIA Shield Ads – Best Home Screen Setup（unboxd.tech）", "date": "2026-02-25"}]}
+      ]
+    }
+  ],
+  "open_questions": [
+    "`pm hide` 在 Shield 上是否可用？本轮所有来源用的都是 pm uninstall -k --user 0 和 pm disable-user，没有一条用 pm hide。",
+    "com.nvidia.shieldtech.hooks / com.nvidia.shieldtech.proxy / com.nvidia.ocs 到底管什么？三份社区 debloat 清单都把它们列为可删，但没有任何一份说明用途或禁用后的后果，也没有 NVIDIA 官方文档。已按「用途不明」放进 ask_user，不要升级成 junk。",
+    "Shield Experience 9.x 系统更新之后，被 pm uninstall -k --user 0 移除的包会不会自动回来？Florisse / Level1Techs 都只给了手动恢复命令，没有说更新后的行为。",
+    "2019 Tube（2 GB）实际清理后能腾出多少内存？本轮没有找到像 Fire TV 那样的 dumpsys meminfo 实测数据，worth_it_hint 里只能定性描述。",
+    "Shield 首页那条横幅推广位对应的是哪个包？关掉 tvrecommendations / leanbacklauncher.recommendations 之后横幅是否还在？社区讨论只说「关不干净」，没有定位到具体包名。",
+    "社区有 root / 解锁 bootloader / 刷开发者版固件的讨论（XDA 上有 2019 Pro 的 developer image 教程），本项目不采用。"
+  ],
+  "last_reviewed": "2026-09-15"
+}

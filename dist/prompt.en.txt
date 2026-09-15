@@ -1,0 +1,26 @@
+Clean up my Android TV over ADB: remove boot ads and recommendation rows, disable preinstalled apps I never use, free up memory. You run the commands and explain in plain words what you are doing.
+
+My TV
+- Brand / model: FILL IN (e.g. Hisense 65E3F, Sony X900F, Fire TV Stick 4K)
+- TV IP: FILL IN (Settings → Network, starts with 192.168)
+- Computer and TV are on the same Wi-Fi. I will enable Developer options and USB/network debugging when you tell me how.
+
+Hard rules (none can be broken)
+1. Never uninstall system apps, never root, never unlock the bootloader, never flash. Only use commands that can be undone.
+2. Decide if it is worth it first: after connecting, read the Android version and RAM. On Android 4.x tell me "it connects but nothing can be changed" and stop. On non-Android systems tell me it does not apply and instead show me the settings that turn ads off.
+3. Back up first: save `pm list packages -f`, `pm list packages -d`, `pm list packages -u`, `dumpsys meminfo`, `cat /proc/meminfo`, `settings list global/system/secure`, `getprop` to files in a dated folder and tell me the path.
+4. Rehearse first: before disabling anything for real, take one ad package and do "disable → check → restore → check" to prove the restore command works on this TV. Try commands in this order: `pm disable-user --user 0`; if denied, `pm hide`; only then `pm uninstall -k --user 0` (ask me separately, and only after rehearsing that `cmd package install-existing` or `pm install -r` brings it back).
+5. Show me three groups before touching anything:
+   - Safe to disable: ads, shopping/payment, telemetry/metrics, retail demo, silent installers, push/notification services.
+   - Ask me: voice assistant, casting/AirPlay/Miracast, app store, account/cloud services, third-party media/karaoke. List them; I tick the ones to disable; anything I do not tick stays.
+   - Never touch: launcher/home, TV input/HDMI switching, input method, package installer, settings and system UI, remote/Bluetooth services, factory/reset/OTA, core TV services, WebView, accessibility/TalkBack, HDMI-CEC, DRM. Anything you cannot identify by name counts as "never touch" — ask me.
+6. Small batches: at most 10 packages per batch, and the first batch only ads. After each batch stop and wait while I test four things — the input/source button switching to HDMI, volume, opening picture settings, playing a video. Continue only when I say it is fine.
+7. For every package you disable, immediately append one restore line to `rollback.sh` (`pm enable` / `pm unhide` / `cmd package install-existing`). Write the line before counting the step as done.
+8. After each batch run `adb reboot` for a real reboot (the remote's power button is standby, not a reboot). After it comes back check: screen not black, launcher in the foreground, available memory, and that the packages you just disabled are still disabled. If the system silently restored some, tell me this method does not stick on this TV and fall back to the next one.
+9. Fixed order when something goes wrong: on a black screen or no response, first check system state (`dumpsys power`, `dumpsys activity activities`, `screencap`) and tell me "the TV is not broken, the system is running"; then restore the whole last batch; then real reboot; if still wrong restore everything and reboot again. Do not tell me to pull the plug. Two problems in the same batch → restore everything, stop, report.
+10. Keep `DEBLOAT-LOG.md` in the same folder: what you did, why, how to undo each step.
+11. Do not replace the launcher on older TVs. Do not promise to block system updates. Mask serial numbers and MAC addresses before showing me screenshots.
+
+When done give me three things: where the backup is; the one-line command that restores everything; a before/after table (available memory, how many packages disabled, restore command for each).
+
+Brand entry steps and keep/junk package lists: sanshengai.top/tools/tv-adb (per brand and series, with evidence levels and known pitfalls). If my model is not there, use the generic path: Settings → System / About → press the build number seven times → Developer options → USB debugging; if it will not connect, try `adb connect IP:5555` in case the port is already open.
