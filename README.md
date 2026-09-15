@@ -51,6 +51,20 @@ ln -s ~/.claude/skills/sansheng-tv-adb ~/.agents/skills/sansheng-tv-adb
 
 AI 每一步都会告诉你三件事：现在做什么、影响多大、怎么退回。你随时可以说「停」「恢复」「跳过」。
 
+### 长什么样
+
+跑完是这样（假 adb 回放海信 2017 录制夹具，与 09-14 真机过程一致：预演发现 `disable-user` 被封自动换 `hide`、第一批停完真重启黑屏 → `recover` 还原重启 → 重做 → 通过）：
+
+![tvadb 从 probe 到 report 的终端记录](assets/03-terminal-replay.png)
+
+网页版入口库先替你判断能不能做、值不值：
+
+![判定卡：海信 + 数字键遥控器 + 安卓 5–10 → 可以做，分系列看](assets/01-judge-card.png)
+
+每个品牌卡里是怎么认机型、每个系列的开发者模式入口步骤、坑与来源：
+
+![海信品牌卡：老款 VIDAA 的工厂菜单入口步骤](assets/02-hisense-entry.png)
+
 ## 安全承诺（写在脚本里，AI 绕不过）
 
 - **没备份不许停**：先把应用清单、系统设置、内存快照存到你电脑上。

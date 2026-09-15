@@ -51,6 +51,20 @@ Requires Python 3.10+, `adb` (macOS `brew install android-platform-tools`; Windo
 
 At every step the agent tells you three things: what it is doing now, how big the blast radius is, how to undo it. You can say "stop", "restore" or "skip" at any time.
 
+### What it looks like
+
+A full run (fake-adb replay of the Hisense 2017 fixture, mirroring the real 09-14 session: the rehearsal finds `disable-user` blocked and switches to `hide`, the first real reboot goes black → `recover` restores and reboots → redo → pass):
+
+![tvadb terminal transcript from probe to report](assets/03-terminal-replay.png)
+
+The web entry library first tells you whether your TV can be done and whether it is worth it:
+
+![Verdict card: Hisense + numeric remote + Android 5–10 → doable, pick your series](assets/01-judge-card.png)
+
+Each brand card explains how to identify your model, the developer-mode entry steps per series, pitfalls and sources (the site is in Chinese; the agent reads it for you):
+
+![Hisense brand card: factory-menu entry steps for the old VIDAA series](assets/02-hisense-entry.png)
+
 ## Safety promises (enforced in the scripts, the agent cannot bypass them)
 
 - **No backup, no disabling**: package lists, system settings and a memory snapshot are saved to your computer first.
