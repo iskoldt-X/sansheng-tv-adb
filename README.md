@@ -8,13 +8,13 @@
 
 ## 30 秒判断：你的电视能不能做、值不值得
 
-| 你的电视底层系统 | 能不能 | 说明 |
-|---|---|---|
-| 安卓 5–10（老款海信/Vidda、TCL/雷鸟、小米、创维/酷开、康佳、长虹、索尼/飞利浦/夏普 Android TV、华为智慧屏 HarmonyOS ≤4） | ✅ 主战场 | 开机广告、桌面推荐位、上报服务都能停 |
-| 安卓 11+ / Google TV、Fire OS（Fire TV 全系）、Shield、Chromecast/onn | ✅ | Google TV 13/14 要先配对码，步骤不同但能做 |
-| 安卓 4.x（2012–2015 老联想/夏普×联想等） | ⚠️ 连得上，改不了 | 系统不允许停用自带应用，别折腾 |
-| 三星 Tizen、LG webOS、Roku、Vizio、海信海外 VIDAA（Linux）、飞利浦 SAPHI/Titan、阿里 YunOS、荣耀智慧屏、华为 MateTV | ❌ 不适用 | 不是安卓或不开放 ADB；库里给了每家「关广告在设置哪里」 |
-| 非智能电视 | ❌ | 没有系统可改 |
+| 你的电视 | 能不能 |
+|---|---|
+| **安卓 5–10**<br><small>老款海信 / Vidda、TCL / 雷鸟、小米、创维 / 酷开、康佳、长虹、索尼 / 飞利浦 / 夏普 Android TV、华为智慧屏 HarmonyOS ≤ 4</small> | ✅ **能做，收益最大**<br><small>开机广告、桌面推荐位、上报服务都能停</small> |
+| **安卓 11 以上 / Google TV**<br><small>Fire OS（Fire TV 全系）、Shield、Chromecast / onn</small> | ✅ **能做**<br><small>Google TV 13 / 14 要先配对码，步骤不同</small> |
+| **安卓 4.x**<br><small>2012–2015 的老联想、夏普 × 联想等</small> | ⚠️ **连得上，改不了**<br><small>系统不允许停用自带应用，别折腾</small> |
+| **不是安卓**<br><small>三星 Tizen、LG webOS、Roku、Vizio、海信海外 VIDAA（Linux）、飞利浦 SAPHI / Titan、阿里 YunOS、荣耀智慧屏、华为 MateTV</small> | ❌ **不适用**<br><small>不开放 ADB；库里给了每家「关广告在设置哪里」</small> |
+| **非智能电视** | ❌ **没有系统可改** |
 
 值得做的三个信号：**有开机广告或桌面推荐位；内存 ≤ 2 GB；机龄三年以上**。命中任一就值得；三个都不中，收益小于折腾。
 

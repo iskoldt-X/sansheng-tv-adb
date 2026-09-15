@@ -8,13 +8,13 @@ A 2017 Hisense TV with 2 GB of RAM: after the cleanup the boot ad was gone and a
 
 ## 30-second check: can your TV be done, and is it worth it?
 
-| Underlying OS | Doable? | Notes |
-|---|---|---|
-| Android 5–10 (older Hisense/Vidda, TCL/FFALCON, Xiaomi, Skyworth/Coocaa, Konka, Changhong, Sony/Philips/Sharp Android TV, Huawei Vision HarmonyOS ≤4) | ✅ main target | boot ads, home-screen recommendation rows and telemetry can all be disabled |
-| Android 11+ / Google TV, Fire OS (all Fire TV), Shield, Chromecast/onn | ✅ | Google TV on Android 13/14 needs a pairing code first; different steps, still doable |
-| Android 4.x (2012–2015 Lenovo ideatv / Sharp-Lenovo etc.) | ⚠️ connects, cannot change | the system refuses to disable built-in apps; not worth the effort |
-| Samsung Tizen, LG webOS, Roku, Vizio, Hisense VIDAA (Linux), Philips SAPHI/Titan, Alibaba YunOS, Honor Vision, Huawei MateTV | ❌ not applicable | not Android or ADB not exposed; the library lists where each one's ad switches live |
-| Non-smart TV | ❌ | nothing to change |
+| Your TV | Doable? |
+|---|---|
+| **Android 5–10**<br><small>older Hisense / Vidda, TCL / FFALCON, Xiaomi, Skyworth / Coocaa, Konka, Changhong, Sony / Philips / Sharp Android TV, Huawei Vision HarmonyOS ≤ 4</small> | ✅ **Yes, biggest payoff**<br><small>boot ads, home-screen recommendation rows and telemetry can all be disabled</small> |
+| **Android 11+ / Google TV**<br><small>Fire OS (all Fire TV), Shield, Chromecast / onn</small> | ✅ **Yes**<br><small>Google TV on Android 13 / 14 needs a pairing code first; different steps</small> |
+| **Android 4.x**<br><small>2012–2015 Lenovo ideatv, Sharp × Lenovo, etc.</small> | ⚠️ **Connects, cannot change**<br><small>the system refuses to disable built-in apps; not worth it</small> |
+| **Not Android**<br><small>Samsung Tizen, LG webOS, Roku, Vizio, Hisense VIDAA (Linux), Philips SAPHI / Titan, Alibaba YunOS, Honor Vision, Huawei MateTV</small> | ❌ **Not applicable**<br><small>ADB not exposed; the library lists where each one's ad switches live</small> |
+| **Non-smart TV** | ❌ **Nothing to change** |
 
 Three signals that it is worth it: **a boot ad or recommendation rows on the home screen; RAM ≤ 2 GB; the set is three years old or more.** Any one of them is enough.
 
