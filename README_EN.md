@@ -63,7 +63,7 @@ The web entry library first tells you whether your TV can be done and whether it
 
 Each brand card explains how to identify your model, the developer-mode entry steps per series, pitfalls and sources (the site is in Chinese; the agent reads it for you):
 
-![Hisense brand card: factory-menu entry steps for the old VIDAA series](assets/02-hisense-entry.png)
+![Hisense · old VIDAA series: how to identify it, is it worth it, factory-menu entry steps and pitfalls](assets/02-hisense-entry.png)
 
 ## Safety promises (enforced in the scripts, the agent cannot bypass them)
 
