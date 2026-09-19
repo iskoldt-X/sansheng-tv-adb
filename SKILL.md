@@ -17,7 +17,7 @@ description: 用 ADB 给安卓电视（含 Fire TV、Google TV、老款海信/TC
 
 ## 用法路径
 
-- **装了本 skill**：按下面的阶段机走，命令都是 `python3 <skill 目录>/scripts/tvadb.py <子命令>`。找不到 skill 目录就 `ls ~/.claude/skills ~/.agents/skills ~/.codex/skills 2>/dev/null | grep tv-adb`。
+- **装了本 skill**：按下面的阶段机走，命令都是 `python3 <skill 目录>/scripts/tvadb.py <子命令>`。找不到 skill 目录就 `ls ~/.claude/skills ~/.agents/skills ~/.codex/skills ~/.gemini/config/skills 2>/dev/null | grep tv-adb`。
 - **用户只给了网址**（sanshengai.top/tools/tv-adb）或只贴了提示词：读 `references/prompt-zh.md`（英文用户读 `prompt-en.md`），按同样的阶段机做，安全闸降级成你自己的纪律，并如实告诉用户「脚本没装，我按手工流程做，每一步都会给你看命令」。
 
 ## 阶段机（每一步停下来等用户回话，不一口气跑完）
@@ -54,7 +54,7 @@ description: 用 ADB 给安卓电视（含 Fire TV、Google TV、老款海信/TC
 | G10 状态文件 | `state.json` + `rollback.sh` 每停一包即写；断了用 `resume` 接上 | 全程 |
 | G11 临时项 | 禁停名单里的包若处于停用状态（且不是出厂就停的），`status` 会警告，批末必须恢复 | `status` |
 
-## 三组分类怎么跟用户说
+## 四类分类怎么跟用户说
 
 - **可停（有来源）**：品牌数据里标了广告 / 购物 / 上报 / 演示的，直接排进批次，说一句「这些不管谁家都不会用」。
 - **按包名猜的**：脚本只会猜，不会自动停。列给用户，得到确认后 `plan --confirm-guessed`。
