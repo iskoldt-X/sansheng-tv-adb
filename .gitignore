@@ -13,4 +13,6 @@ __pycache__/
 
 # 假 adb 状态
 mock_tv_state.json
+*.mp4
+*.png
 # 网站副本由 --web-dir 显式生成，不在本仓
