@@ -1,6 +1,8 @@
 # 实战复盘 · 乐视 85 吋巨幕电视（Android 12）硬核去开机广告与精简记
 
-> **真实案例**：一台 2024 年底固件、自称 Android 12、菜单极简的 85 吋乐视电视，历经「无法开开发者模式 → 抓出工厂菜单 → 发现 11MB 底层硬编码广告视频 → 逆向底层开关彻底消灭」的全过程。
+> **来源**：贡献者实机实测（[PR #1](https://github.com/sanshengai/sansheng-tv-adb/pull/1)，iskoldt-X，2026-10-20）。维护者未在本机复现。
+>
+> **案例**：一台 2024 年底固件、自称 Android 12、菜单极简的 85 吋乐视电视，历经「无法开开发者模式 → 抓出工厂菜单 → 发现 11MB 底层硬编码广告视频 → 逆向底层开关彻底消灭」的全过程。
 
 ---
 
@@ -55,23 +57,36 @@
 
 ---
 
-## 五、 终极歼灭：底层 Property 属性破解
+## 五、 社区经验 · 高风险：修改系统持久属性（本工具不执行）
 
-在不物理破坏 `/system` 只读分区的前提下，我们通过对 `/system/bin/bootvideo` 和 `/system/bin/bootanimation` 的二进制分析，找到了控制该硬件服务的底层 `persist` 参数：
+> **警告**：以下做法是贡献者的个人经验，改的是系统持久属性（`persist.*`），不是 `pm disable-user` 停用应用，超出本工具「只停用、每步可还原」的原则。本工具不会执行这些命令，入口库数据也不收录。属性含义来自贡献者对二进制的分析，维护者未复现；不同固件可能不同，误改可能导致开机异常，风险自负。
+
+贡献者使用的命令：
 
 ```bash
-# 1. 禁用开机视频底层服务
 adb shell setprop persist.sys.bootvideo.enable false
-
-# 2. 将开机动画类型从 1 (视频广告模式) 切换回 0 (原生开机动画模式)
 adb shell setprop persist.sys.bootanimation.type 0
-
-# 3. 关闭乐视广告全局标记
 adb shell setprop persist.letv.advertisement false
 ```
 
-执行后再次 `adb reboot` 真重启测试：
-**屏幕没有任何多余等待，11MB 广告视频被瞬间跳过，直接秒进系统主桌面！开机广告彻底根除！**
+**动手前先记录原值**（还原时以记录为准）：
+
+```bash
+adb shell getprop persist.sys.bootvideo.enable
+adb shell getprop persist.sys.bootanimation.type
+adb shell getprop persist.letv.advertisement
+```
+
+**还原方法**（按贡献者机器的原值；如记录的原值不同，以记录为准）：
+
+```bash
+adb shell setprop persist.sys.bootvideo.enable true
+adb shell setprop persist.sys.bootanimation.type 1
+adb shell setprop persist.letv.advertisement true
+adb reboot
+```
+
+贡献者反馈：执行后重启，开机视频广告不再播放，直接进入系统桌面。
 
 ---
 
@@ -87,5 +102,5 @@ adb shell setprop persist.letv.advertisement false
 ## 七、 经验与沉淀
 
 1. **暗码触发的物理层细节**：电视的工厂暗码（如 2580 / 1147）对界面上下文极其敏感，遇阻时务必分清“浮动菜单下输入”与“信号源全屏下输入”。
-2. **现代电视开机广告的分层治理**：国内厂商的开机广告已从单纯的“应用层广播弹窗”进化为“Linux init 硬件级视频播放”，仅清理 APK 治标不治本，必须配合底层属性拦截。
-3. **沉淀入库**：本次实测机型与规则已正式沉淀入本项目的 `data/brands/letv.json`，让后续同类机型用户免走弯路。
+2. **开机广告可能不在 APK 里**：部分机型的开机视频由系统原生服务播放，仅停用 APK 无法去除；是否改系统属性需用户自行判断风险，本工具只做可还原的停用。
+3. **沉淀入库**：本次实测的工厂菜单入口与停用清单已收录到本项目的 `data/brands/letv.json`，让后续同类机型用户免走弯路。

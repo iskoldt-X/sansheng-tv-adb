@@ -268,7 +268,7 @@
 
 ## 乐视 / Letv / LeEco · 适用
 
-能做：老款EUI机型（Android 4.x-7.x）与新款Android 12巨幕系列（海思+CV560板卡）均能通过信号源菜单输2580呼出工厂菜单开启ADB。新机实测可用disable-user停用12个广告与预装包，且实测可通过修改底层persist属性彻底关闭11MB硬编码开机视频广告（bootvideo.mp4）。
+能做：乐视 Q85（CV560-C75 板卡，Android 12）经贡献者实机实测，可在信号源浮动菜单输 2580 呼出工厂菜单开启 ADB，并用 disable-user 停用广告与预装包。该机开机视频广告由系统原生服务播放，仅停用 APK 无法去除（社区经验见 references/case-letv-q85.md，属高风险操作，本工具不执行）。老款 EUI 机型暂无可核实来源，待投稿。
 
 **怎么认机型**
 
@@ -277,12 +277,12 @@
 - about_page_fields：设备名称（AndroidTV）；安卓版本（12 / 5.x / 6.x）；客户产品（如 Q85_CV560-C75_930MA_Letv_BRT）；板型（如 CV560-C75）；MAC 地址；WIFI MAC 地址
 - model_naming_rule：乐视整机型号以尺寸与系列字母组合，如超3/超4代际（X40/X43/X50/X55/X65、Max 70），近年新机型如 Q85（85英寸巨幕QLED）。在工厂菜单「客户产品」字段可看到精确硬件标识。
 - sticker_location：机身背部铭牌印有完整型号与生产批次；工厂菜单顶部也会直接显示准确板型与客户产品型号
-- year_ranges：2013-2016 初代/超2/超3（Android 4.x-5.x）；2016-2020 超4/超5/全面屏系列（Android 6.x-7.x）；2021-2024 近代大屏系列（Android 9-12，如本次实测 2024-11 固件 Q85 巨幕）
+- year_ranges：2013-2016 初代/超2/超3（Android 4.x-5.x）；2016-2020 超4/超5/全面屏系列（Android 6.x-7.x）；2021-2024 近代大屏系列（如贡献者实测的 2024-11 固件 Q85）
 
 ### 乐视 Q85 / CV560 板卡系列（Android 12，海思方案）（2021–2024，android Android 12）
 
 - 认：设置菜单极简（仅系统信息、系统升级、恢复出厂设置、服务协议四项），系统信息显示设备名称为 AndroidTV、安卓版本 12。在信号源浮窗下按 2580 可呼出工厂菜单，顶部显示客户产品 Q85_CV560-C75_..._Letv_BRT。
-- 值不值：收益极大：3GB 运存，实测可用 disable-user 停用 12 个广告与后台冗余组件；更关键的是实测可通过 persist 属性彻底关闭 11MB 底层硬件开机广告视频（bootvideo.mp4），秒进桌面。
+- 值不值：值得做：3GB 运存，贡献者实测用 disable-user 停用广告与后台冗余组件后可用内存增加约 100–200 MB。开机视频广告不在 APK 内，停用后仍会播放。
 
 **CV560-C75 及同代板卡乐视电视（信号源菜单按 2580）** · 证据：本机实测
 1. 开机后在任意界面按遥控器【信号源】键，呼出信号源浮动菜单（注意：停在浮动菜单上，切勿切入全屏信号源）
@@ -294,37 +294,18 @@
 7. 电脑终端执行：adb connect 电视IP:5555
 - 授权弹窗：无；端口 5555
 - ⚠ 只改 ADB 一项。工厂菜单中严禁进入「屏参调整」（会导致花屏/倒屏）和「老化模式」（红绿蓝纯色闪烁锁死）。
-- 来源：[本机实测乐视 Q85（CV560-C75，2024-11-12 固件，Android 12）](https://github.com/sanshengai/sansheng-tv-adb) 2026-10-20
+- 来源：[贡献者实机实测（PR #1）：乐视 Q85，CV560-C75，2024-11-12 固件，Android 12](https://github.com/sanshengai/sansheng-tv-adb/pull/1) 2026-10-20
 - 命令能力：disable-user=yes · hide=no · uninstall-user0=unknown（Android 12 原生行为：pm disable-user --user 0 完美可用且可原样还原；pm hide 会报 MANAGE_USERS 权限异常不可用。）
 - 禁停（5）：`com.stv.deskplatform`、`com.cultraview.setting`、`android.cultraview.tv.service`、`com.hisilicon.tv.service`、`com.cultraview.tvboot`
 - 可停（8）：`com.stv.bootadmanager`、`com.cultraview.retail`、`com.cultraview.screensaver`、`com.android.printspooler`、`com.ctv.autotest.helper`、`com.le.lepay.tv`、`com.letv.tvos.intermodal`、`com.stv.appdaemon`
 - 看你用不用（4）：`com.aispeech.tvui`、`com.stv.voice`、`com.letv.lekids`、`com.letv.tvos.appstore`
 - 坑：信号源按 2580 的触发时机：必须在按信号源键后屏幕浮出信号源菜单列表时输入；如果已经切入 HDMI1 等全屏信号源画面后再按无效。
-- 坑：11MB 底层硬件硬编码开机广告视频：在 /system/product/media/bootvideo.mp4，由底层 init 服务 /system/bin/bootvideo 驱动，仅停用 APK 无法去除。必须通过 ADB 执行 setprop persist.sys.bootvideo.enable false 与 setprop persist.sys.bootanimation.type 0 以及 setprop persist.letv.advertisement false，重启即可彻底消除并切回原生开机动画。
+- 坑：开机视频广告（/system/product/media/bootvideo.mp4，约 11MB）由系统原生服务 /system/bin/bootvideo 播放，停用 com.stv.bootadmanager 等 APK 后仍会出现。贡献者通过修改 persist 系统属性关闭，属于改系统持久属性，超出本工具「只用 pm disable-user、每步可还原」的范围，本工具不执行；如需了解见 references/case-letv-q85.md「社区经验 · 高风险」一节，风险自负。
 - 坑：com.letv.lekids 抢占开机桌面：该包注册了 HOME category 过滤器，开机会自动抢占前台拉起 VipHomeActivity。停用后系统桌面自然归位至官方纯净桌面 com.stv.deskplatform。
-
-### 经典乐视 EUI 系列（超3 / 超4 / X系列等，Android 4.x–7.x）（2014–2020，android Android 4.4 – 7.1）
-
-- 认：主界面是经典的 EUI 轮播台与九宫格桌面，关于本机中显示 EUI 5.x / 6.x；遥控器通常为九键或经典红外带数字键遥控。
-- 值不值：值得做：运存通常仅 1GB–2GB，停用乐视全家桶（轮播台、购物、儿童、应用商店、推送）可释放 300MB+ 运存大幅减少卡顿。早期 Android 4.x 机型受限系统权限停用可能被拒。
-
-**EUI 5.x / 6.x 通用信号源 2580 工厂菜单** · 证据：多源
-1. 在信号源界面（或信号源菜单弹窗）依次输入数字「2580」
-2. 弹出工程菜单后，选择「Other Options」（其他选项）
-3. 滚动到底部找到「ADB调试」或「ADB Debug」，设为「ON」
-4. 将电视关机断电重启生效
-5. 电脑连接：adb connect 电视IP:5555
-- 授权弹窗：无；端口 5555
-- ⚠ 只改 ADB 一项。工厂菜单涉及硬件底层，误改屏参有花屏风险。
-- 来源：[乐视电视通用工程模式开启 ADB 教程](https://www.znds.com) 
-- 命令能力：disable-user=yes · hide=unknown · uninstall-user0=yes
-- 禁停（1）：`com.letv.tv`
-- 可停（1）：`com.letv.ad.service`
-- 看你用不用（1）：`com.letv.tvos.gamecenter`
-- 坑：Android 4.x 机型停用命令可能被厂商安全策略拒绝，表现为 SecurityException，此类机型连得上但改不了系统预装应用。
 
 **待验证 · 欢迎投稿**
 
+- 经典 EUI 系列（超3/超4/X 系列，Android 4.x–7.x）的工厂菜单 ADB 入口（信号源界面输 2580）与可停包名，缺可核实的具体来源链接，欢迎投稿
 - 部分老款 Android 4.x 乐视电视是否存在免 root 禁用系统 APK 的替代命令
 
 ## NVIDIA Shield TV · 适用
